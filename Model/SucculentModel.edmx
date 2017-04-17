@@ -1,0 +1,2197 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="SucculentModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Activity">
+          <Key>
+            <PropertyRef Name="ActivityID" />
+          </Key>
+          <Property Name="ActivityID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserID" Type="int" Nullable="false" />
+          <Property Name="ActivityCategoryID" Type="int" Nullable="false" />
+          <Property Name="ActivityName" Type="nchar" MaxLength="50" Nullable="false" />
+          <Property Name="ActivityDescribe" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="ActivityPlace" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="StartTime" Type="datetime" Nullable="false" />
+          <Property Name="EndTime" Type="datetime" Nullable="false" />
+          <Property Name="UpvoteNum" Type="int" />
+        </EntityType>
+        <EntityType Name="ActivityCategory">
+          <Key>
+            <PropertyRef Name="ActivityCategoryID" />
+          </Key>
+          <Property Name="ActivityCategoryID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ActivityCategoryName" Type="nvarchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Address">
+          <Key>
+            <PropertyRef Name="AddressID" />
+          </Key>
+          <Property Name="AddressID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserID" Type="int" Nullable="false" />
+          <Property Name="Province" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="City" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="AddressDetail" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="IsDefault" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Adopt">
+          <Key>
+            <PropertyRef Name="AdoptID" />
+          </Key>
+          <Property Name="AdoptID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="GoodsID" Type="int" Nullable="false" />
+          <Property Name="Total" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AdoptResult">
+          <Key>
+            <PropertyRef Name="AdoptResultID" />
+          </Key>
+          <Property Name="AdoptResultID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserID" Type="int" Nullable="false" />
+          <Property Name="ActivityID" Type="int" Nullable="false" />
+          <Property Name="GoodsID" Type="int" Nullable="false" />
+          <Property Name="AdoptTime" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Attendance">
+          <Key>
+            <PropertyRef Name="AttendanceID" />
+          </Key>
+          <Property Name="AttendanceID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserID" Type="int" Nullable="false" />
+          <Property Name="ActivityID" Type="int" Nullable="false" />
+          <Property Name="AttendanceTime" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CharitableResult">
+          <Key>
+            <PropertyRef Name="CharitableResultID" />
+          </Key>
+          <Property Name="CharitableResultID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ActivityID" Type="int" Nullable="false" />
+          <Property Name="CharitableName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="CWhereabouts" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="CharitableDetails" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Collection">
+          <Key>
+            <PropertyRef Name="CollectionID" />
+          </Key>
+          <Property Name="CollectionID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserID" Type="int" Nullable="false" />
+          <Property Name="SucculentID" Type="int" Nullable="false" />
+          <Property Name="CollectionTime" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Donate">
+          <Key>
+            <PropertyRef Name="DonateID" />
+          </Key>
+          <Property Name="DonateID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserID" Type="int" Nullable="false" />
+          <Property Name="DonateTime" Type="datetime" Nullable="false" />
+          <Property Name="DonoteTotal" Type="int" Nullable="false" />
+          <Property Name="DonateContent" Type="nchar" MaxLength="200" Nullable="false" />
+          <Property Name="ExoressNumber" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="DonateState" Type="nchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Entries">
+          <Key>
+            <PropertyRef Name="EntriesID" />
+          </Key>
+          <Property Name="EntriesID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserID" Type="int" Nullable="false" />
+          <Property Name="ActivityID" Type="int" Nullable="false" />
+          <Property Name="Image" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="TextDescription" Type="nchar" MaxLength="200" />
+          <Property Name="JoinTime" Type="datetime" Nullable="false" />
+          <Property Name="UpvoteNum" Type="int" />
+        </EntityType>
+        <EntityType Name="Farms">
+          <Key>
+            <PropertyRef Name="FarmID" />
+          </Key>
+          <Property Name="FarmID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Goods">
+          <Key>
+            <PropertyRef Name="GoodsID" />
+          </Key>
+          <Property Name="GoodsID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ShopID" Type="int" Nullable="false" />
+          <Property Name="GoodsName" Type="nchar" MaxLength="50" Nullable="false" />
+          <Property Name="Price" Type="decimal" Precision="18" Scale="1" Nullable="false" />
+          <Property Name="GoodsPhoto" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="GoodsDescribe" Type="nvarchar(max)" />
+          <Property Name="LikeIt" Type="int" />
+          <Property Name="Flag" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="GoodsComments">
+          <Key>
+            <PropertyRef Name="GoodsCommentID" />
+          </Key>
+          <Property Name="GoodsCommentID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserID" Type="int" Nullable="false" />
+          <Property Name="GoodsID" Type="int" Nullable="false" />
+          <Property Name="GoodsCommentContent" Type="nchar" MaxLength="200" />
+          <Property Name="PublishTime" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Level">
+          <Key>
+            <PropertyRef Name="LevelID" />
+          </Key>
+          <Property Name="LevelID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LevelName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="LevelToplimit" Type="int" Nullable="false" />
+          <Property Name="Levellowerlimit" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="OrderItems">
+          <Key>
+            <PropertyRef Name="OrderItemsID" />
+          </Key>
+          <Property Name="OrderItemsID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OrderID" Type="int" Nullable="false" />
+          <Property Name="GoodsID" Type="int" Nullable="false" />
+          <Property Name="UnitPrice" Type="decimal" Precision="18" Scale="1" Nullable="false" />
+          <Property Name="Number" Type="int" Nullable="false" />
+          <Property Name="TotalAmount" Type="decimal" Precision="18" Scale="1" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Orders">
+          <Key>
+            <PropertyRef Name="OrderID" />
+          </Key>
+          <Property Name="OrderID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserID" Type="int" Nullable="false" />
+          <Property Name="OrderTime" Type="datetime" Nullable="false" />
+          <Property Name="Amount" Type="int" Nullable="false" />
+          <Property Name="ExpressNumber" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="OrderState" Type="nchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PostComments">
+          <Key>
+            <PropertyRef Name="PostCommentID" />
+          </Key>
+          <Property Name="PostCommentID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserID" Type="int" Nullable="false" />
+          <Property Name="PostID" Type="int" Nullable="false" />
+          <Property Name="PostCommentContent" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="PostCommentTime" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Posts">
+          <Key>
+            <PropertyRef Name="PostID" />
+          </Key>
+          <Property Name="PostID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserID" Type="int" Nullable="false" />
+          <Property Name="SectionID" Type="int" Nullable="false" />
+          <Property Name="PostTitle" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="PostContent" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="PublishTime" Type="datetime" Nullable="false" />
+          <Property Name="PostFlag" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Pots">
+          <Key>
+            <PropertyRef Name="PotID" />
+          </Key>
+          <Property Name="PotID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserID" Type="int" Nullable="false" />
+          <Property Name="LevelID" Type="int" Nullable="false" />
+          <Property Name="Experience" Type="int" Nullable="false" />
+          <Property Name="Sign" Type="datetime" />
+          <Property Name="SignDays" Type="int" />
+        </EntityType>
+        <EntityType Name="ReplyGoods">
+          <Key>
+            <PropertyRef Name="ReplyGoodsID" />
+          </Key>
+          <Property Name="ReplyGoodsID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserID" Type="int" Nullable="false" />
+          <Property Name="GoodsCommentID" Type="int" Nullable="false" />
+          <Property Name="ReplyContent" Type="nchar" MaxLength="200" Nullable="false" />
+          <Property Name="ReplyTime" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ReplyPost">
+          <Key>
+            <PropertyRef Name="ReplyPostID" />
+          </Key>
+          <Property Name="ReplyPostID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserID" Type="int" Nullable="false" />
+          <Property Name="PostCommentID" Type="int" Nullable="false" />
+          <Property Name="ReplyContent" Type="nchar" MaxLength="200" Nullable="false" />
+          <Property Name="ReplyPostTime" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Sections">
+          <Key>
+            <PropertyRef Name="SectionID" />
+          </Key>
+          <Property Name="SectionID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SectionName" Type="nchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ShoppingCarts">
+          <Key>
+            <PropertyRef Name="ShoppingCartID" />
+          </Key>
+          <Property Name="ShoppingCartID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserID" Type="int" Nullable="false" />
+          <Property Name="GoodsID" Type="int" Nullable="false" />
+          <Property Name="Number" Type="int" Nullable="false" />
+          <Property Name="UnitPrice" Type="decimal" Precision="18" Scale="1" Nullable="false" />
+          <Property Name="TotalAmount" Type="decimal" Precision="18" Scale="1" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Shops">
+          <Key>
+            <PropertyRef Name="ShopID" />
+          </Key>
+          <Property Name="ShopID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserID" Type="int" Nullable="false" />
+          <Property Name="ShopName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ShopDescription" Type="nvarchar(max)" />
+          <Property Name="SalesTotal" Type="int" />
+        </EntityType>
+        <EntityType Name="Succulent">
+          <Key>
+            <PropertyRef Name="SucculentID" />
+          </Key>
+          <Property Name="SucculentID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SucculentName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="CategoryID" Type="int" Nullable="false" />
+          <Property Name="Photo" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Feature" Type="nvarchar(max)" />
+          <Property Name="Application" Type="nvarchar(max)" />
+          <Property Name="BreedMode" Type="nvarchar(max)" />
+          <Property Name="CollectedTotal" Type="int" />
+        </EntityType>
+        <EntityType Name="SucculentCategory">
+          <Key>
+            <PropertyRef Name="SucculentCategoryID" />
+          </Key>
+          <Property Name="SucculentCategoryID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SucculentCategoryName" Type="nchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserName" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="Password" Type="nchar" MaxLength="20" Nullable="false" />
+          <Property Name="Photo" Type="nchar" MaxLength="10" />
+          <Property Name="Sex" Type="nchar" MaxLength="1" />
+          <Property Name="Birth" Type="datetime" />
+          <Property Name="Email" Type="nvarchar" MaxLength="50" />
+          <Property Name="Phone" Type="nchar" MaxLength="11" />
+          <Property Name="SecretQues" Type="nvarchar" MaxLength="50" />
+          <Property Name="SecretAnws" Type="nvarchar" MaxLength="50" />
+          <Property Name="UserFlag" Type="int" Nullable="false" />
+          <Property Name="Lock" Type="bit" />
+          <Property Name="CollectionTotal" Type="int" />
+        </EntityType>
+        <Association Name="FK_Activity_ActivityCategory">
+          <End Role="ActivityCategory" Type="Self.ActivityCategory" Multiplicity="1" />
+          <End Role="Activity" Type="Self.Activity" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ActivityCategory">
+              <PropertyRef Name="ActivityCategoryID" />
+            </Principal>
+            <Dependent Role="Activity">
+              <PropertyRef Name="ActivityCategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Activity_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="Activity" Type="Self.Activity" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Activity">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Address_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="Address" Type="Self.Address" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Address">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Adopt_Goods">
+          <End Role="Goods" Type="Self.Goods" Multiplicity="1" />
+          <End Role="Adopt" Type="Self.Adopt" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Goods">
+              <PropertyRef Name="GoodsID" />
+            </Principal>
+            <Dependent Role="Adopt">
+              <PropertyRef Name="GoodsID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AdoptResult_Activity">
+          <End Role="Activity" Type="Self.Activity" Multiplicity="1" />
+          <End Role="AdoptResult" Type="Self.AdoptResult" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Activity">
+              <PropertyRef Name="ActivityID" />
+            </Principal>
+            <Dependent Role="AdoptResult">
+              <PropertyRef Name="ActivityID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AdoptResult_Goods">
+          <End Role="Goods" Type="Self.Goods" Multiplicity="1" />
+          <End Role="AdoptResult" Type="Self.AdoptResult" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Goods">
+              <PropertyRef Name="GoodsID" />
+            </Principal>
+            <Dependent Role="AdoptResult">
+              <PropertyRef Name="GoodsID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AdoptResult_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="AdoptResult" Type="Self.AdoptResult" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="AdoptResult">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Attendance_Activity">
+          <End Role="Activity" Type="Self.Activity" Multiplicity="1" />
+          <End Role="Attendance" Type="Self.Attendance" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Activity">
+              <PropertyRef Name="ActivityID" />
+            </Principal>
+            <Dependent Role="Attendance">
+              <PropertyRef Name="ActivityID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Attendance_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="Attendance" Type="Self.Attendance" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Attendance">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CharitableResult_Activity">
+          <End Role="Activity" Type="Self.Activity" Multiplicity="1" />
+          <End Role="CharitableResult" Type="Self.CharitableResult" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Activity">
+              <PropertyRef Name="ActivityID" />
+            </Principal>
+            <Dependent Role="CharitableResult">
+              <PropertyRef Name="ActivityID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Collection_Succulent">
+          <End Role="Succulent" Type="Self.Succulent" Multiplicity="1" />
+          <End Role="Collection" Type="Self.Collection" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Succulent">
+              <PropertyRef Name="SucculentID" />
+            </Principal>
+            <Dependent Role="Collection">
+              <PropertyRef Name="SucculentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Collection_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="Collection" Type="Self.Collection" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Collection">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Donate_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="Donate" Type="Self.Donate" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Donate">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Entries_Activity">
+          <End Role="Activity" Type="Self.Activity" Multiplicity="1" />
+          <End Role="Entries" Type="Self.Entries" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Activity">
+              <PropertyRef Name="ActivityID" />
+            </Principal>
+            <Dependent Role="Entries">
+              <PropertyRef Name="ActivityID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Entries_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="Entries" Type="Self.Entries" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Entries">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Farms_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="Farms" Type="Self.Farms" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Farms">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Goods_Shops">
+          <End Role="Shops" Type="Self.Shops" Multiplicity="1" />
+          <End Role="Goods" Type="Self.Goods" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Shops">
+              <PropertyRef Name="ShopID" />
+            </Principal>
+            <Dependent Role="Goods">
+              <PropertyRef Name="ShopID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GoodsComments_Goods">
+          <End Role="Goods" Type="Self.Goods" Multiplicity="1" />
+          <End Role="GoodsComments" Type="Self.GoodsComments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Goods">
+              <PropertyRef Name="GoodsID" />
+            </Principal>
+            <Dependent Role="GoodsComments">
+              <PropertyRef Name="GoodsID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GoodsComments_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="GoodsComments" Type="Self.GoodsComments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="GoodsComments">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderItems_Goods">
+          <End Role="Goods" Type="Self.Goods" Multiplicity="1" />
+          <End Role="OrderItems" Type="Self.OrderItems" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Goods">
+              <PropertyRef Name="GoodsID" />
+            </Principal>
+            <Dependent Role="OrderItems">
+              <PropertyRef Name="GoodsID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderItems_Orders">
+          <End Role="Orders" Type="Self.Orders" Multiplicity="1" />
+          <End Role="OrderItems" Type="Self.OrderItems" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Orders">
+              <PropertyRef Name="OrderID" />
+            </Principal>
+            <Dependent Role="OrderItems">
+              <PropertyRef Name="OrderID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Orders_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PostComments_Posts">
+          <End Role="Posts" Type="Self.Posts" Multiplicity="1" />
+          <End Role="PostComments" Type="Self.PostComments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Posts">
+              <PropertyRef Name="PostID" />
+            </Principal>
+            <Dependent Role="PostComments">
+              <PropertyRef Name="PostID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PostComments_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="PostComments" Type="Self.PostComments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="PostComments">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Posts_Sections">
+          <End Role="Sections" Type="Self.Sections" Multiplicity="1" />
+          <End Role="Posts" Type="Self.Posts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sections">
+              <PropertyRef Name="SectionID" />
+            </Principal>
+            <Dependent Role="Posts">
+              <PropertyRef Name="SectionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Posts_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="Posts" Type="Self.Posts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Posts">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pots_Level">
+          <End Role="Level" Type="Self.Level" Multiplicity="1" />
+          <End Role="Pots" Type="Self.Pots" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Level">
+              <PropertyRef Name="LevelID" />
+            </Principal>
+            <Dependent Role="Pots">
+              <PropertyRef Name="LevelID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pots_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="Pots" Type="Self.Pots" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Pots">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ReplyGoods_GoodsComments">
+          <End Role="GoodsComments" Type="Self.GoodsComments" Multiplicity="1" />
+          <End Role="ReplyGoods" Type="Self.ReplyGoods" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GoodsComments">
+              <PropertyRef Name="GoodsCommentID" />
+            </Principal>
+            <Dependent Role="ReplyGoods">
+              <PropertyRef Name="GoodsCommentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ReplyGoods_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="ReplyGoods" Type="Self.ReplyGoods" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="ReplyGoods">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ReplyPost_PostComments">
+          <End Role="PostComments" Type="Self.PostComments" Multiplicity="1" />
+          <End Role="ReplyPost" Type="Self.ReplyPost" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PostComments">
+              <PropertyRef Name="PostCommentID" />
+            </Principal>
+            <Dependent Role="ReplyPost">
+              <PropertyRef Name="PostCommentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ReplyPost_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="ReplyPost" Type="Self.ReplyPost" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="ReplyPost">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ShoppingCarts_Goods">
+          <End Role="Goods" Type="Self.Goods" Multiplicity="1" />
+          <End Role="ShoppingCarts" Type="Self.ShoppingCarts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Goods">
+              <PropertyRef Name="GoodsID" />
+            </Principal>
+            <Dependent Role="ShoppingCarts">
+              <PropertyRef Name="GoodsID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ShoppingCarts_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="ShoppingCarts" Type="Self.ShoppingCarts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="ShoppingCarts">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Shops_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="Shops" Type="Self.Shops" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Shops">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Succulent_SucculentCategory">
+          <End Role="SucculentCategory" Type="Self.SucculentCategory" Multiplicity="1" />
+          <End Role="Succulent" Type="Self.Succulent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SucculentCategory">
+              <PropertyRef Name="SucculentCategoryID" />
+            </Principal>
+            <Dependent Role="Succulent">
+              <PropertyRef Name="CategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="SucculentModelStoreContainer">
+          <EntitySet Name="Activity" EntityType="Self.Activity" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ActivityCategory" EntityType="Self.ActivityCategory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Address" EntityType="Self.Address" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Adopt" EntityType="Self.Adopt" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AdoptResult" EntityType="Self.AdoptResult" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Attendance" EntityType="Self.Attendance" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CharitableResult" EntityType="Self.CharitableResult" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Collection" EntityType="Self.Collection" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Donate" EntityType="Self.Donate" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Entries" EntityType="Self.Entries" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Farms" EntityType="Self.Farms" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Goods" EntityType="Self.Goods" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GoodsComments" EntityType="Self.GoodsComments" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Level" EntityType="Self.Level" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OrderItems" EntityType="Self.OrderItems" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Orders" EntityType="Self.Orders" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PostComments" EntityType="Self.PostComments" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Posts" EntityType="Self.Posts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Pots" EntityType="Self.Pots" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ReplyGoods" EntityType="Self.ReplyGoods" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ReplyPost" EntityType="Self.ReplyPost" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Sections" EntityType="Self.Sections" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ShoppingCarts" EntityType="Self.ShoppingCarts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Shops" EntityType="Self.Shops" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Succulent" EntityType="Self.Succulent" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SucculentCategory" EntityType="Self.SucculentCategory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Activity_ActivityCategory" Association="Self.FK_Activity_ActivityCategory">
+            <End Role="ActivityCategory" EntitySet="ActivityCategory" />
+            <End Role="Activity" EntitySet="Activity" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Activity_Users" Association="Self.FK_Activity_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Activity" EntitySet="Activity" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Address_Users" Association="Self.FK_Address_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Address" EntitySet="Address" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Adopt_Goods" Association="Self.FK_Adopt_Goods">
+            <End Role="Goods" EntitySet="Goods" />
+            <End Role="Adopt" EntitySet="Adopt" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AdoptResult_Activity" Association="Self.FK_AdoptResult_Activity">
+            <End Role="Activity" EntitySet="Activity" />
+            <End Role="AdoptResult" EntitySet="AdoptResult" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AdoptResult_Goods" Association="Self.FK_AdoptResult_Goods">
+            <End Role="Goods" EntitySet="Goods" />
+            <End Role="AdoptResult" EntitySet="AdoptResult" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AdoptResult_Users" Association="Self.FK_AdoptResult_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="AdoptResult" EntitySet="AdoptResult" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Attendance_Activity" Association="Self.FK_Attendance_Activity">
+            <End Role="Activity" EntitySet="Activity" />
+            <End Role="Attendance" EntitySet="Attendance" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Attendance_Users" Association="Self.FK_Attendance_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Attendance" EntitySet="Attendance" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CharitableResult_Activity" Association="Self.FK_CharitableResult_Activity">
+            <End Role="Activity" EntitySet="Activity" />
+            <End Role="CharitableResult" EntitySet="CharitableResult" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Collection_Succulent" Association="Self.FK_Collection_Succulent">
+            <End Role="Succulent" EntitySet="Succulent" />
+            <End Role="Collection" EntitySet="Collection" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Collection_Users" Association="Self.FK_Collection_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Collection" EntitySet="Collection" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Donate_Users" Association="Self.FK_Donate_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Donate" EntitySet="Donate" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Entries_Activity" Association="Self.FK_Entries_Activity">
+            <End Role="Activity" EntitySet="Activity" />
+            <End Role="Entries" EntitySet="Entries" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Entries_Users" Association="Self.FK_Entries_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Entries" EntitySet="Entries" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Farms_Users" Association="Self.FK_Farms_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Farms" EntitySet="Farms" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Goods_Shops" Association="Self.FK_Goods_Shops">
+            <End Role="Shops" EntitySet="Shops" />
+            <End Role="Goods" EntitySet="Goods" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GoodsComments_Goods" Association="Self.FK_GoodsComments_Goods">
+            <End Role="Goods" EntitySet="Goods" />
+            <End Role="GoodsComments" EntitySet="GoodsComments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GoodsComments_Users" Association="Self.FK_GoodsComments_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="GoodsComments" EntitySet="GoodsComments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderItems_Goods" Association="Self.FK_OrderItems_Goods">
+            <End Role="Goods" EntitySet="Goods" />
+            <End Role="OrderItems" EntitySet="OrderItems" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderItems_Orders" Association="Self.FK_OrderItems_Orders">
+            <End Role="Orders" EntitySet="Orders" />
+            <End Role="OrderItems" EntitySet="OrderItems" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Orders_Users" Association="Self.FK_Orders_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PostComments_Posts" Association="Self.FK_PostComments_Posts">
+            <End Role="Posts" EntitySet="Posts" />
+            <End Role="PostComments" EntitySet="PostComments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PostComments_Users" Association="Self.FK_PostComments_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="PostComments" EntitySet="PostComments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Posts_Sections" Association="Self.FK_Posts_Sections">
+            <End Role="Sections" EntitySet="Sections" />
+            <End Role="Posts" EntitySet="Posts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Posts_Users" Association="Self.FK_Posts_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Posts" EntitySet="Posts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pots_Level" Association="Self.FK_Pots_Level">
+            <End Role="Level" EntitySet="Level" />
+            <End Role="Pots" EntitySet="Pots" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pots_Users" Association="Self.FK_Pots_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Pots" EntitySet="Pots" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ReplyGoods_GoodsComments" Association="Self.FK_ReplyGoods_GoodsComments">
+            <End Role="GoodsComments" EntitySet="GoodsComments" />
+            <End Role="ReplyGoods" EntitySet="ReplyGoods" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ReplyGoods_Users" Association="Self.FK_ReplyGoods_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="ReplyGoods" EntitySet="ReplyGoods" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ReplyPost_PostComments" Association="Self.FK_ReplyPost_PostComments">
+            <End Role="PostComments" EntitySet="PostComments" />
+            <End Role="ReplyPost" EntitySet="ReplyPost" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ReplyPost_Users" Association="Self.FK_ReplyPost_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="ReplyPost" EntitySet="ReplyPost" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ShoppingCarts_Goods" Association="Self.FK_ShoppingCarts_Goods">
+            <End Role="Goods" EntitySet="Goods" />
+            <End Role="ShoppingCarts" EntitySet="ShoppingCarts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ShoppingCarts_Users" Association="Self.FK_ShoppingCarts_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="ShoppingCarts" EntitySet="ShoppingCarts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Shops_Users" Association="Self.FK_Shops_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Shops" EntitySet="Shops" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Succulent_SucculentCategory" Association="Self.FK_Succulent_SucculentCategory">
+            <End Role="SucculentCategory" EntitySet="SucculentCategory" />
+            <End Role="Succulent" EntitySet="Succulent" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="SucculentModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Activity">
+          <Key>
+            <PropertyRef Name="ActivityID" />
+          </Key>
+          <Property Name="ActivityID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserID" Type="Int32" Nullable="false" />
+          <Property Name="ActivityCategoryID" Type="Int32" Nullable="false" />
+          <Property Name="ActivityName" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="ActivityDescribe" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ActivityPlace" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="StartTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="EndTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UpvoteNum" Type="Int32" />
+          <NavigationProperty Name="ActivityCategory" Relationship="Self.FK_Activity_ActivityCategory" FromRole="Activity" ToRole="ActivityCategory" />
+          <NavigationProperty Name="Users" Relationship="Self.FK_Activity_Users" FromRole="Activity" ToRole="Users" />
+          <NavigationProperty Name="AdoptResult" Relationship="Self.FK_AdoptResult_Activity" FromRole="Activity" ToRole="AdoptResult" />
+          <NavigationProperty Name="Attendance" Relationship="Self.FK_Attendance_Activity" FromRole="Activity" ToRole="Attendance" />
+          <NavigationProperty Name="CharitableResult" Relationship="Self.FK_CharitableResult_Activity" FromRole="Activity" ToRole="CharitableResult" />
+          <NavigationProperty Name="Entries" Relationship="Self.FK_Entries_Activity" FromRole="Activity" ToRole="Entries" />
+        </EntityType>
+        <EntityType Name="ActivityCategory">
+          <Key>
+            <PropertyRef Name="ActivityCategoryID" />
+          </Key>
+          <Property Name="ActivityCategoryID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ActivityCategoryName" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Activity" Relationship="Self.FK_Activity_ActivityCategory" FromRole="ActivityCategory" ToRole="Activity" />
+        </EntityType>
+        <EntityType Name="Address">
+          <Key>
+            <PropertyRef Name="AddressID" />
+          </Key>
+          <Property Name="AddressID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserID" Type="Int32" Nullable="false" />
+          <Property Name="Province" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="City" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="AddressDetail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IsDefault" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Users" Relationship="Self.FK_Address_Users" FromRole="Address" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="Adopt">
+          <Key>
+            <PropertyRef Name="AdoptID" />
+          </Key>
+          <Property Name="AdoptID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="GoodsID" Type="Int32" Nullable="false" />
+          <Property Name="Total" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Goods" Relationship="Self.FK_Adopt_Goods" FromRole="Adopt" ToRole="Goods" />
+        </EntityType>
+        <EntityType Name="AdoptResult">
+          <Key>
+            <PropertyRef Name="AdoptResultID" />
+          </Key>
+          <Property Name="AdoptResultID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserID" Type="Int32" Nullable="false" />
+          <Property Name="ActivityID" Type="Int32" Nullable="false" />
+          <Property Name="GoodsID" Type="Int32" Nullable="false" />
+          <Property Name="AdoptTime" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Activity" Relationship="Self.FK_AdoptResult_Activity" FromRole="AdoptResult" ToRole="Activity" />
+          <NavigationProperty Name="Goods" Relationship="Self.FK_AdoptResult_Goods" FromRole="AdoptResult" ToRole="Goods" />
+          <NavigationProperty Name="Users" Relationship="Self.FK_AdoptResult_Users" FromRole="AdoptResult" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="Attendance">
+          <Key>
+            <PropertyRef Name="AttendanceID" />
+          </Key>
+          <Property Name="AttendanceID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserID" Type="Int32" Nullable="false" />
+          <Property Name="ActivityID" Type="Int32" Nullable="false" />
+          <Property Name="AttendanceTime" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Activity" Relationship="Self.FK_Attendance_Activity" FromRole="Attendance" ToRole="Activity" />
+          <NavigationProperty Name="Users" Relationship="Self.FK_Attendance_Users" FromRole="Attendance" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="CharitableResult">
+          <Key>
+            <PropertyRef Name="CharitableResultID" />
+          </Key>
+          <Property Name="CharitableResultID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ActivityID" Type="Int32" Nullable="false" />
+          <Property Name="CharitableName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CWhereabouts" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CharitableDetails" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Activity" Relationship="Self.FK_CharitableResult_Activity" FromRole="CharitableResult" ToRole="Activity" />
+        </EntityType>
+        <EntityType Name="Collection">
+          <Key>
+            <PropertyRef Name="CollectionID" />
+          </Key>
+          <Property Name="CollectionID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserID" Type="Int32" Nullable="false" />
+          <Property Name="SucculentID" Type="Int32" Nullable="false" />
+          <Property Name="CollectionTime" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Succulent" Relationship="Self.FK_Collection_Succulent" FromRole="Collection" ToRole="Succulent" />
+          <NavigationProperty Name="Users" Relationship="Self.FK_Collection_Users" FromRole="Collection" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="Donate">
+          <Key>
+            <PropertyRef Name="DonateID" />
+          </Key>
+          <Property Name="DonateID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserID" Type="Int32" Nullable="false" />
+          <Property Name="DonateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DonoteTotal" Type="Int32" Nullable="false" />
+          <Property Name="DonateContent" Type="String" MaxLength="200" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="ExoressNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DonateState" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Users" Relationship="Self.FK_Donate_Users" FromRole="Donate" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="Entries">
+          <Key>
+            <PropertyRef Name="EntriesID" />
+          </Key>
+          <Property Name="EntriesID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserID" Type="Int32" Nullable="false" />
+          <Property Name="ActivityID" Type="Int32" Nullable="false" />
+          <Property Name="Image" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="TextDescription" Type="String" MaxLength="200" FixedLength="true" Unicode="true" />
+          <Property Name="JoinTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UpvoteNum" Type="Int32" />
+          <NavigationProperty Name="Activity" Relationship="Self.FK_Entries_Activity" FromRole="Entries" ToRole="Activity" />
+          <NavigationProperty Name="Users" Relationship="Self.FK_Entries_Users" FromRole="Entries" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="Farms">
+          <Key>
+            <PropertyRef Name="FarmID" />
+          </Key>
+          <Property Name="FarmID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Users" Relationship="Self.FK_Farms_Users" FromRole="Farms" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="Goods">
+          <Key>
+            <PropertyRef Name="GoodsID" />
+          </Key>
+          <Property Name="GoodsID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ShopID" Type="Int32" Nullable="false" />
+          <Property Name="GoodsName" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="Price" Type="Decimal" Precision="18" Scale="1" Nullable="false" />
+          <Property Name="GoodsPhoto" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="GoodsDescribe" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="LikeIt" Type="Int32" />
+          <Property Name="Flag" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Adopt" Relationship="Self.FK_Adopt_Goods" FromRole="Goods" ToRole="Adopt" />
+          <NavigationProperty Name="AdoptResult" Relationship="Self.FK_AdoptResult_Goods" FromRole="Goods" ToRole="AdoptResult" />
+          <NavigationProperty Name="Shops" Relationship="Self.FK_Goods_Shops" FromRole="Goods" ToRole="Shops" />
+          <NavigationProperty Name="GoodsComments" Relationship="Self.FK_GoodsComments_Goods" FromRole="Goods" ToRole="GoodsComments" />
+          <NavigationProperty Name="OrderItems" Relationship="Self.FK_OrderItems_Goods" FromRole="Goods" ToRole="OrderItems" />
+          <NavigationProperty Name="ShoppingCarts" Relationship="Self.FK_ShoppingCarts_Goods" FromRole="Goods" ToRole="ShoppingCarts" />
+        </EntityType>
+        <EntityType Name="GoodsComments">
+          <Key>
+            <PropertyRef Name="GoodsCommentID" />
+          </Key>
+          <Property Name="GoodsCommentID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserID" Type="Int32" Nullable="false" />
+          <Property Name="GoodsID" Type="Int32" Nullable="false" />
+          <Property Name="GoodsCommentContent" Type="String" MaxLength="200" FixedLength="true" Unicode="true" />
+          <Property Name="PublishTime" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Goods" Relationship="Self.FK_GoodsComments_Goods" FromRole="GoodsComments" ToRole="Goods" />
+          <NavigationProperty Name="Users" Relationship="Self.FK_GoodsComments_Users" FromRole="GoodsComments" ToRole="Users" />
+          <NavigationProperty Name="ReplyGoods" Relationship="Self.FK_ReplyGoods_GoodsComments" FromRole="GoodsComments" ToRole="ReplyGoods" />
+        </EntityType>
+        <EntityType Name="Level">
+          <Key>
+            <PropertyRef Name="LevelID" />
+          </Key>
+          <Property Name="LevelID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LevelName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LevelToplimit" Type="Int32" Nullable="false" />
+          <Property Name="Levellowerlimit" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Pots" Relationship="Self.FK_Pots_Level" FromRole="Level" ToRole="Pots" />
+        </EntityType>
+        <EntityType Name="OrderItems">
+          <Key>
+            <PropertyRef Name="OrderItemsID" />
+          </Key>
+          <Property Name="OrderItemsID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OrderID" Type="Int32" Nullable="false" />
+          <Property Name="GoodsID" Type="Int32" Nullable="false" />
+          <Property Name="UnitPrice" Type="Decimal" Precision="18" Scale="1" Nullable="false" />
+          <Property Name="Number" Type="Int32" Nullable="false" />
+          <Property Name="TotalAmount" Type="Decimal" Precision="18" Scale="1" Nullable="false" />
+          <NavigationProperty Name="Goods" Relationship="Self.FK_OrderItems_Goods" FromRole="OrderItems" ToRole="Goods" />
+          <NavigationProperty Name="Orders" Relationship="Self.FK_OrderItems_Orders" FromRole="OrderItems" ToRole="Orders" />
+        </EntityType>
+        <EntityType Name="Orders">
+          <Key>
+            <PropertyRef Name="OrderID" />
+          </Key>
+          <Property Name="OrderID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserID" Type="Int32" Nullable="false" />
+          <Property Name="OrderTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Amount" Type="Int32" Nullable="false" />
+          <Property Name="ExpressNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="OrderState" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="OrderItems" Relationship="Self.FK_OrderItems_Orders" FromRole="Orders" ToRole="OrderItems" />
+          <NavigationProperty Name="Users" Relationship="Self.FK_Orders_Users" FromRole="Orders" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="PostComments">
+          <Key>
+            <PropertyRef Name="PostCommentID" />
+          </Key>
+          <Property Name="PostCommentID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserID" Type="Int32" Nullable="false" />
+          <Property Name="PostID" Type="Int32" Nullable="false" />
+          <Property Name="PostCommentContent" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PostCommentTime" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Posts" Relationship="Self.FK_PostComments_Posts" FromRole="PostComments" ToRole="Posts" />
+          <NavigationProperty Name="Users" Relationship="Self.FK_PostComments_Users" FromRole="PostComments" ToRole="Users" />
+          <NavigationProperty Name="ReplyPost" Relationship="Self.FK_ReplyPost_PostComments" FromRole="PostComments" ToRole="ReplyPost" />
+        </EntityType>
+        <EntityType Name="Posts">
+          <Key>
+            <PropertyRef Name="PostID" />
+          </Key>
+          <Property Name="PostID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserID" Type="Int32" Nullable="false" />
+          <Property Name="SectionID" Type="Int32" Nullable="false" />
+          <Property Name="PostTitle" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PostContent" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PublishTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="PostFlag" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="PostComments" Relationship="Self.FK_PostComments_Posts" FromRole="Posts" ToRole="PostComments" />
+          <NavigationProperty Name="Sections" Relationship="Self.FK_Posts_Sections" FromRole="Posts" ToRole="Sections" />
+          <NavigationProperty Name="Users" Relationship="Self.FK_Posts_Users" FromRole="Posts" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="Pots">
+          <Key>
+            <PropertyRef Name="PotID" />
+          </Key>
+          <Property Name="PotID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserID" Type="Int32" Nullable="false" />
+          <Property Name="LevelID" Type="Int32" Nullable="false" />
+          <Property Name="Experience" Type="Int32" Nullable="false" />
+          <Property Name="Sign" Type="DateTime" Precision="3" />
+          <Property Name="SignDays" Type="Int32" />
+          <NavigationProperty Name="Level" Relationship="Self.FK_Pots_Level" FromRole="Pots" ToRole="Level" />
+          <NavigationProperty Name="Users" Relationship="Self.FK_Pots_Users" FromRole="Pots" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="ReplyGoods">
+          <Key>
+            <PropertyRef Name="ReplyGoodsID" />
+          </Key>
+          <Property Name="ReplyGoodsID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserID" Type="Int32" Nullable="false" />
+          <Property Name="GoodsCommentID" Type="Int32" Nullable="false" />
+          <Property Name="ReplyContent" Type="String" MaxLength="200" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="ReplyTime" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="GoodsComments" Relationship="Self.FK_ReplyGoods_GoodsComments" FromRole="ReplyGoods" ToRole="GoodsComments" />
+          <NavigationProperty Name="Users" Relationship="Self.FK_ReplyGoods_Users" FromRole="ReplyGoods" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="ReplyPost">
+          <Key>
+            <PropertyRef Name="ReplyPostID" />
+          </Key>
+          <Property Name="ReplyPostID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserID" Type="Int32" Nullable="false" />
+          <Property Name="PostCommentID" Type="Int32" Nullable="false" />
+          <Property Name="ReplyContent" Type="String" MaxLength="200" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="ReplyPostTime" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="PostComments" Relationship="Self.FK_ReplyPost_PostComments" FromRole="ReplyPost" ToRole="PostComments" />
+          <NavigationProperty Name="Users" Relationship="Self.FK_ReplyPost_Users" FromRole="ReplyPost" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="Sections">
+          <Key>
+            <PropertyRef Name="SectionID" />
+          </Key>
+          <Property Name="SectionID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SectionName" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Posts" Relationship="Self.FK_Posts_Sections" FromRole="Sections" ToRole="Posts" />
+        </EntityType>
+        <EntityType Name="ShoppingCarts">
+          <Key>
+            <PropertyRef Name="ShoppingCartID" />
+          </Key>
+          <Property Name="ShoppingCartID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserID" Type="Int32" Nullable="false" />
+          <Property Name="GoodsID" Type="Int32" Nullable="false" />
+          <Property Name="Number" Type="Int32" Nullable="false" />
+          <Property Name="UnitPrice" Type="Decimal" Precision="18" Scale="1" Nullable="false" />
+          <Property Name="TotalAmount" Type="Decimal" Precision="18" Scale="1" Nullable="false" />
+          <NavigationProperty Name="Goods" Relationship="Self.FK_ShoppingCarts_Goods" FromRole="ShoppingCarts" ToRole="Goods" />
+          <NavigationProperty Name="Users" Relationship="Self.FK_ShoppingCarts_Users" FromRole="ShoppingCarts" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="Shops">
+          <Key>
+            <PropertyRef Name="ShopID" />
+          </Key>
+          <Property Name="ShopID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserID" Type="Int32" Nullable="false" />
+          <Property Name="ShopName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ShopDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SalesTotal" Type="Int32" />
+          <NavigationProperty Name="Goods" Relationship="Self.FK_Goods_Shops" FromRole="Shops" ToRole="Goods" />
+          <NavigationProperty Name="Users" Relationship="Self.FK_Shops_Users" FromRole="Shops" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="Succulent">
+          <Key>
+            <PropertyRef Name="SucculentID" />
+          </Key>
+          <Property Name="SucculentID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SucculentName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CategoryID" Type="Int32" Nullable="false" />
+          <Property Name="Photo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Feature" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Application" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="BreedMode" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CollectedTotal" Type="Int32" />
+          <NavigationProperty Name="Collection" Relationship="Self.FK_Collection_Succulent" FromRole="Succulent" ToRole="Collection" />
+          <NavigationProperty Name="SucculentCategory" Relationship="Self.FK_Succulent_SucculentCategory" FromRole="Succulent" ToRole="SucculentCategory" />
+        </EntityType>
+        <EntityType Name="SucculentCategory">
+          <Key>
+            <PropertyRef Name="SucculentCategoryID" />
+          </Key>
+          <Property Name="SucculentCategoryID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SucculentCategoryName" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Succulent" Relationship="Self.FK_Succulent_SucculentCategory" FromRole="SucculentCategory" ToRole="Succulent" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="20" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="Photo" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="Sex" Type="String" MaxLength="1" FixedLength="true" Unicode="true" />
+          <Property Name="Birth" Type="DateTime" Precision="3" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="String" MaxLength="11" FixedLength="true" Unicode="true" />
+          <Property Name="SecretQues" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SecretAnws" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="UserFlag" Type="Int32" Nullable="false" />
+          <Property Name="Lock" Type="Boolean" />
+          <Property Name="CollectionTotal" Type="Int32" />
+          <NavigationProperty Name="Activity" Relationship="Self.FK_Activity_Users" FromRole="Users" ToRole="Activity" />
+          <NavigationProperty Name="Address" Relationship="Self.FK_Address_Users" FromRole="Users" ToRole="Address" />
+          <NavigationProperty Name="AdoptResult" Relationship="Self.FK_AdoptResult_Users" FromRole="Users" ToRole="AdoptResult" />
+          <NavigationProperty Name="Attendance" Relationship="Self.FK_Attendance_Users" FromRole="Users" ToRole="Attendance" />
+          <NavigationProperty Name="Collection" Relationship="Self.FK_Collection_Users" FromRole="Users" ToRole="Collection" />
+          <NavigationProperty Name="Donate" Relationship="Self.FK_Donate_Users" FromRole="Users" ToRole="Donate" />
+          <NavigationProperty Name="Entries" Relationship="Self.FK_Entries_Users" FromRole="Users" ToRole="Entries" />
+          <NavigationProperty Name="Farms" Relationship="Self.FK_Farms_Users" FromRole="Users" ToRole="Farms" />
+          <NavigationProperty Name="GoodsComments" Relationship="Self.FK_GoodsComments_Users" FromRole="Users" ToRole="GoodsComments" />
+          <NavigationProperty Name="Orders" Relationship="Self.FK_Orders_Users" FromRole="Users" ToRole="Orders" />
+          <NavigationProperty Name="PostComments" Relationship="Self.FK_PostComments_Users" FromRole="Users" ToRole="PostComments" />
+          <NavigationProperty Name="Posts" Relationship="Self.FK_Posts_Users" FromRole="Users" ToRole="Posts" />
+          <NavigationProperty Name="Pots" Relationship="Self.FK_Pots_Users" FromRole="Users" ToRole="Pots" />
+          <NavigationProperty Name="ReplyGoods" Relationship="Self.FK_ReplyGoods_Users" FromRole="Users" ToRole="ReplyGoods" />
+          <NavigationProperty Name="ReplyPost" Relationship="Self.FK_ReplyPost_Users" FromRole="Users" ToRole="ReplyPost" />
+          <NavigationProperty Name="ShoppingCarts" Relationship="Self.FK_ShoppingCarts_Users" FromRole="Users" ToRole="ShoppingCarts" />
+          <NavigationProperty Name="Shops" Relationship="Self.FK_Shops_Users" FromRole="Users" ToRole="Shops" />
+        </EntityType>
+        <Association Name="FK_Activity_ActivityCategory">
+          <End Role="ActivityCategory" Type="Self.ActivityCategory" Multiplicity="1" />
+          <End Role="Activity" Type="Self.Activity" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ActivityCategory">
+              <PropertyRef Name="ActivityCategoryID" />
+            </Principal>
+            <Dependent Role="Activity">
+              <PropertyRef Name="ActivityCategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Activity_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="Activity" Type="Self.Activity" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Activity">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AdoptResult_Activity">
+          <End Role="Activity" Type="Self.Activity" Multiplicity="1" />
+          <End Role="AdoptResult" Type="Self.AdoptResult" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Activity">
+              <PropertyRef Name="ActivityID" />
+            </Principal>
+            <Dependent Role="AdoptResult">
+              <PropertyRef Name="ActivityID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Attendance_Activity">
+          <End Role="Activity" Type="Self.Activity" Multiplicity="1" />
+          <End Role="Attendance" Type="Self.Attendance" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Activity">
+              <PropertyRef Name="ActivityID" />
+            </Principal>
+            <Dependent Role="Attendance">
+              <PropertyRef Name="ActivityID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CharitableResult_Activity">
+          <End Role="Activity" Type="Self.Activity" Multiplicity="1" />
+          <End Role="CharitableResult" Type="Self.CharitableResult" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Activity">
+              <PropertyRef Name="ActivityID" />
+            </Principal>
+            <Dependent Role="CharitableResult">
+              <PropertyRef Name="ActivityID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Entries_Activity">
+          <End Role="Activity" Type="Self.Activity" Multiplicity="1" />
+          <End Role="Entries" Type="Self.Entries" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Activity">
+              <PropertyRef Name="ActivityID" />
+            </Principal>
+            <Dependent Role="Entries">
+              <PropertyRef Name="ActivityID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Address_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="Address" Type="Self.Address" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Address">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Adopt_Goods">
+          <End Role="Goods" Type="Self.Goods" Multiplicity="1" />
+          <End Role="Adopt" Type="Self.Adopt" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Goods">
+              <PropertyRef Name="GoodsID" />
+            </Principal>
+            <Dependent Role="Adopt">
+              <PropertyRef Name="GoodsID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AdoptResult_Goods">
+          <End Role="Goods" Type="Self.Goods" Multiplicity="1" />
+          <End Role="AdoptResult" Type="Self.AdoptResult" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Goods">
+              <PropertyRef Name="GoodsID" />
+            </Principal>
+            <Dependent Role="AdoptResult">
+              <PropertyRef Name="GoodsID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AdoptResult_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="AdoptResult" Type="Self.AdoptResult" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="AdoptResult">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Attendance_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="Attendance" Type="Self.Attendance" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Attendance">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Collection_Succulent">
+          <End Role="Succulent" Type="Self.Succulent" Multiplicity="1" />
+          <End Role="Collection" Type="Self.Collection" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Succulent">
+              <PropertyRef Name="SucculentID" />
+            </Principal>
+            <Dependent Role="Collection">
+              <PropertyRef Name="SucculentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Collection_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="Collection" Type="Self.Collection" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Collection">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Donate_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="Donate" Type="Self.Donate" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Donate">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Entries_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="Entries" Type="Self.Entries" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Entries">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Farms_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="Farms" Type="Self.Farms" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Farms">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Goods_Shops">
+          <End Role="Shops" Type="Self.Shops" Multiplicity="1" />
+          <End Role="Goods" Type="Self.Goods" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Shops">
+              <PropertyRef Name="ShopID" />
+            </Principal>
+            <Dependent Role="Goods">
+              <PropertyRef Name="ShopID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GoodsComments_Goods">
+          <End Role="Goods" Type="Self.Goods" Multiplicity="1" />
+          <End Role="GoodsComments" Type="Self.GoodsComments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Goods">
+              <PropertyRef Name="GoodsID" />
+            </Principal>
+            <Dependent Role="GoodsComments">
+              <PropertyRef Name="GoodsID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderItems_Goods">
+          <End Role="Goods" Type="Self.Goods" Multiplicity="1" />
+          <End Role="OrderItems" Type="Self.OrderItems" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Goods">
+              <PropertyRef Name="GoodsID" />
+            </Principal>
+            <Dependent Role="OrderItems">
+              <PropertyRef Name="GoodsID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ShoppingCarts_Goods">
+          <End Role="Goods" Type="Self.Goods" Multiplicity="1" />
+          <End Role="ShoppingCarts" Type="Self.ShoppingCarts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Goods">
+              <PropertyRef Name="GoodsID" />
+            </Principal>
+            <Dependent Role="ShoppingCarts">
+              <PropertyRef Name="GoodsID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GoodsComments_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="GoodsComments" Type="Self.GoodsComments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="GoodsComments">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ReplyGoods_GoodsComments">
+          <End Role="GoodsComments" Type="Self.GoodsComments" Multiplicity="1" />
+          <End Role="ReplyGoods" Type="Self.ReplyGoods" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GoodsComments">
+              <PropertyRef Name="GoodsCommentID" />
+            </Principal>
+            <Dependent Role="ReplyGoods">
+              <PropertyRef Name="GoodsCommentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pots_Level">
+          <End Role="Level" Type="Self.Level" Multiplicity="1" />
+          <End Role="Pots" Type="Self.Pots" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Level">
+              <PropertyRef Name="LevelID" />
+            </Principal>
+            <Dependent Role="Pots">
+              <PropertyRef Name="LevelID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderItems_Orders">
+          <End Role="Orders" Type="Self.Orders" Multiplicity="1" />
+          <End Role="OrderItems" Type="Self.OrderItems" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Orders">
+              <PropertyRef Name="OrderID" />
+            </Principal>
+            <Dependent Role="OrderItems">
+              <PropertyRef Name="OrderID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Orders_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PostComments_Posts">
+          <End Role="Posts" Type="Self.Posts" Multiplicity="1" />
+          <End Role="PostComments" Type="Self.PostComments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Posts">
+              <PropertyRef Name="PostID" />
+            </Principal>
+            <Dependent Role="PostComments">
+              <PropertyRef Name="PostID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PostComments_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="PostComments" Type="Self.PostComments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="PostComments">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ReplyPost_PostComments">
+          <End Role="PostComments" Type="Self.PostComments" Multiplicity="1" />
+          <End Role="ReplyPost" Type="Self.ReplyPost" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PostComments">
+              <PropertyRef Name="PostCommentID" />
+            </Principal>
+            <Dependent Role="ReplyPost">
+              <PropertyRef Name="PostCommentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Posts_Sections">
+          <End Role="Sections" Type="Self.Sections" Multiplicity="1" />
+          <End Role="Posts" Type="Self.Posts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sections">
+              <PropertyRef Name="SectionID" />
+            </Principal>
+            <Dependent Role="Posts">
+              <PropertyRef Name="SectionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Posts_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="Posts" Type="Self.Posts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Posts">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pots_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="Pots" Type="Self.Pots" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Pots">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ReplyGoods_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="ReplyGoods" Type="Self.ReplyGoods" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="ReplyGoods">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ReplyPost_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="ReplyPost" Type="Self.ReplyPost" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="ReplyPost">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ShoppingCarts_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="ShoppingCarts" Type="Self.ShoppingCarts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="ShoppingCarts">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Shops_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="Shops" Type="Self.Shops" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Shops">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Succulent_SucculentCategory">
+          <End Role="SucculentCategory" Type="Self.SucculentCategory" Multiplicity="1" />
+          <End Role="Succulent" Type="Self.Succulent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SucculentCategory">
+              <PropertyRef Name="SucculentCategoryID" />
+            </Principal>
+            <Dependent Role="Succulent">
+              <PropertyRef Name="CategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="SucculentEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Activity" EntityType="Self.Activity" />
+          <EntitySet Name="ActivityCategory" EntityType="Self.ActivityCategory" />
+          <EntitySet Name="Address" EntityType="Self.Address" />
+          <EntitySet Name="Adopt" EntityType="Self.Adopt" />
+          <EntitySet Name="AdoptResult" EntityType="Self.AdoptResult" />
+          <EntitySet Name="Attendance" EntityType="Self.Attendance" />
+          <EntitySet Name="CharitableResult" EntityType="Self.CharitableResult" />
+          <EntitySet Name="Collection" EntityType="Self.Collection" />
+          <EntitySet Name="Donate" EntityType="Self.Donate" />
+          <EntitySet Name="Entries" EntityType="Self.Entries" />
+          <EntitySet Name="Farms" EntityType="Self.Farms" />
+          <EntitySet Name="Goods" EntityType="Self.Goods" />
+          <EntitySet Name="GoodsComments" EntityType="Self.GoodsComments" />
+          <EntitySet Name="Level" EntityType="Self.Level" />
+          <EntitySet Name="OrderItems" EntityType="Self.OrderItems" />
+          <EntitySet Name="Orders" EntityType="Self.Orders" />
+          <EntitySet Name="PostComments" EntityType="Self.PostComments" />
+          <EntitySet Name="Posts" EntityType="Self.Posts" />
+          <EntitySet Name="Pots" EntityType="Self.Pots" />
+          <EntitySet Name="ReplyGoods" EntityType="Self.ReplyGoods" />
+          <EntitySet Name="ReplyPost" EntityType="Self.ReplyPost" />
+          <EntitySet Name="Sections" EntityType="Self.Sections" />
+          <EntitySet Name="ShoppingCarts" EntityType="Self.ShoppingCarts" />
+          <EntitySet Name="Shops" EntityType="Self.Shops" />
+          <EntitySet Name="Succulent" EntityType="Self.Succulent" />
+          <EntitySet Name="SucculentCategory" EntityType="Self.SucculentCategory" />
+          <EntitySet Name="Users" EntityType="Self.Users" />
+          <AssociationSet Name="FK_Activity_ActivityCategory" Association="Self.FK_Activity_ActivityCategory">
+            <End Role="ActivityCategory" EntitySet="ActivityCategory" />
+            <End Role="Activity" EntitySet="Activity" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Activity_Users" Association="Self.FK_Activity_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Activity" EntitySet="Activity" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AdoptResult_Activity" Association="Self.FK_AdoptResult_Activity">
+            <End Role="Activity" EntitySet="Activity" />
+            <End Role="AdoptResult" EntitySet="AdoptResult" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Attendance_Activity" Association="Self.FK_Attendance_Activity">
+            <End Role="Activity" EntitySet="Activity" />
+            <End Role="Attendance" EntitySet="Attendance" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CharitableResult_Activity" Association="Self.FK_CharitableResult_Activity">
+            <End Role="Activity" EntitySet="Activity" />
+            <End Role="CharitableResult" EntitySet="CharitableResult" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Entries_Activity" Association="Self.FK_Entries_Activity">
+            <End Role="Activity" EntitySet="Activity" />
+            <End Role="Entries" EntitySet="Entries" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Address_Users" Association="Self.FK_Address_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Address" EntitySet="Address" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Adopt_Goods" Association="Self.FK_Adopt_Goods">
+            <End Role="Goods" EntitySet="Goods" />
+            <End Role="Adopt" EntitySet="Adopt" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AdoptResult_Goods" Association="Self.FK_AdoptResult_Goods">
+            <End Role="Goods" EntitySet="Goods" />
+            <End Role="AdoptResult" EntitySet="AdoptResult" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AdoptResult_Users" Association="Self.FK_AdoptResult_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="AdoptResult" EntitySet="AdoptResult" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Attendance_Users" Association="Self.FK_Attendance_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Attendance" EntitySet="Attendance" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Collection_Succulent" Association="Self.FK_Collection_Succulent">
+            <End Role="Succulent" EntitySet="Succulent" />
+            <End Role="Collection" EntitySet="Collection" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Collection_Users" Association="Self.FK_Collection_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Collection" EntitySet="Collection" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Donate_Users" Association="Self.FK_Donate_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Donate" EntitySet="Donate" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Entries_Users" Association="Self.FK_Entries_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Entries" EntitySet="Entries" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Farms_Users" Association="Self.FK_Farms_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Farms" EntitySet="Farms" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Goods_Shops" Association="Self.FK_Goods_Shops">
+            <End Role="Shops" EntitySet="Shops" />
+            <End Role="Goods" EntitySet="Goods" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GoodsComments_Goods" Association="Self.FK_GoodsComments_Goods">
+            <End Role="Goods" EntitySet="Goods" />
+            <End Role="GoodsComments" EntitySet="GoodsComments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderItems_Goods" Association="Self.FK_OrderItems_Goods">
+            <End Role="Goods" EntitySet="Goods" />
+            <End Role="OrderItems" EntitySet="OrderItems" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ShoppingCarts_Goods" Association="Self.FK_ShoppingCarts_Goods">
+            <End Role="Goods" EntitySet="Goods" />
+            <End Role="ShoppingCarts" EntitySet="ShoppingCarts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GoodsComments_Users" Association="Self.FK_GoodsComments_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="GoodsComments" EntitySet="GoodsComments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ReplyGoods_GoodsComments" Association="Self.FK_ReplyGoods_GoodsComments">
+            <End Role="GoodsComments" EntitySet="GoodsComments" />
+            <End Role="ReplyGoods" EntitySet="ReplyGoods" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pots_Level" Association="Self.FK_Pots_Level">
+            <End Role="Level" EntitySet="Level" />
+            <End Role="Pots" EntitySet="Pots" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderItems_Orders" Association="Self.FK_OrderItems_Orders">
+            <End Role="Orders" EntitySet="Orders" />
+            <End Role="OrderItems" EntitySet="OrderItems" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Orders_Users" Association="Self.FK_Orders_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PostComments_Posts" Association="Self.FK_PostComments_Posts">
+            <End Role="Posts" EntitySet="Posts" />
+            <End Role="PostComments" EntitySet="PostComments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PostComments_Users" Association="Self.FK_PostComments_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="PostComments" EntitySet="PostComments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ReplyPost_PostComments" Association="Self.FK_ReplyPost_PostComments">
+            <End Role="PostComments" EntitySet="PostComments" />
+            <End Role="ReplyPost" EntitySet="ReplyPost" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Posts_Sections" Association="Self.FK_Posts_Sections">
+            <End Role="Sections" EntitySet="Sections" />
+            <End Role="Posts" EntitySet="Posts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Posts_Users" Association="Self.FK_Posts_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Posts" EntitySet="Posts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pots_Users" Association="Self.FK_Pots_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Pots" EntitySet="Pots" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ReplyGoods_Users" Association="Self.FK_ReplyGoods_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="ReplyGoods" EntitySet="ReplyGoods" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ReplyPost_Users" Association="Self.FK_ReplyPost_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="ReplyPost" EntitySet="ReplyPost" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ShoppingCarts_Users" Association="Self.FK_ShoppingCarts_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="ShoppingCarts" EntitySet="ShoppingCarts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Shops_Users" Association="Self.FK_Shops_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Shops" EntitySet="Shops" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Succulent_SucculentCategory" Association="Self.FK_Succulent_SucculentCategory">
+            <End Role="SucculentCategory" EntitySet="SucculentCategory" />
+            <End Role="Succulent" EntitySet="Succulent" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="SucculentModelStoreContainer" CdmEntityContainer="SucculentEntities">
+          <EntitySetMapping Name="Activity">
+            <EntityTypeMapping TypeName="SucculentModel.Activity">
+              <MappingFragment StoreEntitySet="Activity">
+                <ScalarProperty Name="ActivityID" ColumnName="ActivityID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="ActivityCategoryID" ColumnName="ActivityCategoryID" />
+                <ScalarProperty Name="ActivityName" ColumnName="ActivityName" />
+                <ScalarProperty Name="ActivityDescribe" ColumnName="ActivityDescribe" />
+                <ScalarProperty Name="ActivityPlace" ColumnName="ActivityPlace" />
+                <ScalarProperty Name="StartTime" ColumnName="StartTime" />
+                <ScalarProperty Name="EndTime" ColumnName="EndTime" />
+                <ScalarProperty Name="UpvoteNum" ColumnName="UpvoteNum" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ActivityCategory">
+            <EntityTypeMapping TypeName="SucculentModel.ActivityCategory">
+              <MappingFragment StoreEntitySet="ActivityCategory">
+                <ScalarProperty Name="ActivityCategoryID" ColumnName="ActivityCategoryID" />
+                <ScalarProperty Name="ActivityCategoryName" ColumnName="ActivityCategoryName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Address">
+            <EntityTypeMapping TypeName="SucculentModel.Address">
+              <MappingFragment StoreEntitySet="Address">
+                <ScalarProperty Name="AddressID" ColumnName="AddressID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="Province" ColumnName="Province" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="AddressDetail" ColumnName="AddressDetail" />
+                <ScalarProperty Name="IsDefault" ColumnName="IsDefault" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Adopt">
+            <EntityTypeMapping TypeName="SucculentModel.Adopt">
+              <MappingFragment StoreEntitySet="Adopt">
+                <ScalarProperty Name="AdoptID" ColumnName="AdoptID" />
+                <ScalarProperty Name="GoodsID" ColumnName="GoodsID" />
+                <ScalarProperty Name="Total" ColumnName="Total" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AdoptResult">
+            <EntityTypeMapping TypeName="SucculentModel.AdoptResult">
+              <MappingFragment StoreEntitySet="AdoptResult">
+                <ScalarProperty Name="AdoptResultID" ColumnName="AdoptResultID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="ActivityID" ColumnName="ActivityID" />
+                <ScalarProperty Name="GoodsID" ColumnName="GoodsID" />
+                <ScalarProperty Name="AdoptTime" ColumnName="AdoptTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Attendance">
+            <EntityTypeMapping TypeName="SucculentModel.Attendance">
+              <MappingFragment StoreEntitySet="Attendance">
+                <ScalarProperty Name="AttendanceID" ColumnName="AttendanceID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="ActivityID" ColumnName="ActivityID" />
+                <ScalarProperty Name="AttendanceTime" ColumnName="AttendanceTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CharitableResult">
+            <EntityTypeMapping TypeName="SucculentModel.CharitableResult">
+              <MappingFragment StoreEntitySet="CharitableResult">
+                <ScalarProperty Name="CharitableResultID" ColumnName="CharitableResultID" />
+                <ScalarProperty Name="ActivityID" ColumnName="ActivityID" />
+                <ScalarProperty Name="CharitableName" ColumnName="CharitableName" />
+                <ScalarProperty Name="CWhereabouts" ColumnName="CWhereabouts" />
+                <ScalarProperty Name="CharitableDetails" ColumnName="CharitableDetails" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Collection">
+            <EntityTypeMapping TypeName="SucculentModel.Collection">
+              <MappingFragment StoreEntitySet="Collection">
+                <ScalarProperty Name="CollectionID" ColumnName="CollectionID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="SucculentID" ColumnName="SucculentID" />
+                <ScalarProperty Name="CollectionTime" ColumnName="CollectionTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Donate">
+            <EntityTypeMapping TypeName="SucculentModel.Donate">
+              <MappingFragment StoreEntitySet="Donate">
+                <ScalarProperty Name="DonateID" ColumnName="DonateID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="DonateTime" ColumnName="DonateTime" />
+                <ScalarProperty Name="DonoteTotal" ColumnName="DonoteTotal" />
+                <ScalarProperty Name="DonateContent" ColumnName="DonateContent" />
+                <ScalarProperty Name="ExoressNumber" ColumnName="ExoressNumber" />
+                <ScalarProperty Name="DonateState" ColumnName="DonateState" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Entries">
+            <EntityTypeMapping TypeName="SucculentModel.Entries">
+              <MappingFragment StoreEntitySet="Entries">
+                <ScalarProperty Name="EntriesID" ColumnName="EntriesID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="ActivityID" ColumnName="ActivityID" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="TextDescription" ColumnName="TextDescription" />
+                <ScalarProperty Name="JoinTime" ColumnName="JoinTime" />
+                <ScalarProperty Name="UpvoteNum" ColumnName="UpvoteNum" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Farms">
+            <EntityTypeMapping TypeName="SucculentModel.Farms">
+              <MappingFragment StoreEntitySet="Farms">
+                <ScalarProperty Name="FarmID" ColumnName="FarmID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Goods">
+            <EntityTypeMapping TypeName="SucculentModel.Goods">
+              <MappingFragment StoreEntitySet="Goods">
+                <ScalarProperty Name="GoodsID" ColumnName="GoodsID" />
+                <ScalarProperty Name="ShopID" ColumnName="ShopID" />
+                <ScalarProperty Name="GoodsName" ColumnName="GoodsName" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="GoodsPhoto" ColumnName="GoodsPhoto" />
+                <ScalarProperty Name="GoodsDescribe" ColumnName="GoodsDescribe" />
+                <ScalarProperty Name="LikeIt" ColumnName="LikeIt" />
+                <ScalarProperty Name="Flag" ColumnName="Flag" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GoodsComments">
+            <EntityTypeMapping TypeName="SucculentModel.GoodsComments">
+              <MappingFragment StoreEntitySet="GoodsComments">
+                <ScalarProperty Name="GoodsCommentID" ColumnName="GoodsCommentID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="GoodsID" ColumnName="GoodsID" />
+                <ScalarProperty Name="GoodsCommentContent" ColumnName="GoodsCommentContent" />
+                <ScalarProperty Name="PublishTime" ColumnName="PublishTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Level">
+            <EntityTypeMapping TypeName="SucculentModel.Level">
+              <MappingFragment StoreEntitySet="Level">
+                <ScalarProperty Name="LevelID" ColumnName="LevelID" />
+                <ScalarProperty Name="LevelName" ColumnName="LevelName" />
+                <ScalarProperty Name="LevelToplimit" ColumnName="LevelToplimit" />
+                <ScalarProperty Name="Levellowerlimit" ColumnName="Levellowerlimit" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OrderItems">
+            <EntityTypeMapping TypeName="SucculentModel.OrderItems">
+              <MappingFragment StoreEntitySet="OrderItems">
+                <ScalarProperty Name="OrderItemsID" ColumnName="OrderItemsID" />
+                <ScalarProperty Name="OrderID" ColumnName="OrderID" />
+                <ScalarProperty Name="GoodsID" ColumnName="GoodsID" />
+                <ScalarProperty Name="UnitPrice" ColumnName="UnitPrice" />
+                <ScalarProperty Name="Number" ColumnName="Number" />
+                <ScalarProperty Name="TotalAmount" ColumnName="TotalAmount" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Orders">
+            <EntityTypeMapping TypeName="SucculentModel.Orders">
+              <MappingFragment StoreEntitySet="Orders">
+                <ScalarProperty Name="OrderID" ColumnName="OrderID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="OrderTime" ColumnName="OrderTime" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="ExpressNumber" ColumnName="ExpressNumber" />
+                <ScalarProperty Name="OrderState" ColumnName="OrderState" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PostComments">
+            <EntityTypeMapping TypeName="SucculentModel.PostComments">
+              <MappingFragment StoreEntitySet="PostComments">
+                <ScalarProperty Name="PostCommentID" ColumnName="PostCommentID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="PostID" ColumnName="PostID" />
+                <ScalarProperty Name="PostCommentContent" ColumnName="PostCommentContent" />
+                <ScalarProperty Name="PostCommentTime" ColumnName="PostCommentTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Posts">
+            <EntityTypeMapping TypeName="SucculentModel.Posts">
+              <MappingFragment StoreEntitySet="Posts">
+                <ScalarProperty Name="PostID" ColumnName="PostID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="SectionID" ColumnName="SectionID" />
+                <ScalarProperty Name="PostTitle" ColumnName="PostTitle" />
+                <ScalarProperty Name="PostContent" ColumnName="PostContent" />
+                <ScalarProperty Name="PublishTime" ColumnName="PublishTime" />
+                <ScalarProperty Name="PostFlag" ColumnName="PostFlag" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Pots">
+            <EntityTypeMapping TypeName="SucculentModel.Pots">
+              <MappingFragment StoreEntitySet="Pots">
+                <ScalarProperty Name="PotID" ColumnName="PotID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="LevelID" ColumnName="LevelID" />
+                <ScalarProperty Name="Experience" ColumnName="Experience" />
+                <ScalarProperty Name="Sign" ColumnName="Sign" />
+                <ScalarProperty Name="SignDays" ColumnName="SignDays" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ReplyGoods">
+            <EntityTypeMapping TypeName="SucculentModel.ReplyGoods">
+              <MappingFragment StoreEntitySet="ReplyGoods">
+                <ScalarProperty Name="ReplyGoodsID" ColumnName="ReplyGoodsID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="GoodsCommentID" ColumnName="GoodsCommentID" />
+                <ScalarProperty Name="ReplyContent" ColumnName="ReplyContent" />
+                <ScalarProperty Name="ReplyTime" ColumnName="ReplyTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ReplyPost">
+            <EntityTypeMapping TypeName="SucculentModel.ReplyPost">
+              <MappingFragment StoreEntitySet="ReplyPost">
+                <ScalarProperty Name="ReplyPostID" ColumnName="ReplyPostID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="PostCommentID" ColumnName="PostCommentID" />
+                <ScalarProperty Name="ReplyContent" ColumnName="ReplyContent" />
+                <ScalarProperty Name="ReplyPostTime" ColumnName="ReplyPostTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sections">
+            <EntityTypeMapping TypeName="SucculentModel.Sections">
+              <MappingFragment StoreEntitySet="Sections">
+                <ScalarProperty Name="SectionID" ColumnName="SectionID" />
+                <ScalarProperty Name="SectionName" ColumnName="SectionName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ShoppingCarts">
+            <EntityTypeMapping TypeName="SucculentModel.ShoppingCarts">
+              <MappingFragment StoreEntitySet="ShoppingCarts">
+                <ScalarProperty Name="ShoppingCartID" ColumnName="ShoppingCartID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="GoodsID" ColumnName="GoodsID" />
+                <ScalarProperty Name="Number" ColumnName="Number" />
+                <ScalarProperty Name="UnitPrice" ColumnName="UnitPrice" />
+                <ScalarProperty Name="TotalAmount" ColumnName="TotalAmount" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Shops">
+            <EntityTypeMapping TypeName="SucculentModel.Shops">
+              <MappingFragment StoreEntitySet="Shops">
+                <ScalarProperty Name="ShopID" ColumnName="ShopID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="ShopName" ColumnName="ShopName" />
+                <ScalarProperty Name="ShopDescription" ColumnName="ShopDescription" />
+                <ScalarProperty Name="SalesTotal" ColumnName="SalesTotal" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Succulent">
+            <EntityTypeMapping TypeName="SucculentModel.Succulent">
+              <MappingFragment StoreEntitySet="Succulent">
+                <ScalarProperty Name="SucculentID" ColumnName="SucculentID" />
+                <ScalarProperty Name="SucculentName" ColumnName="SucculentName" />
+                <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+                <ScalarProperty Name="Photo" ColumnName="Photo" />
+                <ScalarProperty Name="Feature" ColumnName="Feature" />
+                <ScalarProperty Name="Application" ColumnName="Application" />
+                <ScalarProperty Name="BreedMode" ColumnName="BreedMode" />
+                <ScalarProperty Name="CollectedTotal" ColumnName="CollectedTotal" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SucculentCategory">
+            <EntityTypeMapping TypeName="SucculentModel.SucculentCategory">
+              <MappingFragment StoreEntitySet="SucculentCategory">
+                <ScalarProperty Name="SucculentCategoryID" ColumnName="SucculentCategoryID" />
+                <ScalarProperty Name="SucculentCategoryName" ColumnName="SucculentCategoryName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="SucculentModel.Users">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Photo" ColumnName="Photo" />
+                <ScalarProperty Name="Sex" ColumnName="Sex" />
+                <ScalarProperty Name="Birth" ColumnName="Birth" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="SecretQues" ColumnName="SecretQues" />
+                <ScalarProperty Name="SecretAnws" ColumnName="SecretAnws" />
+                <ScalarProperty Name="UserFlag" ColumnName="UserFlag" />
+                <ScalarProperty Name="Lock" ColumnName="Lock" />
+                <ScalarProperty Name="CollectionTotal" ColumnName="CollectionTotal" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="无" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
