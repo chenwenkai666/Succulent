@@ -1,0 +1,82 @@
+﻿@model Model.Users
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>欢迎登陆</title>
+    <link href="~/Content/Login.css" rel="stylesheet" />
+    <link href="~/Content/foundation.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="http://static.runoob.com/assets/foundation-icons/foundation-icons.css">
+</head>
+
+<body>
+    <!--顶部开始-->
+    <div class="header">
+        <div class="Logo">
+            <a href="#" title="多肉网">
+                <img src="../images/Logo带下文字.png" width="70" height="90" title="多肉网" />
+            </a>
+            <span>欢迎登陆</span>
+        </div>
+    </div>
+    <!--顶部结束-->
+    <!--中间主体开始-->
+    <div class="main">
+        <div class="img_bg">
+            <img src="../images/登录背景图.png" width="750" height="500">
+        </div>
+        <div class="Login">
+            @using (Html.BeginForm("Login", "Users", FormMethod.Post, new { id = "LoginBox" }))
+            {
+                <div class="row">
+                    <div class="small-12 columns">
+                        <div class="row collapse">
+                            <div class="small-3 columns">
+                                <span class="prefix">
+                                    <i class="fi-torso"></i>
+                                </span>
+                            </div>
+                            <div class="small-9 columns input_div">
+                                @Html.TextBoxFor(user => user.UserName, new { placeholder = "邮箱/用户名/手机号" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br />
+                <div class="row">
+                    <div class="large-12 columns">
+                        <div class="row collapse">
+                            <div class="small-3 columns">
+                                <span class="prefix">
+                                    <i class="fi-lock" style="font-size: 28px;"></i>
+                                </span>
+                            </div>
+                            <div class="small-9 columns input_div">
+                                @Html.TextBoxFor(user=>user.Password,new { placeholder = "密码" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br />
+                <div class="row">
+                    <div class="small-12 columns">
+                        <div class="row collapse">
+                            <button type="button" class="button success expand">登录</button>
+                        </div>
+                    </div>
+                </div>
+            }
+            <div class="forget_register">
+                <a href="#"><span>忘记密码</span></a>
+                <a href='@Url.Action("Register", "User")'><span>注册账号</span></a>
+            </div>
+        </div>
+    </div>
+        <!--中间主体结束始-->
+</body>
+</html>

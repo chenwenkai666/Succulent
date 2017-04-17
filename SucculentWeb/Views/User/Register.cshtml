@@ -1,0 +1,152 @@
+﻿@model Model.Users
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>欢迎注册</title>
+    <link href="~/Content/foundation.min.css" rel="stylesheet" />
+    <link href="~/Content/Register.css" rel="stylesheet" />
+    <link rel="stylesheet" href="http://static.runoob.com/assets/foundation-icons/foundation-icons.css">
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+</head>
+<body>
+    <!--顶部开始-->
+    <div class="header">
+        <div class="Logo">
+            <a href="#" title="多肉网">
+                <img src="../images/Logo带下文字.png" width="70" height="90" title="多肉网" />
+            </a>
+            <span>欢迎注册</span>
+            <p>已有账号？<a href="@Url.Action("Login","User")"> 请登录</a></p>
+        </div>
+    </div>
+    <!--顶部结束-->
+    <!-- 中间主体部分开始 -->
+    <div class="main">
+        <div class="Register">
+            @using (Html.BeginForm("Register","User",FormMethod.Post,new { @class= "RegisterBox" }))
+            {
+                <div class="row">
+                    <div class="large-12 columns">
+                        <div class="row collapse">
+                            <div class="small-3 columns">
+                                <span class="prefix">用户名</span>
+                            </div>
+                            <div class="small-9 columns input_div">
+                                @Html.TextBoxFor(user=>user.UserName,new { placeholder = "至多10字符，支持中英文、数字、减号或下划线组合" })
+                                @Html.ValidationMessageFor(user => user.UserName, "", new {style = "color:#1E90FF;" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="large-12 columns">
+                        <div class="row collapse">
+                            <div class="small-3 columns">
+                                <span class="prefix">密码</span>
+                            </div>
+                            <div class="small-9 columns input_div">
+                                @Html.TextBoxFor(user => user.Password, new { placeholder = "6-20个任意字符" })
+                                @Html.ValidationMessageFor(user => user.Password, "", new { style = "color:#1E90FF;" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="large-12 columns">
+                        <div class="row collapse">
+                            <div class="small-3 columns">
+                                <span class="prefix">确认密码</span>
+                            </div>
+                            <div class="small-9 columns input_div">
+                                @Html.TextBoxFor(user => user.PasswordAgain, new { placeholder = "请再次输入密码" })
+                                @Html.ValidationMessageFor(user => user.PasswordAgain, "", new { style = "color:#1E90FF;" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="large-12 columns">
+                        <div class="row collapse">
+                            <div class="small-3 columns">
+                                <span class="prefix">手机号</span>
+                            </div>
+                            <div class="small-9 columns input_div">
+                                @Html.TextBoxFor(user => user.Phone, new { placeholder = "请输入正确的大陆手机号码" })
+                                @Html.ValidationMessageFor(user => user.Phone, "", new { style = "color:#1E90FF;" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="large-12 columns">
+                        <div class="row collapse">
+                            <div class="small-3 columns">
+                                <span class="prefix">邮箱</span>
+                            </div>
+                            <div class="small-9 columns input_div">
+                                @Html.TextBoxFor(user => user.Email, new { placeholder = "请输入正确的电子邮箱，格式如xxx@xx.com" })
+                                @Html.ValidationMessageFor(user => user.Email, "", new { style = "color:#1E90FF;" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="large-12 columns">
+                        <div class="row collapse">
+                            <div class="small-3 columns">
+                                <span class="prefix">验证码</span>
+                            </div>
+                            <div class="small-7 columns input_div">
+                                @Html.TextBoxFor(user=>user.CheckCode,new { placeholder = "请收入验证码" })
+                                @Html.ValidationMessageFor(user => user.CheckCode, "", new { style = "color:#1E90FF;" })
+                            </div>
+                            <div class="small-2 columns">
+                                <a href="#" class="button postfix" style="height:50px;line-height:50px;">发送验证码</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="large-12 columns">
+                        <input type="checkbox" checked="checked" value="">阅读并同意<a href="#">《多肉网用户注册协议》</a>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="large-12 columns">
+                        <button class="button success expand">立即注册</button>
+                    </div>
+                </div>
+            }
+            <div class="Register_right">
+                <i class="fi-torsos-all"></i><span>注册遇到问题?</span>
+                <div class="help">
+                    <div class="content_icon">
+                        <a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=763225207&site=qq&menu=yes">
+                            <img src="../images/QQ.png" alt="QQ" width="60" height="60">
+                        </a>
+                    </div>
+                    <div class="content_icon">
+                        <a target="_blank" href="#">
+                            <img src="../images/sina_weibo.png" alt="微博" width="60" height="60">
+                        </a>
+                    </div>
+                    <div class="content_icon">
+                        <a target="_blank" href="#">
+                            <img src="../images/wechat.png" alt="微信" width="60" height="60">
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 中间主体部分结束 -->
+</body>
+</html>

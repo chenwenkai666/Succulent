@@ -1,0 +1,79 @@
+﻿@charset "utf-8";
+/* CSS Document */
+body{
+	font-family:yahei;
+}
+a:hover{
+	text-decoration: none;
+}
+.header{
+	width:100%;
+	height:100px;
+	background-color:rgba(255,255,255,1);
+	box-shadow:0px 5px 2px rgba(207,207,207,0.3);
+}
+.Logo{
+	margin-left:10%;
+}
+.Logo a:hover{
+	text-decoration:none;
+}
+.Logo span{
+	font-size: 26px;
+	font-family: "微软雅黑";
+	font-weight: 400;
+	color: rgba(54,54,54,0.7);
+	margin-left: 5%;
+}
+.main{
+	width:100%;
+	height:510px;
+	overflow:hidden;
+}
+.main .img_bg{
+	float: left;
+	width: 40%;
+	height: 300px;
+	margin-top: 5%;
+	margin-left: 10%;
+}
+.main .Login{
+	width:30%;
+	height:300px;
+	background: transparent;
+	/*background:rgba(84,255 ,159,0.1);*/
+	margin-top:10%;
+	margin-left:60%;
+}
+.Login #LoginBox{
+	width:80%;
+	margin:0 auto;
+	padding-top: 5%;
+	overflow: hidden;
+}
+.Login #LoginBox span{
+	background-color:transparent;
+}
+.Login .forget_register{
+	width:200px;
+	height:20px;
+	margin-left:65%;
+	margin-top:2%;
+}
+.Login .forget_register a{
+	font-size: 14px;
+	color: rgba(181,181,181,1);	
+}
+.Login .forget_register a:hover{
+	color:rgba(30,144,255,1);
+}
+.row span{
+	 height:50px;
+}
+.row i{
+	font-size: 28px;line-height:50px;opacity:0.8;
+}
+.row .input_div input{
+	height: 50px;
+	font-size: 16px;
+}
