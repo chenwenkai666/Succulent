@@ -15,6 +15,52 @@
     <script src="~/Scripts/jquery-1.10.2.min.js"></script>
     <script src="~/Scripts/jquery.validate.min.js"></script>
     <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    <script>
+        $(function () {
+            //用户名检测异步请求
+            $('#UserName').blur(function () {
+                $.ajax({
+                    url: '@Url.Action("CheckUser","User")',
+                    data: { UserName: $('#UserName').val() },
+                    type: 'POST',
+                    success: function (msg) {
+                        $('#CheckUserResult').remove();
+                        $('.CheckUserName').append("<span id='CheckUserResult'>" + msg + "</span>").css('color', '#00EE00');
+                    }
+                });
+            });
+
+            //验证码异步验证请求
+            $('#CheckCode').blur(function () {
+                $.ajax({
+                    url: '@Url.Action("CheckCodeResult","User")',
+                    type: 'POST',
+                    data: { CheckCode: $('#CheckCode').val() },
+                    success: function (msg) {
+                        $('#cc_result').remove();
+                        $('.cc').append("<span id='cc_result'>" + msg + "</span>").css('color', '#1E90FF');
+                    }
+                });
+            });
+        });
+
+        //邮件发送异步请求
+        $(function () {
+            $('#SendCode').click(function () {
+                $.ajax({
+                    url: '@Url.Action("CheckCode","User")',
+                    type: 'POST',
+                    data: { Email: $('#Email').val() },
+                    success: function (msg) {
+                        $('#SendCode').val("重新发送");
+                        $('#CheckCodeResult').remove();
+                        $('.code').append("<span id='CheckCodeResult'>" + msg + "</span>").css('color', '#1E90FF');
+                    }
+                });
+            });
+        });
+
+    </script>
 </head>
 <body>
     <!--顶部开始-->
@@ -31,7 +77,7 @@
     <!-- 中间主体部分开始 -->
     <div class="main">
         <div class="Register">
-            @using (Html.BeginForm("Register","User",FormMethod.Post,new { @class= "RegisterBox" }))
+            @using (Html.BeginForm("Register", "User", FormMethod.Post, new { @class = "RegisterBox" }))
             {
                 <div class="row">
                     <div class="large-12 columns">
@@ -39,9 +85,9 @@
                             <div class="small-3 columns">
                                 <span class="prefix">用户名</span>
                             </div>
-                            <div class="small-9 columns input_div">
+                            <div class="small-9 columns input_div CheckUserName">
                                 @Html.TextBoxFor(user=>user.UserName,new { placeholder = "至多10字符，支持中英文、数字、减号或下划线组合" })
-                                @Html.ValidationMessageFor(user => user.UserName, "", new {style = "color:#1E90FF;" })
+                                @Html.ValidationMessageFor(user => user.UserName, "", new {style = "color:#1E90FF" })
                             </div>
                         </div>
                     </div>
@@ -53,7 +99,7 @@
                                 <span class="prefix">密码</span>
                             </div>
                             <div class="small-9 columns input_div">
-                                @Html.TextBoxFor(user => user.Password, new { placeholder = "6-20个任意字符" })
+                                @Html.PasswordFor(user => user.Password, new { placeholder = "6-20个任意字符" })
                                 @Html.ValidationMessageFor(user => user.Password, "", new { style = "color:#1E90FF;" })
                             </div>
                         </div>
@@ -66,7 +112,7 @@
                                 <span class="prefix">确认密码</span>
                             </div>
                             <div class="small-9 columns input_div">
-                                @Html.TextBoxFor(user => user.PasswordAgain, new { placeholder = "请再次输入密码" })
+                                @Html.PasswordFor(user => user.PasswordAgain, new { placeholder = "请再次输入密码" })
                                 @Html.ValidationMessageFor(user => user.PasswordAgain, "", new { style = "color:#1E90FF;" })
                             </div>
                         </div>
@@ -91,7 +137,7 @@
                             <div class="small-3 columns">
                                 <span class="prefix">邮箱</span>
                             </div>
-                            <div class="small-9 columns input_div">
+                            <div class="small-9 columns input_div code">
                                 @Html.TextBoxFor(user => user.Email, new { placeholder = "请输入正确的电子邮箱，格式如xxx@xx.com" })
                                 @Html.ValidationMessageFor(user => user.Email, "", new { style = "color:#1E90FF;" })
                             </div>
@@ -104,12 +150,12 @@
                             <div class="small-3 columns">
                                 <span class="prefix">验证码</span>
                             </div>
-                            <div class="small-7 columns input_div">
+                            <div class="small-7 columns input_div cc">
                                 @Html.TextBoxFor(user=>user.CheckCode,new { placeholder = "请收入验证码" })
                                 @Html.ValidationMessageFor(user => user.CheckCode, "", new { style = "color:#1E90FF;" })
                             </div>
                             <div class="small-2 columns">
-                                <a href="#" class="button postfix" style="height:50px;line-height:50px;">发送验证码</a>
+                                <input class="button postfix" id="SendCode" style="height:50px;line-height:50px;" value="发送验证码">
                             </div>
                         </div>
                     </div>

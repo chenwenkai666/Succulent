@@ -12,6 +12,9 @@
     <link href="~/Content/Login.css" rel="stylesheet" />
     <link href="~/Content/foundation.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="http://static.runoob.com/assets/foundation-icons/foundation-icons.css">
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
 </head>
 
 <body>
@@ -31,8 +34,9 @@
             <img src="../images/登录背景图.png" width="750" height="500">
         </div>
         <div class="Login">
-            @using (Html.BeginForm("Login", "Users", FormMethod.Post, new { id = "LoginBox" }))
+            @using (Html.BeginForm("Login", "User", FormMethod.Post, new { id = "LoginBox" }))
             {
+                @Html.ValidationSummary();
                 <div class="row">
                     <div class="small-12 columns">
                         <div class="row collapse">
@@ -57,7 +61,7 @@
                                 </span>
                             </div>
                             <div class="small-9 columns input_div">
-                                @Html.TextBoxFor(user=>user.Password,new { placeholder = "密码" })
+                                @Html.PasswordFor(user=>user.Password,new { placeholder = "密码" })
                             </div>
                         </div>
                     </div>
@@ -65,9 +69,7 @@
                 <br />
                 <div class="row">
                     <div class="small-12 columns">
-                        <div class="row collapse">
-                            <button type="button" class="button success expand">登录</button>
-                        </div>
+                       <button type="button" class="button success expand">登录</button>
                     </div>
                 </div>
             }
