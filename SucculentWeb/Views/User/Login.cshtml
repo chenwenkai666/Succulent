@@ -36,7 +36,7 @@
         <div class="Login">
             @using (Html.BeginForm("Login", "User", FormMethod.Post, new { id = "LoginBox" }))
             {
-                @Html.ValidationSummary();
+                @Html.ValidationSummary( "",new { style="color:red;" });
                 <div class="row">
                     <div class="small-12 columns">
                         <div class="row collapse">
@@ -69,7 +69,7 @@
                 <br />
                 <div class="row">
                     <div class="small-12 columns">
-                       <button type="button" class="button success expand">登录</button>
+                       <input type="submit" class="button success expand" value="登录" />
                     </div>
                 </div>
             }

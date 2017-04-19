@@ -151,7 +151,7 @@
                                 <span class="prefix">验证码</span>
                             </div>
                             <div class="small-7 columns input_div cc">
-                                @Html.TextBoxFor(user=>user.CheckCode,new { placeholder = "请收入验证码" })
+                                @Html.TextBoxFor(user=>user.CheckCode,new { placeholder = "请输入验证码" })
                                 @Html.ValidationMessageFor(user => user.CheckCode, "", new { style = "color:#1E90FF;" })
                             </div>
                             <div class="small-2 columns">
