@@ -108,5 +108,215 @@ namespace SucculentWeb.Controllers
             }
         }
         #endregion
+
+        #region 重置密码部分
+
+        #region 忘记密码
+        public ActionResult ForgetPassword()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult ForgetPassword(string UserName)
+        {
+            try
+            {
+                Users users = UsersManager.GetUser(UserName);
+                if (users != null)
+                {
+                    return View("ResetWays", users);
+                }
+                else
+                {
+                    return Content("<script>alert('对不起，该用户名不存在！');window.open('" + Url.Action("ForgetPassword", "User") + "','_self');</script>");
+                }
+            }
+            catch
+            {
+                return Content("<script>alert('对不起，系统出现错误！');window.open('" + Url.Action("ForgetPassword", "User") + "','_self');</script>");
+            }
+
+        }
+        #endregion
+
+        #region 选择重置方式
+        public ActionResult ResetWays()
+        {
+            return View();
+        }
+        #endregion
+
+        #region 密保问题验证
+        public ActionResult SecretQuestion(string UserName)
+        {
+            Users users = UsersManager.GetUser(UserName);
+            if (users != null)
+            {
+                if (users.SecretQues != null)
+                {
+                    return View(users);
+                }
+                else
+                {
+                    return Content("<script>alert('对不起，您没有设置密保问题，请选择其他验证方式！');window.open('" + Url.Action("ForgetPassword", "User") + "','_self');</script>");
+                }
+            }
+            else
+            {
+                return Content("<script>alert('对不起，该用户不存在！');window.open('" + Url.Action("ForgetPassword", "User") + "','_self');</script>");
+            }
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult SecretQuestion(string UserName, string SecretAnws)
+        {
+            Users users = UsersManager.GetUser(UserName);
+            if (users != null)
+            {
+                if (users.SecretAnws == SecretAnws)
+                {
+                    return View("ResetPassword", users);
+                }
+                else
+                {
+                    return Content("<script>alert('对不起，密保问题答案错误！');window.open('" + Url.Action("SecretQuestion", "User", new { UserName = UserName }) + "','_self');</script>");
+                }
+            }
+            else
+            {
+                return Content("<script>alert('对不起，该用户不存在！');window.open('" + Url.Action("ForgetPassword", "User") + "','_self');</script>");
+            }
+        }
+        #endregion
+
+        #region 邮箱验证方式
+        public ActionResult EmailValidate(string UserName)
+        {
+            Users users = UsersManager.GetUser(UserName);
+            if (users != null)
+            {
+                if (users.Email != null)
+                {
+                    return View(users);
+                }
+                else
+                {
+                    return Content("<script>alert('对不起，您没有设置邮箱，请选择其他验证方式！');</script>");
+                }
+            }
+            else
+            {
+                return Content("<script>alert('对不起，该用户不存在！');window.open('" + Url.Action("ForgetPassword", "User") + "','_self');</script>");
+            }
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult EmailValidate(string UserName, string Email, string CheckCode)
+        {
+            Users users = UsersManager.GetUser(UserName);
+            if (users != null)
+            {
+                if (users.Email == Email)
+                {
+                    if (CheckCode == Session["CheckCode"].ToString())
+                    {
+                        return View("ResetPassword", users);
+                    }
+                    else
+                    {
+                        return Content("<script>alert('对不起，验证码错误！');window.open('" + Url.Action("EmailValidate", "User", new { UserName = UserName }) + "','_self');</script>");
+                    }
+                }
+                else
+                {
+                    return Content("<script>alert('对不起，电子邮箱与注册时不符！');window.open('" + Url.Action("EmailValidate", "User", new { UserName = UserName }) + "','_self');</script>");
+                }
+            }
+            else
+            {
+                return Content("<script>alert('对不起，该用户不存在！');window.open('" + Url.Action("ForgetPassword", "User") + "','_self');</script>");
+            }
+        }
+        #endregion
+
+        #region 手机号验证方式
+        public ActionResult PhoneValidate(string UserName)
+        {
+            Users users = UsersManager.GetUser(UserName);
+            if (users != null)
+            {
+                return View(users);
+            }
+            else
+            {
+                return Content("<script>alert('对不起，该用户不存在！');window.open('" + Url.Action("ForgetPassword", "User") + "','_self');</script>");
+            }
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult PhoneValidate(string UserName, string Phone)
+        {
+            Users users = UsersManager.GetUser(UserName);
+            if (users != null)
+            {
+                if (users.Phone == Phone)
+                {
+                    return View("ResetPassword", users);
+                }
+                else
+                {
+                    return Content("<script>alert('对不起，手机号与注册时不符！');window.open('" + Url.Action("PhoneValidate", "User", new { UserName = UserName }) + "','_self');</script>");
+                }
+            }
+            else
+            {
+                return Content("<script>alert('对不起，该用户不存在！');window.open('" + Url.Action("ForgetPassword", "User") + "','_self');</script>");
+            }
+        }
+        #endregion
+
+        #region 重置密码
+        public ActionResult ResetPassword(string UserName)
+        {
+            Users users = UsersManager.GetUser(UserName);
+            if (users != null)
+            {
+                return View(users);
+            }
+            else
+            {
+                return Content("<script>alert('对不起，该用户不存在！');</script>");
+            }
+
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult ResetPassword(string UserName, string Password, string Phone, string Email, string PasswordAgain)
+        {
+            try
+            {
+                Users users = UsersManager.GetUser(UserName);
+                users.Password = Password;
+                users.PasswordAgain = PasswordAgain;
+                users.CheckCode = "000";
+                users.Phone = Phone;
+                users.Email = Email;
+                UsersManager.UpdateUserInfo(users);
+                return Content("<script>alert('密码重置成功！请牢记密码');window.open('" + Url.Action("Login", "User") + "','_self');</script>");
+
+            }
+            catch (Exception ex)
+            {
+                return Content("<script>alert('对不起，系统出错！原因如下：" + ex.Message + "');window.open('" + Url.Action("ForgetPassword", "User") + "','_self');</script>");
+            }
+        }
+        #endregion
+
+        #endregion
     }
 }

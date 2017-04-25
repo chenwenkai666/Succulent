@@ -25,5 +25,13 @@ namespace BLL
         {
             return iusers.Login(user);
         }
+        public static Users GetUser(string UserName)
+        {
+            return iusers.GetUser(UserName);
+        }
+        public static void UpdateUserInfo(Users users)
+        {
+            iusers.UpdateUserInfo(users);
+        }
     }
 }

@@ -12,5 +12,7 @@ namespace IDAL
         void InsertUser(Users user);
         List<Users> SelectUser(string UserName);
         int Login(Users user);
+        Users GetUser(string UserName);
+        void UpdateUserInfo(Users users);
     }
 }
