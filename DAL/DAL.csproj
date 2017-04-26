@@ -52,6 +52,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SqlGoods.cs" />
+    <Compile Include="SqlShops.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\IDAL\IDAL.csproj">

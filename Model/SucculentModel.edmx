@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="SucculentModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="SucculentModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Activity">
           <Key>
             <PropertyRef Name="ActivityID" />
@@ -248,6 +248,7 @@
           <Property Name="ShopName" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="ShopDescription" Type="nvarchar(max)" />
           <Property Name="SalesTotal" Type="int" />
+          <Property Name="ShopPhoto" Type="nvarchar" MaxLength="100" />
         </EntityType>
         <EntityType Name="Succulent">
           <Key>
@@ -892,8 +893,7 @@
             <End Role="Succulent" EntitySet="Succulent" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="SucculentModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -1192,6 +1192,7 @@
           <Property Name="SalesTotal" Type="Int32" />
           <NavigationProperty Name="Goods" Relationship="Self.FK_Goods_Shops" FromRole="Shops" ToRole="Goods" />
           <NavigationProperty Name="Users" Relationship="Self.FK_Shops_Users" FromRole="Shops" ToRole="Users" />
+          <Property Name="ShopPhoto" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Succulent">
           <Key>
@@ -2122,6 +2123,7 @@
           <EntitySetMapping Name="Shops">
             <EntityTypeMapping TypeName="SucculentModel.Shops">
               <MappingFragment StoreEntitySet="Shops">
+                <ScalarProperty Name="ShopPhoto" ColumnName="ShopPhoto" />
                 <ScalarProperty Name="ShopID" ColumnName="ShopID" />
                 <ScalarProperty Name="UserID" ColumnName="UserID" />
                 <ScalarProperty Name="ShopName" ColumnName="ShopName" />
