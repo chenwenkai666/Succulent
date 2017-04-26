@@ -24,5 +24,15 @@ namespace DALFactory
             string className = assemblyName + "." + db + "Succulent";
             return (ISucculent)Assembly.Load(assemblyName).CreateInstance(className);
         }
+        public static IGoods CreateGoods()
+        {
+            string className = assemblyName + "." + db + "Goods";
+            return (IGoods)Assembly.Load(assemblyName).CreateInstance(className);
+        }
+        public static IShops CreateShops()
+        {
+            string className = assemblyName + "." + db + "Shops";
+            return (IShops)Assembly.Load(assemblyName).CreateInstance(className);
+        }
     }
 }
