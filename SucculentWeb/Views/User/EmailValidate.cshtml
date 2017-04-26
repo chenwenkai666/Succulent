@@ -1,0 +1,115 @@
+﻿@model Model.Users
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>找回密码</title>
+    <link href="~/Content/ForgetPassword.css" rel="stylesheet" />
+    <link href="~/Content/foundation.min.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script>
+        $(function () {
+            //验证码异步验证请求
+            $('#CheckCode').blur(function () {
+                $.ajax({
+                    url: '@Url.Action("CheckCodeResult","User")',
+                    type: 'POST',
+                    data: { CheckCode: $('#CheckCode').val() },
+                    success: function (msg) {
+                        $('#cc_result').remove();
+                        $('.cc').append("<span id='cc_result'>" + msg + "</span>").css('color', '#1E90FF');
+                    }
+                });
+            });
+        });
+
+        //邮件发送异步请求
+        $(function () {
+            $('#SendCode').click(function () {
+                $.ajax({
+                    url: '@Url.Action("CheckCode","User")',
+                    type: 'POST',
+                    data: { Email: $('#Email').val() },
+                    success: function (msg) {
+                        $('#SendCode').val("重新发送");
+                        $('#CheckCodeResult').remove();
+                        $('.code').append("<span id='CheckCodeResult'>" + msg + "</span>").css('color', '#1E90FF');
+                    }
+                });
+            });
+        });
+
+    </script>
+</head>
+<body>
+    <!--顶部开始-->
+    <div class="header">
+        <div class="Logo">
+            <a href="#" title="多肉网">
+                <img src="../images/Logo带下文字.png" width="70" height="90" title="多肉网" />
+            </a>
+            <span>重置密码</span>
+
+        </div><p><a href="@Url.Action("Login", "User")"> 登录</a></p>
+    </div>
+    <!--顶部结束-->
+    <!-- 主体部分开始 -->
+    <div class="main">
+        <div class="EmailBox">
+            @using (Html.BeginForm("EmailValidate", "User", FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
+                @Html.HiddenFor(user=>user.UserName)
+                <div class="row">
+                    <div class="large-12 columns">
+                        <div class="row">
+                            <div class="small-2 columns">
+                                <label for="email" class="inline right">邮箱</label>
+                            </div>
+                            <div class="small-10 columns input_div code">
+                                @*<input type="text" placeholder="请输入正确的电子邮箱，格式如xxx@xx.com" id="email">*@
+                                @Html.TextBox("Email", "", new { placeholder = "请输入正确的电子邮箱，格式如xxx@xx.com" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br />
+                <div class="row">
+                    <div class="large-12 columns">
+                        <div class="row collapse">
+                            <div class="small-2 columns">
+                                <label for="CheckCode" class="inline right"></label>
+                            </div>
+                            <div class="small-8 columns input_div cc">
+                                @*<input type="text" placeholder="请输入验证码" id="CheckCode">*@
+                                @Html.TextBox("CheckCode", "", new { placeholder = "请输入验证码" })
+                            </div>
+                            <div class="small-2 columns">
+                                <input class="button postfix" id="SendCode" style="height:50px;line-height:50px;" value="发送验证码">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br />
+                <div class="row">
+                    <div class="large-12 columns">
+                        <div class="row">
+                            <div class="small-2 columns">
+                            </div>
+                            <div class="small-10 columns">
+                                <input type="submit" class="button success expand" value="下一步">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+    <!-- 主体部分结束 -->
+</body>
+</html>

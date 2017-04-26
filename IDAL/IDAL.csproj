@@ -42,6 +42,8 @@
   <ItemGroup>
     <Compile Include="IGoods.cs" />
     <Compile Include="IShops.cs" />
+    <Compile Include="ISucculent.cs" />
+    <Compile Include="IUsers.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
