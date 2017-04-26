@@ -19,5 +19,10 @@ namespace DALFactory
           string className = assemblyName + "." + db + "Users";
            return (IUsers)Assembly.Load(assemblyName).CreateInstance(className);
       }
+        public static ISucculent CreateSucculent()
+        {
+            string className = assemblyName + "." + db + "Succulent";
+            return (ISucculent)Assembly.Load(assemblyName).CreateInstance(className);
+        }
     }
 }

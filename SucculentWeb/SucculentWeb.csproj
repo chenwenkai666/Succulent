@@ -194,6 +194,8 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Controllers\IndexController.cs" />
+    <Compile Include="Controllers\SucculentController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -202,27 +204,48 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\animate.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\ForgetPassword.css" />
     <Content Include="Content\foundation.min.css" />
     <Content Include="Content\foundation\foundation.css" />
     <Content Include="Content\foundation\normalize.css" />
+    <Content Include="Content\index.css" />
     <Content Include="Content\Login.css" />
+    <Content Include="Content\mislider-custom.css" />
+    <Content Include="Content\mislider.css" />
     <Content Include="Content\Register.css" />
+    <Content Include="Content\reset.css" />
+    <Content Include="Content\style.css" />
+    <Content Include="Content\templatemo-style.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="images\1.jpg" />
     <Content Include="images\1.png" />
+    <Content Include="images\10.jpg" />
+    <Content Include="images\11.jpg" />
+    <Content Include="images\2.jpg" />
     <Content Include="images\23.jpg" />
     <Content Include="images\24.jpg" />
     <Content Include="images\25.jpg" />
     <Content Include="images\26.jpg" />
     <Content Include="images\27.jpg" />
     <Content Include="images\28.jpg" />
+    <Content Include="images\3.jpg" />
+    <Content Include="images\4.jpg" />
+    <Content Include="images\5.jpg" />
+    <Content Include="images\6.jpg" />
+    <Content Include="images\7.jpg" />
+    <Content Include="images\8.jpg" />
+    <Content Include="images\9.jpg" />
     <Content Include="images\divider-bg.jpg" />
     <Content Include="images\Logo带下文字.png" />
+    <Content Include="images\penzai1.png" />
+    <Content Include="images\penzai2.png" />
+    <Content Include="images\penzai3.png" />
     <Content Include="images\portfolio-img-1.jpg" />
     <Content Include="images\portfolio-img-2.jpg" />
     <Content Include="images\portfolio-img-3.jpg" />
@@ -230,11 +253,15 @@
     <Content Include="images\portfolio-img-5.jpg" />
     <Content Include="images\portfolio-img-6.jpg" />
     <Content Include="images\QQ.png" />
+    <Content Include="images\qq1.png" />
     <Content Include="images\sina_weibo.png" />
     <Content Include="images\slider\1.jpg" />
     <Content Include="images\slider\2.jpg" />
+    <Content Include="images\slider\3.jpg" />
     <Content Include="images\slider\4.jpg" />
+    <Content Include="images\wb.png" />
     <Content Include="images\wechat.png" />
+    <Content Include="images\wx.png" />
     <Content Include="images\多肉项目Logo.png" />
     <Content Include="images\登录背景图.png" />
     <Content Include="Scripts\bootstrap.js" />
@@ -243,6 +270,8 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\custom.js" />
+    <Content Include="Scripts\easing.js" />
     <Content Include="Scripts\foundation\fastclick.js" />
     <Content Include="Scripts\foundation\foundation.abide.js" />
     <Content Include="Scripts\foundation\foundation.accordion.js" />
@@ -262,16 +291,26 @@
     <Content Include="Scripts\foundation\foundation.tooltip.js" />
     <Content Include="Scripts\foundation\foundation.topbar.js" />
     <Content Include="Scripts\foundation\jquery.cookie.js" />
+    <Content Include="Scripts\imagesloaded.min.js" />
+    <Content Include="Scripts\isotope.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.countup.js" />
+    <Content Include="Scripts\jquery.flexslider.js" />
+    <Content Include="Scripts\jquery.textFx.js" />
+    <Content Include="Scripts\jquery.transit.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\mislider.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\move-top.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\smoothscroll.js" />
+    <Content Include="Scripts\wow.min.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -294,6 +333,8 @@
     <Content Include="Views\User\ResetPassword.cshtml" />
     <Content Include="Views\User\ResetWays.cshtml" />
     <Content Include="Views\User\SecretQuestion.cshtml" />
+    <Content Include="Views\Index\Index.cshtml" />
+    <Content Include="Views\Succulent\Succulent_Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

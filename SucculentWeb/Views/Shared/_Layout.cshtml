@@ -1,45 +1,136 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - 我的 ASP.NET 应用程序</title>
-    @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
-
+    <title>多肉</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <link rel="stylesheet" href="~/Content/animate.min.css">
+    <link rel="stylesheet" href="~/Content/bootstrap.min.css">
+    <link rel="stylesheet" href="~/Content/mislider.css">
+    <link rel="stylesheet" href="~/Content/mislider-custom.css">
+    <link rel="stylesheet" href="~/Content/font-awesome.min.css">
+    <link rel="stylesheet" href="~/dist/pageSwitch.min.css">
+    <link href="~/Content/style.css" rel="stylesheet" />
+    @RenderSection("head",false)
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("应用程序名称", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+    <div class="wrap">
+        <div class="preloader">
+            <div class="sk-spinner sk-spinner-rotating-plane"></div>
+        </div>
+        <!--导航栏-->
+        <nav class="navbar navbar-fixed-top custom-navbar" role="navigation">
+            <div class="container">
+                <div class="navbar-header">
+                    <button class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon icon-bar"></span>
+                        <span class="icon icon-bar"></span>
+                        <span class="icon icon-bar"></span>
+                    </button>
+                    <a href="#" class="navbar-brand">多肉网</a>
+                </div>
+                <div class="collapse navbar-collapse">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="#home" class="smoothScroll">首页</a></li>
+                        <li><a href="#portfolio" class="smoothScroll">多肉</a></li>
+                        <li><a href="#" class="smoothScroll">论坛</a></li>
+                        <li><a href="#" class="smoothScroll">活动</a></li>
+                        <li><a href="#" class="smoothScroll">商城</a></li>
+                        <li><a href="#" class="smoothScroll">登录</a></li>
+                    </ul>
+                </div>
             </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("主页", "Index", "Home")</li>
-                    <li>@Html.ActionLink("关于", "About", "Home")</li>
-                    <li>@Html.ActionLink("联系方式", "Contact", "Home")</li>
+        </nav>
+        <div class="contain-all">
+            @RenderBody()
+        </div>
+       
+        <div class="div-footer">
+            <div class="div-middle">
+                <ul class="row">
+                    <li class="col-md-4 div-footer-img"><img src="~/images/penzai1.png" width="60" height="75"></li>
+                    <li class="col-md-4 div-footer-img"><img src="~/images/penzai2.png" width="60" height="75"></li>
+                    <li class="col-md-4 div-footer-img"><img src="~/images/penzai3.png" width="60" height="75"></li>
                 </ul>
-                @Html.Partial("_LoginPartial")
+            </div>
+            <div class="footer-wrap">
+                <div class="container footer-p">
+                    <p class="row p2">
+                        <h5 class="col-md-12 p2-h5"> Connect with us  </h5></br>
+                    </p>
+                    <p class="p3">
+                        <span>
+                            <a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=763225207&site=qq&menu=yes">
+                                <img src="~/images/qq1.png" width="34" height="34" />
+                            </a>
+                        </span>
+                        <span>
+                            <a target="_blank" href="http://weibo.com/u/3976320063/">
+                                <img src="~/images/wb.png" width="34" height="34" />
+                            </a>
+                        </span>
+                        <span>
+                            <a target="_blank" href="http://weixin.qq.com">
+                                <img src="~/images/wx.png" width="34" height="34" />
+                            </a>
+                        </span>
+                    </p>
+                    <div class="row p1">
+                        <p class="col-md-12 ">
+                            技术支持：Succulent-Chen 工作室<br />
+                            地址：江西省南昌市紫阳大道99号江西师范大学<a href="#" target="_blank">[显示地址]</a><br />
+                            Copyright 2016  Succulent.All Right Reserved.
+                        </p>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - 我的 ASP.NET 应用程序</p>
-        </footer>
-    </div>
+    <script src="~/Scripts/jquery.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/jquery.flexslider.js"></script>
+    <script src="~/Scripts/isotope.js"></script>
+    <script src="~/Scripts/imagesloaded.min.js"></script>
+    <script src="~/Scripts/smoothscroll.js"></script>
+    <script src="~/Scripts/wow.min.js"></script>
+    <script src="~/Scripts/custom.js"></script>
+    <script src="~/Scripts/mislider.js"></script>
+    <script src="~/dist/pageSwitch.min.js"></script>
+    <script>
+	$("#container").PageSwitch({
+		direction:'horizontal',
+		easing:'ease-in',
+		duration:1000,
+		autoPlay:true,
+		loop:'false'
+	});
+    </script>
 
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)
+
+
+    <script type="text/javascript">
+          jQuery(function ($) {
+              var slider = $('.mis-stage').miSlider({
+                  //  The height of the stage in px. Options: false or positive integer. false = height is calculated using maximum slide heights. Default: false
+                  stageHeight: 380,
+                  //  Number of slides visible at one time. Options: false or positive integer. false = Fit as many as possible.  Default: 1
+                  slidesOnStage: false,
+                  //  The location of the current slide on the stage. Options: 'left', 'right', 'center'. Defualt: 'left'
+                  slidePosition: 'center',
+                  //  The slide to start on. Options: 'beg', 'mid', 'end' or slide number starting at 1 - '1','2','3', etc. Defualt: 'beg'
+                  slideStart: 'mid',
+                  //  The relative percentage scaling factor of the current slide - other slides are scaled down. Options: positive number 100 or higher. 100 = No scaling. Defualt: 100
+                  slideScaling: 150,
+                  //  The vertical offset of the slide center as a percentage of slide height. Options:  positive or negative number. Neg value = up. Pos value = down. 0 = No offset. Default: 0
+                  offsetV: -5,
+                  //  Center slide contents vertically - Boolean. Default: false
+                  centerV: true,
+                  //  Opacity of the prev and next button navigation when not transitioning. Options: Number between 0 and 1. 0 (transparent) - 1 (opaque). Default: .5
+                  navButtonsOpacity: 1,
+              });
+          });
+    </script>
 </body>
 </html>
