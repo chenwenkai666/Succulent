@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using Model;
 
-namespace SucculentWeb.Models
+namespace SucculentWeb.ViewModels
 {
     public class indexVM
     {
