@@ -53,6 +53,8 @@
   <ItemGroup>
     <Compile Include="MailHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SqlServerGoods.cs" />
+    <Compile Include="SqlServerShops.cs" />
     <Compile Include="SqlServerSucculent.cs" />
     <Compile Include="SqlServerUsers.cs" />
   </ItemGroup>

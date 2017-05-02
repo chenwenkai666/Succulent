@@ -1,0 +1,327 @@
+﻿@model SucculentWeb.ViewModels.ShopMallIndexViewModels
+@{
+    ViewBag.Title = "ShopMallIndex";
+    Layout = "~/Views/Shared/ShopMall.cshtml";
+}
+
+<link rel="stylesheet" href="/css/xiaomi.css" />
+<script type="text/javascript" src="/js/jquery-2.1.4.min.js"></script>
+<script src="/js/jquery.animate-colors-min.js"></script>
+
+<!--<link href="css/style.css" type="text/css" rel="stylesheet" />-->
+<script type="text/javascript" src="/js/jquery.1.4.2-min.js"></script>
+
+
+<script type="text/javascript">
+//js无缝滚动代码
+function marquee(i, direction){
+	var obj = document.getElementById("marquee" + i);
+	var obj1 = document.getElementById("marquee" + i + "_1");
+	var obj2 = document.getElementById("marquee" + i + "_2");
+	if (direction == "up"){
+		if (obj2.offsetTop - obj.scrollTop <= 0){
+			obj.scrollTop -= (obj1.offsetHeight + 20);
+		}else{
+			var tmp = obj.scrollTop;
+			obj.scrollTop++;
+			if (obj.scrollTop == tmp){
+				obj.scrollTop = 1;
+			}
+		}
+	}else{
+		if (obj2.offsetWidth - obj.scrollLeft <= 0){
+			obj.scrollLeft -= obj1.offsetWidth;
+		}else{
+			obj.scrollLeft++;
+		}
+	}
+}
+
+function marqueeStart(i, direction){
+	var obj = document.getElementById("marquee" + i);
+	var obj1 = document.getElementById("marquee" + i + "_1");
+	var obj2 = document.getElementById("marquee" + i + "_2");
+
+	obj2.innerHTML = obj1.innerHTML;
+	var marqueeVar = window.setInterval("marquee("+ i +", '"+ direction +"')", 20);
+	obj.onmouseover = function(){
+		window.clearInterval(marqueeVar);
+	}
+	obj.onmouseout = function(){
+		marqueeVar = window.setInterval("marquee("+ i +", '"+ direction +"')", 20);
+	}
+}
+</script>
+
+
+<!--侧边导航栏轮播图开始-->
+<div id="big_banner_wrap">
+    <ul id="banner_menu_wrap">
+        <li class="active" img>
+            <a>多肉植物</a>
+            <a class="banner_menu_i">&gt;</a>
+            <div class="banner_menu_content" style="top: -20px;">
+              @foreach (var goods in Model.Succulent)
+            {
+                    <ul class="banner_menu_content_ul">
+
+                        <li>
+                            <a><img src="@goods.GoodsPhoto"></a><a>@goods.GoodsName</a><span>选购</span>
+                        </li>
+                    </ul>
+                    <ul class="banner_menu_content_ul"></ul>
+                }
+            </div>
+        </li>
+        <li>
+            <a>多肉花盆</a>
+            <a class="banner_menu_i">&gt;</a>
+            <div class="banner_menu_content" style="width: 350px; top: -62px;">
+                @foreach (var goods in Model.Huapen)
+                {
+                <ul class="banner_menu_content_ul">
+
+                    <li>
+                        <a><img src="@goods.GoodsPhoto"></a><a>@goods.GoodsName</a><span>选购</span>
+                    </li>
+                </ul>
+                }
+           </div>
+        </li>
+        <li>
+            <a>多肉植料</a>
+            <a class="banner_menu_i">&gt;</a>
+            <div class="banner_menu_content" style="width: 350px; top: -104px;">
+                @foreach(var goods in Model.Zhiliao)
+                { 
+                <ul class="banner_menu_content_ul">
+                    <li>
+                        <a><img src="@goods.GoodsPhoto"></a><a>@goods.GoodsName</a><span>选购</span>
+                    </li>
+                   
+                </ul>
+                }
+            </div>
+        </li>
+        <li>
+            <a>工具摆件</a>
+            <a class="banner_menu_i">&gt;</a>
+            <div class="banner_menu_content" style="width: 350px; top: -146px;">
+                @foreach(var goods in Model.Gongju)
+                { 
+                <ul class="banner_menu_content_ul">
+                    <li>
+                        <a><img src="@goods.GoodsPhoto "></a><a>@goods.GoodsName</a><span>选购</span>
+                    </li>
+                   
+                </ul>
+                }
+            </div>
+        </li>
+        <li>
+            <a>绿植盆栽</a>
+            <a class="banner_menu_i">&gt;</a>
+            <div class="banner_menu_content" style="width: 350px; top: -188px;">
+                @foreach(var goods in Model.Penzai)
+                {
+
+                
+                <ul class="banner_menu_content_ul">
+                    <li>
+                        <a><img src="@goods.GoodsPhoto"></a><a>@goods.GoodsName</a><span>选购</span>
+                    </li>
+                    
+                </ul>
+                }
+            </div>
+        </li>
+        <li>
+            <a>商家店铺</a>
+            <a class="banner_menu_i">&gt;</a>
+            <div class="banner_menu_content" style="width: 350px; top: -230px;">
+                @foreach(var shops in Model.Shops)
+                { 
+                <ul class="banner_menu_content_ul">
+                    <li>
+                        <a><img src="@shops.ShopPhoto"></a><a>@shops.ShopName</a><span>进入</span>
+                    </li>
+                    
+                </ul>
+                }
+            </div>
+        </li>
+        <li>
+                <a>私人订制</a>
+                <a class="banner_menu_i">&gt;</a>
+                <div class="banner_menu_content" style="width: 350px; top: -272px;">
+                    @foreach(var goods in Model.Dingzhi)
+                    { 
+                    <ul class="banner_menu_content_ul">
+                        <li>
+                            <a><img src="@goods.GoodsPhoto"></a><a>@goods.GoodsName</a><span>进入</span>
+                        </li>
+                       
+                    </ul>
+                    }
+                </div>
+            </li>
+        <li>
+            <a>热门搜索</a>
+            <a class="banner_menu_i">&gt;</a>
+            <div class="banner_menu_content" style="width: 700px; top: -314px;">
+                @foreach(var goods in Model.HotSearch)
+                { 
+                <ul class="banner_menu_content_ul">
+                    <li>
+                        <a><img src="@goods.GoodsPhoto"></a><a>@goods.GoodsName</a><span>选购</span>
+                    </li>
+                   
+                </ul>
+                <ul class="banner_menu_content_ul">
+                  
+                </ul>
+                }
+            </div>
+        </li>
+
+    </ul>
+    <!--侧边导航栏结束-->
+    <!--侧边轮播图开始-->
+    <div id="big_banner_pic_wrap">
+        <ul id="big_banner_pic">
+            <li>
+                <img src="~/images/Goods/lunbo/1.jpg" /></li>
+            <li>
+                <img src="~/images/Goods/lunbo/2.jpg" /></li>
+            <li>
+
+                <img src="~/images/Goods/lunbo/5.jpg" /></li>
+            <li>
+<img src="~/images/Goods/lunbo/3.jpg" /></li>
+            <li>
+                <img src="~/images/Goods/lunbo/6.jpg" /></li>
+        </ul>
+    </div>
+    <div id="big_banner_change_wrap">
+        <div id="big_banner_change_prev"> &lt;</div>
+        <div id="big_banner_change_next">&gt;</div>
+    </div>
+</div>
+<!--侧边导航栏轮播图结束-->
+<!--<div id="head_other_wrap">
+     <div id="head_other">
+         <ul>
+             <li>
+                 <div id="div1">
+                     <p>START</p>
+                     <p>开房购买</p>
+                 </div>
+             </li>
+             <li>
+                 <div id="div2">
+                     <p>GROUND</p>
+                     <p>企业团购</p>
+                 </div>
+             </li>
+             <li>
+                 <div id="div3">
+                     <p>RETROFIT</p>
+                     <p>官方产品</p>
+                 </div>
+             </li>
+             <li>
+                 <div id="div4">
+                     <p>CHANNEL</p>
+                     <p>F码通道</p>
+                 </div>
+             </li>
+             <li>
+                 <div id="div5">
+                     <p>RECHARGE</p>
+                     <p>话费充值</p>
+                 </div>
+             </li>
+             <li>
+                 <div id="div6">
+                     <p>SECURITY</p>
+                     <p>防伪检查</p>
+                 </div>
+             </li>
+         </ul>
+     </div>
+     <div class="head_other_ad"><img src="img/T184E_BQWT1RXrhCrK.jpg"></div>
+     <div class="head_other_ad"><img src="img/T1yvd_BQDT1RXrhCrK.jpg"></div>
+     <div class="head_other_ad"><img src="img/T1mahQBmKT1RXrhCrK.jpg"></div>
+</div>-->
+<!--最新单品开始-->
+<div id="head_hot_goods_wrap">
+    <div id="head_hot_goods_title">
+        <span class="title_span">最新单品</span>
+        <div id="head_hot_goods_change">
+            <span id="head_hot_goods_prave"><</span>
+            <span id="head_hot_goods_next">></span>
+        </div>
+    </div>
+    <div id="head_hot_goods_content">
+        <ul>
+            @foreach (var goods in Model.NewGoods)
+            {
+                <li>
+                    <a><img src="@goods.GoodsPhoto"></a>
+                    <a>@goods.GoodsName</a>
+                    <a>￥@goods.Price</a>
+                </li>
+            }
+        </ul>
+    </div>
+</div>
+<!--最新单品结束-->
+<!--商城爆款开始-->
+<div id="main_show_box">
+    <div id="floor_1">
+        <div id="floor_head">
+            <span class="title_span">商城爆款</span>
+        </div>
+    </div>
+    <div class="floor_goods_wrap">
+
+        <div class="left">
+            <!-- <a><img src="img/T1IhLjBC_T1RXrhCrK.jpg"></a>    -->
+
+
+            <div id="marquee2" class="marqueetop">
+                <div style="height:1015px;">
+                    <ul id="marquee2_1">
+                        @foreach(var goods in Model.hotGoods)
+                        { 
+                        <li>
+                            <a class="pic" href="#"><img src="@goods.GoodsPhoto"></a>
+
+                        </li>
+                        }
+
+                    </ul>
+                    <ul id="marquee2_2"></ul>
+                </div>
+            </div><!--marqueeleft end-->
+        </div>
+        <div class="right">
+
+            <ul class="ul2">
+                @foreach(var goods in Model.HotGoods)
+                {
+                <li class="floor_goods_wrap_li">
+                    <a class="floor_goods_img"><img src="@goods.GoodsPhoto"></a>
+                    <a class="floor_goods_tit">@goods.GoodsName</a>
+                    <a class="floor_goods_txt">   </a>
+                    <a class="floor_goods_price">￥@goods.Price</a>
+                </li>
+                }      
+                <div style="clear:both;"></div>
+            </ul>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="/js/xiaomi.js"></script>
+<script type="text/javascript">marqueeStart(2, "up");</script>
+

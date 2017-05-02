@@ -1,0 +1,73 @@
+﻿@model Model.Goods
+@{
+    ViewBag.Title = "CreatGoods";
+    Layout = "~/Views/Shared/ShopMall.cshtml";
+}
+<link href="~/Content/bootstrap.css" rel="stylesheet" />
+@*<link href="~/Content/bootstrap.min.css" rel="stylesheet" />*@
+<script src="~/ueditor/ueditor.config.js"></script>
+<script src="~/ueditor/ueditor.all.js"></script>
+<script type="text/javascript">
+    var editorOption = {
+        initialFrameWidth: 800,
+        initialFrameHeight: 400
+    };
+    var editor = new baidu.editor.ui.Editor(editorOption);
+    editor.render('GoodsDescribe');
+</script>
+<style>
+    .main{
+        margin-top:30px;
+        background-color:#efecec;
+        margin-bottom:30px;
+    }
+    .top-title {
+        height:50px;
+        width:100%;
+    margin-top:30px;
+    }
+        .top-title h1{
+       text-align:center;
+       font-family:'Microsoft YaHei';
+       font-size:large;
+             }
+    .content{
+        width:80%;
+       margin-left:10%;
+      border:1px solid #808080;
+      background-color:#fff;
+      
+    }
+    .box{
+        margin-left:50px;
+        width:80%;
+        
+        margin-top:20px;
+    }
+    .text{
+        margin-top:10px;
+    }
+</style>
+<div class="main">
+    <div class=" top-title"><h1>商品上新</h1></div>
+    @using (Html.BeginForm("CreatGoods", "Goods", FormMethod.Post, new { id = "CreateForm", enctype = "multipart/form-data" }))
+    {
+        <div class="content">
+            <div class="box">
+                <div class="text"> <span>店主编号：</span></div>
+                <div class="text">@Html.EditorFor(model => model.ShopID, new { htmlAttributes = new { @class = "form-control" } })</div>
+                <div class="text"> <span>商品名字：</span></div>
+                <div class="text">@Html.EditorFor(model => model.GoodsName, new { htmlAttributes = new { @class = "form-control" ,placeholder="不能超过十二个字" } })</div>
+                <div class="text"> <span>商品价格：</span></div>
+                <div class="text">@Html.EditorFor(model => model.Price, new { htmlAttributes = new { @class = "form-control" } })</div>
+                <div class="text"> <span>商品照片：</span></div>
+                <div class="text"><input type="file" name="GoodsPhoto" /></div>
+                <div class="text"><span>是否定制：</span></div>
+                <div class="text"><input type="radio" value="1" name="xuanze" />是&nbsp;&nbsp; <input type="radio" value="2" name="xuanze" />否 </div>
+                <div class="text"> <p>@Html.TextAreaFor(model => model.GoodsDescribe)</p></div>
+                <div class="text"><input type="submit" value="提交" class="btn btn-danger" /></div>
+            </div>
+            
+        </div>
+    }
+</div>
