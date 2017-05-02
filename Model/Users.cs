@@ -11,7 +11,6 @@ namespace Model
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
     
     public partial class Users
     {
@@ -36,35 +35,15 @@ namespace Model
             this.ShoppingCarts = new HashSet<ShoppingCarts>();
             this.Shops = new HashSet<Shops>();
         }
-
+    
         public int UserID { get; set; }
-
-        [Required(ErrorMessage = "请输入用户名")]
-        [RegularExpression(@"^[\\u4e00-\u9fa5_a-zA-Z0-9-\\w]{1,10}$", ErrorMessage = "限10个字符，支持中英文、数字、减号或下划线")]
         public string UserName { get; set; }
-
-        [Required(ErrorMessage = "请输入密码")]
-        [DataType(DataType.Password)]
-        [RegularExpression(@"^([A-Z]|[a-z]|[0-9]|[`~!@#$%^&*()+=|{}':;',\\\\[\\\\].<>/?~！@#￥%……&*（）——+|{}【】‘；：”“’。，、？]){6,20}$", ErrorMessage = "密码必须为6-20 位的任意字母、数字、字符组合")]
         public string Password { get; set; }
-
-        [Required(ErrorMessage = "请输入确认密码")]
-        [Compare("Password", ErrorMessage = "与输入的密码不一致")]
-        public string PasswordAgain { get; set; }
         public string Photo { get; set; }
         public string Sex { get; set; }
         public Nullable<System.DateTime> Birth { get; set; }
-
-        [Required(ErrorMessage = "请输入电子邮箱")]
-        [RegularExpression(@"\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*", ErrorMessage = "电子邮箱格式不正确！")]
         public string Email { get; set; }
-
-        [Required(ErrorMessage = "请输入手机号码")]
-        [RegularExpression(@"^1[3|4|5|7|8][0-9]\d{8}$", ErrorMessage = "请输入有效的手机号码")]
         public string Phone { get; set; }
-
-        [Required(ErrorMessage = "请输入验证码")]
-        public string CheckCode { get; set; }
         public string SecretQues { get; set; }
         public string SecretAnws { get; set; }
         public int UserFlag { get; set; }

@@ -41,6 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SucculentManager.cs" />
     <Compile Include="UsersManager.cs" />
   </ItemGroup>
   <ItemGroup>

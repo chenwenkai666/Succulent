@@ -1,4 +1,5 @@
-﻿
+﻿@model SucculentWeb.Models.indexVM 
+@using Model
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -57,42 +58,46 @@
             <div class="mis-stage w3_agileits_welcome_grids">
 
                 <ol class="mis-slider">
-                    <li class="mis-slide">
+                    @foreach (var item in Model.succulent)
+                    {
+                        <li class="mis-slide">
+                            <figure>
+                                <img src="@item.Photo" alt="" class="img-responsive" />
+                                <figcaption>@item.SucculentName</figcaption>
+                            </figure>
+                        </li>
+                    }
+                    
+                    @*<li class="mis-slide">
                         <figure>
-                            <img src="~/images/23.jpg" alt=" " class="img-responsive" />
-                            <figcaption>百合科</figcaption>
-                        </figure>
-                    </li>
-                    <li class="mis-slide">
-                        <figure>
-                            <img src="~/images/24.jpg" alt=" " class="img-responsive" />
+                            <img src="~/images/24.jpg" alt="" class="img-responsive" />
                             <figcaption>景天科</figcaption>
                         </figure>
                     </li>
                     <li class="mis-slide">
                         <figure>
-                            <img src="~/images/25.jpg" alt=" " class="img-responsive" />
+                            <img src="~/images/25.jpg" alt="" class="img-responsive" />
                             <figcaption>番杏科</figcaption>
                         </figure>
                     </li>
                     <li class="mis-slide">
                         <figure>
-                            <img src="~/images/26.jpg" alt=" " class="img-responsive" />
+                            <img src="~/images/26.jpg" alt="" class="img-responsive" />
                             <figcaption>龙舌兰科</figcaption>
                         </figure>
                     </li>
                     <li class="mis-slide">
                         <figure>
-                            <img src="~/images/27.jpg" alt=" " class="img-responsive" />
+                            <img src="~/images/27.jpg" alt="" class="img-responsive" />
                             <figcaption>马齿笕科</figcaption>
                         </figure>
                     </li>
                     <li class="mis-slide">
                         <figure>
-                            <img src="~/images/28.jpg" alt=" " class="img-responsive" />
+                            <img src="~/images/28.jpg" alt="" class="img-responsive" />
                             <figcaption>菊科 </figcaption>
                         </figure>
-                    </li>
+                    </li>*@
                 </ol>
             </div>
             <div class="More">
@@ -126,8 +131,7 @@
                         </div>
                         <div class="row left-down" style="height:350px;">
                             <div class="left-content">
-
-                                <img src="~/images/11.jpg" />
+                                <img src="@ViewBag.photo" />
                             </div>
                         </div>
                     </div>
@@ -136,16 +140,19 @@
                             <div class="col-md-12" style="height:30px;"><a class="little-title">热销单品 >></a></div>
                         </div>
                         <div class="row right-middle">
-                            <div class="col-md-3 col-sm-3 little" style="height:170px;">
-                                <div class="hovereffect">
-                                    <img src="~/images/4.jpg" alt=" " class="img-thumbnail" />
-                                    <div class="overlay">
+                            @foreach (var item in Model.goods)
+                            {
+                                <div class="col-md-3 col-sm-3 little" style="height:170px;">
 
-                                        <a class="info" href="#">点击购买</a>
+                                    <div class="hovereffect">
+                                        <img src="@item.GoodsPhoto" alt="" class="img-thumbnail" />
+                                        <div class="overlay">
+                                            <a class="info" href="#">点击购买</a>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col-md-3 col-sm-3 little" style="height:170px;">
+                            }
+                            @*<div class="col-md-3 col-sm-3 little" style="height:170px;">
                                 <div class="hovereffect">
                                     <img src="~/images/5.jpg" alt=" " class="img-thumbnail" />
                                     <div class="overlay">
@@ -171,7 +178,7 @@
                                         <a class="info" href="#">点击购买</a>
                                     </div>
                                 </div>
-                            </div>
+                            </div>*@
                         </div>
                         <div class="row right-middle-2">
                             <div class="col-md-12" style="height:10px;"></div>
@@ -180,15 +187,19 @@
                             <div class="col-md-12" style="height:30px;"><a class="little-title">私人定制 >></a></div>
                         </div>
                         <div class="row right-down">
-                            <div class="col-md-4 col-sm-4 little" style="height:130px;">
-                                <img src="~/images/8.jpg" class="image" />
-                                <div class="know">
-                                    <h5>私人定制多肉书籍</h5>
-                                    <p>你可以为你自己的多肉量身定制，让它住进书本里，弄一个私人地址的多肉书籍。</p>
-                                </div>
+                            @foreach (var item in Model.shops)
+                            {
+                                <div class="col-md-4 col-sm-4 little" style="height:130px;">
+                                    <img src="~/images/8.jpg" class="image" />
+                                    <div class="know">
+                                        <h5>@item.ShopName</h5>
+                                        <p>@item.ShopDescription</p>
+                                    </div>
 
-                            </div>
-                            <div class="col-md-4 col-sm-4 little" style="height:130px;">
+                                </div>
+                            }
+                           
+                            @*<div class="col-md-4 col-sm-4 little" style="height:130px;">
                                 <img src="~/images/9.jpg" class="image" />
                                 <div class="know">
                                     <h5>多肉花瓣</h5>
@@ -201,7 +212,7 @@
                                     <h5>万圣节与多肉的邂逅</h5>
                                     <p>看似跟万圣节丝毫无关系萌萌的多肉，也强行被歪果仁跟妖魔鬼怪主题的万圣节扯上关系</p>
                                 </div>
-                            </div>
+                            </div>*@
                         </div>
                         <div class="row right-middle-4">
                             <div class="col-md-12" style="height:10px;"></div>
