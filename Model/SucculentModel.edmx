@@ -262,6 +262,7 @@
           <Property Name="Application" Type="nvarchar(max)" />
           <Property Name="BreedMode" Type="nvarchar(max)" />
           <Property Name="CollectedTotal" Type="int" />
+          <Property Name="SucculentImg" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="SucculentCategory">
           <Key>
@@ -1208,6 +1209,7 @@
           <Property Name="CollectedTotal" Type="Int32" />
           <NavigationProperty Name="Collection" Relationship="Self.FK_Collection_Succulent" FromRole="Succulent" ToRole="Collection" />
           <NavigationProperty Name="SucculentCategory" Relationship="Self.FK_Succulent_SucculentCategory" FromRole="Succulent" ToRole="SucculentCategory" />
+          <Property Name="SucculentImg" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="SucculentCategory">
           <Key>
@@ -2135,6 +2137,7 @@
           <EntitySetMapping Name="Succulent">
             <EntityTypeMapping TypeName="SucculentModel.Succulent">
               <MappingFragment StoreEntitySet="Succulent">
+                <ScalarProperty Name="SucculentImg" ColumnName="SucculentImg" />
                 <ScalarProperty Name="SucculentID" ColumnName="SucculentID" />
                 <ScalarProperty Name="SucculentName" ColumnName="SucculentName" />
                 <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />

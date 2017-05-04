@@ -7,10 +7,8 @@ using Model;
 
 namespace IDAL
 {
-   public interface ISucculent
+   public interface ISucculentCategory
     {
-        List<Succulent> SelectSucculent();
-        List<Succulent> SelectSucculentByID();
-        void Create(Succulent succulent);
+         List<SucculentCategory> Select();
     }
 }

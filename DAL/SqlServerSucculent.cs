@@ -18,6 +18,14 @@ namespace DAL
             return succulent;
 
         }
+        public List<Succulent> SelectSucculentByID()
+        {
+            var xiao = (from x in db.Succulent
+                             where x.SucculentID == 17
+                             select x).ToList();
+            return xiao;
+
+        }
         public void Create(Succulent succulent)
         {
             db.Succulent.Add(succulent);

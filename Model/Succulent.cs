@@ -28,6 +28,7 @@ namespace Model
         public string Application { get; set; }
         public string BreedMode { get; set; }
         public Nullable<int> CollectedTotal { get; set; }
+        public string SucculentImg { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Collection> Collection { get; set; }

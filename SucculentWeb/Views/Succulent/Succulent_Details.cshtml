@@ -1,4 +1,5 @@
 ﻿@model IEnumerable <Model.Succulent>
+@using Model
 @{
     
 }
@@ -19,22 +20,26 @@
     <div class="wrap-body-img">   
     </div>
     <div class="wrap-contain">
+        @foreach (var item in Model)
+            {
+
+            
         <div class="main-contain">
             <div class="top-tool row">
-                <ul class="col-md-12">
-                    <li><a class="fa fa-star fa-fw"><span>收藏</span></a></li> 
-                    <li><a class="fa fa-share-square-o"><span>转发</span></a></li>
+                <ul class="col-md-8">
+                    <li><a class="fa fa-star fa-fw"><span>收藏数  &nbsp;</span>@Html.DisplayFor(modelItem => item.CollectedTotal)</a></li>
                 </ul>
             </div>
+           
             <div class="wrap-introduce">
                 <dl class="wrap-introduce-title">
                     <dd class="row">
-                        <h1 class="col-md-12">碧光环</h1>
+                        <h1 class="col-md-12">@Html.DisplayFor(modelItem=> item.SucculentName)</h1>
                     </dd>
                 </dl>
                 <div class="wrap-introduce-para row">
                     <p class="col-md-12">
-                        碧光环（Monilaria obconica）番杏科碧光环属，原生地位于南非，非常耐旱的多浆植物，喜阴。生长适温15-25度，温度超过35℃整个植株就会慢慢枯萎，进入休眠；气温下降后，浇水即可恢复生长。繁殖方式：播种繁殖和分株繁殖。特别说明：碧光环并不等于枝干番杏，这是两种不同的番杏科植物。
+                        @Html.DisplayFor(modelItem => item.Feature)
                     </p>
                 </div>            
             </div>
@@ -64,35 +69,93 @@
                     <h2>养殖要点</h2> 
                     <div></div>
                 </div>
-                <div class="wrap-yangzhi-content">
-
+                <div class="wrap-yangzhi-content row">
+                 <p class="col-md-12">
+                     @Html.Raw(item.BreedMode)
+                 </p>
                 </div>
             </div>
-            <div class="wrap-shengzhang">
+            @*<div class="wrap-shengzhang">
                 <div class="wrap-shengzhang-title">
                     <h2>生长周期</h2>
                     <div></div>
                 </div>
                 <div class="wrap-shengzhang-content"></div>
-            </div>
+            </div>*@
             <div class="wrap-yuanlin">
                 <div class="wrap-yuanlin-title">
                     <h2>园林应用</h2>
                     <div></div>
                 </div>
-                <div class="wrap-yuanlin-content"></div>
+                <div class="wrap-yuanlin-content row">
+                    <p class="col-md-12">
+                       @Html.Raw(item.Application)
+                    </p>
+                </div>
             </div>
             <div class="wrap-tuce">
                 <div class="wrap-tuce-title">
                     <h2>图册</h2>
                 </div>
-                <div class="wrap-tuce-content"></div>
+                <div class="wrap-tuce-content row">
+                    <p class="col-md-12">
+                       @Html.Raw(item.Photo)
+                    </p>
+                </div>
             </div>
 
 
         </div>
-        <div class="side-contain">
-            
+    }
+        <div class="side-contain"> 
+            <div class="side-contain-img row">
+                <img class="col-md-12" src="" />
+            </div>    
+            <div class="side-contain-main">
+                <div class="side-contain-main-similate">
+                  <div class="side-contain-main-similate-title row"><h1 class="col-md-12">相似植物</h1></div> 
+                    <div class="side-contain-main-similate-contain row">
+                        <div class="col-md-4">
+                            <img />
+                            <span></span>
+                        </div>
+                        <div class="col-md-4">
+                            <img />
+                            <span></span>
+                        </div>
+                        <div class="col-md-4">
+                            <img />
+                            <span></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="side-contain-main-well">
+                    <div class="side-contain-main-well-title row"><h1 class="col-md-12">适合办公室的植物</h1></div> 
+                    <div class="side-contain-main-well-contain row">
+                        <div class="col-md-4">
+                            <img />
+                            <span></span>
+                        </div>
+                        <div class="col-md-4">
+                            <img />
+                            <span></span>
+                        </div>
+                        <div class="col-md-4">
+                            <img />
+                            <span></span>
+                        </div>
+                    </div>
+                </div>
+            </div>           
+        </div>
+    </div>
+    <div class="share-contain">
+        <div>
+            <ul>
+                <li><a arget="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=763225207&site=qq&menu=yes"><img src="~/images/qq1.png" width="34" height="34" /></a></li>
+                <li><a target="_blank" href="http://weibo.com/u/3976320063/"><img src="~/images/wb.png" width="34" height="34" /></a></li>
+                <li><a target="_blank" href="http://weixin.qq.com"><img src="~/images/wx.png" width="34" height="34" /></a></li>
+            </ul>
         </div>
     </div>
 </div>

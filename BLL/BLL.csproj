@@ -42,6 +42,7 @@
   <ItemGroup>
     <Compile Include="GoodsManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SucculentCategoryManager.cs" />
     <Compile Include="SucculentManager.cs" />
     <Compile Include="ShopManager.cs" />
     <Compile Include="UsersManager.cs" />
