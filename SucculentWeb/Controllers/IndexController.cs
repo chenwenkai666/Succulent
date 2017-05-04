@@ -14,8 +14,8 @@ namespace SucculentWeb.Controllers
         // GET: Index
         public ActionResult Index()
         {
-            var succulent = db.Succulent.OrderByDescending(s=> s.CollectedTotal).Take(10);
-            var goods = db.Goods.OrderByDescending(g=>g.LikeIt).Take(3);
+            var succulent = db.Succulent.OrderByDescending(s=> s.CollectedTotal).Take(6);
+            var goods = db.Goods.OrderByDescending(g=>g.LikeIt).Take(4);
             var shops = db.Shops.OrderByDescending(o=>o.SalesTotal).Take(3);
             indexVM indexvm = new ViewModels.indexVM();
             indexvm.succulent = succulent;

@@ -17,6 +17,10 @@ namespace BLL
         {
             return isucculent.SelectSucculent();
         }
+        public static List<Succulent> SelectSucculentByID()
+        {
+            return isucculent.SelectSucculentByID();
+        }
         public static void Create(Succulent succulent)
         {
             isucculent.Create(succulent);
