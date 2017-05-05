@@ -1,0 +1,463 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>论坛部分</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- <link href="CSS/bootstrap.min.css" rel="stylesheet"> -->
+    <link href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <link href="~/css/Tribune/TribuneIndex.css" rel="stylesheet" />
+    <script src="~/js/jquery-2.1.4.min.js"></script>
+    <script src="~/js/Tribune/jquery.SuperSlide.js"></script>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <section id="header">
+        <div id="header" class="text-center">
+            <div id="header-a">
+                <!-- 顶部搜索框 -->
+                <div id="header-a-left">
+                    <div id="header-a-left-search" class="input-group input-group-sm">
+                        <input type="text" class="form-control" placeholder="搜点什么吧">
+                        <span class="input-group-btn">
+                            <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+                        </span>
+                    </div>
+                </div>
+                <!-- 顶部搜索框结束 -->
+                <!-- 顶部链接 -->
+                <div id="header-a-right">
+                    <div id="homebox">
+                        <a href="#">首页</a>
+                    </div>
+                    <div id="homebox2">
+                        <a href="#">论坛</a>
+                    </div>
+                    <div id="signin">
+                        <span id="loginin"><a href="#">登录</a></span>
+                    </div>
+                    <div id="signout">
+                        <span id="loginout"><a href="#">注册</a></span>
+                    </div>
+                </div>
+                <!-- 顶部链接结束 -->
+            </div>
+        </div>
+    </section>
+    <!-- 导航栏结束 -->
+    <!-- 顶部 -->
+    <section id="top">
+        <div id="topA">
+            <div id="topA-logo"><img src="~/images/Tribune/web/testlogo.png" /></div>
+            <div id="topA-right"></div>
+        </div>
+    </section>
+    <!-- 顶部结束 -->
+    <!-- 主体 -->
+    <section>
+        <div id="pagebody">
+            <div id="pagebody-A1">
+                <div id="A1-left">
+
+                    <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+                        <!-- Indicators -->
+                        <ol class="carousel-indicators">
+                            <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+                            <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+                            <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+                        </ol>
+
+                        <!-- Wrapper for slides 图片比例 490 259 -->
+                        <div class="carousel-inner" role="listbox">
+                            <div class="item active">
+                                <img src="~/images/Tribune/timg.jpg" alt="..."/>
+                                <div class="carousel-caption">
+                                    123
+                                </div>
+                            </div>
+                            <div class="item">
+                                <img src="~/images/Tribune/timg1.jpg" alt="..."/>
+                                <div class="carousel-caption">
+                                    456
+                                </div>
+                            </div>
+                            <div class="item">
+                                <img src="~/images/Tribune/timg2.jpg" alt="..." />
+                                <div class="carousel-caption">
+                                    789
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Controls -->
+                        <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+                            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                        <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+                            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                            <span class="sr-only">Next</span>
+                        </a>
+                    </div>
+
+                </div>
+                <div id="A1-right">
+                    <div class="tabox">
+                        <div class="hd">
+                            <ul>
+                                <li class=" ">热门帖子</li>
+                                <li class=" ">最新帖子</li>
+                                <li class="on">最新回复</li>
+                            </ul>
+                        </div>
+                        <div class="bd">
+                            <ul class="lh" style="display: none;">
+                                <li>
+                                    <div class="p-name">
+                                        <a href="#">艾家纺全棉四件套</a>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="p-name">
+                                        <a href="#">优曼真华四件套</a>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="p-name">
+                                        <a href="#">优曼真华四件套</a>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="p-name">
+                                        <a href="#">优曼真华四件套</a>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="p-name">
+                                        <a href="#">优曼真华四件套</a>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="p-name">
+                                        <a href="#">优曼真华四件套</a>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="p-name">
+                                        <a href="#">优曼真华四件套</a>
+                                    </div>
+                                </li>
+                            </ul>
+                            <ul class="lh" style="display: none;">
+                                <li>
+                                    <div class="p-name">
+                                        <a href="#">艾家纺磨毛四件套</a>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="p-name">
+                                        <a href="#">优曼真丝华四件套</a>
+                                    </div>
+                                </li>
+                            </ul>
+                            <ul class="lh" style="display: none;">
+                                <li>
+                                    <div class="p-name">
+                                        <a href="#">艾家加厚磨毛四件套</a>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="p-name">
+                                        <a href="#">优曼真丝提花奢件套</a>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="pagebody-A2">
+                <div id="A2-left">
+                    <p id="A2-p" class="text-left">
+                        <span><img src="~/images/Tribune/web/chart.jpg" />&nbsp</span>&nbsp今日: <em>99999</em>
+                        <span>&nbsp|&nbsp</span>&nbsp昨日: <em>99999</em>
+                        <span>&nbsp|&nbsp</span>&nbsp总帖子: <em>99999</em>
+                        <span>&nbsp|&nbsp</span><a href="#">&nbsp校园多肉网</a>
+                    </p>
+                </div>
+            </div>
+            <div id="pagebody-A3">
+                <div class="A3-box">
+                    <div class="A3-photo">
+                        <a href="#">
+                            <img src="~/images/Tribune/web/gonggao.jpg" />
+                        </a>
+                    </div>
+                    <div class="A3-table">
+                        <div class="BanKuaiTitle">
+                            <p>
+                                <a href="#">［论坛公告］</a>
+                            </p>
+                        </div>
+                        <div class="BanKuaiNumber">
+                            <p>
+                                今日 总帖数
+                            </p>
+                        </div>
+                        <div class="BanKuaiP">
+                            <p>
+                                号外号外 官方大新闻
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="A3-box">
+                    <div class="A3-photo">
+                        <a href="#">
+                            <img src="~/images/Tribune/web/huodong.jpg" />
+                        </a>
+                    </div>
+                    <div class="A3-table">
+                        <div class="BanKuaiTitle">
+                            <p>
+                                <a href="#">［活动相关］</a>
+                            </p>
+                        </div>
+                        <div class="BanKuaiNumber">
+                            <p>
+                                今日 总帖数
+                            </p>
+                        </div>
+                        <div class="BanKuaiP">
+                            <p>
+                                活动帖都在这里
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="A3-box">
+                    <div class="A3-photo">
+                        <a href="#">
+                            <img src="~/images/Tribune/web/kankan.jpg" />
+                        </a>
+                    </div>
+                    <div class="A3-table">
+                        <div class="BanKuaiTitle">
+                            <p>
+                                <a href="#">［随便看看］</a>
+                            </p>
+                        </div>
+                        <div class="BanKuaiNumber">
+                            <p>
+                                今日 总帖数
+                            </p>
+                        </div>
+                        <div class="BanKuaiP">
+                            <p>
+                                全部帖子 随便翻翻看
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="pagebody-A4">
+                <div class="A4-A4">
+                    <div class="A4-box">
+                        <div class="A4-photo">
+                            <a href="#">
+                                <div class=fl_icn_g style="background: url(http://static2.cdn.sinofsx.com/image/sinofsx/forum_icons.png?v=2) no-repeat scroll content-box -711px -158px; width: 75px; height: 75px;">
+                                </div>
+                            </a>
+                        </div>
+                        <div class="A4-table">
+                            <div class="BanKuaiTitle">
+                                <p>
+                                    <a href="#">［杂谈交流］</a>
+                                </p>
+                            </div>
+                            <div class="BanKuaiNumber">
+                                <p>
+                                    今日 总帖数
+                                </p>
+                            </div>
+                            <div class="BanKuaiP">
+                                <p>
+                                    灌水 谈天说地
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="A4-box">
+                        <div class="A4-photo">
+                            <a href="#">
+                                <div class=fl_icn_g style="background: url(http://static2.cdn.sinofsx.com/image/sinofsx/forum_icons.png?v=2) no-repeat scroll content-box -869px -158px; width: 75px; height: 75px;">
+                                </div>
+                            </a>
+                        </div>
+                        <div class="A4-table">
+                            <div class="BanKuaiTitle">
+                                <p>
+                                    <a href="#">［领养弃养］</a>
+                                </p>
+                            </div>
+                            <div class="BanKuaiNumber">
+                                <p>
+                                    今日 总帖数
+                                </p>
+                            </div>
+                            <div class="BanKuaiP">
+                                <p>
+                                    看看有没有你想要的
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="A4-box">
+                        <div class="A4-photo">
+                            <a href="#">
+                                <div class=fl_icn_g style="background: url(http://static2.cdn.sinofsx.com/image/sinofsx/forum_icons.png?v=2) no-repeat scroll content-box -1027px -158px; width: 75px; height: 75px;">
+                                </div>
+                            </a>
+                        </div>
+                        <div class="A4-table">
+                            <div class="BanKuaiTitle">
+                                <p>
+                                    <a href="#">［疑难解答］</a>
+                                </p>
+                            </div>
+                            <div class="BanKuaiNumber">
+                                <p>
+                                    今日 总帖数
+                                </p>
+                            </div>
+                            <div class="BanKuaiP">
+                                <p>
+                                    我有个小问题
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="A4-A4">
+                    <div class="A4-box">
+                        <div class="A4-photo">
+                            <a href="#">
+                                <div class=fl_icn_g style="background: url(http://static2.cdn.sinofsx.com/image/sinofsx/forum_icons.png?v=2) no-repeat scroll content-box -711px -158px; width: 75px; height: 75px;">
+                                </div>
+                            </a>
+                        </div>
+                        <div class="A4-table">
+                            <div class="BanKuaiTitle">
+                                <p>
+                                    <a href="#">［多肉交流］</a>
+                                </p>
+                            </div>
+                            <div class="BanKuaiNumber">
+                                <p>
+                                    今日 总帖数
+                                </p>
+                            </div>
+                            <div class="BanKuaiP">
+                                <p>
+                                    多肉交流多肉交流多肉交流
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="A4-box">
+                        <div class="A4-photo">
+                            <a href="#">
+                                <div class=fl_icn_g style="background: url(http://static2.cdn.sinofsx.com/image/sinofsx/forum_icons.png?v=2) no-repeat scroll content-box -869px -158px; width: 75px; height: 75px;">
+                                </div>
+                            </a>
+                        </div>
+                        <div class="A4-table">
+                            <div class="BanKuaiTitle">
+                                <p>
+                                    <a href="#">［多肉美图］</a>
+                                </p>
+                            </div>
+                            <div class="BanKuaiNumber">
+                                <p>
+                                    今日 总帖数
+                                </p>
+                            </div>
+                            <div class="BanKuaiP">
+                                <p>
+                                    多肉美图多肉美图多肉美图
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="A4-box">
+                        <div class="A4-photo">
+                            <a href="#">
+                                <div class=fl_icn_g style="background: url(http://static2.cdn.sinofsx.com/image/sinofsx/forum_icons.png?v=2) no-repeat scroll content-box -1027px -158px; width: 75px; height: 75px;">
+                                </div>
+                            </a>
+                        </div>
+                        <div class="A4-table">
+                            <div class="BanKuaiTitle">
+                                <p>
+                                    <a href="#">［线下活动］</a>
+                                </p>
+                            </div>
+                            <div class="BanKuaiNumber">
+                                <p>
+                                    今日 总帖数
+                                </p>
+                            </div>
+                            <div class="BanKuaiP">
+                                <p>
+                                    线下活动线下活动线下活动
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- 			<div id="pagebody-A5">
+            </div> -->
+        </div>
+    </section>
+    <!-- 主体结束 -->
+    <!-- 底部 -->
+    <section id="footer">
+        <div id="footer">
+            <div id="footer-a" class="text-right">
+                <div id="footer-aa">
+                    <a href="#">校园多肉网</a>
+                    ( <a href="//www.miitbeian.gov.cn/" target=_blank>黑ICP备99999999号-0</a> )
+                </div>
+                <div id="footer-bb">
+                    <p>
+                        Powered by <a href="//www.discuz.net" target=_blank>Discuz!</a> <em>X3.2</em>
+                        &copy; 2001-2013 <a href="//www.comsenz.com" target=_blank>Comsenz Inc.</a>
+                    </p>
+                </div>
+                <div id="footer-cc">
+                    <p class=xs0>
+                        GMT+8, 2017-4-17 15:29
+                        <span id=debuginfo>
+                            , Processed in 0.071015 second(s), 17 queries
+                            , Gzip On.
+                        </span>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- 底部结束 -->
+    <script>
+	jQuery(".tabox").slide({delayTime: 0});
+    </script>
+    <script src="~/js/jquery-2.1.4.min.js"></script>
+    <script src="~/js/Tribune/bootstrap.min.js"></script>
+</body>
+</html>
