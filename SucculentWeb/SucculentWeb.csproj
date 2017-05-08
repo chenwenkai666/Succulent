@@ -336,11 +336,12 @@
     <Content Include="Content\mislider-custom.css" />
     <Content Include="Content\mislider.css" />
     <Content Include="Content\Register.css" />
+    <Content Include="Content\Succulent.css" />
     <Content Include="css\ShopMallTopAndFoot.css" />
     <Content Include="css\xiaomi.css" />
     <Content Include="Content\reset.css" />
     <Content Include="Content\style.css" />
-    <Content Include="Content\Succulent.css" />
+    <Content Include="Content\Succulent_Details.css" />
     <Content Include="Content\templatemo-style.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\fontawesome-webfont.svg" />
@@ -413,6 +414,7 @@
     <Content Include="images\Goods\壹分皿青花瓷复古多肉花盆.jpg" />
     <Content Include="images\Goods\壹分皿麒麟座多肉绿植.jpg" />
     <Content Include="images\Logo带下文字.png" />
+    <Content Include="images\mark.png" />
     <Content Include="images\penzai1.png" />
     <Content Include="images\penzai2.png" />
     <Content Include="images\penzai3.png" />
@@ -436,9 +438,23 @@
     <Content Include="images\slider\2.jpg" />
     <Content Include="images\slider\3.jpg" />
     <Content Include="images\slider\4.jpg" />
+    <Content Include="images\succulent-img\1.png" />
+    <Content Include="images\succulent-img\11.png" />
+    <Content Include="images\succulent-img\12.png" />
+    <Content Include="images\succulent-img\13.png" />
+    <Content Include="images\succulent-img\14.png" />
+    <Content Include="images\succulent-img\2.png" />
+    <Content Include="images\succulent-img\3.png" />
+    <Content Include="images\succulent-img\4.png" />
     <Content Include="images\succulent-img\bj.png" />
     <Content Include="images\succulent-img\bj1.jpg" />
     <Content Include="images\succulent-img\bj3.jpg" />
+    <Content Include="images\succulent-img\center %281%29.jpg" />
+    <Content Include="images\succulent-img\center.jpg" />
+    <Content Include="images\succulent-img\timg %281%29.jpg" />
+    <Content Include="images\succulent-img\timg %282%29.jpg" />
+    <Content Include="images\succulent-img\timg %283%29.jpg" />
+    <Content Include="images\succulent-img\timg.jpg" />
     <Content Include="images\Succulent\babaojingtian.jpg" />
     <Content Include="images\Succulent\biguanghuan.jpg" />
     <Content Include="images\Succulent\boxuewanniancao.jpg" />
@@ -1094,6 +1110,7 @@
     <Content Include="Views\ShopMall\ShopMallIndex.cshtml" />
     <Content Include="Views\Goods\CreatGoods.cshtml" />
     <Content Include="Views\Succulent\Create.cshtml" />
+    <Content Include="Views\Succulent\Succulent.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

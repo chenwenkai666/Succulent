@@ -21,7 +21,7 @@ namespace DAL
         public List<Succulent> SelectSucculentByID()
         {
             var xiao = (from x in db.Succulent
-                             where x.SucculentID == 17
+                             where x.SucculentID == 18
                              select x).ToList();
             return xiao;
 

@@ -4,7 +4,7 @@
     
 }
 @section head{  
-  <link href="~/Content/Succulent.css" rel="stylesheet" />
+  <link href="~/Content/Succulent_Details.css" rel="stylesheet" />
 <link href="~/Content/font-awesome.css" rel="stylesheet" />
 <link href="~/Content/font-awesome.min.css" rel="stylesheet" />
     <style>
@@ -99,17 +99,19 @@
                 </div>
                 <div class="wrap-tuce-content row">
                     <p class="col-md-12">
-                       @Html.Raw(item.Photo)
+                       @Html.Raw(item.SucculentImg)
                     </p>
                 </div>
             </div>
 
 
         </div>
-    }
+  
         <div class="side-contain"> 
             <div class="side-contain-img row">
-                <img class="col-md-12" src="" />
+                <p class="col-md-12">
+                    @Html.Raw(item.Photo)
+                </p>
             </div>    
             <div class="side-contain-main">
                 <div class="side-contain-main-similate">
@@ -148,6 +150,7 @@
                 </div>
             </div>           
         </div>
+        }
     </div>
     <div class="share-contain">
         <div>

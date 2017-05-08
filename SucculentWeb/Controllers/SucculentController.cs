@@ -10,8 +10,12 @@ namespace SucculentWeb.Controllers
 {
     public class SucculentController : Controller
     {
+        public ActionResult Succulent()
+        {
+            return View();
+        }
         // GET: Succulent
-       //查找
+        //查找
         public ActionResult Succulent_Details()
         {
             //var succulent = SucculentManager.SelectSucculent();

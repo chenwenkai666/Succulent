@@ -270,6 +270,7 @@
           </Key>
           <Property Name="SucculentCategoryID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="SucculentCategoryName" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="SucculentCategoryDescribe" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="Users">
           <Key>
@@ -1218,6 +1219,7 @@
           <Property Name="SucculentCategoryID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="SucculentCategoryName" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Succulent" Relationship="Self.FK_Succulent_SucculentCategory" FromRole="SucculentCategory" ToRole="Succulent" />
+          <Property Name="SucculentCategoryDescribe" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Users">
           <Key>
@@ -2152,6 +2154,7 @@
           <EntitySetMapping Name="SucculentCategory">
             <EntityTypeMapping TypeName="SucculentModel.SucculentCategory">
               <MappingFragment StoreEntitySet="SucculentCategory">
+                <ScalarProperty Name="SucculentCategoryDescribe" ColumnName="SucculentCategoryDescribe" />
                 <ScalarProperty Name="SucculentCategoryID" ColumnName="SucculentCategoryID" />
                 <ScalarProperty Name="SucculentCategoryName" ColumnName="SucculentCategoryName" />
               </MappingFragment>
