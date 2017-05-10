@@ -7,21 +7,18 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Model
+using System;
+using System.Collections.Generic;
+
+public partial class Pots
 {
-    using System;
-    using System.Collections.Generic;
-    
-    public partial class Pots
-    {
-        public int PotID { get; set; }
-        public int UserID { get; set; }
-        public int LevelID { get; set; }
-        public int Experience { get; set; }
-        public Nullable<System.DateTime> Sign { get; set; }
-        public Nullable<int> SignDays { get; set; }
-    
-        public virtual Level Level { get; set; }
-        public virtual Users Users { get; set; }
-    }
+    public int PotID { get; set; }
+    public int UserID { get; set; }
+    public int LevelID { get; set; }
+    public int Experience { get; set; }
+    public Nullable<System.DateTime> Sign { get; set; }
+    public Nullable<int> SignDays { get; set; }
+
+    public virtual Level Level { get; set; }
+    public virtual Users Users { get; set; }
 }

@@ -7,23 +7,21 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Model
+using System;
+using System.Collections.Generic;
+
+public partial class SucculentCategory
 {
-    using System;
-    using System.Collections.Generic;
-    
-    public partial class SucculentCategory
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+    public SucculentCategory()
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public SucculentCategory()
-        {
-            this.Succulent = new HashSet<Succulent>();
-        }
-    
-        public int SucculentCategoryID { get; set; }
-        public string SucculentCategoryName { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Succulent> Succulent { get; set; }
+        this.Succulent = new HashSet<Succulent>();
     }
+
+    public int SucculentCategoryID { get; set; }
+    public string SucculentCategoryName { get; set; }
+    public string SucculentCategoryDescribe { get; set; }
+
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+    public virtual ICollection<Succulent> Succulent { get; set; }
 }

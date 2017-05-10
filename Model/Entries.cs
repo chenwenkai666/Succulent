@@ -7,22 +7,19 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Model
+using System;
+using System.Collections.Generic;
+
+public partial class Entries
 {
-    using System;
-    using System.Collections.Generic;
-    
-    public partial class Entries
-    {
-        public int EntriesID { get; set; }
-        public int UserID { get; set; }
-        public int ActivityID { get; set; }
-        public string Image { get; set; }
-        public string TextDescription { get; set; }
-        public System.DateTime JoinTime { get; set; }
-        public Nullable<int> UpvoteNum { get; set; }
-    
-        public virtual Activity Activity { get; set; }
-        public virtual Users Users { get; set; }
-    }
+    public int EntriesID { get; set; }
+    public int UserID { get; set; }
+    public int ActivityID { get; set; }
+    public string Image { get; set; }
+    public string TextDescription { get; set; }
+    public System.DateTime JoinTime { get; set; }
+    public Nullable<int> UpvoteNum { get; set; }
+
+    public virtual Activity Activity { get; set; }
+    public virtual Users Users { get; set; }
 }

@@ -1,0 +1,166 @@
+﻿.succulent-wrap{
+    width:100%;
+    height:auto;
+    border:1px solid red;
+    overflow:hidden;
+}
+.succulent-wrap .succulent-wrap-top{
+    width:100%;
+    height:500px;
+    /*border:1px solid blue;*/
+    overflow:hidden;
+    background-image:url('../images/succulent-img/timg (2).jpg');
+    background-repeat:no-repeat;
+    background-size:cover;
+}
+.succulent-wrap .succulent-wrap-top .succulent-wrap-top-introduce{
+    width:60%;
+    height:150px;
+    margin:0 auto;
+    margin-top:400px;
+    /*border:1px solid red;*/
+    overflow:hidden;
+}
+.succulent-wrap .succulent-wrap-top .succulent-wrap-top-introduce ul{
+     list-style:none;
+     overflow:hidden;
+     padding:0px;
+}
+.succulent-wrap .succulent-wrap-top .succulent-wrap-top-introduce ul li{
+    float:left;
+    /*border:1px solid blue;*/
+    height:130px;
+    overflow:hidden;
+    /*background:red;*/
+}
+.succulent-wrap .succulent-wrap-top .succulent-wrap-top-introduce ul li .introduce-contain{
+    width:80%;
+    height:100%;
+    margin:0 15px 0 15px;
+    background:#ffffff;
+    border-radius:3px;
+    transition:all 0.2s;
+}
+.succulent-wrap .succulent-wrap-top .succulent-wrap-top-introduce ul li .introduce-contain:hover{
+    transform:translateY(60px);
+}
+.succulent-wrap .succulent-wrap-top .succulent-wrap-top-introduce ul li .introduce-contain .introduce-contain-describe{
+   display:block;
+   /*border:1px solid red;*/
+   height:100px;
+   overflow:hidden;
+   text-align:center;
+}
+
+.succulent-wrap .succulent-wrap-top .succulent-wrap-top-introduce ul li .introduce-contain .introduce-contain-describe img{
+   display:block;
+   margin:0 auto;
+}
+.succulent-wrap .succulent-wrap-top .succulent-wrap-top-introduce ul li .introduce-contain .introduce-contain-describe span{
+    font-family: arial,tahoma,'Microsoft Yahei','\5b8b\4f53',sans-serif;
+    font-size:18px;
+    font-weight:500;
+    letter-spacing:2px;
+    line-height:40px;
+    color:rgba(0,0,0,0.5);
+}
+
+.succulent-wrap .succulent-wrap-bottom{
+    width:100%;
+    height:800px;
+    border:1px solid blue;
+    margin-top:50px;
+    overflow:hidden;
+}
+.succulent-wrap .succulent-wrap-bottom .succulent-wrap-left{
+    float:left;
+    width:40%;
+    height:100%;
+    border:1px solid red;
+    overflow:hidden;
+}
+.succulent-wrap .succulent-wrap-bottom .succulent-wrap-left h4,
+.succulent-wrap .succulent-wrap-bottom .succulent-wrap-left p{
+  
+   font-family: arial,tahoma,'Microsoft Yahei','\5b8b\4f53',sans-serif;
+    font-weight:500;
+    text-align:center;
+}
+.succulent-wrap .succulent-wrap-bottom .succulent-wrap-left h4{
+    letter-spacing:5px;
+     font-size:30px;
+    line-height:50px;
+    margin-top:50px;
+}
+.succulent-wrap .succulent-wrap-bottom .succulent-wrap-left p{
+    line-height:40px;
+    font-size:15px;
+}
+.succulent-wrap .succulent-wrap-bottom .succulent-wrap-right{
+    float:left;
+    width:55%;
+    height:100%;
+    border:1px solid red;
+    overflow:hidden;
+    margin-left:78px;
+}
+.succulent-wrap .succulent-wrap-bottom .succulent-wrap-right .succulent-wrap-right-img{
+    border:1px solid blue;
+    height:250px;
+    margin-top:12px;
+    overflow:hidden;
+}
+.succulent-wrap .succulent-wrap-bottom .succulent-wrap-right .succulent-wrap-right-img ul{
+    list-style:none;
+    overflow:hidden;
+    padding:0px;
+}
+.succulent-wrap .succulent-wrap-bottom .succulent-wrap-right .succulent-wrap-right-img ul li{
+    float:left;
+    border:1px solid red;
+    height:250px;
+    overflow:hidden;
+}
+.succulent-wrap .succulent-wrap-bottom .succulent-wrap-right .succulent-wrap-right-img ul li .div-img{
+    position:relative;
+    width:100%;
+    height :100%;
+    border:1px solid black;
+    overflow:hidden;
+    position:absolute;
+}
+.succulent-wrap .succulent-wrap-bottom .succulent-wrap-right .succulent-wrap-right-img ul li .div-img .mark{
+    position:absolute;
+    width:50px;
+    height:165px;
+    top:-30px;
+    left:15px;
+    z-index:-1;
+    opacity:1;
+    transition:all 1s;
+}
+.succulent-wrap .succulent-wrap-bottom .succulent-wrap-right .succulent-wrap-right-img ul li .div-img .mark-span{
+    display:block;
+    width:15px;
+    position:absolute;   
+    top:0px;
+    left:33px;
+    font-family: arial,tahoma,'Microsoft Yahei','\5b8b\4f53',sans-serif;
+    font-size:15px;
+    font-weight:500;
+    line-height:20px;
+     opacity:1;
+    transition:all 1s;
+}
+.succulent-wrap .succulent-wrap-bottom .succulent-wrap-right .succulent-wrap-right-img ul li .div-img:hover .mark,
+.succulent-wrap .succulent-wrap-bottom .succulent-wrap-right .succulent-wrap-right-img ul li .div-img:hover .mark-span{
+    opacity:0;
+}
+.succulent-wrap .succulent-wrap-bottom .succulent-wrap-right .succulent-wrap-right-img ul li .div-img .a-img{
+    position:absolute;
+    top:0;
+    left:0;
+    z-index:-2;
+}
+
+

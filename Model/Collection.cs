@@ -7,19 +7,16 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Model
+using System;
+using System.Collections.Generic;
+
+public partial class Collection
 {
-    using System;
-    using System.Collections.Generic;
-    
-    public partial class Collection
-    {
-        public int CollectionID { get; set; }
-        public int UserID { get; set; }
-        public int SucculentID { get; set; }
-        public System.DateTime CollectionTime { get; set; }
-    
-        public virtual Succulent Succulent { get; set; }
-        public virtual Users Users { get; set; }
-    }
+    public int CollectionID { get; set; }
+    public int UserID { get; set; }
+    public int SucculentID { get; set; }
+    public System.DateTime CollectionTime { get; set; }
+
+    public virtual Succulent Succulent { get; set; }
+    public virtual Users Users { get; set; }
 }
