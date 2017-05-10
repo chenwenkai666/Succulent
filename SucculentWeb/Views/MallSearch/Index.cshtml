@@ -1,0 +1,289 @@
+﻿@model PagedList.IPagedList<Model.Goods>
+@using PagedList.Mvc;
+@using PagedList;
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/ShopMall.cshtml";
+}
+<script src="/js/Shops.js"></script>
+<script type="text/javascript" src="/js/jquery-2.1.4.min.js"></script>
+<script src="/js/jquery.animate-colors-min.js"></script>
+@*<link href="~/Content/bootstrap.css" rel="stylesheet" />*@
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<style>
+    body,button, input, select, textarea,h1 ,h2, h3, h4, h5, h6 ,a { font-family: Microsoft YaHei,'宋体' , Tahoma, Helvetica, Arial, "\5b8b\4f53", sans-serif;}
+    #big_banner_wrap {
+        width: 1226px;
+        height: 460px;
+        margin: 0 auto;
+        position: relative;
+        color: #424242;
+    }
+
+        #big_banner_wrap #big_banner_pic_wrap {
+            width: 100%;
+            height: 460px;
+            overflow: hidden;
+            position: relative;
+            float: right;
+        }
+
+            #big_banner_wrap #big_banner_pic_wrap #big_banner_pic {
+                width: 6130px;
+                height: 460px;
+                position: absolute;
+                float: left;
+            }
+
+                #big_banner_wrap #big_banner_pic_wrap #big_banner_pic li {
+                    width: 1226px;
+                    height: 460px;
+                    float: left;
+                    cursor: pointer;
+                }
+
+    #big_banner_pic li img {
+        width: 100%;
+        height: 100%;
+        background-size: cover;
+    }
+
+    #big_banner_wrap #big_banner_change_wrap {
+        width: 1226px;
+        height: 460px;
+        position: absolute;
+        top: 0px;
+        color: #ffffff;
+    }
+
+        #big_banner_wrap #big_banner_change_wrap div {
+            display: none;
+            transition: all 3s;
+            -webkit-transition: all .3s;
+            -moz-transition: all .3s;
+           
+        }
+
+            #big_banner_wrap #big_banner_change_wrap div:hover {
+                cursor: pointer;
+                color: #FF6700;
+            }
+
+        #big_banner_wrap #big_banner_change_wrap #big_banner_change_prev {
+            width: 50px;
+            height: 50px;
+            float: left;
+            margin-top: 205px;
+            margin-left: 50px;
+            font-size: 50px;
+            text-align: center;
+        }
+
+        #big_banner_wrap #big_banner_change_wrap #big_banner_change_next {
+            width: 50px;
+            height: 50px;
+            float: right;
+            margin-top: 205px;
+            font-size: 50px;
+            text-align: center;
+            margin-right: 50px;
+        }
+
+    #big_banner_change_prev:hover {
+        color: #339933 !important;
+    }
+
+    #big_banner_change_next:hover {
+        color: #339933 !important;
+    }
+    .content{
+        width:100%;
+        position:relative;
+        height:960px;
+    }
+    /*.left{
+        width:20%;
+        margin-top:20px;
+        float:left;
+        position:absolute;
+    }
+    .left .left-title{
+        height:40px;
+        width:100%;
+        text-align:left;
+    }
+    .left-title p{
+        font-family:'Microsoft Himalaya';
+        font-size:20px;
+        margin-left:5%;
+    }
+    .left-image{
+        width:100%;
+    }
+    .left-image ul{
+        width:100%;
+    }
+    .left-image ul li{
+        margin-top:10px;
+        width:90%;
+        margin-left:5%;
+        height:220px;
+        text-align:center;
+        cursor:pointer;
+    }
+    .left-image ul li img{
+        width:100%;
+        height:185px;
+        background-size:cover;
+    }
+    .left-image ul li a{
+        width:90%;
+        margin-left:5%;
+        height:35px;
+        text-align:center;
+        text-decoration:none;
+        color:black;
+    }
+    .left-image ul li a:hover{
+        color:#339933;
+    }*/
+    .right{
+        width:76%;
+        margin-left:22%;
+        margin-top:20px;
+        position:absolute;
+        
+    }
+    .right-title{
+        height:40px;
+        width:100%;
+        text-align:left;
+    }
+    .right-title p{
+        font-family:'Microsoft Himalaya';
+        font-size:20px;
+    }
+    .right-content{
+        width:100%;
+    }
+    .right-content ul{
+        width:100%;
+        margin-top:10px;
+    }
+    .right-content ul li{
+        width:22.5%;
+        height:250px;
+        margin-right:2%;
+        text-align:center;
+        float:left;
+        margin-top:10px;
+        border:2px solid #eee9e9;
+        cursor:pointer;
+
+    }
+    .right-content ul li .rigth-image{
+        height:76%;
+        width:96%;
+        margin:2%;
+    }
+
+    .rigth-image img{
+        width:100%;
+        height:100%;
+        background-size:cover;
+    }
+
+
+       .right  .fenye{
+        width:100%;
+        height:40px;
+        display:block;
+        position:absolute;
+        margin-top:800px;
+        
+    }
+    .fenye .container{
+        text-align:center;
+    }
+</style>
+
+<div id="big_banner_wrap">
+    <div id="big_banner_pic_wrap">
+        <ul id="big_banner_pic">
+            <li>
+                <img src="~/images/Shops/壹分皿轮播图1.jpg" />
+            </li>
+            <li>
+                <img src="~/images/Shops/壹分皿轮播图2.jpg" />
+            </li>
+            <li>
+                <img src="~/images/Shops/壹分皿轮播图3.jpg" />
+            </li>
+
+        </ul>
+    </div>
+    <div id="big_banner_change_wrap">
+        <div id="big_banner_change_prev"> &lt;</div>
+        <div id="big_banner_change_next">&gt;</div>
+    </div>
+</div>
+<div class="content">
+    @*<div class="left">
+        <div class="left-title"><p>爆款推荐</p></div>
+        <hr />
+        <div class="left-image">
+            <ul>
+                <li>
+                    <img src="~/images/Goods/万象更新蓝色天使进口特价多肉植物.jpg" />
+                    <a>万象更新蓝色天使多肉植物</a>
+                </li>
+                <li>
+                    <img src="~/images/Goods/万象更新珠丽娜多肉植物.jpg" />
+                    <a>万象更新朱丽娜多肉植物</a>
+                </li>
+                <li>
+                    <img src="~/images/Goods/万象更新树冰韩国进口多肉植物.jpg" />
+                    <a>万象更新朱丽娜多肉植物</a>
+                </li>
+                <li>
+                    <img src="~/images/Goods/壹分皿水晶寿多肉植物.jpg" />
+                    <a>万象更新朱丽娜多肉植物</a>
+                </li>
+            </ul>
+        </div>
+    </div>*@
+    @{Html.RenderAction("Tuijian", "MallSearch");}
+    <div style="float:left;width:2px;height:940px;background-color:#339933;margin:20px 1% 0 21%;"></div>
+    <div class="right">
+        <div class="right-title">
+            <p>搜索列表</p>
+        </div>
+        <hr />
+        <div class="right-content">
+            <ul>
+                @foreach(var goods in Model)
+                { 
+                <li>
+                    <div class="rigth-image">
+                    <img src="@goods.GoodsPhoto" /></div>
+                    <a style="width:100%;height:8%;margin-top:2%;text-align:center;text-decoration:none ;color:black;">￥@goods.Price</a><br />
+                    <a style="width:100%;height:8%;margin-top:2%;text-align:center;text-decoration:none ;color:black;">@goods.GoodsName</a>
+                </li>
+
+                }
+            </ul>
+        </div>
+
+        <div class="fenye">
+            <nav aria-label="Page navigation" class="container">
+                <ul class="pagination ">
+                    <li>
+                        @Html.PagedListPager(Model, page => Url.Action("Index", "MallSearch", new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+
+</div>

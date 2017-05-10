@@ -16,6 +16,17 @@ namespace BLL
         {
             return ishops.GetTopShops();
         }
-
+        public static IEnumerable<Shops> SelectAllShops()
+        {
+            return ishops.GetAllShops();
+        }
+        public static int SelectShopGoodsCount(int shopid)
+        {
+            return ishops.GetShopGoodsCount(shopid);
+        }
+        public static IEnumerable<Shops> SelectShopTopImage(int shopid)
+        {
+            return ishops.GetShopTopImage(shopid);
+        }
     }
 }

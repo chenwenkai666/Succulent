@@ -19,5 +19,9 @@ namespace SucculentWeb.ViewModels
         public IEnumerable<Goods> HotGoods { get; set; }
         public IEnumerable<Goods> hotGoods {get;set;}
         public IEnumerable<Shops> Shops { get; set; }
+        public IEnumerable<Goods> MallClass { get; set; }
+        public IEnumerable<Shops> ShopMallShops { get; set; }
+        public int ShopGoodsCount { get; set; }
+        public IEnumerable<Goods> ShopMall4Goods { get; set; }
     }
 }

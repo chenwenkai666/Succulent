@@ -1,0 +1,32 @@
+﻿@model Model.Goods
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>ShopMallShopsCount</title>
+    <style>
+
+        .shuliang{
+    height:30px;
+    width:30%;
+    margin-left:20%;
+    margin-top:20px;
+    position:absolute;
+    font-size:12px;
+    color:#808080;
+}
+       .shuliang b
+{
+    color:#424242;
+}
+    </style>
+</head>
+<body>
+    <p class="shuliang">共<b>@ViewData["count"]</b>件宝贝</p>
+</body>
+</html>

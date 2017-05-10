@@ -289,21 +289,40 @@ function marqueeStart(i, direction){
             <!-- <a><img src="img/T1IhLjBC_T1RXrhCrK.jpg"></a>    -->
 
 
-            <div id="marquee2" class="marqueetop">
+            @*<div id="marquee2" class="marqueetop">
                 <div style="height:1015px;">
                     <ul id="marquee2_1">
                         @foreach(var goods in Model.hotGoods)
                         { 
                         <li>
+                                  
                             <a class="pic" href="#"><img src="@goods.GoodsPhoto"></a>
-
                         </li>
                         }
 
                     </ul>
+                    <ul id="marquee2_2">
+                    </ul>
+                </div>
+            </div>*@<!--marqueeleft end-->
+
+            <div id="marquee2" class="marqueetop">
+                <div style="height:1300px;">
+                    <ul id="marquee2_1">
+                        @foreach(var goods in Model.hotGoods)
+                        {
+                        <li>
+                            <a class="pic" href="#"><img src="@goods.GoodsPhoto"></a>
+                            <div class="txt"><a href="#">@goods.GoodsName</a></div>
+                        </li>
+
+                        }
+                    </ul>
+                        
                     <ul id="marquee2_2"></ul>
                 </div>
-            </div><!--marqueeleft end-->
+            </div>
+
         </div>
         <div class="right">
 

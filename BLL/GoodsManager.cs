@@ -52,5 +52,74 @@ namespace BLL
         {
             return igoods.Get9to14();
         }
+        public static IEnumerable<Goods> SelectYFMShopGoods()
+        {
+            return igoods.GetYFMShopGoods();
+        }
+        public static IEnumerable<Goods> SelectTuijian()
+        {
+            return igoods.GetTuijian();
+        }
+        public static IEnumerable<Goods> SelectSearchMall()
+        {
+            return igoods.GetSearchMall();
+
+        }
+        public static IEnumerable<Goods> SelectShopPrice(int Shopid)
+        {
+            return igoods.GetShopPrice(Shopid);
+        }
+        public static IEnumerable<Goods> SelectShopLike(int Shopid)
+        {
+            return igoods.GetShopLike(Shopid);
+        }
+        public static IEnumerable<Goods> SelectShopTime(int Shopid)
+        {
+            return igoods.GetShopTime(Shopid);
+        }
+        public static IEnumerable<Goods> SelectShopDuorouZhiwu(int Shopid)
+        {
+            return igoods.GetShopDuorouZhiwu(Shopid);
+        }
+        public static IEnumerable<Goods> SelectShopHuaqi(int Shopid)
+        {
+            return igoods.GetShopHuaqi(Shopid);
+        }
+        public static IEnumerable<Goods> SelectShopZhiliao(int Shopid)
+        {
+            return igoods.GetShopZhiliao(Shopid);
+        }
+        public static IEnumerable<Goods> SelectShopZuhe(int Shopid)
+        {
+            return igoods.GetShopZuhe(Shopid);
+        }
+        public static IEnumerable<Goods> SelectShopGongju(int Shopid)
+        {
+            return igoods.GetShopGongju(Shopid);
+        }
+        public static IEnumerable<Goods> SelectMallZhiwu()
+        {
+            return igoods.GetMallZhiwu();
+        }
+        public static IEnumerable<Goods> SelectMallGongju()
+        {
+            return igoods.GetMallGongju();
+        }
+        public static IEnumerable<Goods> SelectMallHuaqi()
+        {
+            return igoods.GetMallHuaqi();
+        }
+        public static IEnumerable<Goods> SelectMallZhiliao()
+        {
+            return igoods.GetMallZhiliao();
+        }
+        public static IEnumerable<Goods> SelectMallZuhe()
+        {
+            return igoods.GetMallZuhe();
+        }
+        public static IEnumerable<Goods> SelectShopMall4Goods(int Shopid)
+        {
+            return igoods.GetShopMall4Goods(Shopid);
+        }
     }
 }

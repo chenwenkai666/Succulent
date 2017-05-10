@@ -77,6 +77,14 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="PagedList, Version=1.17.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="PagedList.Mvc, Version=4.5.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.Mvc.4.5.0.0\lib\net40\PagedList.Mvc.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -138,6 +146,10 @@
       <Private>True</Private>
       <HintPath>..\packages\Antlr.3.4.1.9004\lib\Antlr3.Runtime.dll</HintPath>
     </Reference>
+    <Reference Include="X.PagedList, Version=5.3.0.21888, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\X.PagedList.5.3.0.5300\lib\portable-net45+wp8+win8\X.PagedList.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Newtonsoft.Json">
@@ -195,6 +207,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\IndexController.cs" />
+    <Compile Include="Controllers\MallSearchController.cs" />
     <Compile Include="Controllers\SucculentController.cs" />
     <Compile Include="Controllers\GoodsController.cs" />
     <Compile Include="Controllers\ShopMallController.cs" />
@@ -332,8 +345,17 @@
     <Content Include="Content\Login.css" />
     <Content Include="Content\mislider-custom.css" />
     <Content Include="Content\mislider.css" />
+    <Content Include="Content\PagedList.css" />
     <Content Include="Content\Register.css" />
+    <Content Include="css\imghover.css" />
+    <Content Include="css\PagedList.css" />
+    <Content Include="css\public.css" />
+    <Content Include="css\ShopMallClass.css" />
+    <Content Include="css\ShopMallClassContent.css" />
+    <Content Include="css\ShopMallShops.css" />
+    <Content Include="css\ShopMallShopsContent.css" />
     <Content Include="css\ShopMallTopAndFoot.css" />
+    <Content Include="css\Shops.css" />
     <Content Include="css\xiaomi.css" />
     <Content Include="Content\reset.css" />
     <Content Include="Content\style.css" />
@@ -361,6 +383,7 @@
     <Content Include="images\8.jpg" />
     <Content Include="images\9.jpg" />
     <Content Include="images\divider-bg.jpg" />
+    <Content Include="images\Goods\like65.png" />
     <Content Include="images\Goods\lunbo\1.jpg" />
     <Content Include="images\Goods\lunbo\2.jpg" />
     <Content Include="images\Goods\lunbo\3.jpg" />
@@ -418,14 +441,38 @@
     <Content Include="images\portfolio-img-5.jpg" />
     <Content Include="images\portfolio-img-6.jpg" />
     <Content Include="images\QQ.png" />
+    <Content Include="images\Shops\E家小屋顶部图片.png" />
+    <Content Include="images\Shops\go-top.png" />
+    <Content Include="images\Shops\QQ截图20170501155618.png" />
+    <Content Include="images\Shops\weixin.jpg" />
     <Content Include="images\Shops\万象更新.jpg" />
+    <Content Include="images\Shops\万象更新顶部图片.png" />
+    <Content Include="images\Shops\优品多肉顶部图片.png" />
+    <Content Include="images\Shops\优品花器.png" />
+    <Content Include="images\Shops\创意组合.png" />
+    <Content Include="images\Shops\园艺工具.png" />
     <Content Include="images\Shops\壹分皿.jpg" />
+    <Content Include="images\Shops\壹分皿商标图.jpg" />
+    <Content Include="images\Shops\壹分皿商标图2.jpg" />
+    <Content Include="images\Shops\壹分皿底部图.png" />
+    <Content Include="images\Shops\壹分皿底部图片.png" />
+    <Content Include="images\Shops\壹分皿活动图.png" />
+    <Content Include="images\Shops\壹分皿轮播4.jpg" />
+    <Content Include="images\Shops\壹分皿轮播5.jpg" />
+    <Content Include="images\Shops\壹分皿轮播图1.jpg" />
+    <Content Include="images\Shops\壹分皿轮播图2.jpg" />
+    <Content Include="images\Shops\壹分皿轮播图3.jpg" />
+    <Content Include="images\Shops\多肉植物.png" />
+    <Content Include="images\Shops\植料介绍.png" />
     <Content Include="images\Shops\治家森活.jpg" />
+    <Content Include="images\Shops\治家森活顶部图片.png" />
+    <Content Include="images\Shops\绿野园艺顶部图片.png" />
     <Content Include="images\Shops\美诺花园.jpg" />
     <Content Include="images\Shops\绿野园艺.jpg" />
     <Content Include="images\Shops\优品多肉.jpg" />
     <Content Include="images\Shops\E家小屋.jpg" />
     <Content Include="images\qq1.png" />
+    <Content Include="images\Shops\美诺花园顶部图片.png" />
     <Content Include="images\sina_weibo.png" />
     <Content Include="images\slider\1.jpg" />
     <Content Include="images\slider\2.jpg" />
@@ -436,9 +483,11 @@
     <Content Include="images\wx.png" />
     <Content Include="images\多肉项目Logo.png" />
     <Content Include="images\登录背景图.png" />
+    <Content Include="js\jquery-1.10.2.min.js" />
     <Content Include="js\jquery-2.1.4.min.js" />
     <Content Include="js\jquery.animate-colors-min.js" />
     <Content Include="js\ShopMallTopFoot.js" />
+    <Content Include="js\Shops.js" />
     <Content Include="js\xiaomi.js" />
     <Content Include="obj\Debug\SucculentWeb.csproj.FileListAbsolute.txt" />
     <Content Include="obj\Debug\SucculentWeb.dll" />
@@ -1069,6 +1118,16 @@
     <Content Include="Views\Shared\ShopMall.cshtml" />
     <Content Include="Views\ShopMall\ShopMallIndex.cshtml" />
     <Content Include="Views\Goods\CreatGoods.cshtml" />
+    <Content Include="Views\MallSearch\Index.cshtml" />
+    <Content Include="Views\MallSearch\Tuijian.cshtml" />
+    <Content Include="Views\ShopMall\ShopMallClass.cshtml" />
+    <Content Include="Views\Goods\Shops.cshtml" />
+    <Content Include="Views\ShopMall\ShopMallShops.cshtml" />
+    <Content Include="Views\ShopMall\ShopMallClassContent.cshtml" />
+    <Content Include="Views\ShopMall\ShopMallShopsContent.cshtml" />
+    <Content Include="Views\ShopMall\ShopMallShopsCount.cshtml" />
+    <Content Include="Views\ShopMall\ShopMallShopsImage.cshtml" />
+    <Content Include="Views\Goods\ShopTopImage.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
