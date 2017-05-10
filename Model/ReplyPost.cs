@@ -7,17 +7,20 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using System;
-using System.Collections.Generic;
-
-public partial class ReplyPost
+namespace Model
 {
-    public int ReplyPostID { get; set; }
-    public int UserID { get; set; }
-    public int PostCommentID { get; set; }
-    public string ReplyContent { get; set; }
-    public System.DateTime ReplyPostTime { get; set; }
-
-    public virtual PostComments PostComments { get; set; }
-    public virtual Users Users { get; set; }
+    using System;
+    using System.Collections.Generic;
+    
+    public partial class ReplyPost
+    {
+        public int ReplyPostID { get; set; }
+        public int UserID { get; set; }
+        public int PostCommentID { get; set; }
+        public string ReplyContent { get; set; }
+        public System.DateTime ReplyPostTime { get; set; }
+    
+        public virtual PostComments PostComments { get; set; }
+        public virtual Users Users { get; set; }
+    }
 }

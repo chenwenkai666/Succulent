@@ -7,13 +7,16 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using System;
-using System.Collections.Generic;
-
-public partial class Farms
+namespace Model
 {
-    public int FarmID { get; set; }
-    public int UserID { get; set; }
-
-    public virtual Users Users { get; set; }
+    using System;
+    using System.Collections.Generic;
+    
+    public partial class Farms
+    {
+        public int FarmID { get; set; }
+        public int UserID { get; set; }
+    
+        public virtual Users Users { get; set; }
+    }
 }

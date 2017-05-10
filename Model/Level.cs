@@ -7,22 +7,25 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using System;
-using System.Collections.Generic;
-
-public partial class Level
+namespace Model
 {
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-    public Level()
+    using System;
+    using System.Collections.Generic;
+    
+    public partial class Level
     {
-        this.Pots = new HashSet<Pots>();
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Level()
+        {
+            this.Pots = new HashSet<Pots>();
+        }
+    
+        public int LevelID { get; set; }
+        public string LevelName { get; set; }
+        public int LevelToplimit { get; set; }
+        public int Levellowerlimit { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Pots> Pots { get; set; }
     }
-
-    public int LevelID { get; set; }
-    public string LevelName { get; set; }
-    public int LevelToplimit { get; set; }
-    public int Levellowerlimit { get; set; }
-
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-    public virtual ICollection<Pots> Pots { get; set; }
 }

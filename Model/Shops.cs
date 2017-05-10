@@ -7,26 +7,29 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using System;
-using System.Collections.Generic;
-
-public partial class Shops
+namespace Model
 {
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-    public Shops()
+    using System;
+    using System.Collections.Generic;
+    
+    public partial class Shops
     {
-        this.Goods = new HashSet<Goods>();
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Shops()
+        {
+            this.Goods = new HashSet<Goods>();
+        }
+    
+        public int ShopID { get; set; }
+        public int UserID { get; set; }
+        public string ShopName { get; set; }
+        public string ShopDescription { get; set; }
+        public Nullable<int> SalesTotal { get; set; }
+        public string ShopPhoto { get; set; }
+        public string TopImage { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Goods> Goods { get; set; }
+        public virtual Users Users { get; set; }
     }
-
-    public int ShopID { get; set; }
-    public int UserID { get; set; }
-    public string ShopName { get; set; }
-    public string ShopDescription { get; set; }
-    public Nullable<int> SalesTotal { get; set; }
-    public string ShopPhoto { get; set; }
-    public string TopImage { get; set; }
-
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-    public virtual ICollection<Goods> Goods { get; set; }
-    public virtual Users Users { get; set; }
 }

@@ -7,18 +7,21 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using System;
-using System.Collections.Generic;
-
-public partial class ShoppingCarts
+namespace Model
 {
-    public int ShoppingCartID { get; set; }
-    public int UserID { get; set; }
-    public int GoodsID { get; set; }
-    public int Number { get; set; }
-    public decimal UnitPrice { get; set; }
-    public decimal TotalAmount { get; set; }
-
-    public virtual Goods Goods { get; set; }
-    public virtual Users Users { get; set; }
+    using System;
+    using System.Collections.Generic;
+    
+    public partial class ShoppingCarts
+    {
+        public int ShoppingCartID { get; set; }
+        public int UserID { get; set; }
+        public int GoodsID { get; set; }
+        public int Number { get; set; }
+        public decimal UnitPrice { get; set; }
+        public decimal TotalAmount { get; set; }
+    
+        public virtual Goods Goods { get; set; }
+        public virtual Users Users { get; set; }
+    }
 }

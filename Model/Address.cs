@@ -7,17 +7,20 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using System;
-using System.Collections.Generic;
-
-public partial class Address
+namespace Model
 {
-    public int AddressID { get; set; }
-    public int UserID { get; set; }
-    public string Province { get; set; }
-    public string City { get; set; }
-    public string AddressDetail { get; set; }
-    public int IsDefault { get; set; }
-
-    public virtual Users Users { get; set; }
+    using System;
+    using System.Collections.Generic;
+    
+    public partial class Address
+    {
+        public int AddressID { get; set; }
+        public int UserID { get; set; }
+        public string Province { get; set; }
+        public string City { get; set; }
+        public string AddressDetail { get; set; }
+        public int IsDefault { get; set; }
+    
+        public virtual Users Users { get; set; }
+    }
 }

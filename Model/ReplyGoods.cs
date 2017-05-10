@@ -7,17 +7,20 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using System;
-using System.Collections.Generic;
-
-public partial class ReplyGoods
+namespace Model
 {
-    public int ReplyGoodsID { get; set; }
-    public int UserID { get; set; }
-    public int GoodsCommentID { get; set; }
-    public string ReplyContent { get; set; }
-    public System.DateTime ReplyTime { get; set; }
-
-    public virtual GoodsComments GoodsComments { get; set; }
-    public virtual Users Users { get; set; }
+    using System;
+    using System.Collections.Generic;
+    
+    public partial class ReplyGoods
+    {
+        public int ReplyGoodsID { get; set; }
+        public int UserID { get; set; }
+        public int GoodsCommentID { get; set; }
+        public string ReplyContent { get; set; }
+        public System.DateTime ReplyTime { get; set; }
+    
+        public virtual GoodsComments GoodsComments { get; set; }
+        public virtual Users Users { get; set; }
+    }
 }

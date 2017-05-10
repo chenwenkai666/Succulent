@@ -7,20 +7,23 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using System;
-using System.Collections.Generic;
-
-public partial class ActivityCategory
+namespace Model
 {
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-    public ActivityCategory()
+    using System;
+    using System.Collections.Generic;
+    
+    public partial class ActivityCategory
     {
-        this.Activity = new HashSet<Activity>();
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public ActivityCategory()
+        {
+            this.Activity = new HashSet<Activity>();
+        }
+    
+        public int ActivityCategoryID { get; set; }
+        public string ActivityCategoryName { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Activity> Activity { get; set; }
     }
-
-    public int ActivityCategoryID { get; set; }
-    public string ActivityCategoryName { get; set; }
-
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-    public virtual ICollection<Activity> Activity { get; set; }
 }

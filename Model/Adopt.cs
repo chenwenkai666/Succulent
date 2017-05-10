@@ -7,14 +7,17 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using System;
-using System.Collections.Generic;
-
-public partial class Adopt
+namespace Model
 {
-    public int AdoptID { get; set; }
-    public int GoodsID { get; set; }
-    public int Total { get; set; }
-
-    public virtual Goods Goods { get; set; }
+    using System;
+    using System.Collections.Generic;
+    
+    public partial class Adopt
+    {
+        public int AdoptID { get; set; }
+        public int GoodsID { get; set; }
+        public int Total { get; set; }
+    
+        public virtual Goods Goods { get; set; }
+    }
 }
