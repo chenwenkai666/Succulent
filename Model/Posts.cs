@@ -7,30 +7,27 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Model
+using System;
+using System.Collections.Generic;
+
+public partial class Posts
 {
-    using System;
-    using System.Collections.Generic;
-    
-    public partial class Posts
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+    public Posts()
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Posts()
-        {
-            this.PostComments = new HashSet<PostComments>();
-        }
-    
-        public int PostID { get; set; }
-        public int UserID { get; set; }
-        public int SectionID { get; set; }
-        public string PostTitle { get; set; }
-        public string PostContent { get; set; }
-        public System.DateTime PublishTime { get; set; }
-        public int PostFlag { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<PostComments> PostComments { get; set; }
-        public virtual Sections Sections { get; set; }
-        public virtual Users Users { get; set; }
+        this.PostComments = new HashSet<PostComments>();
     }
+
+    public int PostID { get; set; }
+    public int UserID { get; set; }
+    public int SectionID { get; set; }
+    public string PostTitle { get; set; }
+    public string PostContent { get; set; }
+    public System.DateTime PublishTime { get; set; }
+    public int PostFlag { get; set; }
+
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+    public virtual ICollection<PostComments> PostComments { get; set; }
+    public virtual Sections Sections { get; set; }
+    public virtual Users Users { get; set; }
 }

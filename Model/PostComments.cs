@@ -7,28 +7,25 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Model
+using System;
+using System.Collections.Generic;
+
+public partial class PostComments
 {
-    using System;
-    using System.Collections.Generic;
-    
-    public partial class PostComments
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+    public PostComments()
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public PostComments()
-        {
-            this.ReplyPost = new HashSet<ReplyPost>();
-        }
-    
-        public int PostCommentID { get; set; }
-        public int UserID { get; set; }
-        public int PostID { get; set; }
-        public string PostCommentContent { get; set; }
-        public System.DateTime PostCommentTime { get; set; }
-    
-        public virtual Posts Posts { get; set; }
-        public virtual Users Users { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ReplyPost> ReplyPost { get; set; }
+        this.ReplyPost = new HashSet<ReplyPost>();
     }
+
+    public int PostCommentID { get; set; }
+    public int UserID { get; set; }
+    public int PostID { get; set; }
+    public string PostCommentContent { get; set; }
+    public System.DateTime PostCommentTime { get; set; }
+
+    public virtual Posts Posts { get; set; }
+    public virtual Users Users { get; set; }
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+    public virtual ICollection<ReplyPost> ReplyPost { get; set; }
 }

@@ -7,21 +7,18 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Model
+using System;
+using System.Collections.Generic;
+
+public partial class Donate
 {
-    using System;
-    using System.Collections.Generic;
-    
-    public partial class Donate
-    {
-        public int DonateID { get; set; }
-        public int UserID { get; set; }
-        public System.DateTime DonateTime { get; set; }
-        public int DonoteTotal { get; set; }
-        public string DonateContent { get; set; }
-        public string ExoressNumber { get; set; }
-        public string DonateState { get; set; }
-    
-        public virtual Users Users { get; set; }
-    }
+    public int DonateID { get; set; }
+    public int UserID { get; set; }
+    public System.DateTime DonateTime { get; set; }
+    public int DonoteTotal { get; set; }
+    public string DonateContent { get; set; }
+    public string ExoressNumber { get; set; }
+    public string DonateState { get; set; }
+
+    public virtual Users Users { get; set; }
 }

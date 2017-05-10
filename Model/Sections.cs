@@ -7,23 +7,20 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Model
+using System;
+using System.Collections.Generic;
+
+public partial class Sections
 {
-    using System;
-    using System.Collections.Generic;
-    
-    public partial class Sections
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+    public Sections()
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Sections()
-        {
-            this.Posts = new HashSet<Posts>();
-        }
-    
-        public int SectionID { get; set; }
-        public string SectionName { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Posts> Posts { get; set; }
+        this.Posts = new HashSet<Posts>();
     }
+
+    public int SectionID { get; set; }
+    public string SectionName { get; set; }
+
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+    public virtual ICollection<Posts> Posts { get; set; }
 }

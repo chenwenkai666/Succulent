@@ -7,28 +7,25 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Model
+using System;
+using System.Collections.Generic;
+
+public partial class Orders
 {
-    using System;
-    using System.Collections.Generic;
-    
-    public partial class Orders
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+    public Orders()
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Orders()
-        {
-            this.OrderItems = new HashSet<OrderItems>();
-        }
-    
-        public int OrderID { get; set; }
-        public int UserID { get; set; }
-        public System.DateTime OrderTime { get; set; }
-        public int Amount { get; set; }
-        public string ExpressNumber { get; set; }
-        public string OrderState { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<OrderItems> OrderItems { get; set; }
-        public virtual Users Users { get; set; }
+        this.OrderItems = new HashSet<OrderItems>();
     }
+
+    public int OrderID { get; set; }
+    public int UserID { get; set; }
+    public System.DateTime OrderTime { get; set; }
+    public int Amount { get; set; }
+    public string ExpressNumber { get; set; }
+    public string OrderState { get; set; }
+
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+    public virtual ICollection<OrderItems> OrderItems { get; set; }
+    public virtual Users Users { get; set; }
 }

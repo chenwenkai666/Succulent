@@ -7,21 +7,18 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Model
+using System;
+using System.Collections.Generic;
+
+public partial class OrderItems
 {
-    using System;
-    using System.Collections.Generic;
-    
-    public partial class OrderItems
-    {
-        public int OrderItemsID { get; set; }
-        public int OrderID { get; set; }
-        public int GoodsID { get; set; }
-        public decimal UnitPrice { get; set; }
-        public int Number { get; set; }
-        public decimal TotalAmount { get; set; }
-    
-        public virtual Goods Goods { get; set; }
-        public virtual Orders Orders { get; set; }
-    }
+    public int OrderItemsID { get; set; }
+    public int OrderID { get; set; }
+    public int GoodsID { get; set; }
+    public decimal UnitPrice { get; set; }
+    public int Number { get; set; }
+    public decimal TotalAmount { get; set; }
+
+    public virtual Goods Goods { get; set; }
+    public virtual Orders Orders { get; set; }
 }

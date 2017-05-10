@@ -7,41 +7,38 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Model
+using System;
+using System.Collections.Generic;
+
+public partial class Activity
 {
-    using System;
-    using System.Collections.Generic;
-    
-    public partial class Activity
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+    public Activity()
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Activity()
-        {
-            this.AdoptResult = new HashSet<AdoptResult>();
-            this.Attendance = new HashSet<Attendance>();
-            this.CharitableResult = new HashSet<CharitableResult>();
-            this.Entries = new HashSet<Entries>();
-        }
-    
-        public int ActivityID { get; set; }
-        public int UserID { get; set; }
-        public int ActivityCategoryID { get; set; }
-        public string ActivityName { get; set; }
-        public string ActivityDescribe { get; set; }
-        public string ActivityPlace { get; set; }
-        public System.DateTime StartTime { get; set; }
-        public System.DateTime EndTime { get; set; }
-        public Nullable<int> UpvoteNum { get; set; }
-    
-        public virtual ActivityCategory ActivityCategory { get; set; }
-        public virtual Users Users { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<AdoptResult> AdoptResult { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Attendance> Attendance { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<CharitableResult> CharitableResult { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Entries> Entries { get; set; }
+        this.AdoptResult = new HashSet<AdoptResult>();
+        this.Attendance = new HashSet<Attendance>();
+        this.CharitableResult = new HashSet<CharitableResult>();
+        this.Entries = new HashSet<Entries>();
     }
+
+    public int ActivityID { get; set; }
+    public int UserID { get; set; }
+    public int ActivityCategoryID { get; set; }
+    public string ActivityName { get; set; }
+    public string ActivityDescribe { get; set; }
+    public string ActivityPlace { get; set; }
+    public System.DateTime StartTime { get; set; }
+    public System.DateTime EndTime { get; set; }
+    public Nullable<int> UpvoteNum { get; set; }
+
+    public virtual ActivityCategory ActivityCategory { get; set; }
+    public virtual Users Users { get; set; }
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+    public virtual ICollection<AdoptResult> AdoptResult { get; set; }
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+    public virtual ICollection<Attendance> Attendance { get; set; }
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+    public virtual ICollection<CharitableResult> CharitableResult { get; set; }
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+    public virtual ICollection<Entries> Entries { get; set; }
 }

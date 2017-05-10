@@ -7,28 +7,25 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Model
+using System;
+using System.Collections.Generic;
+
+public partial class GoodsComments
 {
-    using System;
-    using System.Collections.Generic;
-    
-    public partial class GoodsComments
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+    public GoodsComments()
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public GoodsComments()
-        {
-            this.ReplyGoods = new HashSet<ReplyGoods>();
-        }
-    
-        public int GoodsCommentID { get; set; }
-        public int UserID { get; set; }
-        public int GoodsID { get; set; }
-        public string GoodsCommentContent { get; set; }
-        public System.DateTime PublishTime { get; set; }
-    
-        public virtual Goods Goods { get; set; }
-        public virtual Users Users { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ReplyGoods> ReplyGoods { get; set; }
+        this.ReplyGoods = new HashSet<ReplyGoods>();
     }
+
+    public int GoodsCommentID { get; set; }
+    public int UserID { get; set; }
+    public int GoodsID { get; set; }
+    public string GoodsCommentContent { get; set; }
+    public System.DateTime PublishTime { get; set; }
+
+    public virtual Goods Goods { get; set; }
+    public virtual Users Users { get; set; }
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+    public virtual ICollection<ReplyGoods> ReplyGoods { get; set; }
 }

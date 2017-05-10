@@ -43,34 +43,34 @@ namespace SucculentWeb.Controllers
             return View();
         }
         [HttpPost]
-        //public ActionResult Register(Users user)
-        //{
-        //    try
-        //    {
-        //        var username = UsersManager.SelectUser(user.UserName);
-        //        if (ModelState.IsValid && username!=null)
-        //        {
-        //            string code = user.CheckCode;
-        //            if (code == Session["CheckCode"].ToString())
-        //            {
-        //                UsersManager.InsertUser(user);
-        //                return Content("<script>alert('注册成功！');window.open('" + Url.Content("~/User/Login") + "','_self');</script>");
-        //            }
-        //            else
-        //            {
-        //                return Content("<script>alert('验证码错误！');window.open('" + Url.Content("~/User/Registerdex") + "','_self');</script>");
-        //            }
-        //        }
-        //        else
-        //        {
-        //            return Content("<script>alert('验证信息出错，注册失败！');window.open('" + Url.Content("~/User/Register") + "','_self');</script>");
-        //        }
-        //    }
-        //    catch(Exception ex)
-        //    {
-        //        return Content("<script>alert('系统出现错误，注册失败！');window.open('" + Url.Content("~/User/Register") + "', '_self')</script>");
-        //    }
-        //}
+        public ActionResult Register(Users user)
+        {
+            try
+            {
+                var username = UsersManager.SelectUser(user.UserName);
+                if (ModelState.IsValid && username != null)
+                {
+                    string code = user.CheckCode;
+                    if (code == Session["CheckCode"].ToString())
+                    {
+                        UsersManager.InsertUser(user);
+                        return Content("<script>alert('注册成功！');window.open('" + Url.Content("~/User/Login") + "','_self');</script>");
+                    }
+                    else
+                    {
+                        return Content("<script>alert('验证码错误！');window.open('" + Url.Content("~/User/Registerdex") + "','_self');</script>");
+                    }
+                }
+                else
+                {
+                    return Content("<script>alert('验证信息出错，注册失败！');window.open('" + Url.Content("~/User/Register") + "','_self');</script>");
+                }
+            }
+            catch (Exception ex)
+            {
+                return Content("<script>alert('系统出现错误，注册失败！');window.open('" + Url.Content("~/User/Register") + "', '_self')</script>");
+            }
+        }
         #endregion
 
         #region 验证码发送
@@ -302,8 +302,8 @@ namespace SucculentWeb.Controllers
             {
                 Users users = UsersManager.GetUser(UserName);
                 users.Password = Password;
-                //users.PasswordAgain = PasswordAgain;
-                //users.CheckCode = "000";
+                users.PasswordAgain = PasswordAgain;
+                users.CheckCode = "000";
                 users.Phone = Phone;
                 users.Email = Email;
                 UsersManager.UpdateUserInfo(users);
