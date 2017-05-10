@@ -56,6 +56,7 @@
     <Compile Include="SqlServerGoods.cs" />
     <Compile Include="SqlServerShops.cs" />
     <Compile Include="SqlServerSucculent.cs" />
+    <Compile Include="SqlServerSucculentCategory.cs" />
     <Compile Include="SqlServerUsers.cs" />
   </ItemGroup>
   <ItemGroup>

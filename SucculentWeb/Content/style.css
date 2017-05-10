@@ -45,17 +45,12 @@ a:hover,a:link,a:visited,a:active{
 
 .btn {
     background: transparent;
+    border:none;
     border-radius: 10px;
     color: #ffffff;
-    margin-top: 40px;
 	padding: 12px 22px;
     transition: all 0.4s ease-in-out;  
 }
-.btn:hover {
-    background: #55acee;
-    border-color: transparent;
-}
-
 /* start wrap */
 /*.wrap{
     width:100%;
@@ -146,6 +141,8 @@ a:hover,a:link,a:visited,a:active{
          font-weight: 500;
          font-size: 18px;
          text-transform: uppercase;
+          text-decoration: none;
+        outline: none;
     }
 .custom-navbar .nav li a:hover
     {
@@ -156,6 +153,8 @@ a:hover,a:link,a:visited,a:active{
     {
          background-color: transparent;
          color: rgba(51,153,51,1);
+          text-decoration: none;
+          outline: none;
     }
 .custom-navbar .navbar-toggle
     {
