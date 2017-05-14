@@ -174,12 +174,12 @@ $(function(){
                         <img src="@p.GoodsPhoto" />
                         <div class="overlay">
 
-                            <a class="info" href="#">点击购买</a>
+                            <a href="@Url.Action("GoodsDetail","Goods",new { goodid=@p.GoodsID})" class="info" >点击购买</a>
                         </div>
                     </div>                    
                 </div>
                 <a><i style="font-size:16px;color:black;">￥@p.Price</i><span class="glyphicon glyphicon-thumbs-up">&nbsp;@p.LikeIt</span></a>
-                <a>@p.GoodsName</a>
+                <a href="@Url.Action("GoodsDetail","Goods",new {goodid=@p.GoodsID})">@p.GoodsName</a>
             </li>
             }
         </ul>

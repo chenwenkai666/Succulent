@@ -121,5 +121,25 @@ namespace BLL
         {
             return igoods.GetShopMall4Goods(Shopid);
         }
+        public static Goods SelectGoodDetail(int Goodid)
+        {
+            return igoods.GetGoodDetail(Goodid);
+        }
+        public static Goods SelectDetailTuijianGoodid(int goodid)
+        {
+            return igoods.GetDetailTuijianGoodid(goodid);
+        }
+        public static IEnumerable<Goods> SelectDetailTuijian8Goods(int shopid)
+        {
+            return igoods.GetDetailTuijian8Goods(shopid);
+        }
+        public static IEnumerable<Goods> SelectAllGoods()
+        {
+            return igoods.GetAllGoods();
+        }
+        public static IEnumerable<Goods> SelectSearchGoods(string searchstring)
+        {
+            return igoods.GetSearchGoods(searchstring);
+        }
     }
 }

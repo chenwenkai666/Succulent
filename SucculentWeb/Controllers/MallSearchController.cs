@@ -14,7 +14,7 @@ namespace SucculentWeb.Controllers
         SucculentEntities db = new SucculentEntities();
         public ActionResult Index(string searchString,string currentFilter,int? page)
         {
-            var goods = from p in db.Goods.OrderByDescending(p => p.Price) select p;
+            var goods = GoodsManager.SelectAllGoods();
             if(searchString!=null)
             {
                 page = 1;
@@ -26,7 +26,7 @@ namespace SucculentWeb.Controllers
             ViewBag.CurrentFilter = searchString;
             if(!String.IsNullOrEmpty(searchString))
             {
-                goods = goods.Where(s => (s.GoodsName.Contains(searchString)));
+                goods = GoodsManager.SelectSearchGoods(searchString);
             }
             int pageSize = 12;
             int pageNumber = (page ?? 1);

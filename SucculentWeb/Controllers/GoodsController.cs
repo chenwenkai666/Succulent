@@ -9,6 +9,7 @@ using DAL;
 using IDAL;
 using DALFactory;
 using PagedList;
+using SucculentWeb.ViewModels;
 namespace SucculentWeb.Controllers
 {
     public class GoodsController : Controller
@@ -109,6 +110,74 @@ namespace SucculentWeb.Controllers
             ShopID =Convert.ToInt32( Session["shopid"]);
             var image = ShopManager.SelectShopTopImage(ShopID);
             return View(image);
+        }
+        public ActionResult GoodsDetail(int goodid)
+        {
+           Session["goodid"]= goodid;
+            //SucculentWeb.ViewModels.GoodDetailViewModel Gooddetail = new GoodDetailViewModel();
+            //Gooddetail.GoodDetail= GoodsManager.SelectGoodDetail(2);
+            var goodDetail = GoodsManager.SelectGoodDetail(goodid);
+            ViewBag.goodphoto = goodDetail.GoodsPhoto;
+            ViewBag.goodprice = goodDetail.Price;
+            ViewBag.goodlikit = goodDetail.LikeIt;
+            ViewBag.time = goodDetail.Time;
+            ViewBag.goodName = goodDetail.GoodsName;
+            ViewBag.goodDes = goodDetail.GoodsDescribe;
+            return View();
+        }
+        public ActionResult GoodsDetailShop(int goodid)
+        {
+            goodid = Convert.ToInt32(Session["goodid"]);
+            var shopdetail = ShopManager.SelectShopDetail(goodid);
+            ViewBag.shopname = shopdetail.ShopName;
+            ViewBag.username = shopdetail.Users.UserName;
+            return View();
+        }
+        public ActionResult GoodsDetailTuijian(int goodid)
+        {
+            goodid= Convert.ToInt32(Session["goodid"]);
+            var DetailTuijian = GoodsManager.SelectDetailTuijianGoodid(goodid);
+            Session["Detailshopid"] = DetailTuijian.ShopID;
+            var detail = GoodsManager.SelectDetailTuijian8Goods(DetailTuijian.ShopID);
+            return View(detail);
+        }
+        public ActionResult DetailTopImage (int goodid)
+        {
+            goodid = Convert.ToInt32(Session["goodid"]);
+            var DetailTuijian = GoodsManager.SelectDetailTuijianGoodid(goodid);
+            Session["Detailshopid"] = DetailTuijian.ShopID;
+            var topimage = ShopManager.SelectDetailTopImage(DetailTuijian.ShopID);
+            ViewBag.topimage = topimage.TopImage;
+            return View();
+        }
+        public ActionResult GoodsComments(int goodid)
+        {
+            goodid= Convert.ToInt32(Session["goodid"]);
+            var comment = (from p in db.GoodsComments
+                           where p.GoodsID == goodid select p).OrderBy(p => p.PublishTime);
+                          
+            return View(comment);
+        }
+        [HttpPost]
+        public ActionResult Comments(GoodsComments GoodsComments )
+        {
+            int goodid = Convert.ToInt32(Session["goodid"]);
+            string textarea = Request["pingluntextarea"];
+            if(ModelState.IsValid)
+            {
+                GoodsComments.UserID = 1;
+                GoodsComments.GoodsID = goodid;
+                GoodsComments.PublishTime = System.DateTime.Now;
+                GoodsComments.GoodsCommentContent = textarea;
+                db.GoodsComments.Add(GoodsComments);
+                db.SaveChanges();
+                return Content("<script>;alert('评论成功!');history.go(-1)</script>");
+            }
+            return RedirectToAction("GoodsComments", "Goods");
+        }
+        public ActionResult RegisterShops()
+        {
+            return View();
         }
     }
 }

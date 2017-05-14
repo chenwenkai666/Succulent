@@ -12,5 +12,7 @@ namespace IDAL
         IEnumerable<Shops> GetAllShops();
         int GetShopGoodsCount(int ShopID);
         IEnumerable<Shops> GetShopTopImage(int shopid);
+        Shops GetShopDetail(int goodid);
+        Shops GetDetailTopimage(int shopid);
     }
 }

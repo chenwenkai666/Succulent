@@ -162,5 +162,34 @@ namespace DAL
             var data = (from p in db.Goods where p.ShopID == Shopid select p).OrderByDescending(p => p.LikeIt).Take(4);
             return data;
         }
+        public Goods GetGoodDetail(int goodid)
+        {
+            var data = db.Goods.Where(b => b.GoodsID == goodid).FirstOrDefault();
+            return data;
+        }
+        public Goods GetDetailTuijianGoodid(int goodid)
+        {
+            var data= (from p in db.Goods
+                       join b in db.Shops
+                       on p.ShopID equals b.ShopID
+                       where p.GoodsID == goodid
+                       select p).FirstOrDefault();
+            return data;
+        }
+        public IEnumerable<Goods> GetDetailTuijian8Goods(int shopid)
+        {
+            var data= (from p in db.Goods where p.ShopID ==shopid select p).Take(8);
+            return data;
+        }
+        public IEnumerable<Goods> GetAllGoods()
+        {
+            var data = from p in db.Goods.OrderBy(p => p.Price) select p;
+            return data;
+        }
+        public IEnumerable<Goods> GetSearchGoods(string searchstring)
+        {
+            var data= db.Goods.Where(s => (s.GoodsName.Contains(searchstring))).OrderBy(p=>p.Price);
+            return data;
+        }
     }
 }

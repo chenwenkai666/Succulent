@@ -37,5 +37,19 @@ namespace DAL
             var data = from p in db.Shops where p.ShopID == shopid select p ;
             return  data;
         }
+        public Shops GetShopDetail(int goodid)
+        {
+            var data= (from p in db.Shops
+                       join b in db.Goods
+                       on p.ShopID equals b.ShopID
+                       where b.GoodsID == goodid
+                       select p).FirstOrDefault();
+            return data;
+        }
+        public Shops GetDetailTopimage(int shopid)
+        {
+            var data = (from p in db.Shops where p.ShopID == shopid select p).FirstOrDefault();
+            return data;
+        }
     }
 }

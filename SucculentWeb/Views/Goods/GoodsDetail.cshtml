@@ -1,0 +1,149 @@
+﻿@model IEnumerable<Model.Goods>
+@{
+    ViewBag.Title = "GoodsDetail";
+    Layout = "~/Views/Shared/ShopMall.cshtml";
+}
+<script src="~/js/index.js"></script>
+<script src="~/js/jquery.js"></script>
+<link href="~/css/GoodsDetail.css" rel="stylesheet" />
+<script src="~/js/xzoom.min.js"></script>
+
+@{ Html.RenderAction("DetailTopImage", "Goods");}
+<hr style="width:90%;color:aqua;margin-left:5%;" />
+
+<div class="main">
+    <div class="left-content">
+        <div class="xzoom-container">
+            <img class="xzoom" id="xzoom-default"  src="@ViewBag.goodphoto" xoriginal="@ViewBag.goodphoto"   />
+        </div>
+
+    </div>
+    <div class="middle-content">
+        <div class="good-title">
+            <p class="title">@ViewBag.goodName</p>
+        </div>
+        <div class="price">
+            <div class="yuanjia"><s>原价：</s><em>￥</em><span>20</span></div>
+            <div class="zhehoujia"><s>促销价：</s><em>￥</em><span>@ViewBag.goodprice</span></div>
+        </div>
+        <div class="yunfei">
+            <s>运费&nbsp;&nbsp;&nbsp;&nbsp;包邮：0.00</s>   
+        </div>
+        <div class="time">
+            <span>上架时间：</span>
+            <p>@ViewBag.time</p>
+        </div>
+        <div class="xiaoliang">
+            <ul>
+                <li>销量<s>400</s></li>
+                <li>累计评价<s>50</s></li>
+                <li>点赞数<s>@ViewBag.goodlikit</s></li>
+            </ul>
+        </div>
+        <div class="Edit">
+            <s>数量</s>
+            <span><input type="text" maxlength="8" value="1" /></span>
+            <div class="button">
+                <button type="button">+</button>
+                <button type="button">-</button>
+            </div>
+            <div class="kucun">库存1560件</div>
+        </div>
+        <div class="goumai">
+            <span class="buy"><a>立即购买</a></span>
+            <span class="car"><a>加入购物车</a></span>
+        </div>
+        <div class="baozheng">
+            <ul>
+                <li>服务承诺</li>
+                <li>正品保证</li>
+                <li>极速退款</li>
+            </ul>
+            <span class="fenxiang">
+
+                <img src="~/images/分享.png" /><s>分享</s>
+            </span>
+            <span class="dianzan">
+                <img src="~/images/点赞(点).png" /><s>点赞</s>
+            </span>
+        </div>
+    </div>
+    @{ Html.RenderAction("GoodsDetailShop", "Goods");}
+</div>
+<div class="second-main">
+    @{ Html.RenderAction("GoodsDetailTuijian", "Goods");}
+    <div class="right-main">
+        <figure class="tabBlock">
+            <ul class="tabBlock-tabs">
+                <li class="tabBlock-tab is-active">宝贝详情</li>
+                <li class="tabBlock-tab">累计评论(110)</li>
+            </ul>
+            <div class="tabBlock-content">
+                <div class="tabBlock-pane">
+                    <p style="margin-left:0px;">@Html.Raw(@ViewBag.goodDes)</p>
+                </div>
+                <div class="tabBlock-pane">
+                    @{ Html.RenderAction("GoodsComments","Goods");}
+                    @*<div class="PL-box">
+                        <div class="pinglun">评论</div>
+                        <div class="PL-neirong">
+                            <div class="PL-icon">
+                                <img src="~/images/头像.png" /></div>
+                            <div class="box"><textarea class="textarea" name="pingluntextarea"></textarea>  </div>
+                            <div class="PL-btn"><a>发表评论</a></div>
+                        </div>
+                    </div>
+                    <div class="comments">全部评论</div>
+                    <hr style="width:96%;margin:10px auto;" />
+                    <ul>
+                        <li>
+                            <div class="user-icon" ><img src="~/images/头像.png" /></div>
+                            <div class="PL-content">
+                                <p>陈文凯</p>
+                                <p>东西不错，好评，下次再来。</p>
+                                <div class="huifu">
+                                    <s>发表于2017/4/24 8:45:49</s>
+                                    <a>回复</a>
+                                </div>
+                            </div>
+                        </li>    
+                        <li>
+                            <div class="user-icon"><img src="~/images/头像.png" /></div>
+                            <div class="PL-content">
+                                <p>陈文凯</p>
+                                <p>东西不错，好评，下次再来。</p>
+                                <div class="huifu">
+                                    <s>发表于2017/4/24 8:45:49</s>
+                                    <a>回复</a>
+                                </div>
+                            </div>
+                        </li> 
+                        <li>
+                            <div class="user-icon"><img src="~/images/头像.png" /></div>
+                            <div class="PL-content">
+                                <p>陈文凯</p>
+                                <p>东西不错，好评，下次再来。</p>
+                                <div class="huifu">
+                                    <s>发表于2017/4/24 8:45:49</s>
+                                    <a>回复</a>
+                                </div>
+                            </div>
+                        </li> 
+                        <li>
+                            <div class="user-icon"><img src="~/images/头像.png" /></div>
+                            <div class="PL-content">
+                                <p>陈文凯</p>
+                                <p>东西不错，好评，下次再来。</p>
+                                <div class="huifu">
+                                    <s>发表于2017/4/24 8:45:49</s>
+                                    <a>回复</a>
+                                </div>
+                            </div>
+                        </li>                    
+                    </ul>*@
+                </div>
+            </div>
+        </figure>
+    </div>
+</div>
+<script src="~/js/setup.js"></script>

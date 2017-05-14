@@ -35,5 +35,10 @@ namespace IDAL
         IEnumerable<Goods> GetMallHuaqi();
         IEnumerable<Goods> GetMallZuhe();
         IEnumerable<Goods> GetShopMall4Goods(int Shopid);
+        Goods GetGoodDetail(int goodid);
+        Goods GetDetailTuijianGoodid(int goodid);
+        IEnumerable<Goods> GetDetailTuijian8Goods(int shopid);
+        IEnumerable<Goods> GetAllGoods();
+        IEnumerable<Goods> GetSearchGoods(string searchstring);
     }
 }

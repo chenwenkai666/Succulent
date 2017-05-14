@@ -265,9 +265,9 @@
                 { 
                 <li>
                     <div class="rigth-image">
-                    <img src="@goods.GoodsPhoto" /></div>
+                    <a  href="@Url.Action("GoodsDetail","Goods",new { goodid=goods.GoodsID})"><img src="@goods.GoodsPhoto" /></a>  </div>
                     <a style="width:100%;height:8%;margin-top:2%;text-align:center;text-decoration:none ;color:black;">￥@goods.Price</a><br />
-                    <a style="width:100%;height:8%;margin-top:2%;text-align:center;text-decoration:none ;color:black;">@goods.GoodsName</a>
+                    <a  href="@Url.Action("GoodsDetail","Goods",new { goodid=goods.GoodsID})" style="width:100%;height:8%;margin-top:2%;text-align:center;text-decoration:none ;color:black;">@goods.GoodsName</a>
                 </li>
 
                 }
