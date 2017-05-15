@@ -179,5 +179,63 @@ namespace SucculentWeb.Controllers
         {
             return View();
         }
+        [HttpPost]
+        public ActionResult RegisterShops(Shops shops)
+        {
+            try { 
+                
+                HttpPostedFileBase shopphoto = Request.Files["ShopPhoto"];
+                HttpPostedFileBase shoptopimg = Request.Files["ShopTopImg"];
+                string img1 = shopphoto.FileName.ToString();
+                string img2 = shoptopimg.FileName.ToString();
+                if(img1=="")
+                {
+                    return Content("<script>;alert('请输入商店图标');history.go(-1)</script>");
+                }
+                else
+                {
+
+                    string filePath = shopphoto.FileName;
+                    string filename = filePath.Substring(filePath.LastIndexOf("\\") + 1);
+                    string serverpath = Server.MapPath(@"\images\Goods\") + filename;
+                    string relativepath = @"/images/Goods/" + filename;
+                    shopphoto.SaveAs(serverpath);
+                    shops.ShopPhoto = relativepath;
+                }
+                if (img2=="")
+                {
+                    return Content("<script>;alert('请输入商店顶部横幅图片');history.go(-1)</script>");
+                }
+                else
+                {
+
+                    string filePath = shoptopimg.FileName;
+                    string filename = filePath.Substring(filePath.LastIndexOf("\\") + 1);
+                    string serverpath = Server.MapPath(@"\images\Goods\") + filename;
+                    string relativepath = @"/images/Goods/" + filename;
+                    shoptopimg.SaveAs(serverpath);
+                    shops.TopImage = relativepath;
+                }
+                if(ModelState.IsValid)
+                {
+                    shops.UserID = 1;
+                    db.Shops.Add(shops);
+                    db.Configuration.ValidateOnSaveEnabled = false;
+                    db.SaveChanges();
+                    db.Configuration.ValidateOnSaveEnabled = true;
+                    return Content("<script>;alert('添加成功');history.go(-1)</script>");
+                }
+                else
+                {
+                    return Content("<script>;alert('添加失败');history.go(-1)</script>");
+                }
+            
+            }
+            catch(System.Data.Entity.Validation.DbEntityValidationException dbEx)
+            {
+                throw dbEx;
+            }
+            return View();
+        }
     }
 }
