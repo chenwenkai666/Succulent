@@ -354,10 +354,12 @@
     <Content Include="Content\PagedList.css" />
     <Content Include="Content\Register.css" />
     <Content Include="Content\Succulent.css" />
+    <Content Include="js\demo.js" />
     <Content Include="css\GoodsDetail.css" />
     <Content Include="css\imghover.css" />
     <Content Include="css\PagedList.css" />
     <Content Include="css\public.css" />
+    <Content Include="css\ShopCarts.css" />
     <Content Include="css\ShopMallClass.css" />
     <Content Include="css\ShopMallClassContent.css" />
     <Content Include="css\ShopMallShops.css" />
@@ -606,6 +608,8 @@
     <Content Include="Scripts\jquery.flexslider.js" />
     <Content Include="Scripts\jquery.textFx.js" />
     <Content Include="Scripts\jquery.transit.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
@@ -1209,6 +1213,7 @@
     <Content Include="Views\Goods\DetailTopImage.cshtml" />
     <Content Include="Views\Goods\GoodsComments.cshtml" />
     <Content Include="Views\Goods\RegisterShops.cshtml" />
+    <Content Include="Views\Goods\Carts.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

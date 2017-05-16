@@ -237,5 +237,16 @@ namespace SucculentWeb.Controllers
             }
             return View();
         }
+        public ActionResult Carts()
+        {
+            var goodcart = from p in db.ShoppingCarts where p.UserID == 1 select p;
+            return View(goodcart);
+        }
+        [HttpPost]
+        public ActionResult Carts(int goodid)
+        {
+
+            return View();
+        }
     }
 }

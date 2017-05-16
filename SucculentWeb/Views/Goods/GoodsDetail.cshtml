@@ -152,7 +152,7 @@
         </div>
         <div class="goumai">
             <span class="buy"><a>立即购买</a></span>
-            <span class="car"><a>加入购物车</a></span>
+            <span class="car"><a>@Html.ActionLink("加入购物车", "Cars", "Goods", new { goodid = Session["goodid"] })</a></span>
         </div>
         <div class="baozheng">
             <ul>
