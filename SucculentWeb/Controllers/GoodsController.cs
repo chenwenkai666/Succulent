@@ -48,10 +48,7 @@ namespace SucculentWeb.Controllers
                 { 
                  goods.Flag = Convert.ToInt32( Request.Form["xuanze"]);
                     goods.Time = DateTime.Now;
-                db.Goods.Add(goods);
-                db.Configuration.ValidateOnSaveEnabled = false;
-                db.SaveChanges();
-                db.Configuration.ValidateOnSaveEnabled = true;
+                    GoodsManager.CreateGoods(goods);
                     return Content("<script>;alert('添加成功');history.go(-1)</script>");
                 }
                 else
@@ -114,8 +111,6 @@ namespace SucculentWeb.Controllers
         public ActionResult GoodsDetail(int goodid)
         {
            Session["goodid"]= goodid;
-            //SucculentWeb.ViewModels.GoodDetailViewModel Gooddetail = new GoodDetailViewModel();
-            //Gooddetail.GoodDetail= GoodsManager.SelectGoodDetail(2);
             var goodDetail = GoodsManager.SelectGoodDetail(goodid);
             ViewBag.goodphoto = goodDetail.GoodsPhoto;
             ViewBag.goodprice = goodDetail.Price;
@@ -153,9 +148,7 @@ namespace SucculentWeb.Controllers
         public ActionResult GoodsComments(int goodid)
         {
             goodid= Convert.ToInt32(Session["goodid"]);
-            var comment = (from p in db.GoodsComments
-                           where p.GoodsID == goodid select p).OrderBy(p => p.PublishTime);
-                          
+            var comment = GoodsCommentsManager.SelectGoodsComment(goodid);                       
             return View(comment);
         }
         [HttpPost]
@@ -169,11 +162,11 @@ namespace SucculentWeb.Controllers
                 GoodsComments.GoodsID = goodid;
                 GoodsComments.PublishTime = System.DateTime.Now;
                 GoodsComments.GoodsCommentContent = textarea;
-                db.GoodsComments.Add(GoodsComments);
-                db.SaveChanges();
-                return Content("<script>;alert('评论成功!');history.go(-1)</script>");
+                GoodsCommentsManager.InsertGoodsComment(GoodsComments);
+                //return Content("<script>;alert('评论成功!');history.go(-1)</script>");
+                
             }
-            return RedirectToAction("GoodsComments", "Goods");
+            return RedirectToAction("GoodsDetail", "Goods",new { goodid=goodid});
         }
         public ActionResult RegisterShops()
         {
@@ -237,16 +230,44 @@ namespace SucculentWeb.Controllers
             }
             return View();
         }
-        public ActionResult Carts()
+        public ActionResult Carts(int UserID)
         {
             var goodcart = from p in db.ShoppingCarts where p.UserID == 1 select p;
             return View(goodcart);
         }
         [HttpPost]
-        public ActionResult Carts(int goodid)
+        public ActionResult Carts(ShoppingCarts carts)
         {
+            int goodid = Convert.ToInt32(Session["goodid"]);
+            carts.UserID = 1;
+            carts.GoodsID = goodid;
+            carts.UnitPrice = Convert.ToDecimal(Request.Form["price"]);
+            carts.Number = Convert.ToInt32(Request.Form["Jm_Amount"]);
+            carts.TotalAmount = carts.Number * carts.UnitPrice;
+            db.ShoppingCarts.Add(carts);
+            db.SaveChanges();           
+            return RedirectToAction("Carts", "Goods", new { UserID=1});
 
-            return View();
         }
+        public ActionResult Remove(int goodid)
+        {
+            var removegood = (from p in db.ShoppingCarts where p.GoodsID == goodid select p).FirstOrDefault();
+            if(removegood!=null)
+            {
+                db.ShoppingCarts.Remove(removegood);
+                db.SaveChanges();
+            }
+            return RedirectToAction("Carts","Goods",new { UserID=1});
+        }
+        public ActionResult RemoveAll(int UserID)
+        {
+            var removeall = from p in db.ShoppingCarts where p.UserID == 1 select p;
+            if(removeall!=null)
+            {
+                db.ShoppingCarts.RemoveRange(removeall);
+                db.SaveChanges();
+            }
+            return RedirectToAction("Carts", "Goods", new { UserID = 1 });    
+         }
     }
 }

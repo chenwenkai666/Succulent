@@ -22,7 +22,7 @@ window.onload = function () {
     var tr = table.children[1].rows; //行
     var selectedTotal = document.getElementById('selectedTotal'); //已选商品数目容器
     var priceTotal = document.getElementById('priceTotal'); //总计
-    var deleteAll = document.getElementById('deleteAll'); // 删除全部按钮
+    //var deleteAll = document.getElementById('deleteAll'); // 删除全部按钮
     var selectedViewList = document.getElementById('selectedViewList'); //浮层已选商品列表容器
     var selected = document.getElementById('selected'); //已选商品
     var foot = document.getElementById('foot');
@@ -124,12 +124,12 @@ window.onload = function () {
                         getSubtotal(this);
                     }
                     break;
-                case 'delete': //点击了删除
-                    var conf = confirm('确定删除此商品吗？');
-                    if (conf) {
-                        this.parentNode.removeChild(this);
-                    }
-                    break;
+                //case 'delete': //点击了删除
+                //    var conf = confirm('确定删除此商品吗？');
+                //    if (conf) {
+                //        this.parentNode.removeChild(this);
+                //    }
+                //    break;
             }
             getTotal();
         }
@@ -147,25 +147,25 @@ window.onload = function () {
         }
     }
     // 点击全部删除
-    deleteAll.onclick = function () {
-        if (selectedTotal.innerHTML != 0) {
-            var con = confirm('确定删除所选商品吗？'); //弹出确认框
-            if (con) {
-                for (var i = 0; i < tr.length; i++) {
-                    // 如果被选中，就删除相应的行
-                    if (tr[i].getElementsByTagName('input')[0].checked) {
-                        tr[i].parentNode.removeChild(tr[i]); // 删除相应节点
-                        i--; //回退下标位置
-                    }
-                }
-            }
-        } else {
-            alert('请选择商品！');
-        }
-        getTotal(); //更新总数
-    }
-	console.log("\u767e\u5ea6\u641c\u7d22\u3010\u7d20\u6750\u5bb6\u56ed\u3011\u4e0b\u8f7d\u66f4\u591aJS\u7279\u6548\u4ee3\u7801");
-    // 默认全选
-    checkAllInputs[0].checked = true;
-    checkAllInputs[0].onclick();
+    //deleteAll.onclick = function () {
+    //    if (selectedTotal.innerHTML != 0) {
+    //        var con = confirm('确定删除所选商品吗？'); //弹出确认框
+    //        if (con) {
+    //            for (var i = 0; i < tr.length; i++) {
+    //                // 如果被选中，就删除相应的行
+    //                if (tr[i].getElementsByTagName('input')[0].checked) {
+    //                    tr[i].parentNode.removeChild(tr[i]); // 删除相应节点
+    //                    i--; //回退下标位置
+    //                }
+    //            }
+    //        }
+    //    } else {
+    //        alert('请选择商品！');
+    //    }
+    //    getTotal(); //更新总数
+    //}
+	//console.log("\u767e\u5ea6\u641c\u7d22\u3010\u7d20\u6750\u5bb6\u56ed\u3011\u4e0b\u8f7d\u66f4\u591aJS\u7279\u6548\u4ee3\u7801");
+    //// 默认全选
+    //checkAllInputs[0].checked = true;
+    //checkAllInputs[0].onclick();
 }

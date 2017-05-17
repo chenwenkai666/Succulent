@@ -34,14 +34,14 @@
                     <span class="add">+</span>
                 </td>
                 <td class="subtotal">@p.TotalAmount</td>
-                <td class="operation"><span class="delete">删除</span></td>
+                <td class="operation"><span class="delete">@Html.ActionLink("删除","Remove",new { goodid=@p.GoodsID})</span></td>
             </tr>
             }           
         </tbody>
     </table>
     <div class="foot" id="foot">
         <label class="fl select-all"><input type="checkbox" class="check-all check" />&nbsp;&nbsp;全选</label>
-        <a class="fl delete" id="deleteAll" href="javascript:;">删除</a>
+        <a class="fl delete" id="deleteAll" href="javascript:;">@Html.ActionLink("删除","RemoveALL",new { UserID=1})</a>
         <div class="fr closing" onclick="getTotal();">结 算</div>
         <input type="hidden" id="cartTotalPrice" />
         <div class="fr total">合计：￥<span id="priceTotal">0.00</span></div>

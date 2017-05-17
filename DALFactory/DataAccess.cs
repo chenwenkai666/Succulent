@@ -39,5 +39,10 @@ namespace DALFactory
             string className = assemblyName + "." + db + "SucculentCategory";
             return (ISucculentCategory)Assembly.Load(assemblyName).CreateInstance(className);
         }
+        public static IGoodsComments CreateGoodsComments()
+        {
+            string className = assemblyName + "." + db + "GoodsComments";
+            return (IGoodsComments)Assembly.Load(assemblyName).CreateInstance(className);
+        }
     }
 }

@@ -191,5 +191,13 @@ namespace DAL
             var data= db.Goods.Where(s => (s.GoodsName.Contains(searchstring))).OrderBy(p=>p.Price);
             return data;
         }
+        public void CreateGoods(Goods goods)
+        {
+            db.Goods.Add(goods);
+            db.Configuration.ValidateOnSaveEnabled = false;
+            db.SaveChanges();
+            db.Configuration.ValidateOnSaveEnabled = true;
+           
+        }
     }
 }

@@ -141,5 +141,9 @@ namespace BLL
         {
             return igoods.GetSearchGoods(searchstring);
         }
+        public static void CreateGoods(Goods goods)
+        {
+             igoods.CreateGoods(goods);
+        }
     }
 }
