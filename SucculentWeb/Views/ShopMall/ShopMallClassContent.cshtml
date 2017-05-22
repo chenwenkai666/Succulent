@@ -1,0 +1,53 @@
+﻿@model PagedList.IPagedList<Model.Goods>
+ @using PagedList
+@using PagedList.Mvc
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>ShopMallClassContent</title>
+    @*<link href="~/Content/bootstrap.css" rel="stylesheet" />*@
+    <link href="~/css/ShopMallClassContent.css" rel="stylesheet" />
+    <link href="~/css/PagedList.css" rel="stylesheet" />
+</head>
+<body>
+
+    <div class="good-content">
+
+        <div class="good_ul">
+    @foreach (var p in Model)
+    {
+                <div class="good_li">
+                    <div class="image">
+                        <div class="box">
+                            <img src="@p.GoodsPhoto" />
+                            <div class="box-content">
+                                <ul class="icon">
+                                    <li><a href="@Url.Action("GoodsDetail","Goods",new { goodid=@p.GoodsID})"><span>点击购买</span></a></li>
+
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="good-contain">
+                        <i>￥@p.Price</i> <span><img src="~/images/Goods/like65.png" />&nbsp;@p.LikeIt</span>
+                    </div>
+                    <div class="good-name">@p.GoodsName</div>
+                </div>
+    }      
+        </div>
+
+    </div>
+
+    <div class="fenye" style="width:50%;margin-left:45%; height:50px;display:block;margin-bottom:20px;text-align:center;">  
+        <div id="flickrpager">
+              @Html.PagedListPager(Model, page => Url.Action("ShopMallClass", "ShopMall", new { page, good = Session["id"] }))          
+        </div>   
+    </div>
+</body>
+</html>

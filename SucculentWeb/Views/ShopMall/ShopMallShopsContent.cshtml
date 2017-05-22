@@ -1,0 +1,70 @@
+﻿@model PagedList.IPagedList<Model.Shops>
+@using PagedList
+@using PagedList.Mvc
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>ShopMallShopsContent</title>
+    <link href="~/css/ShopMallShopsContent.css" rel="stylesheet" />
+    <link href="~/css/PagedList.css" rel="stylesheet" />
+</head>
+<body>
+
+    <div class="shop-content">
+        <ul class="shop-content_ul">
+            @foreach (var p in Model)
+            {
+                <li class="shop-content_li">
+                    <div class="kongbai"></div>
+                    <div class="left-content">
+                        <div class="left-content-top">
+                            <div class="shop-icon">
+                                <input type="hidden" name="shopid" value=ShopID/>
+                                <a href="@Url.Action("Shops","Goods",new {ShopID=p.ShopID})">  <img src="@p.ShopPhoto" /></a>
+                                <input type="hidden" name="shopID" value=@p.ShopID />
+                            </div>
+                            <div class="shop-jianjie">
+                                <p class="shop-name"><a href="@Url.Action("Shops","Goods",new{ShopID=p.ShopID})">@p.ShopName</a></p>
+                                
+                                <p class="maijia">卖家：<a href="@Url.Action("Shops","Goods",new{ShopID=p.ShopID})">@p.Users.UserName</a></p>
+                                <p class="zhuying">主营：<a>多肉植物、盆栽、工具、花盆、定制礼包...</a></p>
+                            </div>
+                        </div>
+                        <div class="left-content-down">
+                            <p class="xiaoliang">销量<b>36333</b></p>
+                            @*<p class="shuliang">共<b>@Model.ShopGoodsCount</b>件宝贝</p>*@
+                            @{Html.RenderAction("ShopMallShopsCount", "ShopMall");}
+                        </div>
+                    </div>
+                    @*<div class="right-content">
+                        <ul class="right-content-box">
+                            @foreach (var b in Model.ShopMall4Goods)
+                            {
+                                <li>
+                                    <img src="@b.GoodsPhoto" />
+                                    <a>@b.GoodsName</a>
+                                </li>
+                            }
+                        </ul>
+                    </div>*@
+                    @{Html.RenderAction("ShopMallShopsImage", "ShopMall");}
+                </li>
+            }
+        </ul>
+    </div>
+    @*<div class="fenye" style="width:100%;height:50px;display:block;margin-bottom:20px;text-align:center;">
+        @Html.PagedListPager(Model, page => Url.Action("ShopMallShops", "ShopMall", new { page }))
+    </div>*@
+    <div class="fenye" style="width:50%;margin-left:45%; height:50px;display:block;margin-top:20px; margin-bottom:20px;text-align:center;">
+        <div id="flickrpager">
+            @Html.PagedListPager(Model, page => Url.Action("ShopMallShops", "ShopMall", new { page, good = Session["id"] }))
+        </div>
+    </div>
+</body>
+</html>

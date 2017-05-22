@@ -3,10 +3,12 @@
 <head lang="en">
     <meta charset="UTF-8">
     <title></title>
-    <link rel="stylesheet" href="/css/ShopMallTopAndFoot.css" />
+    
     <script type="text/javascript" src="/js/jquery-2.1.4.min.js"></script>
     <script src="/js/jquery.animate-colors-min.js"></script>
-
+    @*<link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />*@
+    <link rel="stylesheet" href="/css/ShopMallTopAndFoot.css" />
 </head>
 <body>
     <!--顶部导航栏开始-->
@@ -30,7 +32,7 @@
                     <a class="head_nav_a">注册</a>
                 </div>
                 <div id="head_car">
-                    <a class="head_car_text">购物车（0）</a>
+                    <a href="@Url.Action("Carts","Goods",new { UserID=1})" class="head_car_text" target="_blank">购物车（0）</a>
                     <div id="car_content" style="height: 0px;width:0px ;background-color: #edffc6;z-index: 999">
                         <a class="car_text"></a>
                     </div>
@@ -48,24 +50,29 @@
             </div>
             <div id="menu_nav">
                 <ul>
-                    <li class="menu_li" control="xiaomiphone">多肉植物</li>
-                    <li class="menu_li" control="hongmiphone">多肉花盆</li>
-                    <li class="menu_li" control="pingban">多肉植料</li>
-                    <li class="menu_li" control="tv">工具摆件</li>
-                    <li class="menu_li" control="luyou">绿植盆栽</li>
-                    <li class="menu_li" control="yingjian">商家店铺</li>
+                    <li class="menu_li" control="shouye"><a href="@Url.Content("~/ShopMall/ShopMallIndex")" style="text-decoration:none;">商城首页</a></li>
+                    <li class="menu_li" control=""><a href="@Url.Action("ShopMallClass","ShopMall",new { good="1"})" >多肉植物</a></li>
+                    <li class="menu_li" control="hongmiphone"><a href="@Url.Action("ShopMallClass","ShopMall",new { good="2"})">多肉花盆</a></li>
+                    <li class="menu_li" control="pingban"><a href="@Url.Action("ShopMallClass","ShopMall",new { good="3"})">多肉植料</a></li>
+                    <li class="menu_li" control="tv"><a href="@Url.Action("ShopMallClass","ShopMall",new { good="4"})">工具摆件</a></li>
+                    <li class="menu_li" control="luyou"><a href="@Url.Action("ShopMallClass","ShopMall",new { good="5"})">绿植盆栽</a></li>
+                    <li class="menu_li" control="yingjian"><a href="@Url.Action("ShopMallShops","ShopMall")">商家店铺</a></li>
 
                 </ul>
             </div>
             <div id="find_wrap">
+                @using (Html.BeginForm("Index", "MallSearch", FormMethod.Post,new { id="search"}))
+                {
                 <div id="find_bar">
-                    <input type="text" id="find_input">
+                    <input type="text" id="find_input" name="SearchString">
+                    
                 </div>
-                <div id="find_but">GO</div>
+                <div id="find_but"><a href="javascript:document.getElementById('search').submit()"style="text-decoration:none;" >GO</a></div>
+                }
             </div>
         </div>
     </div>
-    <div id="menu_content_bg" style="height: 0px;">
+    @*<div id="menu_content_bg" style="height: 0px;">
         <div id="menu_content_wrap">
             <ul style="top: 0px;">
                 <li id="xiaomiphone">
@@ -239,7 +246,7 @@
                 </li>
             </ul>
         </div>
-    </div>
+    </div>*@
     <!-- 顶部分类结束-->
     <div class="body-content">
         @RenderBody()

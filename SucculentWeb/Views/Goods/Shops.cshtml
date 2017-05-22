@@ -1,0 +1,240 @@
+﻿
+@model PagedList.IPagedList<Model.Goods>
+@using PagedList.Mvc;
+@using PagedList;
+@{
+    ViewBag.Title = "Shops";
+    Layout = "~/Views/Shared/ShopMall.cshtml";
+}
+
+<script src="/js/Shops.js"></script>
+<script type="text/javascript" src="/js/jquery-2.1.4.min.js"></script>
+<script src="/js/jquery.animate-colors-min.js"></script>
+<link href="~/Content/bootstrap.css" rel="stylesheet" />
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<link rel="stylesheet" href="/css/Shops.css" />
+<hr style="height:0px;width:100%;color:#00ff21;" />
+<script type="text/javascript" src="http://keleyi.com/keleyi/pmedia/jquery/jquery-1.10.2.min.js"></script>
+<script type="text/javascript" src="/js/jquery-1.10.2.min.js"></script>
+
+
+<script type="text/javascript">
+$(document).ready(function () {
+var docked = 0;
+
+$("#dock li ul").height($("300px").height());
+
+$("#dock .dock-keleyi-com").click(function () {
+$(this).parent().parent().addClass("docked").removeClass("free");
+
+docked += 1;
+var dockH = ($("300px").height()) / docked
+var dockT = 0;
+
+$("#dock li ul.docked").each(function () {
+$(this).height(dockH).css("top", dockT + "px");
+dockT += dockH;
+});
+$(this).parent().find(".undock").show();
+$(this).hide();
+
+if (docked > 0)
+$("#content").css("margin-left", "250px");
+else
+$("#content").css("margin-left", "60px");
+});
+
+$("#dock .undock").click(function () {
+$(this).parent().parent().addClass("free").removeClass("docked")
+.animate({ left: "-180px" }, 200).height($("300px").height()).css(".left-bav", "0px");
+
+docked = docked - 1;
+var dockH = ($("300px").height()) / docked
+var dockT = 0;
+
+$("#dock li ul.docked").each(function () {
+$(this).height(dockH).css(".left-bav", dockT + "px");
+dockT += dockH;
+});
+$(this).parent().find(".dock-keleyi-com").show();
+$(this).hide();
+
+if (docked > 0)
+$("#content").css("margin-left", "250px");
+else
+$("#content").css("margin-left", "60px");
+});
+
+$("#dock li").hover(function () {
+$(this).find("ul").animate({ left: "30px" }, 200);
+}, function () {
+$(this).find("ul.free").animate({ left: "-180px" }, 200);
+});
+});
+</script>
+
+
+<script>
+$(function(){
+	$(window).on('scroll',function(){
+		var st = $(document).scrollTop();
+		if( st>0 ){
+			if( $('#main-container').length != 0  ){
+				var w = $(window).width(),mw = $('#main-container').width();
+				if( (w-mw)/2 > 70 )
+					$('#go-top').css({'left':(w-mw)/2+mw+20});
+				else{
+					$('#go-top').css({'left':'auto'});
+				}
+			}
+			$('#go-top').fadeIn(function(){
+				$(this).removeClass('dn');
+			});
+		}else{
+			$('#go-top').fadeOut(function(){
+				$(this).addClass('dn');
+			});
+		}
+	});
+	$('#go-top .go').on('click',function(){
+		$('html,body').animate({'scrollTop':0},500);
+	});
+
+	$('#go-top .uc-2vm').hover(function(){
+		$('#go-top .uc-2vm-pop').removeClass('dn');
+	},function(){
+		$('#go-top .uc-2vm-pop').addClass('dn');
+	});
+});
+</script>
+
+
+@*<div class="Top-img">   
+    <img src="~/images/Shops/壹分皿商标图.jpg" /> 
+    <img src="" />
+</div>*@
+@{ Html.RenderAction("ShopTopImage", "Goods");}
+<div id="big_banner_wrap">
+    <div id="big_banner_pic_wrap">
+        <ul id="big_banner_pic">
+            <li>
+                <img src="~/images/Shops/壹分皿轮播图1.jpg" />
+            </li>
+            <li>
+                <img src="~/images/Shops/壹分皿轮播图2.jpg" />
+            </li>
+            <li>
+                <img src="~/images/Shops/壹分皿轮播图3.jpg" />
+            </li>
+           <li>
+               <img src="~/images/Shops/壹分皿轮播4.jpg" />
+           </li>
+            <li>
+                <img src="~/images/Shops/壹分皿轮播5.jpg" />
+            </li>
+        </ul>
+    </div>
+    <div id="big_banner_change_wrap">
+        <div id="big_banner_change_prev"> &lt;</div>
+        <div id="big_banner_change_next">&gt;</div>
+    </div>
+</div>
+<div class="huodong-img">
+    <img src="~/images/Shops/壹分皿活动图.png" />
+</div>
+<div class="Mid-image">
+
+    <img src="~/images/Shops/壹分皿商标图2.jpg" />
+</div>
+<div class="goods-content">
+    <div class="left-bav">
+        <ul id="dock">
+            <li id="files">
+                <p>综合排序</p>
+                <ul class="free">
+                    <li class="header"><a class="dock-keleyi-com">固定</a><a class="undock" style="text-decoration:none;cursor:pointer;">隐藏</a>排序</li>
+                    <li><button name="button" value="点赞" style="width:100%;">@Html.ActionLink("点赞","Shops",  new { goods = "1", Shopid = Session["shopid"] })</button></li>
+                    <li><button name="button" value="价格" style="width:100%;">@Html.ActionLink("价格", "Shops", new { goods = "2", Shopid = Session["shopid"] })</button></li>
+                    <li><button name="button" value="销量" style="width:100%;">@Html.ActionLink("销量", "Shops", new { goods = "3", Shopid = Session["shopid"] })</button></li>
+                    <li><button name="button" value="时间" style="width:100%;">@Html.ActionLink("时间", "Shops", new { goods = "4", Shopid = Session["shopid"] })</button></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+    <div class="main">
+        <hr style="width:100%;color:#f3f2f2;" />
+        <ul> 
+            @foreach(var p in Model)
+            { 
+            <li>
+                <div class="image">
+
+                    <div class="hovereffect">
+
+                        <img src="@p.GoodsPhoto" />
+                        <div class="overlay">
+
+                            <a href="@Url.Action("GoodsDetail","Goods",new { goodid=@p.GoodsID})" class="info" >点击购买</a>
+                        </div>
+                    </div>                    
+                </div>
+                <a><i style="font-size:16px;color:black;">￥@p.Price</i><span class="glyphicon glyphicon-thumbs-up">&nbsp;@p.LikeIt</span></a>
+                <a href="@Url.Action("GoodsDetail","Goods",new {goodid=@p.GoodsID})">@p.GoodsName</a>
+            </li>
+            }
+        </ul>
+    </div>
+    <div class="fenye">
+        <nav aria-label="Page navigation" style="margin-top:0px;" class="container">
+            <ul class="pagination ">
+               <li>
+                   @Html.PagedListPager(Model, page => Url.Action("Shops", "Goods", new { page,ShopID=Session["shopid"] }))  
+
+                </li>
+            </ul>
+        </nav>
+    </div>
+</div>
+<div class="over"> 
+    <div class="fenlei">
+        <ul>
+           
+            <li>
+                <a href="@Url.Action("Shops",new { goods="5",ShopID=Session["shopid"]})"> <img src="~/images/Shops/多肉植物.png" /></a>
+            </li>
+            <li>
+                <a href="@Url.Action("Shops",new { goods="6",ShopID=Session["shopid"]})"> <img src="~/images/Shops/优品花器.png" /></a>
+            </li>          
+            <li>
+                <a href="@Url.Action("Shops",new { goods="7",ShopID=Session["shopid"]})"> <img src="~/images/Shops/园艺工具.png" /></a>
+            </li>
+            <li>
+                <a href="@Url.Action("Shops",new { goods="8",ShopID=Session["shopid"]})"> <img src="~/images/Shops/植料介绍.png" /></a>
+            </li>
+            <li>
+                <a href="@Url.Action("Shops",new { goods="9",ShopID=Session["shopid"]})"> <img src="~/images/Shops/创意组合.png" /></a>
+            </li>
+
+        </ul>
+    </div>
+    <div class="foot-pic">
+
+        <a href="#"><img src="~/images/Shops/壹分皿底部图.png" /></a>  
+    </div>
+</div>
+<div class="go-top dn" id="go-top">
+    <a href="javascript:;" class="uc-2vm"></a>
+    <div class="uc-2vm-pop dn">
+        @*<h2 class="title-2wm">用微信扫一扫</h2>
+        <div class="logo-2wm-box">
+            <img src="~/images/Shops/weixin.jpg" alt="站长素材" width="240" height="240">
+        </div>*@
+    </div>
+    <a href="javascript:;"class="feedback"></a>
+    <a href="javascript:;" class="go"></a>
+</div>
+
+
+
+
+

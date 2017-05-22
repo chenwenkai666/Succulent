@@ -1,0 +1,209 @@
+﻿@model SucculentWeb.ViewModels.ShopMallIndexViewModels
+ @using Model
+@{
+    ViewBag.Title = "ShopMallShops";
+    Layout = "~/Views/Shared/ShopMall.cshtml";
+}
+
+<script type="text/javascript" src="/js/jquery-2.1.4.min.js"></script>
+<script src="/js/jquery.animate-colors-min.js"></script>
+<link href="~/css/ShopMallShops.css" rel="stylesheet" />
+
+<div id="big_banner_wrap">
+    <ul id="banner_menu_wrap">
+        <li class="active" img>
+            <a>多肉植物</a>
+            <a class="banner_menu_i">&gt;</a>
+            <div class="banner_menu_content" style="top: -20px;">
+                @foreach (var goods in Model.Succulent)
+            {
+                    <ul class="banner_menu_content_ul">
+
+                        <li>
+                            <a><img src="@goods.GoodsPhoto"></a><a>@goods.GoodsName</a><span>选购</span>
+                        </li>
+                    </ul>
+                    <ul class="banner_menu_content_ul"></ul>
+                }
+            </div>
+        </li>
+        <li>
+            <a>多肉花盆</a>
+            <a class="banner_menu_i">&gt;</a>
+            <div class="banner_menu_content" style="width: 350px; top: -62px;">
+                @foreach (var goods in Model.Huapen)
+                {
+                    <ul class="banner_menu_content_ul">
+
+                        <li>
+                            <a><img src="@goods.GoodsPhoto"></a><a>@goods.GoodsName</a><span>选购</span>
+                        </li>
+                    </ul>
+                }
+            </div>
+        </li>
+        <li>
+            <a>多肉植料</a>
+            <a class="banner_menu_i">&gt;</a>
+            <div class="banner_menu_content" style="width: 350px; top: -104px;">
+                @foreach (var goods in Model.Zhiliao)
+                {
+                    <ul class="banner_menu_content_ul">
+                        <li>
+                            <a><img src="@goods.GoodsPhoto"></a><a>@goods.GoodsName</a><span>选购</span>
+                        </li>
+
+                    </ul>
+                }
+            </div>
+        </li>
+        <li>
+            <a>工具摆件</a>
+            <a class="banner_menu_i">&gt;</a>
+            <div class="banner_menu_content" style="width: 350px; top: -146px;">
+                @foreach (var goods in Model.Gongju)
+                {
+                    <ul class="banner_menu_content_ul">
+                        <li>
+                            <a><img src="@goods.GoodsPhoto "></a><a>@goods.GoodsName</a><span>选购</span>
+                        </li>
+
+                    </ul>
+                }
+            </div>
+        </li>
+        <li>
+            <a>绿植盆栽</a>
+            <a class="banner_menu_i">&gt;</a>
+            <div class="banner_menu_content" style="width: 350px; top: -188px;">
+                @foreach (var goods in Model.Penzai)
+                {
+
+
+                    <ul class="banner_menu_content_ul">
+                        <li>
+                            <a><img src="@goods.GoodsPhoto"></a><a>@goods.GoodsName</a><span>选购</span>
+                        </li>
+
+                    </ul>
+                }
+            </div>
+        </li>
+        <li>
+            <a>商家店铺</a>
+            <a class="banner_menu_i">&gt;</a>
+            <div class="banner_menu_content" style="width: 350px; top: -230px;">
+                @foreach (var shops in Model.Shops)
+                {
+                    <ul class="banner_menu_content_ul">
+                        <li>
+                            <a><img src="@shops.ShopPhoto"></a><a>@shops.ShopName</a><span>进入</span>
+                        </li>
+
+                    </ul>
+                }
+            </div>
+        </li>
+        <li>
+            <a>私人订制</a>
+            <a class="banner_menu_i">&gt;</a>
+            <div class="banner_menu_content" style="width: 350px; top: -272px;">
+                @foreach (var goods in Model.Dingzhi)
+                {
+                    <ul class="banner_menu_content_ul">
+                        <li>
+                            <a><img src="@goods.GoodsPhoto"></a><a>@goods.GoodsName</a><span>进入</span>
+                        </li>
+
+                    </ul>
+                }
+            </div>
+        </li>
+        <li>
+            <a>热门搜索</a>
+            <a class="banner_menu_i">&gt;</a>
+            <div class="banner_menu_content" style="width: 700px; top: -314px;">
+                @foreach (var goods in Model.HotSearch)
+                {
+                    <ul class="banner_menu_content_ul">
+                        <li>
+                            <a><img src="@goods.GoodsPhoto"></a><a>@goods.GoodsName</a><span>选购</span>
+                        </li>
+
+                    </ul>
+                    <ul class="banner_menu_content_ul"></ul>
+                }
+            </div>
+        </li>
+
+    </ul>
+    <!--侧边导航栏结束-->
+    <!--侧边轮播图开始-->
+    <div id="big_banner_pic_wrap">
+        <ul id="big_banner_pic">
+            <li>
+                <img src="~/images/Goods/lunbo/1.jpg" />
+            </li>
+            <li>
+                <img src="~/images/Goods/lunbo/2.jpg" />
+            </li>
+            <li>
+
+                <img src="~/images/Goods/lunbo/5.jpg" />
+            </li>
+            <li>
+                <img src="~/images/Goods/lunbo/3.jpg" />
+            </li>
+            <li>
+                <img src="~/images/Goods/lunbo/6.jpg" />
+            </li>
+        </ul>
+    </div>
+    <div id="big_banner_change_wrap">
+        <div id="big_banner_change_prev"> &lt;</div>
+        <div id="big_banner_change_next">&gt;</div>
+    </div>
+</div>
+<!--侧边导航栏轮播图结束-->
+<div class="title"><span>店铺一览</span></div>
+<hr style="height:1px;width:90%;margin-left:3%;background-color:#eceaea;" />
+@*<div class="shop-content">
+    <ul class="shop-content_ul">
+        @foreach(var p in Model.ShopMallShops)
+        { 
+        <li class="shop-content_li">
+            <div class="kongbai"></div>
+            <div class="left-content">
+                <div class="left-content-top">
+                    <div class="shop-icon">
+                       
+                        <a href="@Url.Action("Shops","Goods",new {ShopID=p.ShopID})">  <img src="@p.ShopPhoto" /></a>
+                    </div>
+                    <div class="shop-jianjie">
+                        <p class="shop-name"><a href="@Url.Action("Shops","Goods",new{ShopID=p.ShopID})">@p.ShopName</a></p>
+                        <p class="maijia">卖家：<a href="@Url.Action("Shops","Goods",new{ShopID=p.ShopID})">@p.Users.UserName</a></p>
+                        <p class="zhuying">主营：<a>多肉植物、盆栽、工具、花盆、定制礼包...</a></p>
+                    </div>
+                </div>
+                <div class="left-content-down">
+                    <p class="xiaoliang">销量<b>36333</b></p>
+                    <p class="shuliang">共<b>@Model.ShopGoodsCount</b>件宝贝</p>
+                </div>
+            </div>
+            <div class="right-content">
+                <ul class="right-content-box">
+                    @foreach( var b in Model.ShopMall4Goods)
+                    {
+                    <li>
+                        <img src="@b.GoodsPhoto" />
+                        <a>@b.GoodsName</a>
+                    </li>
+                    } 
+                </ul>
+            </div>
+        </li>
+        }
+    </ul>
+</div>*@
+@{Html.RenderAction("ShopMallShopsContent", "ShopMall");}
+<script type="text/javascript" src="/js/xiaomi.js"></script>

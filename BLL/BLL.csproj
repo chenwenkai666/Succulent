@@ -40,6 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="GoodsCommentsManager.cs" />
     <Compile Include="GoodsManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SucculentCategoryManager.cs" />

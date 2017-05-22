@@ -55,14 +55,14 @@
                     <p class="agile_para">多肉科属简介</p>
                 </div>
             </div>
-            <div class="mis-stage w3_agileits_welcome_grids">
+            <div class="mis-stage w3_agileits_welcome_grids contain-img">
 
                 <ol class="mis-slider">
                     @foreach (var item in Model.succulent)
                     {
                         <li class="mis-slide">
                             <figure>
-                                <img src="@item.Photo" alt="" class="img-responsive" />
+                                <a class="succulent-img">@Html.Raw(item.Photo)</a>
                                 <figcaption>@item.SucculentName</figcaption>
                             </figure>
                         </li>
@@ -120,7 +120,7 @@
             </div>
         </div>
         <div class="category-content">
-            <div class="container">
+
                 <div class="row">
 
 
@@ -172,7 +172,7 @@
                             </div>
                             <div class="col-md-3 col-sm-3 little" style="height:170px;">
                                 <div class="hovereffect">
-                                    <img src="~/images/7.jpg" alt=" " class="img-thumbnail" />
+                                    <img src="~/images/7.jpg" class="img-thumbnail" />
                                     <div class="overlay">
 
                                         <a class="info" href="#">点击购买</a>
@@ -219,7 +219,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+
         </div>
 </div>
 </section>

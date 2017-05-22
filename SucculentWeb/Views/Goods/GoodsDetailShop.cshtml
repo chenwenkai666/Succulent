@@ -1,0 +1,274 @@
+﻿@model Model.Shops
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<style>
+    .right-content{
+    width:198px;
+    height:500px;
+    float:left;
+    border:1px solid #ffe2a3;
+}
+.right-content .image{
+    width:100%;
+    height:45px;
+}
+.right-content .image img{
+    width:100%;
+    height:100%;
+    background-size:cover;
+}
+.right-content .biaoti{
+    width:100%;
+    height:40px;
+    text-align:center;
+    background-color:#fff3f3;
+}
+.biaoti .img{
+    width:16px;
+    height:16px;
+    margin-top:12px;
+    float:left;
+    margin-left:50px;
+}
+.biaoti .img img{
+    width:100%;
+    height:100%;
+    background-size:cover;
+}
+.biaoti .shijian{
+    font-size:17px;
+    float:left;
+    margin-top:12px;
+    color:#e26204;
+    margin-left:20px;
+}
+.right-content .shop-name{
+    width:90%;
+    margin-left:10%;
+    height:20px;
+    font-size:20px;
+    font-family:'Microsoft Himalaya';
+    margin-top:20px;
+    font-weight:bold;
+}
+.right-content .xinyu{
+    height:20px;
+    width:90%;
+    margin-left:10%;
+    margin-top:20px;
+}
+.xinyu a{
+    font-size:15px;
+    color:#808080;
+    width:50px;
+    float:left;
+    text-decoration:none !important;
+}
+.xinyu ul{
+    width:60%;
+    float:left;
+    height:20px;
+}
+.xinyu ul li{
+    width:15px;
+    height:15px;
+    float:left;
+}
+.xinyu ul li img{
+    width:100%;
+    height:100%;
+    background-size:cover;
+}
+.right-content .zhanggui{
+    width:90%;
+    height:20px;
+    margin-top:15px;
+
+}
+.zhanggui a{
+    width:90%;
+    height:20px;
+    font-size:15px;
+    color:#808080;
+    margin-left:10%;
+    text-decoration:none !important;
+}
+.zhanggui a s{
+    color:#000000;
+    text-decoration:none;
+}
+.right-content .lianxi{
+    width:90%;
+    height:20px;
+    margin-top:15px;
+    margin-left:10%;
+}
+.lianxi a{
+    width:50px;
+    height:20px;
+    font-size:15px;
+    color:#808080;
+    float:left;
+    text-decoration:none!important;
+}
+.lianxi  img{
+    width:15px;
+    height:15px;
+    cursor:pointer;
+    float:left
+}
+.lianxi s{
+    text-decoration:none;
+    font-size:15px;
+    margin-left:10px;
+}
+.right-content .xinxi{
+    width:80%;
+    height:50px;
+    margin-top:15px;
+    margin-left:10%;
+}
+.xinxi ul{
+    width:100%;
+    height:50px;
+    border-bottom:1px dotted #808080;
+    border-top:1px dotted #808080;
+}
+.xinxi ul li{
+    width:32%;
+    height:40px;
+    float:left;
+    text-align:center;
+    border-right:1px solid #808080;
+    margin-top:5px;
+}
+.xinxi ul li:last-child{
+    border:none;
+}
+.xinxi ul li .wenzi{
+    width:100%;
+    height:18px;
+}
+.xinxi ul li .wenzi a{
+    text-decoration:none;
+    font-size:15px;
+    color:#808080;
+    text-align:center;
+}
+.xinxi ul li .pingfen{
+    width:100%;
+    height:18px;
+    font-size:14px;
+    color:#c40000;
+    margin-top:3px;
+}
+.xinxi ul li .pingfen a{
+      text-decoration:none;
+    font-size:15px;
+    color:#c40000;
+    text-align:center;
+}
+.right-content .two-btn{
+    height:25px;
+    width:80%;
+    margin-left:10%;
+    margin-top:20px;
+}
+.two-btn .jinru{
+    width:46%;
+    height:25px;
+    border:1px solid #c9c9c9;
+    float:left;
+   background-color:#f2efef;
+   margin-right:4%;
+   text-align:center;
+
+}
+.two-btn .jinru a{
+   text-decoration:none;
+   font-size:12px;
+   height:25px;
+   line-height:25px;
+   cursor:pointer;
+}
+.two-btn .shoucang{
+     width:46%;
+    height:25px;
+    border:1px solid #c9c9c9;
+    float:left;
+    text-align:center;
+    cursor:pointer;
+    background-color:#f2efef;
+}
+.two-btn .shoucang a{
+   text-decoration:none;
+   font-size:12px;
+   height:25px;
+   line-height:25px;
+}
+.two-btn .jinru:hover{
+    background-color:#c9c9c9;
+}
+.two-btn .shoucang:hover{
+    background-color:#c9c9c9;
+}
+</style>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>GoodsDetailShop</title>
+</head>
+<body>
+    <div class="right-content">
+        <div class="image"><img src="~/images/商家图标.png" /></div>
+        <div class="biaoti">
+            <div class="img">
+                <img src="~/images/店.png" />
+            </div>
+            <div class="shijian">7年老店</div>
+        </div>
+        <div class="shop-name">@ViewBag.shopname</div>
+        <div class="xinyu">
+            <a>信誉：</a>
+            <ul>
+                <li>
+                    <img src="~/images/信誉.png" />
+                </li>
+                <li>
+                    <img src="~/images/信誉.png" />
+                </li>
+                <li>
+                    <img src="~/images/信誉.png" />
+                </li>
+                <li>
+                    <img src="~/images/信誉.png" />
+                </li>
+            </ul>
+        </div>
+        <div class="zhanggui">
+            <a>掌柜：<s>@ViewBag.username</s></a>
+        </div>
+        <div class="lianxi">
+            <a>联系：</a>
+            <img src="~/images/联系.png" />
+            <s>和我联系</s>
+
+        </div>
+        <div class="xinxi">
+            <ul>
+                <li><div class="wenzi"><a>描述</a></div><div class="pingfen"><a>4.7</a></div></li>
+                <li><div class="wenzi"><a>服务</a></div><div class="pingfen"><a>4.7</a></div></li>
+                <li><div class="wenzi"><a>物流</a></div><div class="pingfen"><a>4.7</a></div></li>
+            </ul>
+        </div>
+        <div class="two-btn">
+            <div class="jinru"><a href="@Url.Action("Shops","Goods",new {ShopID=Session["Detailshopid"]})">进入店铺</a></div>
+            <div class="shoucang"><a>收藏店铺</a></div>
+        </div>
+    </div>
+</body>
+</html>

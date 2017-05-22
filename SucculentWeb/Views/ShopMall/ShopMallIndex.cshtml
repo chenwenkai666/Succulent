@@ -267,8 +267,8 @@ function marqueeStart(i, direction){
             @foreach (var goods in Model.NewGoods)
             {
                 <li>
-                    <a><img src="@goods.GoodsPhoto"></a>
-                    <a>@goods.GoodsName</a>
+                    <a href="@Url.Action("GoodsDetail","Goods",new { goodid=@goods.GoodsID})"><img src="@goods.GoodsPhoto"></a>
+                    <a href="@Url.Action("GoodsDetail","Goods",new { goodid=@goods.GoodsID})">@goods.GoodsName</a>
                     <a>￥@goods.Price</a>
                 </li>
             }
@@ -289,21 +289,40 @@ function marqueeStart(i, direction){
             <!-- <a><img src="img/T1IhLjBC_T1RXrhCrK.jpg"></a>    -->
 
 
-            <div id="marquee2" class="marqueetop">
+            @*<div id="marquee2" class="marqueetop">
                 <div style="height:1015px;">
                     <ul id="marquee2_1">
                         @foreach(var goods in Model.hotGoods)
                         { 
                         <li>
+                                  
                             <a class="pic" href="#"><img src="@goods.GoodsPhoto"></a>
-
                         </li>
                         }
 
                     </ul>
+                    <ul id="marquee2_2">
+                    </ul>
+                </div>
+            </div>*@<!--marqueeleft end-->
+
+            <div id="marquee2" class="marqueetop">
+                <div style="height:1300px;">
+                    <ul id="marquee2_1">
+                        @foreach(var goods in Model.hotGoods)
+                        {
+                        <li>
+                            <a class="pic" href="@Url.Action("GoodsDetail","Goods",new { goodid=@goods.GoodsID})"><img src="@goods.GoodsPhoto"></a>
+                            <div class="txt"><a href="@Url.Action("GoodsDetail","Goods",new { goodid=@goods.GoodsID})">@goods.GoodsName</a></div>
+                        </li>
+
+                        }
+                    </ul>
+                        
                     <ul id="marquee2_2"></ul>
                 </div>
-            </div><!--marqueeleft end-->
+            </div>
+
         </div>
         <div class="right">
 
@@ -311,8 +330,8 @@ function marqueeStart(i, direction){
                 @foreach(var goods in Model.HotGoods)
                 {
                 <li class="floor_goods_wrap_li">
-                    <a class="floor_goods_img"><img src="@goods.GoodsPhoto"></a>
-                    <a class="floor_goods_tit">@goods.GoodsName</a>
+                    <a class="floor_goods_img" href="@Url.Action("GoodsDetail","Goods",new { goodid=@goods.GoodsID})"><img src="@goods.GoodsPhoto"></a>
+                    <a class="floor_goods_tit" href="@Url.Action("GoodsDetail","Goods",new { goodid=@goods.GoodsID})">@goods.GoodsName</a>
                     <a class="floor_goods_txt">   </a>
                     <a class="floor_goods_price">￥@goods.Price</a>
                 </li>

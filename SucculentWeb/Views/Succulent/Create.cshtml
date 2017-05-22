@@ -41,6 +41,14 @@
     var editor = new baidu.editor.ui.Editor(editorOption);
     editor.render('Photo');
     </script>
+    <script type="text/javascript">
+    var editorOption = {
+        initialFrameWidth: 800,
+        initialFrameHeight:300
+    };
+    var editor = new baidu.editor.ui.Editor(editorOption);
+    editor.render('SucculentImg');
+    </script>
     @using (Html.BeginForm())
     {
         @Html.AntiForgeryToken()

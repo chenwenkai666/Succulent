@@ -48,7 +48,7 @@ namespace SucculentWeb.Controllers
             try
             {
                 var username = UsersManager.SelectUser(user.UserName);
-                if (ModelState.IsValid && username!=null)
+                if (ModelState.IsValid && username != null)
                 {
                     string code = user.CheckCode;
                     if (code == Session["CheckCode"].ToString())
@@ -66,7 +66,7 @@ namespace SucculentWeb.Controllers
                     return Content("<script>alert('验证信息出错，注册失败！');window.open('" + Url.Content("~/User/Register") + "','_self');</script>");
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 return Content("<script>alert('系统出现错误，注册失败！');window.open('" + Url.Content("~/User/Register") + "', '_self')</script>");
             }
@@ -74,7 +74,7 @@ namespace SucculentWeb.Controllers
         #endregion
 
         #region 验证码发送
-        [HttpPost]
+        //[HttpPost]
         public string CheckCode(string email)
         {
             if (email != "")
