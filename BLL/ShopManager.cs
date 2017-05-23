@@ -36,5 +36,9 @@ namespace BLL
         {
             return ishops.GetDetailTopimage(shopid);
         }
+        public static Shops GetShopByUserID(int UserID)
+        {
+            return ishops.GetShopByUserID(UserID);
+        }
     }
 }

@@ -1,0 +1,42 @@
+﻿.donate_main{
+    width:80%;
+    margin:90px auto 0;
+}
+.donate_main .address_box{
+}
+.donate_main .donate_box form{
+    width:60%;
+    height:auto;
+    margin:0 auto;
+}
+.donate_main .donate_box .donate_address{
+    text-align:center;
+}
+.donate_main .donate_box .donate_address span{
+    font-family:'隶书';
+    font-size:25px;
+    letter-spacing:2px;
+    line-height:30px;
+    padding-left:20px;
+}
+.donate_main .donate_box .donate_address p{
+    text-align:center;
+    font-family:'隶书';
+    font-size:20px;
+    letter-spacing:2px;
+    line-height:20px;
+    padding-left:40px;
+}
+.donate_main .donate_box .donate_table p{
+    text-align:center;
+}
+.donate_main .donate_box .address_box .donate_tip p{
+    font-size:14px;
+    border-top:1px solid rgba(255, 0, 0,0.2);
+    padding-top:10px;
+    color:rgba(255, 0, 0,0.5)
+}
+.donate_main .donate_box .AddDonateBox{
+    display:none;
+}
+textarea{outline:none;resize:none;}

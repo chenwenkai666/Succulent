@@ -1,0 +1,66 @@
+﻿@model Model.Activity
+@{
+    ViewBag.Title = "Detail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section head{
+<link href="~/Content/CADetail.css" rel="stylesheet" />
+}
+
+<div class="main">
+
+    <!--头部标题部分开始-->
+
+    <div class="header_part">
+        <div class="act_title">
+            <h1>@Model.ActivityName</h1>
+        </div>
+        <div class="act_info">
+            <div class="act_holder">
+                <p>
+                    @{ 
+                        if (Model.Users.UserFlag == 0)
+                        {
+                            @:主办方：多肉网官方
+                        }
+                        else
+                        {
+                            @:主办方：@Model.Users.UserName
+                        }
+                    }
+                </p>
+            </div>
+            <div class="act_time">
+                <p>活动时间：@Model.StartTime.ToString("yyyy年MM月dd日")--@Model.EndTime.ToString("MM月dd日")</p>
+            </div>
+        </div>
+    </div>
+
+    <!--头部标题部分结束-->
+
+    <!--主题内容开始-->
+
+    <div class="act_content">
+        @Html.Raw(Model.ActivityDescribe)
+    </div>
+
+    @*<map name="LovePig">
+    <area shape="circle" coords="1400,1100,100" alt="点击参与捐赠" href="/SucculentActivity/Donate" onfocus="this.blur()" ref="imageMaps">
+    </map>*@
+
+    <!--主题内容结束-->
+
+</div>
+
+@section Foot{
+<script src="~/Scripts/jquery.rwdImageMaps.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            //$('img[usemap]').rwdImageMaps();
+            $('map > area').attr('href', '@Url.Action("Donate","SucculentActivity",new { ActID=Model.ActivityID})');
+            if ($(window).width() > 1366) {
+                $('map > area').attr('coords', '1400,1100,100');
+            }
+        });
+    </script>
+}

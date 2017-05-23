@@ -40,6 +40,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IActivity.cs" />
+    <Compile Include="IAdopt.cs" />
+    <Compile Include="IAdoptResult.cs" />
+    <Compile Include="IAttendance.cs" />
+    <Compile Include="IDonate.cs" />
+    <Compile Include="IEntries.cs" />
     <Compile Include="IGoods.cs" />
     <Compile Include="IGoodsComments.cs" />
     <Compile Include="IShops.cs" />

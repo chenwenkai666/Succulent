@@ -12,7 +12,10 @@ namespace IDAL
         void InsertUser(Users user);
         List<Users> SelectUser(string UserName);
         int Login(Users user);
-        Users GetUser(string UserName);
+        Users GetUserByName(string UserName);
         void UpdateUserInfo(Users users);
+        int AjaxLogin(string UserName, string Password);
+        int GetUserLevel(string UserName);
+        Users GetUserByID(int UserID);
     }
 }

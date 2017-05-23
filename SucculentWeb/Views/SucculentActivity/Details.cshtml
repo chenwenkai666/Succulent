@@ -1,0 +1,229 @@
+﻿@model Model.Activity
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section head{
+<link type="image/x-icon" href="~/images/多肉项目Logo.png" rel="icon" />
+<link href="~/Content/foundation.min.css" rel="stylesheet" />
+<link href="~/Content/SucculentActivity.css" rel="stylesheet" />
+<link href="~/Content/Overlay.css" rel="stylesheet" />
+<link href="~/Content/zeroModal.css" rel="stylesheet" />
+    }
+
+<div class="Act_Details">
+    @Html.Raw(Model.ActivityDescribe)
+</div>
+<div class="Act_btn">
+@using (Html.BeginForm("Details", "SucculentActivity", FormMethod.Post))
+{
+    <div class="row">
+        <div class="col-lg-5">
+            <input type="button" class="button success expand BaoMing" value="我要报名" />
+            <input type="hidden" id="trigger-overlay"  />
+        </div>
+       <div class="col-lg-5">
+            <input type="button" class="button success expand CanSai" value="活动入口" />
+       </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-7">
+                @{
+                    TimeSpan time = Model.EndTime - DateTime.Now;
+                    int days = time.Days;
+                    int hours = time.Hours / 60;
+                    int mins = time.Minutes / 60;
+
+                    if (days > 0)
+                    {
+                        string leavetime = "时间剩余：" + days + "天" + hours + "时" + mins + "分";
+                        <i>@leavetime</i> 
+                    }
+                    else
+                    {
+                        string leavetime = "今天是：" + DateTime.Now.ToString("yyyy年MM月dd日") + "，活动已结束";
+
+                        <i>@leavetime</i>
+                    }
+                }
+        </div>
+    </div>
+}
+</div>
+
+@*登录遮罩*@
+<div class="overlay overlay-contentscale">
+    <button type="button" class="overlay-close">Close</button>
+    <nav>
+        <div class="Overlay_Login">
+            @using (Ajax.BeginForm("AjaxLogin", "User", new AjaxOptions { HttpMethod = "POST", UpdateTargetId = "LoginResult", InsertionMode = InsertionMode.Replace }))
+            {
+                @Html.ValidationSummary("", new { style = "color:red;" });
+                <div class="row">
+                    <div class="col-lg-12">
+                        <img src="~/images/多肉项目Logo.png" width="60" height="60" />
+                    </div>
+                </div>
+                <br />
+                <div class="row">
+                    <div class="col-lg-12">
+                        <input type="text" class="form-control" name="UserName" placeholder="邮箱/用户名/手机号" />
+                    </div>
+                </div>
+                <br />
+                <div class="row">
+                    <div class="col-lg-12 ">
+                        <input type="password" class="form-control" name="Password" placeholder="密码" />
+                    </div>
+                </div>
+                <br />
+                <div class="row">
+                    <div class="col-lg-12">
+                        <input type="submit" class="button success expand overlay_btn" value="登录" />
+                    </div>
+                </div>
+                <br />
+                <label id="LoginResult"></label>
+            }
+
+            <div class="overlay_forget_register">
+                <a href="@Url.Action("ForgetPassword", "User")"><span>忘记密码</span></a>
+                <a href='@Url.Action("Register", "User")'><span>注册账号</span></a>
+            </div>
+        </div>
+    </nav>
+</div>
+@section Foot{
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+<script src="~/Scripts/modernizr.custom.js"></script>
+<script src="~/Scripts/classie.js"></script>
+<script src="~/Scripts/Overlay.js"></script>
+<script src="~/Scripts/zeroModal.js"></script>
+<script>
+
+    $(document).ready(function(){
+        var now=new Date('@DateTime.Now');
+        var end=new Date('@Model.EndTime');
+        if(now > end){
+            $('.BaoMing').attr('disabled',true);
+            $('.CanSai').attr('disabled',true);
+        }
+    });
+
+    $('.BaoMing').click(function () {//报名按钮JS
+        var user = '@Session["UserName"]';
+        if (user != "") {
+            _confirm();
+        }
+        else {//检测到用户没有登录，则调用登录遮罩点击事件，进行登录
+            overlayLogin();
+        }
+    });
+
+    $('.CanSai').click(function () {//参赛按钮JS
+        var user = '@Session["UserName"]';
+        if (user != "") {
+            if ($('.CanSai').hasClass('disabled')) {
+
+            }
+            else {
+                _button();
+            }
+
+        }
+        else {//检测到用户没有登录，则调用登录遮罩点击事件，进行登录
+            overlayLogin();
+        }
+    });
+
+    function overlayLogin() {//遮罩登录事件执行JS
+        var evt = document.createEvent("MouseEvents");
+        evt.initEvent("click", true, true);
+        document.getElementById("trigger-overlay").dispatchEvent(evt);
+    }
+
+    //遮罩登录JS开始
+    $('.overlay_btn').click(function () {
+        $('.overlay_btn').val('正在登录，请稍后..');
+        setTimeout(function () {
+            $('.overlay_btn').attr('disabled', 'disabled');//点击“登录”按钮后，禁用登录按钮防止多次提交
+            var lbl = $('label').text();
+            var container = document.querySelector('div.container');
+            var overlay = document.querySelector('div.overlay');
+            if (lbl == "登录成功！") {
+                $('.Act_UserLogin').addClass('PreLogin');//登录成功后隐藏“登录”按钮
+                $('.Act_UserInfo').removeClass('PreLogin').addClass('Logined');//登录成功后显示“用户信息”
+                classie.remove(overlay, 'open');//登录成功后关闭登录遮罩
+                classie.remove(container, 'overlay-open');//关闭遮罩后面的缩放
+                location.reload(false);//登录成功后用本地缓存刷新页面，目的是刷新Session信息
+            }
+            else {
+                $('.overlay_btn').val('登录').removeAttr("disabled");//登录失败恢复登录按钮的可用性，供重新登录
+            }
+        }, 1000);
+
+    });
+    //遮罩登录JS结束
+
+
+
+    //报名比赛JS
+    function _confirm() {
+        zeroModal.confirm("想好要报名了吗？", function () {//弹出确认框
+            @*window.location.href = '@Url.Action("Attend","SucculentActivity", new { ActivityID=Model.ActivityID })';*@
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("Attend", "SucculentActivity")',
+                data: { ActivityID: '@Model.ActivityID' },
+                success:function(msg){
+                    if (msg == "报名成功") {
+                        _success(msg);//报名成功则调用成功弹窗
+                    }
+                    else {
+                        _error(msg);//报名失败则调用失败弹窗
+                    }
+                }
+            });
+            //return false;
+        });
+    }
+
+    //成功弹窗
+    function _success(msg) {
+        zeroModal.success(msg);
+    }
+
+    //失败弹窗
+    function _error(msg) {
+        zeroModal.error(msg);
+    }
+
+    Function.prototype.getMultiLine = function() {
+    var lines = new String(this);
+    lines = lines.substring(lines.indexOf("/*") + 3, lines.lastIndexOf("*/"));
+    return lines;
+}
+
+    var Conditions = function() {//本函数为满足从数据库读取显示多行html代码，注释结尾报错属正常现象，可直接运行
+            /*
+             @Html.Raw(Model.AttendConditions)
+            */
+        }
+
+        //带按钮的面板弹窗
+        function _button() {
+            zeroModal.show({
+            title: '参赛须知',
+            content:Conditions.getMultiLine(),
+            width: '600px',
+            height:'400px',
+            ok: true,
+            cancel: true,
+            okFn: function () {
+                    window.location.href = '@Url.Action("AttendPhotoActivity", "SucculentActivity",new { actID=Model.ActivityID })';
+                }
+            });
+        }
+</script>
+}

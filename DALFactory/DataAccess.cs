@@ -44,5 +44,35 @@ namespace DALFactory
             string className = assemblyName + "." + db + "GoodsComments";
             return (IGoodsComments)Assembly.Load(assemblyName).CreateInstance(className);
         }
+        public static IActivity CreateActivity()
+        {
+            string className = assemblyName + "." + db + "Activity";
+            return (IActivity)Assembly.Load(assemblyName).CreateInstance(className);
+        }
+        public static IAttendance CreateAttendance()
+        {
+            string className = assemblyName + "." + db + "Attendance";
+            return (IAttendance)Assembly.Load(assemblyName).CreateInstance(className);
+        }
+        public static IEntries CreateEntries()
+        {
+            string className = assemblyName + "." + db + "Entries";
+            return (IEntries)Assembly.Load(assemblyName).CreateInstance(className);
+        }
+        public static IDonate CreateDonate()
+        {
+            string className = assemblyName + "." + db + "Donate";
+            return (IDonate)Assembly.Load(assemblyName).CreateInstance(className);
+        }
+        public static IAdopt CreateAdopt()
+        {
+            string className = assemblyName + "." + db + "Adopt";
+            return (IAdopt)Assembly.Load(assemblyName).CreateInstance(className);
+        }
+        public static IAdoptResult CreateAdoptResult()
+        {
+            string className = assemblyName + "." + db + "AdoptResult";
+            return (IAdoptResult)Assembly.Load(assemblyName).CreateInstance(className);
+        }
     }
 }

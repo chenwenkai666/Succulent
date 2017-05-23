@@ -1,0 +1,189 @@
+﻿@*@model SucculentWeb.ViewModels.ActivityIndexVM
+@using Model;
+@using PagedList
+@using PagedList.Mvc*@
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section head{
+    <link type="image/x-icon" href="~/images/多肉项目Logo.png" rel="icon" />
+    <link href="~/Content/easy-responsive-tabs.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/SucculentActivity.css" rel="stylesheet" />
+    <link href="~/Content/Overlay.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+    <script src="~/Scripts/easyResponsiveTabs.js"></script>
+    <script src="~/Scripts/modernizr.custom.js"></script>
+}
+<div class="main">
+    <div class="header_box">
+        <div class="title_icon">
+            <img src="../images/多肉项目Logo.png" width="30" height="30">
+            <span>活动中心</span>丨SucculentActivities
+        </div>
+        <div class="position">
+            <span>您所在的位置：<a href="@Url.Action("Index","Index")">首页</a> > 多肉活动</span>
+        </div>
+        <div class="user_info">
+            <div class="Act_UserInfo PreLogin">
+                <a href="#">@Session["UserName"]</a>，您好 丨
+                <a href='@Url.Action("LoginOut","User")'>退出登录</a>
+            </div>
+            <div class="Act_UserLogin PreLogin">
+                亲爱的用户，<a id="trigger-overlay" href="#">请登录</a>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- 标签容器开始 -->
+    <div id="container">
+        <div id="Activity">
+            <ul class="resp-tabs-list hor_1">
+                <li>摄影大赛</li>
+                <li>DIY大赛</li>
+                <li>领养活动</li>
+                <li>慈善活动</li>
+            </ul>
+            <div class="resp-tabs-container hor_1" id="act_list">
+                @{
+                    for (int i =1; i<=4; i++)
+                    {
+                        <div id="@i">
+                            @{
+                                Html.RenderAction("PatialActivityList", "SucculentActivity", new { ACid = i });
+                            }
+                        </div>
+
+                     }
+                }
+
+            </div>
+        </div>
+    </div>
+</div>
+
+@*@{ Html.RenderAction("OverlayLogin", "SucculentActivity"); }*@
+@*登录遮罩*@
+<div class="overlay overlay-contentscale">
+    <button type="button" class="overlay-close">Close</button>
+    <nav>
+        <div class="Overlay_Login">
+            @using (Ajax.BeginForm("AjaxLogin", "User", new AjaxOptions { HttpMethod = "POST", UpdateTargetId = "LoginResult", InsertionMode = InsertionMode.Replace }))
+            {
+                @Html.ValidationSummary("", new { style = "color:red;" });
+                <div class="row">
+                    <div class="col-lg-12">
+                        <img src="~/images/多肉项目Logo.png" width="60" height="60" />
+                    </div>
+                </div>
+                <br />
+                <div class="row">
+                    <div class="col-lg-12">
+                        <input type="text" class="form-control" name="UserName" placeholder="邮箱/用户名/手机号" />
+                    </div>
+                </div>
+                <br />
+                <div class="row">
+                    <div class="col-lg-12 ">
+                        <input type="password" class="form-control" name="Password" placeholder="密码" />
+                    </div>
+                </div>
+                <br />
+                <div class="row">
+                    <div class="col-lg-12">
+                        <input type="submit" class="btn btn-success btn-lg overlay_btn" value="登录" />
+                    </div>
+                </div>
+                <br />
+                <label id="LoginResult"></label>
+            }
+
+            <div class="overlay_forget_register">
+                <a href="@Url.Action("ForgetPassword","User")"><span>忘记密码</span></a>
+                <a href='@Url.Action("Register", "User")'><span>注册账号</span></a>
+            </div>
+        </div>
+    </nav>
+</div>
+
+@section Foot{
+<script src="~/Scripts/classie.js"></script>
+<script src="~/Scripts/Overlay.js"></script>
+<script>
+    //遮罩登录JS开始
+    $('.overlay_btn').click(function () {
+        $('.overlay_btn').val('正在登录，请稍后..');
+        setTimeout(function () {
+            var lbl = $('label').text();
+            $('.overlay_btn').attr('disabled', 'disabled');
+            var container = document.querySelector('div.container');
+            var overlay = document.querySelector('div.overlay');
+            if (lbl == "登录成功！") {
+                $('.Act_UserLogin').addClass('PreLogin');
+                $('.Act_UserInfo').removeClass('PreLogin').addClass('Logined');
+                classie.remove(overlay, 'open');
+                classie.remove(container, 'overlay-open');
+                location.reload(false);
+            }
+            else {
+                $('.overlay_btn').val('登录').removeAttr("disabled");
+            }
+        }, 1000);
+
+    });
+    //遮罩登录JS结束
+</script>
+<script type="text/javascript">
+    // 标签JS开始
+    $(document).ready(function () {
+
+        //判断用户是否登录
+        try {
+            var s = '@Session["UserName"]';
+            if (s != "") {
+                $('.Act_UserInfo').removeClass('PreLogin');
+            }
+            else {
+                $('.Act_UserLogin').removeClass('PreLogin');
+            }
+        }
+        catch (err) {
+            alert(err.message);
+        }
+
+        //Horizontal Tab
+        $('#Activity').easyResponsiveTabs({//初始化插件
+            type: 'default', //选项卡的类型。可用的类型有：default, vertical, accordion。
+            width: 'auto', //选项卡的宽度。默认值：'auto'
+            fit: true, // 是否100%适配容器。默认值：true。
+            tabidentify: 'hor_1', // Tab组的名称标识符，必须是唯一的。
+            active_border_color: '#008B45',
+            active_content_border_color: '#008B45',
+            activetab_bg: '#43CD80',
+            activate: function (event) { // 切换Tab时的回调函数。
+                var $tab = $(this);
+                var $info = $('#nested-tabInfo');
+                var $name = $('span', $info);
+                $name.text($tab.text());
+                $info.show();
+            }
+        });
+    });
+    // 	 下面是该Tabs选项卡的一些可用配置参数：
+    // type：选项卡的类型。可用的类型有：default, vertical, accordion。默认值：default。
+    // width：选项卡的宽度。默认值：'auto'
+    // fit：是否100%适配容器。默认值：true。
+    // closed：在开始时关闭所有面板。默认值：false。
+    // activate：切换Tab时的回调函数。
+    // tabidentify：Tab组的名称标识符，必须是唯一的。默认值：'tab_identifier_child'。
+    // activetab_bg：在某一组中激活的选项卡的背景色。默认值：'#B5AC5F'。
+    // inactive_bg：在某一组中闲置的选项卡的背景色。默认值：'#E0D78C'。
+    // active_border_color：在某一组中激活的选项卡头部边框的颜色。默认值：'#9C905C'。
+    // active_content_border_color：在某一组中激活的选项卡内容区域边框的颜色。默认值：'#9C905C'。
+    // 标签JS结束
+</script>   
+}
+

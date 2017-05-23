@@ -122,7 +122,7 @@ namespace SucculentWeb.Controllers
         {
             try
             {
-                Users users = UsersManager.GetUser(UserName);
+                Users users = UsersManager.GetUserByName(UserName);
                 if (users != null)
                 {
                     return View("ResetWays", users);
@@ -150,7 +150,7 @@ namespace SucculentWeb.Controllers
         #region 密保问题验证
         public ActionResult SecretQuestion(string UserName)
         {
-            Users users = UsersManager.GetUser(UserName);
+            Users users = UsersManager.GetUserByName(UserName);
             if (users != null)
             {
                 if (users.SecretQues != null)
@@ -172,7 +172,7 @@ namespace SucculentWeb.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult SecretQuestion(string UserName, string SecretAnws)
         {
-            Users users = UsersManager.GetUser(UserName);
+            Users users = UsersManager.GetUserByName(UserName);
             if (users != null)
             {
                 if (users.SecretAnws == SecretAnws)
@@ -194,7 +194,7 @@ namespace SucculentWeb.Controllers
         #region 邮箱验证方式
         public ActionResult EmailValidate(string UserName)
         {
-            Users users = UsersManager.GetUser(UserName);
+            Users users = UsersManager.GetUserByName(UserName);
             if (users != null)
             {
                 if (users.Email != null)
@@ -216,7 +216,7 @@ namespace SucculentWeb.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult EmailValidate(string UserName, string Email, string CheckCode)
         {
-            Users users = UsersManager.GetUser(UserName);
+            Users users = UsersManager.GetUserByName(UserName);
             if (users != null)
             {
                 if (users.Email == Email)
@@ -245,7 +245,7 @@ namespace SucculentWeb.Controllers
         #region 手机号验证方式
         public ActionResult PhoneValidate(string UserName)
         {
-            Users users = UsersManager.GetUser(UserName);
+            Users users = UsersManager.GetUserByName(UserName);
             if (users != null)
             {
                 return View(users);
@@ -260,7 +260,7 @@ namespace SucculentWeb.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult PhoneValidate(string UserName, string Phone)
         {
-            Users users = UsersManager.GetUser(UserName);
+            Users users = UsersManager.GetUserByName(UserName);
             if (users != null)
             {
                 if (users.Phone == Phone)
@@ -282,7 +282,7 @@ namespace SucculentWeb.Controllers
         #region 重置密码
         public ActionResult ResetPassword(string UserName)
         {
-            Users users = UsersManager.GetUser(UserName);
+            Users users = UsersManager.GetUserByName(UserName);
             if (users != null)
             {
                 return View(users);
@@ -300,7 +300,7 @@ namespace SucculentWeb.Controllers
         {
             try
             {
-                Users users = UsersManager.GetUser(UserName);
+                Users users = UsersManager.GetUserByName(UserName);
                 users.Password = Password;
                 users.PasswordAgain = PasswordAgain;
                 users.CheckCode = "000";
@@ -317,6 +317,32 @@ namespace SucculentWeb.Controllers
         }
         #endregion
 
+        #endregion
+
+        #region 用户异步登录
+        public string AjaxLogin(string UserName, string Password)
+        {
+            int result = UsersManager.AjaxLogin(UserName, Password);
+            if (result > 0)
+            {
+                Users users = UsersManager.GetUserByName(UserName);
+                Session["UserName"] = UserName;
+                Session["UserID"] = users.UserID;
+                return "登录成功！";
+            }
+            else
+            {
+                return "用户名或密码错误！";
+            }
+        }
+        #endregion
+
+        #region 用户退出登录
+        public ActionResult LoginOut()
+        {
+            Session["UserName"] = null;
+            return Content("<script>alert('账号退出成功');window.location.href = document.referrer;</script>");
+        }
         #endregion
     }
 }

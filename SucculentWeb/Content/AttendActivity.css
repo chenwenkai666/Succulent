@@ -1,0 +1,344 @@
+﻿/*头部框*/
+.head_part{
+    width:100%;
+    height:450px;
+    background:url('../images/Activity/米克洛斯岛.jpg') no-repeat;
+    background-size:100% 100%;
+    margin-top:8%;
+}
+.head_part .white_box{
+    width:25%;
+    height:450px;
+    background-color:rgba(250,250,250,0.8);
+    margin-left:15%;
+}
+/*头部参赛按钮*/
+.head_part .attendBtn{
+    width:150px;
+    height:150px;
+    background:url('../images/相机.png') no-repeat;
+    background-position:center;
+    background-size:100% 100%;
+    margin-top:9.5%;
+    margin-left:28%;
+    border-radius:50px;
+    border-color:transparent;
+    outline:none;
+    transition:all ease-out 0.2s;
+}
+.head_part .attendBtn:active{
+    transform:scale(0.9);
+}
+/*头部活动标题*/
+.head_part .white_box .act_title{
+    width:300px;
+    height:50px;
+    /*margin-top:5%;
+    margin-left:10%;*/
+    margin:25% auto;
+    text-align:center;
+    line-height:50px;
+}
+.head_part .white_box h5{
+    text-align:center;
+    letter-spacing:5px;
+    color:#2e68aa;
+    font-family:'隶书';
+    font-size:18px;
+}
+.head_part .white_box .act_title p{
+    font-family:'隶书';
+    font-size:35px;
+}
+
+.act_container{
+    width:95%;
+    margin:0 auto;
+    position:relative;
+}
+
+/*参赛作品分割线*/
+.act_container .portfolio_line {
+        width: 100%;
+        height: 50px;
+        margin:10px 0;
+}
+.act_container .portfolio_line hr{
+    position:absolute;
+    padding:0;
+    margin:0;
+    width:99%;
+    border:1px solid #dcdcdc;
+    top:25px;
+    opacity:0.6;
+    filter:alpha(opacity=60);
+}
+.act_container .portfolio_line a{
+    position:absolute;
+    text-align:center;
+    font-size:16px;
+    color:#999;
+    width:100px;
+    background-color:#fff;
+    margin-left:47%;
+    margin-top:15px;
+}
+
+/*作品行*/
+.act_container .portfolio_rows{
+    position:relative;
+    width:100%;
+    height:320px;
+    margin-bottom:4px;
+ }
+ .act_container .portfolio_rows .img_box{   /*图片框*/
+    /*position:relative;*/
+    float:left;
+    width:24.65%;
+    height:100%;
+    background-color:red;
+    margin-right:4px;
+ }
+  .act_container .portfolio_rows .img_box img{
+      width:100%;
+      height:100%;
+  }
+.act_container .portfolio_rows .img_box .portfolio_info{  /*作品信息框*/
+    position:relative;
+    width:100%;
+    height:100%;
+    background-color:#fff;
+}
+.act_container .portfolio_rows .img_box .portfolio_info .info_one{ /*上面信息框*/
+    width:100%;
+    height:50%;
+    background-color:#f3f3f2;
+    overflow:hidden;
+}
+.act_container .portfolio_rows .img_box .portfolio_info .info_one:hover{
+    background-color:#e8e8e8;
+}
+.act_container .portfolio_rows .img_box .portfolio_info .info_two{  /*下面信息框*/
+    width:100%;
+    height:48.8%;
+    margin-top:1.2%;
+    background-color:#f3f3f2;
+    overflow:hidden;
+}
+.act_container .portfolio_rows .img_box .portfolio_info .info_two:hover{
+    background-color:#e8e8e8;
+}
+.act_container .portfolio_rows .img_box .portfolio_info .arrow_one{  /*上面框箭头*/
+    background:url('../images/Activity/jiantou.png') no-repeat;
+    background-size:100% 100%;
+    position:absolute;
+    display:block;
+    width:14px;
+    height:28px;
+    margin-top:-30%;
+    margin-left:-4%;
+}
+.act_container .portfolio_rows .img_box .portfolio_info .arrow_two{  /*下面框箭头*/
+    background:url('../images/Activity/jiantou.png') no-repeat;
+    background-size:100% 100%;
+    transform:rotate(180deg);
+    position:absolute;
+    display:block;
+    width:14px;
+    height:28px;
+    margin-top:23%;
+    margin-left:100%;
+}
+.act_container .portfolio_rows .img_box .portfolio_info .info_one .publish_time_one{ /*上面框发表日期*/
+    width:50%;
+    height:30%;
+    padding:5% 0;
+    margin:5% 8%;
+    border-bottom:1px solid #ededed;
+}
+.publish_time_one p{  /*上面框日期文本*/
+    color:#dad9d8;
+    font-family:'宋体';
+    font-size:22px;
+    font-weight:100;
+    text-align:left;
+}
+.info_one h4{  /*上面框描述文本*/
+    margin:0;
+    padding:0;
+    text-align:left;
+    padding-left:8%;
+}
+.info_one h4:hover{
+    color:#389319;
+    cursor:pointer;
+}
+.info_one h5{  /*上面框来源信息*/
+    margin:0;
+    padding:0;
+    text-align:left;
+    font-size:14px;
+    color:#dcdcdc;
+    padding-top:10%;
+    padding-left:8%;
+}
+.info_one h5 a{
+    color:#808080;
+}
+.info_one h5 a:hover{
+    color:#389319;
+}
+.info_one .like_it{ /*投票按钮*/
+    display:block;
+    width:32px;
+    height:32px;
+    background:url('../images/Sprites/vote2.png') no-repeat;
+    background-size:180px 30px;
+    background-position:-75px 0px;
+    margin-top: -7%;
+    margin-left:88%;
+}
+.info_one .like_it:hover{
+    cursor:pointer;
+    background-position:-154px 0px;
+}
+
+/*下面框样式*/
+.act_container .portfolio_rows .img_box .portfolio_info .info_two .publish_time_two{ /*下面框发表日期*/
+    width:50%;
+    height:30%;
+    padding:5% 0;
+    margin:5% 45%;
+    border-bottom:1px solid #ededed;
+}
+.publish_time_two p{  /*下面框日期文本*/
+    color:#dad9d8;
+    font-family:'宋体';
+    font-size:22px;
+    font-weight:100;
+    text-align:right;
+}
+.info_two h4{  /*下面框描述文本*/
+    margin:0;
+    padding:0;
+    text-align:left;
+    padding-left:48%;
+}
+.info_two h4:hover{
+    color:#389319;
+    cursor:pointer;
+}
+.info_two h5{  /*下面框来源信息*/
+    margin:0;
+    padding:0;
+    text-align:left;
+    font-size:14px;
+    color:#dcdcdc;
+    padding-top:10%;
+    padding-right:7%;
+    text-align:right;
+}
+.info_two h5 a{
+    color:#808080;
+}
+.info_two h5 a:hover{
+    color:#389319;
+}
+.info_two .like_it{
+    display:block;
+    width:32px;
+    height:32px;
+    background:url('../images/Sprites/vote2.png') no-repeat;
+    background-size:180px 30px;
+    background-position:-75px 0px;
+    margin-top: -9%;
+    margin-left:5%;
+}
+.info_two .like_it:hover{
+    cursor:pointer;
+    background-position:-154px 0px;
+}
+/*simple_info样式*/
+.act_container .portfolio_rows .img_box .simple_info{
+    position:absolute;
+    float:left;
+    height:50px;
+    background-color:rgba(0,0,0,0.5);
+    margin-top:-6%;
+}
+.act_container .portfolio_rows .img_box .simple_info i{
+    position:absolute;
+    float:left;
+    color:rgba(205,205,205,0.6);
+    font-size:12px;
+    font-family:Arial;
+    margin-left:15px;
+    margin-top:3%;
+}
+.act_container .portfolio_rows .img_box .simple_info .like_it{
+    display:block;
+    width:30px;
+    height:30px;
+    background:url('../images/Sprites/vote2.png') no-repeat;
+    background-size:120px 20px;
+    background-position:0px 0px;
+    margin-top: 2%;
+    margin-left:80%;
+}
+.act_container .portfolio_rows .img_box .simple_info .like_it:hover{
+    cursor:pointer;
+    background-position:-101px 0px;
+}
+.act_container .portfolio_rows .img_box .simple_info b{
+    color:#fff;
+    font-size:18px;
+    text-align:center;
+    margin-right:30%;
+    margin-left:15px;
+    font-weight:500;
+}
+.act_container .portfolio_rows .img_box .simple_info b:hover{
+    cursor:pointer;
+    color:#389319;
+}
+
+/*发表作品样式*/
+.Upload_Box {
+    display:none;
+    position: relative;
+    width: 95%;
+    height: 400px;
+    margin: 1% auto;
+    overflow: hidden;
+    background: url('../images/bg5.png') no-repeat;
+    background-position:200px 0px;
+}
+.Upload_Box .Upload_img{
+    width:60%;
+    height:100%;
+    float:left;
+}
+.Upload_Box .Upload_txt{
+    width:35%;
+    height:100%;
+    float:left;
+    margin-left:2.5%;
+    margin-top:3%;
+
+}
+.Upload_Box .Upload_txt label{
+    font-size:18px;
+}
+.Upload_Box .Upload_txt input{
+    height:65px;
+    line-height:65px;
+    font-size:20px;
+}
+.btn{
+    width:100%;
+    margin-top:20px;
+    background-color:#1fac3c;
+}
+.btn:hover{
+    background-color:#269715;
+}

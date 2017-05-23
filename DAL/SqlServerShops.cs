@@ -51,5 +51,9 @@ namespace DAL
             var data = (from p in db.Shops where p.ShopID == shopid select p).FirstOrDefault();
             return data;
         }
+        public Shops GetShopByUserID(int UserID)
+        {
+            return db.Shops.Where(p => p.UserID == UserID).FirstOrDefault();
+        }
     }
 }
