@@ -1,0 +1,78 @@
+﻿@section head{
+<link href="~/Content/Overlay.css" rel="stylesheet" />
+<script>
+
+    function overlayLogin() {//遮罩登录事件执行JS
+        var evt = document.createEvent("MouseEvents");
+        evt.initEvent("click", true, true);
+        document.getElementById("trigger-overlay").dispatchEvent(evt);
+    }
+
+    //遮罩登录JS开始
+    $('.overlay_btn').click(function () {
+        $('.overlay_btn').val('正在登录，请稍后..');
+        setInterval(function () {
+            var lbl = $('label').text();
+            $('.overlay_btn').attr('disabled', 'disabled');
+            var container = document.querySelector('div.container');
+            var overlay = document.querySelector('div.overlay');
+            if (lbl == "登录成功！") {
+                $('.Act_UserLogin').addClass('PreLogin');
+                $('.Act_UserInfo').removeClass('PreLogin').addClass('Logined');
+                classie.remove(overlay, 'open');
+                classie.remove(container, 'overlay-open');
+                location.reload(false);
+            }
+            else {
+                $('.overlay_btn').val('登录').removeAttr("disabled");
+            }
+        }, 1000);
+
+    });
+    //遮罩登录JS结束
+</script>
+}
+
+@*登录遮罩*@
+<div class="overlay overlay-contentscale">
+    <button type="button" class="overlay-close">Close</button>
+    <nav>
+        <div class="Overlay_Login">
+            @using (Ajax.BeginForm("AjaxLogin", "User", new AjaxOptions { HttpMethod = "POST", UpdateTargetId = "LoginResult", InsertionMode = InsertionMode.Replace }))
+            {
+                @Html.ValidationSummary("", new { style = "color:red;" });
+                <div class="row">
+                    <div class="col-lg-12">
+                        <img src="~/images/多肉项目Logo.png" width="60" height="60" />
+                    </div>
+                </div>
+                <br />
+                <div class="row">
+                    <div class="col-lg-12">
+                        <input type="text" class="form-control" name="UserName" placeholder="邮箱/用户名/手机号" />
+                    </div>
+                </div>
+                <br />
+                <div class="row">
+                    <div class="col-lg-12 ">
+                        <input type="text" class="form-control" name="Password" placeholder="密码" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <input type="submit" class="btn btn-success btn-lg overlay_btn" value="登录" />
+                    </div>
+                </div>
+                <br />
+                <label id="LoginResult"></label>
+            }
+
+            <div class="overlay_forget_register">
+                <a href="@Url.Action("ForgetPassword","User")"><span>忘记密码</span></a>
+                <a href='@Url.Action("Register", "User")'><span>注册账号</span></a>
+            </div>
+        </div>
+    </nav>
+</div>
+
+

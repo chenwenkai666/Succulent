@@ -7,6 +7,8 @@
 @*<link href="~/Content/bootstrap.min.css" rel="stylesheet" />*@
 <script src="~/ueditor/ueditor.config.js"></script>
 <script src="~/ueditor/ueditor.all.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
 <script type="text/javascript">
     var editorOption = {
         initialFrameWidth: 800,
@@ -14,6 +16,7 @@
     };
     var editor = new baidu.editor.ui.Editor(editorOption);
     editor.render('GoodsDescribe');
+
 </script>
 <style>
     .main{
@@ -24,7 +27,7 @@
     .top-title {
         height:50px;
         width:100%;
-    margin-top:30px;
+    margin-top:50px;
     }
         .top-title h1{
        text-align:center;
@@ -49,7 +52,7 @@
     }
 </style>
 <div class="main">
-    <div class=" top-title"><h1>商品上新</h1></div>
+    <div class="top-title"><h1>商品上新</h1></div>
     @using (Html.BeginForm("CreatGoods", "Goods", FormMethod.Post, new { id = "CreateForm", enctype = "multipart/form-data" }))
     {
         <div class="content">
@@ -57,13 +60,26 @@
                 <div class="text"> <span>店主编号：</span></div>
                 <div class="text">@Html.EditorFor(model => model.ShopID, new { htmlAttributes = new { @class = "form-control" } })</div>
                 <div class="text"> <span>商品名字：</span></div>
-                <div class="text">@Html.EditorFor(model => model.GoodsName, new { htmlAttributes = new { @class = "form-control" ,placeholder="不能超过十二个字" } })</div>
+                <div class="text">
+                    @Html.EditorFor(model => model.GoodsName, new { htmlAttributes = new { @class = "form-control" ,placeholder="不能超过十二个字" } })
+                    @Html.ValidationMessageFor(goods=>goods.GoodsName,"",new { style="color:#339933"})
+                </div>
                 <div class="text"> <span>商品价格：</span></div>
-                <div class="text">@Html.EditorFor(model => model.Price, new { htmlAttributes = new { @class = "form-control" } })</div>
+                <div class="text">
+                   @Html.EditorFor(model => model.Price, new { htmlAttributes = new { @class = "form-control" } })
+                   @Html.ValidationMessageFor(goods => goods.Price, "", new { style = "color:#339933" })
+                </div>
                 <div class="text"> <span>商品照片：</span></div>
-                <div class="text"><input type="file" name="GoodsPhoto" /></div>
+                <div class="text">
+                <input type="file" name="GoodsPhoto" />
+               @*@Html.TextBoxFor(goods=>goods.GoodsPhoto,new {type="file"})*@
+                </div>
                 <div class="text"><span>是否定制：</span></div>
-                <div class="text"><input type="radio" value="1" name="xuanze" />是&nbsp;&nbsp; <input type="radio" value="2" name="xuanze" />否 </div>
+                <div class="text">
+                <input type="radio" value="1" name="xuanze" />是&nbsp;&nbsp; <input type="radio" value="2" name="xuanze" />否 
+                @*@Html.RadioButton("Flag","1")是&nbsp;&nbsp; @Html.RadioButton("Flag","2")否
+                    @Html.ValidationMessageFor(goods=>goods.Flag)*@
+                </div>
                 <div class="text"> <p>@Html.TextAreaFor(model => model.GoodsDescribe)</p></div>
                 <div class="text"><input type="submit" value="提交" class="btn btn-danger" /></div>
             </div>

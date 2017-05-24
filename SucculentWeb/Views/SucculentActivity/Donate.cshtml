@@ -1,0 +1,140 @@
+﻿@model Model.Donate
+@{
+    ViewBag.Title = "Donate";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section head{
+<link href="~/Content/zeroModal.css" rel="stylesheet" />
+<link href="~/Content/amazeui.min.css" rel="stylesheet" />
+<link href="~/Content/Donate.css" rel="stylesheet" />
+}
+<div class="donate_main">
+    <div class="donate_box">
+        <section class="am-panel am-panel-success address_box">
+            <header class="am-panel-hd">
+                <h3 class="am-panel-title">我们的地址</h3>
+            </header>
+            <div class="am-panel-bd donate_address">
+                <i class="am-icon-map-marker fa-2x" style="color:red;"></i> <span>江西省南昌市紫阳大道99号江西师范大学 多肉网    收【到付】</span>
+                <p>联系电话：0791-8888888 邮编：330022</p>
+            </div>
+            <div class="am-panel-bd donate_tip">
+                <p>爱心提示：多肉网默认合作快递仅支持 <b>申通快递</b> 哦，运费请选择【 <b>到付</b> 】。</p>
+            </div>
+        </section>
+        <div class="am-panel am-panel-success donate_table">
+            <table class="am-table am-table-bordered am-table-striped am-table-hover">
+                <thead>
+                    <tr>
+                        <th>用户名</th>
+                        <th>捐赠内容</th>
+                        <th>捐赠数量</th>
+                        <th>快递单号</th>
+                        <th>捐赠时间</th>
+                        <th>捐赠状态</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @{
+                        if (Model != null)
+                        {
+                            <tr class="am-success">
+                                <td>@Model.Users.UserName</td>
+                                <td>@Model.DonateContent</td>
+                                <td>@Model.DonoteTotal</td>
+                                <td>@Model.ExoressNumber</td>
+                                <td>@Model.DonateTime.ToString("yyyy年MM月dd日")</td>
+                                <td>@Model.DonateState</td>
+                            </tr>
+                        }
+                        else
+                        {
+                            <tr class="am-success">
+                                <td colspan="6"><p>您还没有捐赠哦~去<a href="javascript:void(0)" id="GoDonateBtn">捐赠</a>吧</p></td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+        <div class="AddDonateBox">
+            <section class="am-panel am-panel-success">
+                <main class="am-panel-bd">
+                    @using (Ajax.BeginForm("Donate", "SucculentActivity", "", new AjaxOptions { HttpMethod = "POST", InsertionMode = InsertionMode.Replace, UpdateTargetId = "DonateResult" }, new { @class = "am-form", id = "form1" }))
+                    {
+                        @Html.AntiForgeryToken();
+                        <input name="actid" type="hidden" value="@Request.QueryString["ActID"]" />
+                        <div class="am-g">
+                            <div class=" am-u-lg-8">
+                                <div class="am-form-group am-form-group-lg am-form-group-success">
+                                    <label for="doc-ipt-ExoressNumber-1">单号</label>
+                                    @Html.TextBoxFor(d => d.ExoressNumber, new { @class = "am-form-field am-input-lg", id = "doc-ipt-ExoressNumber-1", placeholder = "输入快递单号" })
+                                </div>
+                            </div>
+                            <div class=" am-u-lg-4">
+                                <div class="am-form-group am-form-group-lg am-form-group-success">
+                                    <label for="doc-ipt-ExoressNumber-1">数量</label>
+                                    @Html.EditorFor(d => d.DonoteTotal, new { @class = "am-form-field", placeholder = "输入您捐赠的总数" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="am-form-group am-form-group-lg am-form-group-success">
+                            <label for="doc-ta-1">捐赠详细内容</label>
+                            @Html.TextAreaFor(d => d.DonateContent, new { rows = "5", id = "doc-ta-1", placeholder = "请输入捐赠的详细内容 如：寒之朝多肉 *1 ..." })
+                        </div>
+                        <div class="am-g">
+                            <div class="am-u-lg-6">
+                                <i>请保管好快递单哦，以备后续查询</i>
+                                <input id="DonateResult" type="hidden" value="" />
+                            </div>
+                            <div class=" am-u-lg-6">
+                                <button type="submit" id="DonateSubmitBtn" class="am-btn am-btn-success am-btn-lg am-btn-block"><i class="am-icon-check"></i> 填好了，马上捐赠</button>
+                            </div>
+                        </div>
+                    }
+                </main>
+                <footer class="am-panel-footer">用户专区</footer>
+            </section>
+        </div>
+    </div>
+</div>
+@section Foot{
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+<script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+<script src="~/Scripts/zeroModal.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $('#DonateSubmitBtn').click(function () {
+                setTimeout(function () {
+                    var result = $('#DonateResult').text();
+                    if(result=="1"){
+                        _success('捐赠成功，您小小的一份爱能让世界更美好❤');
+                        location.reload(false);
+                    }
+                    else {
+                        _error('抱歉，系统出错...麻烦您稍后再试');
+                    }
+                }, 1000);
+            });
+
+            $('#GoDonateBtn').click(function () {
+                $('.AddDonateBox').css('display','block');
+                $('html,body').animate({
+                    scrollTop: $('.AddDonateBox').offset().top-200
+                },1000);
+            });
+
+            //成功弹窗
+            function _success(msg) {
+                zeroModal.success(msg);
+            }
+
+            //失败弹窗
+            function _error(msg) {
+                zeroModal.error(msg);
+            }
+        });
+    </script>
+}

@@ -1,0 +1,367 @@
+﻿@model IEnumerable<Model.Entries>
+@using Model;
+@using BLL;
+@{
+    ViewBag.Title = "AttendPhotoActivity";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section head{
+<link type="image/x-icon" href="~/images/多肉项目Logo.png" rel="icon" />
+<link href="~/Content/zeroModal.css" rel="stylesheet" />
+<link href="~/Content/dropify.min.css" rel="stylesheet" />
+<link href="~/Content/AttendActivity.css" rel="stylesheet" />
+<link href="~/Content/magnific-popup.min.css" rel="stylesheet" />
+<link href="~/Content/Overlay.css" rel="stylesheet" />
+}
+
+<div class="head_part">
+    <div class="white_box">
+        <button class="attendBtn"></button>
+        <h5>上传作品</h5>
+        <div class="act_title">
+            <p>
+                @{
+                    Activity act=ActivityManager.GetActivity(int.Parse( Request.QueryString["actID"].ToString()));
+                 }
+                @act.ActivityName
+            </p>
+        </div>
+    </div>
+</div>
+@using (Html.BeginForm("UploadPortfolio", "SucculentActivity", FormMethod.Post, new { id = "form1", enctype = "multipart/form-data" }))
+{
+<div class="Upload_Box">
+    <input type="hidden" name="actID" value='@Request.QueryString["actID"]' />
+    <div class="Upload_img">
+         <input type="file" name="filePortfolio" id="input-file-now-custom-2-disable-remove" class="dropify-fr" data-default-file="" data-height="85%" />
+    </div>
+    <div class="Upload_txt">
+        <p>
+            <b>作品建议：</b><br /><i>1.建议上传320x320px的作品</i>
+        </p>
+        <br/>
+        <label>作品标题</label>
+        @Html.TextBox("TextDescription", "", new { @class = "form-control required", placeholder = "给作品取个名字吧~10字以内哦" })
+        <p id="errorMsg" style="visibility:hidden;text-align:center;margin-top:15px;color:red;"></p>
+        <button type="submit" class="btn btn-success btn-lg disabled btn_Publish">立即发表</button>
+    </div>
+</div>
+}
+
+<div class="act_container">
+    <div class="portfolio_line">
+        <hr />
+        <a>参赛作品</a>
+    </div>
+
+
+    @{ int icount = 1; }
+    @foreach (var item in Model)
+    {
+        if (icount > 6)
+        {
+            icount = 1;
+        }
+        if (icount == 1)
+        {
+            @:<div class="portfolio_rows magnificPopup__Box">
+            @:   <a data-effect='mfp-3d-flip' href='@item.Image'>
+            @:   <div class="img_box">
+            @:        <img  class='img-responsive' src="@item.Image" />
+            @:   </div>
+            @:   </a>
+            @:   <div class="img_box">
+            @:     <div class="portfolio_info">
+            @:       <div class="info_one">
+            @:         <div class="publish_time_one">
+            @:           <p>@item.JoinTime.ToString("yyyy年MM月dd日")</p>
+            @:         </div>
+            @:        <h4>@item.TextDescription</h4>
+            @:        <h5>来自 <a href="#">@item.Users.UserName</a></h5>
+            @:         <span class="like_it"></span>
+            @:       </div>
+            @:      <div class="arrow_one"></div>
+
+        }
+        else if (icount == 2)
+        {
+            @:<div class="arrow_two"></div>
+            @:<div class="info_two">
+            @:  <div class="publish_time_two">
+            @:    <p>@item.JoinTime.ToString("yyyy年MM月dd日")</p>
+            @:  </div>
+            @:  <h4>@item.TextDescription</h4>
+            @:  <h5>来自 <a href="#">@item.Users.UserName</a></h5>
+            @:  <span class="like_it"></span>
+            @:  </div>
+            @: </div>
+            @: </div>
+            @: <a data-effect='mfp-zoom-in' href='@item.Image'>
+            @: <div class="img_box magnificPopup__Box">
+            @:   <img src="@item.Image" />
+            @: </div>
+            @: </a>
+        }
+        else if (icount == 3)
+        {
+            @:<div class="img_box">
+            @:  <a data-effect='mfp-horizontal-in-out' href='@item.Image'>
+            @:   <img src="@item.Image" />
+            @:  </a>
+            @: <div class="simple_info">
+            @:  <b>@item.TextDescription</b><br />
+            @:  <i>@item.JoinTime.ToString("yyyy年MM月dd日")</i>
+            @:  <span class="like_it"></span>
+            @: </div>
+            @: </div>
+            @:</div>
+        }
+        else if (icount == 4)
+        {
+           @: <div class="portfolio_rows">
+           @:     <div class="img_box magnificPopup__Box">
+           @:      <a data-effect='mfp-zoom-in' href='@item.Image'>
+           @:      <img src="@item.Image" />
+           @:      </a>
+           @:         <div class="simple_info">
+           @:            <b>@item.TextDescription</b>
+           @:            <br />
+           @:            <i>@item.JoinTime.ToString("yyyy年MM月dd日")</i>
+           @:             <span class="like_it"></span>
+           @:         </div>
+           @:     </div>
+        }
+        else if (icount == 5)
+        {
+             @:<div class="img_box magnificPopup__Box">
+             @:<a data-effect='mfp-3d-flip' href='@item.Image'>
+             @:   <img src="@item.Image" />
+             @:</a>
+             @: </div>
+             @:   <div class="img_box">
+             @:       <div class="portfolio_info">
+             @:           <div class="info_one">
+             @:               <div class="publish_time_one">
+             @:                   <p>@item.JoinTime.ToString("yyyy年MM月dd日")</p>
+             @:               </div>
+             @:               <h4>@item.TextDescription</h4>
+             @:               <h5>来自 <a href="#">@item.Users.UserName</a></h5>
+             @:              <span class="like_it"></span>
+             @:           </div>
+             @:           <div class="arrow_one"></div>
+        }
+        else if (icount == 6)
+        {
+             @:<div class="arrow_two"></div>
+             @:       <div class="info_two">
+             @:           <div class="publish_time_two">
+             @:             <p>@item.JoinTime.ToString("yyyy年MM月dd日")</p>
+             @:       </div>
+             @:       <h4>@item.TextDescription</h4>
+             @:       <h5>来自 <a href="#">@item.Users.UserName</a></h5>
+             @:       <span class="like_it"></span>
+             @:       </div>
+             @:  </div>
+             @: </div>
+             @:<div class="img_box magnificPopup__Box">
+             @:<a data-effect='mfp-vertical-topIn-bottomOut' href='@item.Image'>
+             @:   <img src="@item.Image" />
+             @:</a>
+             @:</div>
+             @:</div>
+        }
+
+        icount++;
+        continue;
+    }
+    
+ </div>
+
+@*<input type="hidden" id="trigger-overlay" />
+@{Html.RenderAction("OverlayLogin", "SucculentActivity");}*@
+@*登录遮罩*@
+<div class="overlay overlay-contentscale">
+    <button type="button" class="overlay-close">Close</button>
+    <nav>
+        <div class="Overlay_Login">
+            @using (Ajax.BeginForm("AjaxLogin", "User", new AjaxOptions { HttpMethod = "POST", UpdateTargetId = "LoginResult", InsertionMode = InsertionMode.Replace }))
+            {
+                @Html.ValidationSummary("", new { style = "color:red;" });
+                <div class="row">
+                    <div class="col-lg-12">
+                        <img src="~/images/多肉项目Logo.png" width="60" height="60" />
+                    </div>
+                </div>
+                <br />
+                <div class="row">
+                    <div class="col-lg-12">
+                        <input type="text" class="form-control" name="UserName" placeholder="邮箱/用户名/手机号" />
+                    </div>
+                </div>
+                <br />
+                <div class="row">
+                    <div class="col-lg-12 ">
+                        <input type="text" class="form-control" name="Password" placeholder="密码" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <input type="submit" class="btn btn-success btn-lg overlay_btn" value="登录" />
+                    </div>
+                </div>
+                <br />
+                <label id="LoginResult"></label>
+            }
+
+            <div class="overlay_forget_register">
+                <a href="@Url.Action("ForgetPassword","User")"><span>忘记密码</span></a>
+                <a href='@Url.Action("Register", "User")'><span>注册账号</span></a>
+            </div>
+        </div>
+    </nav>
+</div>
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+<script src="~/Scripts/dropify.min.js"></script>
+<script src="~/Scripts/zeroModal.js"></script>
+<script src="~/Scripts/jquery.magnific-popup.js"></script>
+<script src="~/Scripts/classie.js"></script>
+<script src="~/Scripts/Overlay.js"></script>
+<script>
+    $(document).ready(function () {
+
+        // Basic
+        $('.dropify').dropify();
+
+        // Translated
+        $('.dropify-fr').dropify({
+            messages: {
+                'default': '<b>请上传活动封面图</b><br>点击或拖拽文件到这里',
+                'replace': '点击或拖拽文件到这里来替换文件',
+                'remove':  '移除文件',
+                'error':   '对不起，你上传的文件太大了'
+            }
+        });
+
+        // Used events
+        var drEvent = $('.dropify-event').dropify();
+
+        drEvent.on('dropify.beforeClear', function(event, element){
+        return confirm("Do you really want to delete \"" + element.filename + "\" ?");
+    });
+
+    drEvent.on('dropify.afterClear', function(event, element){
+        alert('File deleted');
+    });
+
+        $('.attendBtn').click(function () {
+            $.ajax({
+            url: '@Url.Action("IsPublish","SucculentActivity")',
+                type: 'POST',
+                data:{ actid:@Request.QueryString["actID"]},
+                success:function(msg){
+                if(msg=='0'){
+                        $('.Upload_Box').css('display', 'block');
+                        $('html, body').animate({
+                        scrollTop: $(".Upload_Box").offset().top-100
+                        }, 1000);
+                }
+                else if(msg=='2'){
+                    overlayLogin();
+                }
+                else{
+                    _error('您已经发表过作品了，去欣赏下他人的作品吧~');
+                }
+            }
+        });
+    });
+
+        $('#TextDescription').blur(function () {
+        var txt = $('#TextDescription').val();
+        if (txt.length > 10) {
+                $('#errorMsg').text("名字不可以超过10字符哦~").css({ 'visibility': 'visible', 'color': 'red' });
+                $('.btn_Publish').addClass('disabled')
+            }
+        else if (txt.length <= 0 || txt == '') {
+                $('#errorMsg').text("名字不可以为空哦~").css({ 'visibility': 'visible', 'color': 'red' });
+                $('.btn_Publish').addClass('disabled')
+            }
+        else {
+                $('#errorMsg').css({ 'visibility': 'hidden' })
+                $('.btn_Publish').removeClass('disabled')
+            }
+    });
+
+    //成功弹窗
+    function _success(msg) {
+        zeroModal.success(msg);
+    }
+
+    //失败弹窗
+    function _error(msg) {
+        zeroModal.error(msg);
+    }
+
+    function _loading(type) {
+        zeroModal.loading(type);
+    }
+    });
+</script>
+<script type="text/javascript">
+    //图片查看器JS
+	if (/iP(hone|od|ad)/.test(navigator.platform)) {
+		$('*').css({
+			"cursor": "pointer"
+		});
+	}
+	$('.preloader').delay(0).fadeOut(600);
+	$(document).ready(function () {
+		$('.magnificPopup__Box').magnificPopup({
+			delegate: 'a',
+			type: 'image',
+			removalDelay: 300,
+			callbacks: {
+				beforeOpen: function () {
+					this.st.image.markup = this.st.image.markup.replace('mfp-figure', 'mfp-figure magnificPopup__Animus');
+					this.st.mainClass = this.st.el.attr('data-effect');
+				}
+			},
+			closeOnContentClick: true,
+			midClick: true
+		})
+	});
+</script>
+<script>
+
+    function overlayLogin() {//遮罩登录事件执行JS
+        var evt = document.createEvent("MouseEvents");
+        evt.initEvent("click", true, true);
+        document.getElementById("trigger-overlay").dispatchEvent(evt);
+    }
+
+    //遮罩登录JS开始
+    $('.overlay_btn').click(function () {
+        $('.overlay_btn').val('正在登录，请稍后..');
+        setInterval(function () {
+            var lbl = $('label').text();
+            $('.overlay_btn').attr('disabled', 'disabled');
+            var container = document.querySelector('div.container');
+            var overlay = document.querySelector('div.overlay');
+            if (lbl == "登录成功！") {
+                $('.Act_UserLogin').addClass('PreLogin');
+                $('.Act_UserInfo').removeClass('PreLogin').addClass('Logined');
+                classie.remove(overlay, 'open');
+                classie.remove(container, 'overlay-open');
+                location.reload(false);
+            }
+            else {
+                $('.overlay_btn').val('登录').removeAttr("disabled");
+            }
+        }, 1000);
+
+    });
+    //遮罩登录JS结束
+</script>

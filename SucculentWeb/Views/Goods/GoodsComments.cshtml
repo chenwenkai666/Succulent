@@ -1,0 +1,184 @@
+﻿@model IEnumerable<Model.GoodsComments>
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>GoodsComments</title>
+    <style>
+        .tabBlock-pane:last-child .PL-box{
+    height:120px;
+    width:96%;
+    margin:20px auto;
+}
+.PL-box .pinglun{
+    height:30px;
+    width:100%;
+    font-family:'Microsoft Himalaya';
+    font-size:25px;
+    font-weight:100;
+}
+.PL-box .PL-neirong{
+    width:100%;
+    height:80px;
+    margin-top:10px;
+}
+    .PL-box .PL-neirong .PL-icon {
+        width: 80px;
+        height: 80px;
+        float: left;
+        margin-left: 0px;
+    }
+    .PL-icon img{
+        width:100%;
+        height:100%;
+        background-size:cover;
+    }
+.PL-neirong .box{
+    width:520px;
+    height:80px;
+    float:left;
+    margin-left:20px;
+    border:1px solid #c9c9c9;
+}
+.PL-neirong .box textarea{
+    width:520px;
+    height:80px;
+    display:block;
+    line-height:20px;
+    border:none;
+    resize:none;
+}
+.PL-neirong .PL-btn{
+    width:120px;
+    height:80px;
+    border-radius:0 5px 5px 0;
+    float:left;
+    text-align:center;
+    background-color:#c9c9c9;
+}
+ .PL-neirong .PL-btn a{
+    text-decoration:none;
+    line-height:80px;
+    height:80px;
+    width:120px;
+    color:#fff;
+    cursor:pointer;
+    margin:auto auto;
+}
+ .PL-neirong .PL-btn:hover{
+     background-color:#c40000;
+ }
+.tabBlock-pane:last-child  .comments{
+     width:96%;
+     height:20px;
+     font-size:15px;
+     font-family:'Microsoft Himalaya';
+     font-weight:600;
+     margin:0 auto;
+ }
+.tabBlock-pane:last-child ul{
+    width:96%;
+    margin:20px auto;
+}
+.tabBlock-pane:last-child ul li{
+    width:100%;
+    height:100px;
+    margin-top:10px;
+    border-bottom:1px solid #c9c9c9;
+}
+.tabBlock-pane:last-child ul li .user-icon{
+    width:80px;
+    height:80px;
+    float:left;
+    border-radius:50%;
+}
+.tabBlock-pane:last-child ul li .user-icon img{
+    width:100%;
+    height:100%;
+    background-size:cover;
+}
+.tabBlock-pane:last-child ul li .PL-content{
+    width:600px;
+    margin-left:20px;
+    float:left;
+}
+.PL-content p:first-child{
+    height:25px;
+    width:100%;
+    font-family:'Microsoft Himalaya';
+    font-size:20px;
+}
+.PL-content p:nth-child(2){
+    height:25px;
+    width:100%;
+    line-height:25px;
+    font-size:16px;
+    font-family:'Microsoft Himalaya';
+    margin-top:10px;
+}
+.PL-content .huifu{
+    height:25px;
+    margin-top:10px;
+    width:100%;
+}
+.PL-content .huifu s{
+    height:25px;
+    width:500px;
+    line-height:18px;
+    text-decoration:none;
+    color:#c9c9c9;
+    float:left;
+    font-size:16px;
+}
+.PL-content .huifu a{
+    width:40px;
+    margin-right:0px;
+    font-size:20px;
+    color:#3571eb;
+    text-decoration:none;
+    cursor:pointer;
+    float:left;
+}
+    </style>
+</head>
+<body>
+    @using (Html.BeginForm("Comments", "Goods", FormMethod.Post, new { id = "pinglun" }))
+    { 
+    <div class="PL-box">
+        <div class="pinglun">评论</div>
+        <div class="PL-neirong">
+            <div class="PL-icon">
+                <img src="~/images/头像.png" />
+            </div>
+            <div class="box"><textarea class="textarea" name="pingluntextarea"></textarea>  </div>
+            <div class="PL-btn"><a href="javascript:document.getElementById('pinglun').submit()" >发表评论</a></div>
+        </div>
+    </div>
+    }
+    <div class="comments">全部评论</div>
+    <hr style="width:96%;margin:10px auto;" />
+    <ul>
+        @foreach (var p in Model)
+        {          
+        <li>            
+            <div class="user-icon">@*<img src="@p.Users.Photo" />*@ 
+                <img src="~/images/头像.png" /></div>
+            <div class="PL-content">
+                <p>@p.Users.UserName</p>
+                <p>@p.GoodsCommentContent</p>
+                <div class="huifu">
+                    <s>@p.PublishTime</s>
+                    <a>回复</a>
+                </div>
+            </div>
+        </li>
+            }      
+    </ul>
+    
+</body>
+</html>

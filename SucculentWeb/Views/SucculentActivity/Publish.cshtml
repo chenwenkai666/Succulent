@@ -1,0 +1,218 @@
+﻿@model Model.Activity
+@{
+    ViewBag.Title = "Publish";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section head{
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+<script src="~/ueditor/ueditor.config.js"></script>
+<script src="~/ueditor/ueditor.all.js"></script>
+<script src="~/Scripts/dropify.min.js"></script>
+<link href="~/Content/ActivityPublsih.css" rel="stylesheet" />
+<link href="~/Content/dropify.min.css" rel="stylesheet" />
+    }
+<script type="text/javascript">
+    $(function () {
+        $('#UserID').blur(function () {
+            $.ajax({
+                url: '@Url.Action("GetUserName", "SucculentActivity")',
+                data: { UserID: $('#UserID').val() },
+                type: 'POST',
+                success: function (msg) {
+                    $('#CheckUserResult').remove();
+                    $('.GetUserName').append("<span id='CheckUserResult'>确认主办方名称：<b>" + msg + "</b></span>").css({'color': '#00CD00','font-size':'16px'});
+                }
+            });
+        });
+    });
+
+    var editorOption = {
+        initialFrameWidth: 784,
+        initialFrameHeight: 400
+    };
+    var editorDetails = new baidu.editor.ui.Editor(editorOption);
+    editorDetails.render('ActivityDescribe');
+
+    var editorConditions = {
+        initialFrameWidth: 784,
+        initialFrameHeight: 200
+    };
+    var editorConditions = new baidu.editor.ui.Editor(editorConditions);
+    editorConditions.render('AttendConditions');
+</script>
+<div class="publish_wrap">
+    @using (Html.BeginForm("Publish", "SucculentActivity", FormMethod.Post,new { enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
+        
+        <div class="publish_txt">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="col-lg-6">
+                        <div class="input-group input-group-lg">
+                            <span class="input-group-addon" id="basic-addon1">主办编号</span>
+                            @Html.TextBoxFor(act=>act.UserID, new { @class="form-control",placeholder="请输入主办方用户编号"})
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="input-group input-group-lg">
+                            <span class="input-group-addon" id="basic-addon1">活动类别</span>
+                            @Html.DropDownList("ActivityCategory",ViewBag.ActivityCategory as SelectList,new { @class = "form-control", placeholder = "请选择活动类别" })
+                            @Html.ValidationMessageFor(act => act.ActivityCategoryID, "", new { style = "color:	#EE0000" })
+                          </div>
+                    </div>
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="col-lg-6 GetUserName">
+                        @Html.ValidationMessageFor(act => act.UserID, "", new { style = "color:	#EE0000" })
+                    </div>
+                </div>
+            </div>
+
+            <br />
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="col-lg-6">
+                        <div class="input-group input-group-lg">
+                            <span class="input-group-addon" id="basic-addon1">开始时间</span>
+                           @Html.EditorFor(act => act.StartTime, new { htmlAttributes = new { @class = "form-control", placeholder = "请输入开始时间" } })
+                          </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="input-group input-group-lg">
+                            <span class="input-group-addon" id="basic-addon1">结束时间</span>
+                            @Html.EditorFor(act => act.EndTime, new { htmlAttributes = new { @class = "form-control", placeholder = "请输入结束时间" } } )
+                    </div>
+                </div>
+            </div>
+          </div>
+            <br />
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="col-lg-6">
+                            @Html.ValidationMessageFor(act => act.StartTime, "", new { style = "color:	#EE0000" })
+                    </div>
+                    <div class="col-lg-6">
+                            @Html.ValidationMessageFor(act => act.EndTime, "", new { style = "color:	#EE0000" })
+                    </div>
+                </div>
+            </div>
+
+            <br />
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="input-group input-group-lg">
+                        <span class="input-group-addon" id="basic-addon1">活动名称</span>
+                        @Html.TextBoxFor(act => act.ActivityName, new { @class = "form-control", placeholder = "请输入活动名称" })
+                    </div>
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-lg-12">
+                        @Html.ValidationMessageFor(act => act.ActivityName, "", new { style = "color:	#EE0000" })
+                </div>
+            </div>
+
+            <br />
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="input-group input-group-lg">
+                        <span class="input-group-addon" id="basic-addon1">活动地点</span>
+                        @Html.TextBoxFor(act => act.ActivityPlace, new { @class = "form-control", placeholder = "请输入活动地点" })
+                    </div>
+                </div>
+            </div>
+
+            <br />
+            <div class="row">
+                <div class="col-lg-12">
+                        @Html.ValidationMessageFor(act => act.ActivityPlace, "", new { style = "color:	#EE0000" })
+                </div>
+            </div>
+
+            <br />
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="input-group input-group-lg">
+                        <span class="input-group-addon" id="basic-addon1">参赛等级</span>
+                        @Html.TextBoxFor(act => act.LevelRequest, new { @class = "form-control", placeholder = "请输入参赛等级要求(0-100)" })
+                    </div>
+                </div>
+            </div>
+
+            <br />
+            <div class="row">
+                <div class="col-lg-12">
+                    @Html.ValidationMessageFor(act => act.LevelRequest, "", new { style = "color:	#EE0000" })
+                </div>
+            </div>
+
+                <br />
+                <div class="row">
+                    <div class="col-lg-12">
+                        <input type="file" name="file" id="input-file-french-1" class="dropify-fr" data-default-file="" />
+                    </div>
+                </div>
+
+                <br />
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="input-group input-group-lg">
+                            <span class="input-group-addon" id="basic-addon1">参赛条件</span>
+                            @Html.TextAreaFor(act => act.AttendConditions, new { @class = "form-control", placeholder = "请输入参赛条件" })
+                        </div>
+                    </div>
+                </div>
+
+                <br />
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="input-group input-group-lg">
+                            <span class="input-group-addon" id="basic-addon1">活动详情</span>
+                            @Html.TextAreaFor(act => act.ActivityDescribe, new { @class = "form-control", placeholder = "请输入活动详情" })
+                            @Html.ValidationMessageFor(act => act.ActivityDescribe, "", new { style = "color:	#EE0000" })
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <input type="submit" class="btn btn-success btn-lg" value="立即发布" />
+                    </div>
+                </div>
+            </div>
+    }
+  </div>
+<script>
+            $(document).ready(function(){
+                // Basic
+                $('.dropify').dropify();
+
+                // Translated
+                $('.dropify-fr').dropify({
+                    messages: {
+                        'default': '<b>请上传活动封面图</b><br>点击或拖拽文件到这里',
+			        'replace': '点击或拖拽文件到这里来替换文件',
+			        'remove':  '移除文件',
+			        'error':   '对不起，你上传的文件太大了'
+                    }
+                });
+
+                // Used events
+                var drEvent = $('.dropify-event').dropify();
+
+                drEvent.on('dropify.beforeClear', function(event, element){
+                    return confirm("Do you really want to delete \"" + element.filename + "\" ?");
+                });
+
+                drEvent.on('dropify.afterClear', function(event, element){
+                    alert('File deleted');
+                });
+            });
+</script>

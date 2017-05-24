@@ -1,0 +1,143 @@
+﻿@model  SucculentWeb.ViewModels.AdoptSucculentVM
+@{
+    ViewBag.Title = "AdoptDetail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section head{
+<link href="~/Content/liMarquee.css" rel="stylesheet" />
+<link href="~/Content/CADetail.css" rel="stylesheet" />
+}
+
+<div class="main" style="background:url('../../images/绿草背景.png')">
+
+    <!--头部标题部分开始-->
+
+    <div class="header_part">
+        <div class="act_title">
+            <h1>@Model.Activity.ActivityName</h1>
+        </div>
+        <div class="act_info">
+            <div class="act_holder">
+                <p>
+                    @*主办方：多肉网官方</a>*@
+                    @{
+                        if (Model.Activity.Users.UserFlag == 0)
+                        {
+                            @:主办方：<a href='@Url.Action("AddAdoptSucculentList","SucculentActivity",new { ActID=Model.Activity.ActivityID })' target="_blank">多肉网官方</a>
+                        }
+                        else
+                        {
+                            @:主办方：<a href='@Url.Action("AddAdoptSucculentList","SucculentActivity",new { ActID=Model.Activity.ActivityID })' target="_blank">@Model.Activity.Users.UserName </a>
+                        }
+                    }
+               </p>
+            </div>
+            <div class="act_time">
+                <p>活动时间：@Model.Activity.StartTime.ToString("yyyy年MM月dd日")--@Model.Activity.EndTime.ToString("MM月dd日")</p>
+            </div>
+        </div>
+    </div>
+    <!--头部标题部分结束-->
+
+    <!--领养结果信息滚动开始-->
+    <div class="AdoptResultScrollBox">
+        <div class="AdoptResultList">
+            <ul>
+                @foreach (var item in Model.AdoptResult)
+                {
+                  <li>
+                      恭喜用户：<a href="#">@item.Users.UserName</a>获得 <span><a href='@Url.Action("GoodsDetail","Goods",new { goodsid=item.GoodsID })' target="_blank">@item.Goods.GoodsName</a></span>
+                  </li>
+                }
+                @*<li>
+                    恭喜用户：<a href="#">@@chanshin</a>获得<span>寒之朝多肉</span>
+                </li>
+                <li>
+                    恭喜用户：<a href="#">@@chanshin</a>获得<span>寒之朝多肉</span>
+                </li>
+                <li>
+                    恭喜用户：<a href="#">@@chanshin</a>获得<span>寒之朝多肉</span>
+                </li>
+                <li>
+                    恭喜用户：<a href="#">@@chanshin</a>获得<span>寒之朝多肉</span>
+                </li>
+                <li>
+                    恭喜用户：<a href="#">@@chanshin</a>获得<span>寒之朝多肉</span>
+                </li>*@
+            </ul>
+        </div>
+    </div>
+    <!--领养结果信息滚动结束-->
+
+
+    <!--主题内容开始-->
+
+    <div class="act_content">
+        @Html.Raw(Model.Activity.ActivityDescribe)
+    </div>
+
+    <div class="diliver_Succulent" style="width:80%;margin:0 auto;text-align:center;">
+        <img src="~/images/Activity/可领养多肉分割线.png" style="margin:0 auto;"/>
+    </div>
+
+    <div class="AdpotSucculentBox">
+        @foreach (var item in Model.AdoptList)
+        {
+            <div class="AdoptSucculentItem">
+                <a href="@Url.Action("GoodsDetail","Goods",new { goodid=item.GoodsID })" target="_blank">
+                    <div class="btn_Adopt">
+                    </div>
+                </a>
+                <div class="SucculentOverlay">
+                    <div class="SucculentInfo">
+                        <h3>@item.Goods.GoodsName</h3>
+                        <p>@item.Goods.Shops.ShopName 支持</p>
+                    </div>
+                    <img src="@item.Goods.GoodsPhoto" />
+                </div>
+            </div>
+        }
+    </div>      
+        
+        @*<div class="AdoptSucculentItem">
+            <a href="#">
+                <div class="btn_Adopt">
+                </div>
+            </a>
+            <img src="~/images/24.jpg" />
+        </div>
+
+        <div class="AdoptSucculentItem">
+            <a href="#">
+                <div class="btn_Adopt">
+                </div>
+            </a>
+            <img src="~/images/24.jpg" />
+        </div>
+
+        <div class="AdoptSucculentItem">
+            <a href="#">
+                <div class="btn_Adopt">
+                </div>
+            </a>
+            <img src="~/images/24.jpg" />
+        </div>*@
+    
+
+    <div style="width:80%;margin:0 auto;">
+        <img src="~/images/Activity/领养活动底部.png" />
+    </div>
+    <!--主题内容结束-->
+
+</div>
+@section Foot{
+<script src="~/Scripts/jquery.liMarquee.js"></script>
+<script>
+$(function(){
+    $('.AdoptResultList').liMarquee({
+		direction: 'up'
+	});
+});
+</script>
+}

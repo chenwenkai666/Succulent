@@ -35,7 +35,7 @@ namespace DAL
             return result;
         }
 
-        public Users GetUser(string UserName)
+        public Users GetUserByName(string UserName)
         {
             Users users = (from u in db.Users
                            where u.UserName == UserName
@@ -49,6 +49,34 @@ namespace DAL
             db.Entry(users).State = EntityState.Modified;
             db.SaveChanges();
             db.Configuration.ValidateOnSaveEnabled = true;
+        }
+        public int AjaxLogin(string UserName, string Password)
+        {
+            var users = from u in db.Users
+                        where u.UserName == UserName && u.Password == Password
+                        select u;
+            return users.Count();
+        }
+
+        public int GetUserLevel(string UserName)
+        {
+            try
+            {
+                Pots pot = db.Pots.Include("Users").Where(u => u.Users.UserName == UserName).FirstOrDefault();
+                int level = pot.LevelID;
+                return level;
+            }
+            catch
+            {
+                return 0;
+            }
+        }
+        public Users GetUserByID(int UserID)
+        {
+            Users users = (from u in db.Users
+                           where u.UserID == UserID
+                           select u).FirstOrDefault();
+            return users;
         }
     }
 }

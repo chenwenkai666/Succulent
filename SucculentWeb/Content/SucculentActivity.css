@@ -1,0 +1,201 @@
+body {
+    background:url('../images/162.jpg') no-repeat;
+    background-size: 100% 900px;
+    min-width: 1300px;
+}
+*, *::after, *::before {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+a{
+    text-decoration: none;
+}
+
+.main{
+    background: #fff;
+    width: 80%;
+    margin:400px auto 0;
+    overflow: hidden;
+}
+.main .header_box{
+    width: 85%;
+    height: 80px;
+    margin:30px auto 0px ;
+}
+.main .header_box .title_icon{
+    float: left;
+    width: 50%;
+    height: 40px;
+}
+.main .header_box .title_icon img{
+    float: left;
+    line-height: 40px;
+    margin-top: 5px;
+}
+.main .header_box .title_icon span{
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 40px;
+    margin-left: 15px;
+    vertical-align: center;
+}
+.main .header_box .position{
+    float: left;
+    width: 50%;
+    height: 40px;
+}
+.main .header_box .user_info{
+    clear: both;
+    font-size: 14px;
+    padding-top: 15px;
+}
+.main .header_box .position span{
+    line-height: 40px;
+    font-size: 14px;
+    float: right;
+}
+.Pager{
+    width: 100%;
+    height: 50px;
+    margin: 10px auto;
+    text-align:center;
+}
+ .Pager input{
+    text-align:center;
+}
+#container {
+    width: 85%;
+    margin: 30px auto;
+}
+#container li{
+    width: 150px;
+    text-align: center;
+}
+#container .act_none{
+    width: 100px;
+    margin: 0 auto;
+    font-size: 14px;
+    color: red;
+}
+#container .acivitites{
+    display: inline-block;
+    position: relative;
+    width: 30%;
+    height: 300px;
+    margin: 20px 13px;
+    vertical-align:middle;
+    border: 1px solid rgba(207,207,207,1);
+}
+#container .over_act{  /*“已结束”活动灰色样式*/
+    -webkit-filter: grayscale(100%);
+    -moz-filter: grayscale(100%);
+    -ms-filter: grayscale(100%);
+    -o-filter: grayscale(100%);
+    filter: grayscale(100%);
+    filter: gray;
+}
+#container .acivitites .act_ing{ /*"进行中"标签*/
+    float: left;
+    position: absolute;
+    width: 60px;
+    height: 150px;
+    margin-left:91%;
+    margin-top:-5%;
+    background:url('../images/Sprites/tag2.png') no-repeat;
+    background-position: -5px 0px;
+    background-size: 200px 200px;
+}
+#container .acivitites .act_ed{  /*"已结束"标签*/
+    float: left;
+    position: absolute;
+    width: 60px;
+    height: 150px;
+    margin-left:91%;
+    margin-top:-5%;
+    background:url('../images/Sprites/tag2.png') no-repeat;
+    background-position: -75px 0px;
+    background-size: 200px 200px;
+}
+#container .acivitites .act_pre{  /*"即将开始"标签*/
+    float: left;
+    position: absolute;
+    width: 60px;
+    height: 150px;
+    margin-left:91%;
+    margin-top:-5%;
+    background:url('../images/Sprites/tag2.png') no-repeat;
+    background-position: -146px 0px;
+    background-size: 200px 200px;
+}
+#container .acivitites .act_img{
+    width: 100%;
+    height: 60%;
+    background-color: pink;
+}
+#container .acivitites .act_title{
+    width: 90%;
+    height: 15%;
+    margin:10px auto;
+}
+#container .acivitites .act_title p{
+    line-height: 50px;
+    color:#008B45;
+}
+#container .acivitites hr{
+    width: 90%;
+    margin:0 auto;
+    font-weight: 100;
+    border-top:1px solid rgba(207,207,207,0.3);
+}
+#container .acivitites .act_time{
+    width: 90%;
+    height: 15%;
+    margin:5px auto;
+}
+#container .acivitites .act_time p{
+    font-size: 14px;
+}
+@media only screen and (max-width: 768px) {
+    #container {
+    width: 90%;
+    margin: 0 auto;
+  }
+}
+
+.PreLogin{
+    display:none;
+}
+.Logined{
+    display:normal;
+}
+
+/*活动详情页*/
+.Act_Details {
+    display: block;
+    /*background: url('../images/Activity/11.jpg') no-repeat;
+    background-size: 100% 100%;*/
+    width: 100%;
+    height: auto;
+    /*margin-top:8%;*/
+    background-color:#fff;
+}
+.Act_Details img{
+    width:100%;
+    height:100%;
+}
+.Act_btn{
+    float:left;
+    position:absolute;
+    overflow:hidden;
+    margin-top:-10%;
+    margin-left:5%;
+    width:100%;
+    height:200px;
+}
+.row i{
+    position:absolute;
+    margin-top:2%;
+    margin-left:45%;
+    color:orange;
+}

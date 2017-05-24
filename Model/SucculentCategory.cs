@@ -22,7 +22,6 @@ namespace Model
     
         public int SucculentCategoryID { get; set; }
         public string SucculentCategoryName { get; set; }
-        public string SucculentCategoryDescribe { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Succulent> Succulent { get; set; }

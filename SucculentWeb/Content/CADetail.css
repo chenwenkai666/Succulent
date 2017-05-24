@@ -1,0 +1,395 @@
+﻿/*慈善、领养活动样式*/
+@charset 'utf-8';
+
+body{
+    min-width:1300px;
+}
+
+area{outline: none}
+/*页面主容器*/
+.main{ 
+    width:100%;
+    height:auto;
+    margin:90px auto 0;
+    /*background-color:red;*/
+    background:url('../images/淡黄色的纸张.jpg');
+}
+
+.AdpotSucculentBox img{
+    width:100%;
+    height:100%;
+}
+
+/*头部部分*/
+.header_part{
+    width:80%;
+    height:auto;
+    margin:0 auto;
+}
+/*标题框*/
+.header_part .act_title{
+    width:100%;
+    height:80px;
+    border-bottom:1px solid #32a012;
+}
+.header_part .act_title h1{
+    text-align:center;
+    line-height:80px;
+}
+/*主办方、活动时间容器*/
+.header_part .act_info{
+    width:100%;
+    height:40px;
+    margin:0 auto;
+    /*background-color:antiquewhite;*/
+}
+/*主办方框*/
+.header_part .act_info .act_holder{
+    width:40%;
+    height:100%;
+    float:left;
+    /*background-color:aqua;*/
+}
+/*活动时间框*/
+.header_part .act_info .act_time{
+    width:50%;
+    height:100%;
+    margin-left:9%;
+        float:left;
+
+    /*background-color:blueviolet;*/
+}
+.header_part .act_info p{
+    text-align:center;
+    font-size:18px;
+    line-height:40px;
+}
+.header_part .act_info .act_holder p{
+    text-align:right;
+}
+/*活动主题内容*/
+.act_content{
+    clear:both;
+    width:100%;
+    height:auto;
+    margin:2% auto 0;
+    text-align:center;
+}
+
+/*领养滚动框*/
+.main .AdoptResultScrollBox{
+    width:80%;
+    height:200px;
+    margin:0 auto;
+    background-color:rgba(250,250,250,0.4);
+    border-left:5px solid rgba(0,205,0,0.5);
+}
+.main .AdpotSucculentBox .AdoptResultList{
+    width:100%;
+    height:100%;
+    overflow:hidden;
+}
+.main .AdpotSucculentBox .AdoptResultList li{
+    background-color:red;
+}
+.main .AdpotSucculentBox .AdoptResultList a{
+    color:red;
+    font-size:30px;
+}
+
+/*领养活动样式*/
+.AdpotSucculentBox{
+    width:80%;
+    height:auto;
+    margin:0 auto;
+    overflow:hidden;
+}
+.AdpotSucculentBox .AdoptSucculentItem{
+    position:relative;
+    width:30%;
+    height:300px;
+    margin-left:2%;
+    margin-top:6%;
+    float:left;
+    background-color:#fff;
+}
+.AdpotSucculentBox .AdoptSucculentItem .SucculentOverlay{
+    position:absolute;
+    float:left;
+    width:100%;
+    height:100%;
+    overflow:hidden;
+}
+.AdpotSucculentBox .AdoptSucculentItem .SucculentOverlay .SucculentInfo{
+    position:absolute;
+    float:left;
+    width:100%;
+    height:100%;
+    margin-top:-100%;
+    z-index:99;
+}
+.AdpotSucculentBox .AdoptSucculentItem .SucculentOverlay .SucculentInfo p{
+    text-align:center;
+    font-size:20px;
+    color:#32a012;
+    padding-top:10%;
+}
+.AdpotSucculentBox .AdoptSucculentItem .SucculentOverlay .SucculentInfo h3{
+    margin-top:30%;
+    color:#32a012;
+    text-align:center;
+}
+.AdpotSucculentBox .AdoptSucculentItem .SucculentOverlay:hover .SucculentInfo{
+    margin-top:0%;
+    cursor:default;
+}
+
+.AdpotSucculentBox .AdoptSucculentItem .SucculentOverlay:hover img{
+    opacity:0.3;
+}
+
+.AdpotSucculentBox .AdoptSucculentItem img{
+    transform:scale(0.95);
+    transition:all ease-in 0.5s;
+}
+.AdpotSucculentBox .AdoptSucculentItem img:hover{
+    transform:scale(0.98);
+    transition:all ease-out 0.5s;
+    color:rgba(205,205,205,0.8);
+}
+.AdpotSucculentBox .AdoptSucculentItem .btn_Adopt{
+    position:absolute;
+    float:left;
+    width:62%;
+    height:35%;
+    margin-top:-19%;
+    margin-left:20%;
+    background:url('../images/Activity/领养按钮2.png') no-repeat;
+    z-index:100;
+    /*background-size:60% 60%;*/
+}
+
+/*商家新增可领养多肉列表样式*/
+.AdpotMain{
+    width:100%;
+    margin:90px auto 0;
+}
+.AdpotMain a:hover{
+    text-decoration:none;
+}
+.AdpotMain .AdoptActTitle{
+    width:100%;
+    height:auto;
+    margin-bottom:2%;
+    /*background-color:antiquewhite;*/
+    background:url('../images/Activity/可领养多肉列表头部.jpg');
+}
+.AdpotMain .AdoptActTitle .ShopLogo{
+    width:120px;
+    height:120px;
+    margin:0 auto;
+    text-align:center;
+    border-radius:50%;
+    box-shadow:rgba(0,0,0,0.4) 15px 15px unset;
+    overflow:hidden;
+}
+.AdpotMain .AdoptActTitle .ShopLogo img{
+    width:100%;
+    height:100%;
+}
+.AdpotMain .AdoptActTitle h1{
+    font-size:40px;
+    font-family:'隶书';
+    color:rgba(0,205,0,0.8);
+    text-align:center; 
+}
+.AdpotMain .AdoptActTitle h3{
+    font-size:20px;
+    font-family:'隶书';
+    /*color:rgba(0,205,0,0.5);*/
+    text-align:center; 
+    margin:0;
+    padding-top:10px;
+    padding-bottom:20px;
+}
+.AdpotMain .AdoptListBox{
+    width:100%;
+    height:auto;
+}
+.AdpotMain .AdoptListBox #form-card{
+    width:100%;
+    height:auto;
+    background-color:rgba(229,255,229,0.8);
+}
+.AdpotMain .AdoptListBox #form-card .AdoptListBtn{
+    text-align:center;
+    width:20%;
+    margin:0 auto;
+}
+#card-goods{ 
+    position:relative; 
+    padding-top:25px;
+    margin:0 auto; 
+    /*border:1px solid rgba(0,205,0,0.5);*/
+    
+}
+/*goods-list*/
+#goods{  
+    width:80%;
+    height:auto;
+    margin:20px auto 0;
+    background-color:red;
+}
+
+#goods .goods-list{
+    width:30%; 
+    height:350px; 
+    float:left;
+    margin-left:3%;
+    margin-bottom:3%;
+    overflow:hidden;
+}
+.goods-list .child{
+    width:80%;
+    height:80%;
+    margin:0 auto;
+}
+.goods-list .child .goods-img{
+    width:100%;
+    height:100%;
+}
+.goods-list .child .goods-img img{
+    width:100%;
+    height:100%;
+}
+.goods-list .child .goods-info{
+    width:95%;
+    height:20px;
+    margin:0 auto; 
+    text-align:center;
+}
+.goods-list .child .goods-info input{
+    margin-top:10%;
+}
+.goods-list .child .goods-add{
+    height:30px;
+    text-align:center;
+    margin-top:3%;
+    margin-left:33%;
+}
+
+
+/*goods-list*/
+/*.goods-list{ 
+    width:30%; 
+    height:250px; 
+    float:left;
+    display:inline; 
+    margin-right:32px;
+}
+.goods-list .child{ 
+    width:100%;
+}
+.goods-list .goods-name{
+    background:url(../images/bg_ico.gif) no-repeat 4px 8px;
+    font-size:14px;
+    padding-left:45px;
+    height:30px;
+    line-height:30px;
+    font-weight:bold; 
+    margin-bottom:6px;
+}
+.goods-list .goods-img{
+    float:left;
+    width:50%;
+    height:150px;
+    overflow:hidden;
+    text-align:center; 
+    display:inline; 
+    margin-left:12px;
+}
+.goods-list .goods-img img{ 
+    width:100%; 
+    height:100%; 
+    display:block;
+}
+.goods-list .goods-info{
+    margin-top:10%;
+    width:105px; 
+    height:148px;
+}*/
+/*.goods-note{ overflow:hidden;line-height:15px; height:72px;}
+.goods-note a{color:#555; line-height:18px;}
+.goods-price{
+    width:200px;
+    margin-top:75px;
+}
+.goods-price strong{ 
+    color:#e74291;
+}
+.goods-price strong font{ 
+    font-size:12px;
+}
+.goods-size{padding-top:5px;}
+.goods-list a:hover{color: #30a1d1;}
+.goods-list .goods-params{display:none}
+.goods-add{
+    display:block; 
+    background:url(../images/bg24.gif) no-repeat; 
+    width:100px;
+    height:24px;
+    margin-top:20%;
+    margin-left:15%;
+}
+
+.car{ width:100%; padding-top:10px;}*/
+.card-list{ 
+    width:80%;
+    margin:10px auto 10px; 
+    height:80px;
+    padding-bottom:4px; 
+    overflow:hidden; 
+    background:url(../images/line04.gif) repeat-x left bottom;
+}
+.card-list .child .goods-name{ 
+    background:none;
+}
+.card-list .child{ 
+    width:90%; 
+    float:left;
+    text-align:center;
+}
+.card-list .child .goods-info p{
+    float:left;
+    text-align:center;
+    line-height:70px;
+    width:60%;
+}
+.card-list .child .goods-info input{
+    margin-top:2%;
+    float:left;
+}
+.card-list .goods-img{
+    width:70px;
+    height:70px; 
+    float:left;
+}
+.card-list .goods-img img{
+    border:0;
+    height:70px;
+}
+.card-list .goods-name{font-size:14px; padding-top:10px; width:152px; float:left;}
+.card-list .goods-name a{ color:#000;}
+.card-list .goods-note{height:45px;overflow:hidden;line-height:15px; display:none;}
+.card-list .goods-price{padding-top:10px; float:left; width:372px;}
+.card-list a.goods-add{display:none;}
+.card-list a:hover{text-decoration:none;}
+a.goods-del{
+    display:block;
+    /*background:url(../images/bg21.gif) no-repeat;*/ 
+    width:96px; 
+    margin-top:2%;
+    overflow:hidden; 
+    height:30px;
+    float:left;
+}

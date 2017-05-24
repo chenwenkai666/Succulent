@@ -1,6 +1,7 @@
 ﻿html body, html h1, html h2, html h3, html h4, html h5, html h6, html hr, html p, html blockquote, html dl, html dt, html dd, html ul, html ol, html li, html pre, html form, html fieldset, html legend, html button, html input, html textarea, html th, html td {
   margin: 0;
   padding: 0; }
+
 html body, html button, html input, html select, html textarea {
   font: 12px/1.5tahoma, arial, \5b8b\4f53; }
 html h1, html h2, html h3, html h4, html h5, html h6 {
@@ -43,7 +44,7 @@ html table {
     .head_box #head_wrap #head_nav {
       float: left;
       line-height: 40px;
-      color: #b0b0b0;
+      color: #b0b0b0 ;
       font-size: 12px;
       text-align: center;
       cursor: pointer; }
@@ -112,6 +113,14 @@ html table {
           text-align: center;
           padding: 0 15px;
           cursor: pointer; }
+         #main_head_box #menu_wrap #menu_nav ul li a{
+            color:black;
+            text-decoration:none;
+         }
+          #main_head_box #menu_wrap #menu_nav ul li a:hover
+          {
+              color:#339933;
+          }
     #main_head_box #menu_wrap #find_wrap {
       float: right;
       width: 302px;

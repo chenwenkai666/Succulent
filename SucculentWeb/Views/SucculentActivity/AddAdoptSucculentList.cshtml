@@ -1,0 +1,195 @@
+﻿@model SucculentWeb.ViewModels.AdoptListAddVM
+@{
+    ViewBag.Title = "AddAdoptSucculentList";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section head{
+<link href="~/Content/amazeui.min.css" rel="stylesheet" />
+    <link href="~/Content/CADetail.css" rel="stylesheet" />
+}
+
+<div class="AdpotMain">
+    <div class="AdoptActTitle">
+        <h1>多肉领养活动名单编辑</h1>
+        <div class="ShopLogo">
+            <img src="@Model.Shops.ShopPhoto" />
+        </div>
+        <h3>本届活动赞助商家：<a href="@Url.Action("Shops","Goods",new { ShopID=Model.Shops.ShopID })" target="_blank">@Model.Shops.ShopName</a>，欢迎您</h3>
+    </div>
+    <div class="AdoptListBox">
+        @using (Html.BeginForm("AddAdoptSucculentList", "SucculentActivity", FormMethod.Post, new { id = "form-card", name = "card_form" }))
+        {
+            <div id="card-goods">
+                <div class="card-list" style="height:0px; background:none;"></div>
+            </div>
+                <div class="AdoptListBtn">
+                    <button class="am-btn am-btn-success am-btn-lg adoptbtn" disabled>选好了，提交活动</button>
+                </div>
+        }
+
+            <div id="goods">
+
+                @foreach (var item in Model.Goods)
+                {
+                    <div class="goods-list">
+                        <div class="child">
+                            <div class="goods-img">
+                                <a href="@Url.Action("GoodsDetail", "Goods", new { goodid = item.GoodsID })" target="_blank">
+                                    <img src="@item.GoodsPhoto" />
+                                </a>
+                            </div>
+                            <div class="goods-info">
+                                
+                                <p name="goodsname">@item.GoodsName</p>
+                                <input type="text" class="am-input" value="" placeholder="请输入数量" name="Total" />
+                                <input type="hidden" value="@item.GoodsID" name="goodsid" />
+                                <input type="hidden" value='@Request.QueryString["ActID"]' name="actid" />
+                            </div>
+                            <a href="javascript:void(0);" onclick="addToCard(this);" class="goods-add am-btn am-btn-success am-btn-sm">加入名单</a>
+                        </div>
+                    </div>
+                    }
+            </div>
+    </div>
+</div>
+
+
+@section Foot{
+
+
+    <script type="text/javascript">
+
+        var obj_goods = null;
+
+        var obj_goods_parent = null;
+
+        var card_top = $('#card-goods').offset().top;
+
+        function goodsOn(obj) {
+            $(obj).addClass('goods-on');
+        }
+
+        function goodsOut(obj) {
+
+            $(obj).removeClass('goods-on');
+
+        }
+
+        /*产品定制*/
+
+        function addToCard(obj) {
+
+            obj_goods_parent = $(obj).parent().parent();
+
+
+
+            $(obj).parent().prependTo('#card-goods')
+
+            .wrap('<div class="card-list" onmouseover="goodsOn(this)" onmouseout="goodsOut(this)" style="display:none;"></div>')
+
+            .after('<a href="javascript:void(0);" class="goods-del am-btn am-btn-danger am-btn-sm" onclick="delFromCard(this);" >移除</a>');
+
+
+
+            obj_goods_parent.remove();
+
+            $('html,body').animate({ scrollTop: card_top }, 'normal', function () {
+
+                $('#card-goods .card-list:first-child').show('noraml');
+
+            });
+
+        }
+
+        function delFromCard(obj) {
+
+            obj_goods_parent = $(obj).parent();
+
+            obj_goods_parent.hide('normal', function () {
+
+                obj_goods_parent.find('.child').prependTo('#goods').wrap('<div class="goods-list" onmouseover="goodsOn(this)" onmouseout="goodsOut(this)"></div>');
+
+                obj_goods_parent.remove();
+
+            });
+
+        }
+
+        function setGoods(obj) {
+
+            obj_goods = $(obj).prev();
+
+            obj_goods_parent = obj_goods.parent();
+
+
+
+            /*赋值、滑块值*/
+
+            var val_param_z = obj_goods.find('.goods-param-z').val();
+
+            var val_param_q = obj_goods.find('.goods-param-q').val();
+
+            var val_param_s = obj_goods.find('.goods-param-s').val();
+
+            obj_goods.find('.val-param-z').text(val_param_z);
+
+            obj_goods.find('.val-param-q').text(val_param_q);
+
+            obj_goods.find('.val-param-s').text(val_param_s);
+
+
+
+            $("#slider-z .slider").slider({ value: val_param_z });
+
+            $("#slider-q .slider").slider({ value: val_param_q });
+
+            $("#slider-s .slider").slider({ value: val_param_s });
+
+
+
+            $("#box-goods").html('');
+
+            obj_goods.prependTo("#box-goods");
+
+            boxShow();
+
+        }
+
+
+
+        function setIntoCard() {
+
+            $('#box-goods .child')
+
+            .prependTo(obj_goods_parent);
+
+            boxHide();
+
+        }
+
+
+
+        $(document).ready(function () {
+
+            $('html,body').mousedown(function (e) { });
+
+            
+
+
+        });
+
+        $('.goods-add').click(function () {
+            if ($('.card-list').length > 1) {
+                $('.adoptbtn').removeAttr("disabled");
+            }
+        });
+
+        $('.goods-del').click(function () {
+            if ($('.card-list').length==1) {
+                $('.adoptbtn').Attr("disabled", true);
+            }
+        });
+
+
+    </script>
+}

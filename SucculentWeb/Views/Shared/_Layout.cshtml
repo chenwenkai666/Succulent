@@ -98,6 +98,7 @@
     <script src="~/Scripts/custom.js"></script>
     <script src="~/Scripts/mislider.js"></script>
     <script src="~/dist/pageSwitch.min.js"></script>
+    @RenderSection("Foot",false)
     <script>
 	$("#container").PageSwitch({
 		direction:'horizontal',
@@ -107,8 +108,6 @@
 		loop:'false'
 	});
     </script>
-
-
 
     <script type="text/javascript">
           jQuery(function ($) {

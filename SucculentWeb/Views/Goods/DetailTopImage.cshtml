@@ -1,0 +1,29 @@
+﻿@model Model.Shops
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>DetailTopImage</title>
+    <style>
+         .Top-img{
+    margin-top:0;
+    width:100%;
+    height:120px;
+}
+.Top-img img{
+    width:100%;
+    height:100px;
+}
+    </style>
+</head>
+<body>
+    <div class="Top-img">
+       <a href="@Url.Action("Shops","Goods",new { shopid= Session["Detailshopid"] })"><img src="@ViewBag.topimage" /></a>
+    </div>
+</body>
+</html>

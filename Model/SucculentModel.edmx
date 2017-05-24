@@ -126,6 +126,7 @@
           <Property Name="GoodsDescribe" Type="nvarchar(max)" />
           <Property Name="LikeIt" Type="int" />
           <Property Name="Flag" Type="int" Nullable="false" />
+          <Property Name="Time" Type="datetime" />
         </EntityType>
         <EntityType Name="GoodsComments">
           <Key>
@@ -249,6 +250,7 @@
           <Property Name="ShopDescription" Type="nvarchar(max)" />
           <Property Name="SalesTotal" Type="int" />
           <Property Name="ShopPhoto" Type="nvarchar" MaxLength="100" />
+          <Property Name="TopImage" Type="nvarchar" MaxLength="100" />
         </EntityType>
         <EntityType Name="Succulent">
           <Key>
@@ -270,7 +272,6 @@
           </Key>
           <Property Name="SucculentCategoryID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="SucculentCategoryName" Type="nchar" MaxLength="10" Nullable="false" />
-          <Property Name="SucculentCategoryDescribe" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="Users">
           <Key>
@@ -1047,6 +1048,7 @@
           <NavigationProperty Name="GoodsComments" Relationship="Self.FK_GoodsComments_Goods" FromRole="Goods" ToRole="GoodsComments" />
           <NavigationProperty Name="OrderItems" Relationship="Self.FK_OrderItems_Goods" FromRole="Goods" ToRole="OrderItems" />
           <NavigationProperty Name="ShoppingCarts" Relationship="Self.FK_ShoppingCarts_Goods" FromRole="Goods" ToRole="ShoppingCarts" />
+          <Property Name="Time" Type="DateTime" Precision="3" />
         </EntityType>
         <EntityType Name="GoodsComments">
           <Key>
@@ -1195,6 +1197,7 @@
           <NavigationProperty Name="Goods" Relationship="Self.FK_Goods_Shops" FromRole="Shops" ToRole="Goods" />
           <NavigationProperty Name="Users" Relationship="Self.FK_Shops_Users" FromRole="Shops" ToRole="Users" />
           <Property Name="ShopPhoto" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="TopImage" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Succulent">
           <Key>
@@ -1219,7 +1222,6 @@
           <Property Name="SucculentCategoryID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="SucculentCategoryName" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Succulent" Relationship="Self.FK_Succulent_SucculentCategory" FromRole="SucculentCategory" ToRole="Succulent" />
-          <Property Name="SucculentCategoryDescribe" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Users">
           <Key>
@@ -1990,6 +1992,7 @@
           <EntitySetMapping Name="Goods">
             <EntityTypeMapping TypeName="SucculentModel.Goods">
               <MappingFragment StoreEntitySet="Goods">
+                <ScalarProperty Name="Time" ColumnName="Time" />
                 <ScalarProperty Name="GoodsID" ColumnName="GoodsID" />
                 <ScalarProperty Name="ShopID" ColumnName="ShopID" />
                 <ScalarProperty Name="GoodsName" ColumnName="GoodsName" />
@@ -2127,6 +2130,7 @@
           <EntitySetMapping Name="Shops">
             <EntityTypeMapping TypeName="SucculentModel.Shops">
               <MappingFragment StoreEntitySet="Shops">
+                <ScalarProperty Name="TopImage" ColumnName="TopImage" />
                 <ScalarProperty Name="ShopPhoto" ColumnName="ShopPhoto" />
                 <ScalarProperty Name="ShopID" ColumnName="ShopID" />
                 <ScalarProperty Name="UserID" ColumnName="UserID" />
@@ -2154,7 +2158,6 @@
           <EntitySetMapping Name="SucculentCategory">
             <EntityTypeMapping TypeName="SucculentModel.SucculentCategory">
               <MappingFragment StoreEntitySet="SucculentCategory">
-                <ScalarProperty Name="SucculentCategoryDescribe" ColumnName="SucculentCategoryDescribe" />
                 <ScalarProperty Name="SucculentCategoryID" ColumnName="SucculentCategoryID" />
                 <ScalarProperty Name="SucculentCategoryName" ColumnName="SucculentCategoryName" />
               </MappingFragment>
