@@ -1,7 +1,11 @@
-﻿.succulent-wrap{
+﻿.myClass{
+    transform:translateY(30px);
+    color:rgba(0,0,0,0.7);
+}
+.succulent-wrap{
     width:100%;
-    height:auto;
-    border:1px solid red;
+    height:1350px;
+    /*border:1px solid red;*/
     overflow:hidden;
 }
 .succulent-wrap .succulent-wrap-top{
@@ -29,54 +33,75 @@
 .succulent-wrap .succulent-wrap-top .succulent-wrap-top-introduce ul li{
     float:left;
     /*border:1px solid blue;*/
+    margin-top:20px;
     height:130px;
     overflow:hidden;
     /*background:red;*/
 }
 .succulent-wrap .succulent-wrap-top .succulent-wrap-top-introduce ul li .introduce-contain{
     width:80%;
-    height:100%;
+    height:auto;
     margin:0 15px 0 15px;
     background:#ffffff;
-    border-radius:3px;
-    transition:all 0.2s;
+    border-radius:100px;
+    
 }
-.succulent-wrap .succulent-wrap-top .succulent-wrap-top-introduce ul li .introduce-contain:hover{
-    transform:translateY(60px);
-}
+
 .succulent-wrap .succulent-wrap-top .succulent-wrap-top-introduce ul li .introduce-contain .introduce-contain-describe{
    display:block;
    /*border:1px solid red;*/
-   height:100px;
+   height:50px;
    overflow:hidden;
    text-align:center;
 }
-
-.succulent-wrap .succulent-wrap-top .succulent-wrap-top-introduce ul li .introduce-contain .introduce-contain-describe img{
+.succulent-wrap .succulent-wrap-top .succulent-wrap-top-introduce ul li .introduce-contain .introduce-contain-describe .a-describe{
+    font-family: arial,tahoma,'Microsoft Yahei','\5b8b\4f53',sans-serif;
+    font-size:20px;
+    font-weight:500;
+    line-height:60px;
+    color:rgba(0,0,0,0.7);
+    transition:all 0.2s;
+    letter-spacing:2px;
+}
+.succulent-wrap .succulent-wrap-top .succulent-wrap-top-introduce ul li .introduce-contain .introduce-contain-describe .a-describe:hover{
+  color:rgba(51,153,51,1);
+}
+.succulent-wrap .succulent-wrap-top .succulent-wrap-top-introduce ul li .introduce-contain .img-describe{
    display:block;
    margin:0 auto;
 }
 .succulent-wrap .succulent-wrap-top .succulent-wrap-top-introduce ul li .introduce-contain .introduce-contain-describe span{
+ 
     font-family: arial,tahoma,'Microsoft Yahei','\5b8b\4f53',sans-serif;
     font-size:18px;
     font-weight:500;
     letter-spacing:2px;
     line-height:40px;
     color:rgba(0,0,0,0.5);
+    padding-left:30px;
+}
+
+.succulent-wrap .succulent-wrap-top .succulent-wrap-top-introduce ul li .introduce-contain .introduce-contain-describe .label{
+    font-family: arial,tahoma,'Microsoft Yahei','\5b8b\4f53',sans-serif;
+    font-size:18px;
+    font-weight:500;
+    line-height:40px;
+    color:rgba(0,0,0,0.5);
+    
 }
 
 .succulent-wrap .succulent-wrap-bottom{
     width:100%;
     height:800px;
-    border:1px solid blue;
+    /*border:1px solid blue;*/
     margin-top:50px;
     overflow:hidden;
 }
 .succulent-wrap .succulent-wrap-bottom .succulent-wrap-left{
     float:left;
     width:40%;
-    height:100%;
-    border:1px solid red;
+    height:800px;
+    /*border:1px solid red;*/
     overflow:hidden;
 }
 .succulent-wrap .succulent-wrap-bottom .succulent-wrap-left h4,
@@ -89,57 +114,108 @@
 .succulent-wrap .succulent-wrap-bottom .succulent-wrap-left h4{
     letter-spacing:5px;
      font-size:30px;
-    line-height:50px;
-    margin-top:50px;
+    /*line-height:40px;*/
+    margin-top:30px;
 }
 .succulent-wrap .succulent-wrap-bottom .succulent-wrap-left p{
+    display:block;
+    margin-top:-20px;
     line-height:40px;
     font-size:15px;
+     /*border:1px solid blue;*/
 }
 .succulent-wrap .succulent-wrap-bottom .succulent-wrap-right{
     float:left;
     width:55%;
-    height:100%;
-    border:1px solid red;
+    height:800px;
+    /*border:1px solid red;*/
     overflow:hidden;
     margin-left:78px;
 }
 .succulent-wrap .succulent-wrap-bottom .succulent-wrap-right .succulent-wrap-right-img{
-    border:1px solid blue;
-    height:250px;
-    margin-top:12px;
+    /*border:1px solid blue;*/
+    height:800px;
     overflow:hidden;
+    margin:0 auto;
+    margin-top:30px;
 }
 .succulent-wrap .succulent-wrap-bottom .succulent-wrap-right .succulent-wrap-right-img ul{
     list-style:none;
     overflow:hidden;
     padding:0px;
 }
-.succulent-wrap .succulent-wrap-bottom .succulent-wrap-right .succulent-wrap-right-img ul li{
+.succulent-wrap .succulent-wrap-bottom .succulent-wrap-right .succulent-wrap-right-img .div-row{
     float:left;
-    border:1px solid red;
-    height:250px;
-    overflow:hidden;
+    /*border:1px solid red;*/
+    height:220px;
+    /*overflow:hidden;*/
 }
-.succulent-wrap .succulent-wrap-bottom .succulent-wrap-right .succulent-wrap-right-img ul li .div-img{
+.succulent-wrap .succulent-wrap-bottom .succulent-wrap-right .succulent-wrap-right-img .div-row  .div-img{
     position:relative;
     width:100%;
-    height :100%;
-    border:1px solid black;
-    overflow:hidden;
-    position:absolute;
+    height:230px;
+    margin-top:20px;
+    padding-right:0;
+    /*border:1px solid black;*/
+    /*overflow:hidden;*/
+
 }
-.succulent-wrap .succulent-wrap-bottom .succulent-wrap-right .succulent-wrap-right-img ul li .div-img .mark{
+.succulent-wrap .succulent-wrap-bottom .succulent-wrap-right .succulent-wrap-right-img .div-row  .div-img .a-img{
+    position: relative;
+    background:transparent;
+    border: 2px solid #ececec;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.27),0 0 60px rgba(0,0,0,0.1) inset;
+   -moz-box-shadow: 0 1px 4px rgba(0,0,0,0.27),0 0 60px rgba(0,0,0,0.1) inset;
+   -webkit-box-shadow: 0 1px 4px rgba(0,0,0,0.27),0 0 60px rgba(0,0,0,0.1) inset;
+   -o-box-shadow: 0 1px 4px rgba(0,0,0,0.27),0 0 60px rgba(0,0,0,0.1) inset;
+}
+.succulent-wrap .succulent-wrap-bottom .succulent-wrap-right .succulent-wrap-right-img .div-row  .div-img .a-img:before{
+  content: "";
+  position: absolute;
+  z-index: -2;
+  width:82.5%;
+  height:92%;
+  left:19.5px;
+  bottom:8px;
+  background:#000;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.6);
+  -webkit-box-shadow: 0 8px 20px rgba(0,0,0,0.6);
+  -moz-box-shadow: 0 8px 20px rgba(0,0,0,0.6);
+  -o-box-shadow: 0 8px 20px rgba(0,0,0,0.6);
+  -webkit-transform:skew(-15deg) rotate(-4deg);
+  -ms-transform:skew(-15deg) rotate(-4deg);
+  -moz-transform:skew(-15deg) rotate(-4deg);
+  -o-transform:skew(-15deg) rotate(-4deg);
+}
+.succulent-wrap .succulent-wrap-bottom .succulent-wrap-right .succulent-wrap-right-img .div-row  .div-img .a-img:after{
+  content: "";
+  position: absolute;
+  z-index: -2;
+  width:82.5%;
+  height:90%;
+  right:25px;
+  bottom:8px;
+  background:#fff;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.6);
+  -webkit-box-shadow: 0 8px 20px rgba(0,0,0,0.6);
+  -moz-box-shadow: 0 8px 20px rgba(0,0,0,0.6);
+  -o-box-shadow: 0 8px 20px rgba(0,0,0,0.6);
+  -webkit-transform:skew(15deg) rotate(4deg);
+  -ms-transform:skew(15deg) rotate(4deg);
+  -moz-transform:skew(15deg) rotate(4deg);
+  -o-transform:skew(15deg) rotate(4deg);
+}
+.succulent-wrap .succulent-wrap-bottom .succulent-wrap-right .succulent-wrap-right-img .div-row .div-img .mark{
     position:absolute;
     width:50px;
     height:165px;
-    top:-30px;
+    top:-34px;
     left:15px;
     z-index:-1;
     opacity:1;
     transition:all 1s;
 }
-.succulent-wrap .succulent-wrap-bottom .succulent-wrap-right .succulent-wrap-right-img ul li .div-img .mark-span{
+.succulent-wrap .succulent-wrap-bottom .succulent-wrap-right .succulent-wrap-right-img .div-row .div-img .mark-span{
     display:block;
     width:15px;
     position:absolute;   
@@ -148,7 +224,7 @@
     font-family: arial,tahoma,'Microsoft Yahei','\5b8b\4f53',sans-serif;
     font-size:15px;
     font-weight:500;
-    line-height:20px;
+    line-height:23px;
      opacity:1;
     transition:all 1s;
 }
@@ -162,5 +238,17 @@
     left:0;
     z-index:-2;
 }
-
+.succulent-wrap .succulent-wrap-bottom .succulent-wrap-right .succulent-wrap-right-img .div-page{
+    height:50px;
+   /*border:1px solid red;*/
+   overflow:hidden;
+   position:relative;
+   margin-top:30px;
+}
+.succulent-wrap .succulent-wrap-bottom .succulent-wrap-right .succulent-wrap-right-img .div-page .span-page{
+    position:absolute;
+    left:50%;
+    margin-left:-60px;
+    bottom:-20px;
+}
 

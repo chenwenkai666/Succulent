@@ -257,7 +257,7 @@
           <Property Name="SucculentID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="SucculentName" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="CategoryID" Type="int" Nullable="false" />
-          <Property Name="Photo" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Photo" Type="nvarchar(max)" />
           <Property Name="Feature" Type="nvarchar(max)" />
           <Property Name="Application" Type="nvarchar(max)" />
           <Property Name="BreedMode" Type="nvarchar(max)" />
@@ -1203,7 +1203,7 @@
           <Property Name="SucculentID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="SucculentName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="CategoryID" Type="Int32" Nullable="false" />
-          <Property Name="Photo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Photo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="true" />
           <Property Name="Feature" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Application" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="BreedMode" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />

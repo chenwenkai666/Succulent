@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Data;
 using IDAL;
 using Model;
+using System.Data.Entity;
 
 namespace DAL
 {
@@ -18,18 +20,63 @@ namespace DAL
             return succulent;
 
         }
-        public List<Succulent> SelectSucculentByID()
+        public List<Succulent> SelectSucculentByID(int id)
         {
             var xiao = (from x in db.Succulent
-                             where x.SucculentID == 18
+                             where x.SucculentID == id
                              select x).ToList();
             return xiao;
 
+        }
+
+        public List<Succulent> SelectSucculentBySucculentid(int id)
+        {
+            var succulent = db.Succulent.Where(c => c.SucculentID == id).ToList();
+            return succulent;
+        }
+       public List<Succulent> SelectSucculentByCatogaryid(int categoryid)
+        {
+            var succulent = db.Succulent.Where(c => c.CategoryID == categoryid).Take(9).ToList();
+            return succulent;
+        }
+        public List<Succulent> SelectRoomSucculent()
+        {
+            var room = db.Succulent.OrderByDescending(r => r.CollectedTotal).Take(9).ToList();
+            return room;
         }
         public void Create(Succulent succulent)
         {
             db.Succulent.Add(succulent);
             db.SaveChanges();
+        }
+      
+        public void UpdateAdd(Succulent succulent)
+        {
+            //Succulent su = new Succulent();
+            //su.Application = succulent.Application;
+            //su.BreedMode = succulent.BreedMode;
+            //su.CategoryID = succulent.CategoryID;
+            //su.CollectedTotal = succulent.CollectedTotal;
+            //su.Collection = succulent.Collection;
+            //su.Feature = succulent.Feature;
+            //su.Photo = succulent.Photo;
+            //su.SucculentID = succulent.SucculentID;
+            //su.SucculentImg = succulent.SucculentImg;
+            //su.SucculentName = succulent.SucculentName;
+
+            //db.Succulent.Attach(succulent);
+            db.Configuration.ValidateOnSaveEnabled = false;
+            db.Entry(succulent).State = EntityState.Modified;
+            db.SaveChanges();
+            db.Configuration.ValidateOnSaveEnabled = true;
+           
+
+        }
+        public Succulent SelectByID(int id)
+        {
+            var succulent = db.Succulent.Where(c => c.SucculentID == id).FirstOrDefault();
+            return succulent;
+
         }
     }
 }

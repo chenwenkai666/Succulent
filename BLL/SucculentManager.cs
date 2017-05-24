@@ -8,6 +8,7 @@ using Model;
 using DALFactory;
 using IDAL;
 
+
 namespace BLL
 {
    public class SucculentManager
@@ -17,13 +18,34 @@ namespace BLL
         {
             return isucculent.SelectSucculent();
         }
-        public static List<Succulent> SelectSucculentByID()
+        public static List<Succulent> SelectSucculentByID(int id)
         {
-            return isucculent.SelectSucculentByID();
+            return isucculent.SelectSucculentByID(id);
+        }
+        public static List<Succulent> SelectSucculentBySucculentid(int id)
+        {
+            return isucculent.SelectSucculentBySucculentid(id);
+        }
+        public static List<Succulent> SelectSucculentByCatogaryid(int categoryid)
+        {
+            return isucculent.SelectSucculentByCatogaryid(categoryid);
+        }
+        public static List<Succulent> SelectRoomSucculent()
+        {
+            return isucculent.SelectRoomSucculent();
         }
         public static void Create(Succulent succulent)
         {
             isucculent.Create(succulent);
+        }
+        public static void UpdateAdd(Succulent succulent)
+        {
+            isucculent.UpdateAdd(succulent);
+        }
+        public static Succulent  SelectByID(int id)
+        {
+            return isucculent.SelectByID(id);
+
         }
     }
 }

@@ -77,6 +77,14 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="PagedList, Version=1.17.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="PagedList.Mvc, Version=4.5.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.Mvc.4.5.0.0\lib\net40\PagedList.Mvc.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -198,8 +206,10 @@
     <Compile Include="Controllers\SucculentController.cs" />
     <Compile Include="Controllers\GoodsController.cs" />
     <Compile Include="Controllers\ShopMallController.cs" />
+    <Compile Include="Controllers\SucculentIndexController.cs" />
     <Compile Include="Controllers\Tribune\TribuneBoardController.cs" />
     <Compile Include="Controllers\Tribune\TribuneIndexController.cs" />
+    <Compile Include="Controllers\UserCenterController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -219,6 +229,7 @@
     <Compile Include="ueditor\net\App_Code\PathFormater.cs" />
     <Compile Include="ueditor\net\App_Code\UploadHandler.cs" />
     <Compile Include="ViewModels\ShopMallIndexViewModels.cs" />
+    <Compile Include="ViewModels\SucculentIndexViewModels.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="bin\Antlr3.Runtime.dll" />
@@ -339,6 +350,7 @@
     <Content Include="Content\mislider.css" />
     <Content Include="Content\Register.css" />
     <Content Include="Content\Succulent.css" />
+    <Content Include="Content\UserCenter.css" />
     <Content Include="css\ShopMallTopAndFoot.css" />
     <Content Include="css\Tribune\TribuneBoard.css" />
     <Content Include="css\Tribune\TribuneIndex.css" />
@@ -462,14 +474,33 @@
     <Content Include="images\Succulent\babaojingtian.jpg" />
     <Content Include="images\Succulent\biguanghuan.jpg" />
     <Content Include="images\Succulent\boxuewanniancao.jpg" />
+    <Content Include="images\Succulent\caoyulu.jpg" />
+    <Content Include="images\Succulent\dengpao.jpg" />
+    <Content Include="images\Succulent\diyu.jpg" />
     <Content Include="images\Succulent\feihuayu.jpg" />
     <Content Include="images\Succulent\feimudan.jpg" />
+    <Content Include="images\Succulent\futuer.jpg" />
+    <Content Include="images\Succulent\guanyinglian.jpg" />
+    <Content Include="images\Succulent\heifashi.jpg" />
     <Content Include="images\Succulent\hongzhiyu.jpg" />
+    <Content Include="images\Succulent\jingye.jpg" />
+    <Content Include="images\Succulent\leitong.jpg" />
     <Content Include="images\Succulent\luanfengyu.jpg" />
     <Content Include="images\Succulent\lujiaohantang.jpg" />
     <Content Include="images\Succulent\pengpengxiang.jpg" />
+    <Content Include="images\Succulent\qiandaitianzhisong.jpg" />
+    <Content Include="images\Succulent\qianfushou.jpg" />
+    <Content Include="images\Succulent\shandimeigui.jpg" />
+    <Content Include="images\Succulent\shuangzhichao.jpg" />
+    <Content Include="images\Succulent\teyulian.jpg" />
     <Content Include="images\Succulent\wushilingyu.jpg" />
+    <Content Include="images\Succulent\xiaohongzui.jpg" />
+    <Content Include="images\Succulent\xiaorenji.jpg" />
     <Content Include="images\Succulent\yalezhiwu.jpg" />
+    <Content Include="images\Succulent\yueyan.jpg" />
+    <Content Include="images\Succulent\zaolinyu.jpg" />
+    <Content Include="images\Succulent\zhenzhudiaolan.jpg" />
+    <Content Include="images\Succulent\zihuangxing.jpg" />
     <Content Include="images\Tribune\timg.jpg" />
     <Content Include="images\Tribune\timg1.jpg" />
     <Content Include="images\Tribune\timg2.jpg" />
@@ -509,6 +540,7 @@
     <None Include="bin\SucculentWeb.dll.config" />
     <Content Include="obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
     <Content Include="obj\Debug\SucculentWeb.csprojResolveAssemblyReference.cache" />
+    <Content Include="bin\webdiyer.mvcpager.3.0.1.1.nupkg" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\custom.js" />
     <Content Include="Scripts\easing.js" />
@@ -538,8 +570,12 @@
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery.countup.js" />
     <Content Include="Scripts\jquery.flexslider.js" />
+    <Content Include="Scripts\jquery.pager-1.0.2.js" />
+    <Content Include="Scripts\jquery.pager-1.0.2.min.js" />
     <Content Include="Scripts\jquery.textFx.js" />
     <Content Include="Scripts\jquery.transit.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
@@ -547,6 +583,8 @@
     <Content Include="Scripts\mislider.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\move-top.js" />
+    <Content Include="Scripts\path.js" />
+    <Content Include="Scripts\path.min.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\smoothscroll.js" />
@@ -1126,7 +1164,9 @@
     <Content Include="Views\Succulent\Create.cshtml" />
     <Content Include="Views\TribuneIndex\Index.cshtml" />
     <Content Include="Views\TribuneBoard\Index.cshtml" />
-    <Content Include="Views\Succulent\Succulent.cshtml" />
+    <Content Include="Views\SucculentIndex\Succulent.cshtml" />
+    <Content Include="Views\SucculentIndex\PartialViewDate.cshtml" />
+    <Content Include="Views\UserCenter\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

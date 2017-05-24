@@ -13,7 +13,7 @@
     <script src="~/ueditor/ueditor.config.js"></script>
     <script src="~/ueditor/ueditor.all.js"></script>
 
-
+      
 </head>
 
 <body>
@@ -38,14 +38,14 @@
         initialFrameWidth: 800,
         initialFrameHeight:300
     };
-    var editor = new baidu.editor.ui.Editor(editorOption);
+    @*var editor = new baidu.editor.ui.Editor(editorOption);
     editor.render('Photo');
     </script>
     <script type="text/javascript">
     var editorOption = {
         initialFrameWidth: 800,
         initialFrameHeight:300
-    };
+    };*@
     var editor = new baidu.editor.ui.Editor(editorOption);
     editor.render('SucculentImg');
     </script>
@@ -73,14 +73,13 @@
                 </div>
             </div>
 
-            <div class="form-group">
+            @*<div class="form-group">
                 @Html.LabelFor(model => model.Photo, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @*@Html.EditorFor(model => model.Photo, new { htmlAttributes = new { @class = "form-control" } })*@
                     @Html.TextAreaFor(model => model.Photo)
                     @Html.ValidationMessageFor(model => model.Photo, "", new { @class = "text-danger" })
                 </div>
-            </div>
+            </div>*@
 
             <div class="form-group">
                 @Html.LabelFor(model => model.Feature, htmlAttributes: new { @class = "control-label col-md-2" })

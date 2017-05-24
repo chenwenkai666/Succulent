@@ -1,0 +1,61 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section head{
+    <link href="~/Content/UserCenter.css" rel="stylesheet" />
+    <link href="~/Content/font-awesome.css" rel="stylesheet" />
+    <link href="~/Content/font-awesome.min.css" rel="stylesheet" /> 
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+}
+<main class="main-contain">
+    <div class="main-contain-top">
+        <div class="user-back">
+            <div class="user-back-inner">
+                <button class="user-back-inner-button">
+                    <i class="fa fa-camera-retro"></i><span>上传封面照片</span>
+                </button>
+            </div>
+        </div>
+        <div class="user-info">
+            <div class="user-info-section">
+                <div class="user-info-section-photo">
+                    <img src="~/images/Succulent/biguanghuan.jpg" width="160" height="160" />
+                </div>
+                <div class="user-info-section-photo-hidden">
+                    <div class="user-info-section-photo-hidden-contain">
+                        <div class="user-info-section-photo-hidden-contain-text"><i class="fa fa-camera-retro"></i><span>修改头像</span></div>
+                    </div>
+                </div>
+            </div>
+            <div class="user-info-details">
+                <main class="user-info-details-main row">
+                    <h1 class="col-md-12">DADA</h1>                    
+                    <span class="col-md-12"><i>Sex</i>&nbsp;&nbsp;&nbsp;女</span>
+                    <span class="col-md-12"><i>Age</i>&nbsp;&nbsp;&nbsp;20</span>
+                    <p>
+                     <span class="col-md-12">多肉宣言</span>
+                     <span class="col-md-12">种下幸福，走向成功，明天会更好，加油啊，啦啦啦啦啦啦</span>
+                    </p>                            
+              </main>
+            </div>
+        <div class="user-info-go">
+            <div class="user-info-go-buttom row">
+              <span class="col-md-12">编辑个人资料</span>
+            </div>
+        </div>
+    </div>
+</div>
+    <div class="main-contain-bottom">
+       <div class="main-contain-bottom-dao row">
+           <ul>
+            <li class="col-md-3"><a>历史发帖</a></li>
+            <li class="col-md-3"><a>历史活动</a></li>
+            <li class="col-md-3"><a>收藏多肉</a></li>
+            <li class="col-md-3"><a>更多</a></li>
+           </ul>
+       </div>
+    </div>
+</main>
+

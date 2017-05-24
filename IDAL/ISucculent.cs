@@ -10,7 +10,12 @@ namespace IDAL
    public interface ISucculent
     {
         List<Succulent> SelectSucculent();
-        List<Succulent> SelectSucculentByID();
+        List<Succulent> SelectSucculentByID(int id);
+        List<Succulent> SelectSucculentBySucculentid(int id);
+        List<Succulent> SelectSucculentByCatogaryid(int categoryid);
+        List<Succulent> SelectRoomSucculent();
         void Create(Succulent succulent);
+        void UpdateAdd(Succulent succulent);
+        Succulent SelectByID(int id);
     }
 }

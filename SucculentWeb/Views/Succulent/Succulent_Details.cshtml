@@ -1,47 +1,73 @@
-﻿@model IEnumerable <Model.Succulent>
+﻿@model SucculentWeb.ViewModels.SucculentIndexViewModels
 @using Model
 @{
     
 }
-@section head{  
+@section head{ 
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
   <link href="~/Content/Succulent_Details.css" rel="stylesheet" />
 <link href="~/Content/font-awesome.css" rel="stylesheet" />
 <link href="~/Content/font-awesome.min.css" rel="stylesheet" />
     <style>
         .div-footer{
+            margin-top:80px;
             background-color:transparent;
         }
         .div-footer .div-middle{
            background-color:transparent;
         }
     </style>
+    <script>
+        $(function () {
+            //var x=true;
+            //$('.a-add').click(function () {
+            //    if (!x) {
+            //        $(this).attr('href', "dsadsadasd");
+            //    }
+            //    x = false;
+            //})  
+            
+            $('#wrap-yangzhi').click(function () {
+                $('html,body').animate({
+                    scrollTop :$('.wrap-yangzhi').offset().top-70
+                }, 1000)               
+            })
+            $('#wrap-yuanlin').click(function () {
+                $('html,body').animate({
+                    scrollTop: $('.wrap-yuanlin').offset().top - 70
+                }, 1000)
+            })
+            $('#wrap-tuce').click(function () {
+                $('html,body').animate({
+                    scrollTop: $('.wrap-tuce').offset().top - 70
+                }, 1000)
+            })
+        })
+</script>
 }
 <div class="wrap-body">
-    <div class="wrap-body-img">   
+    <div class="wrap-body-img">
     </div>
     <div class="wrap-contain">
-        @foreach (var item in Model)
-            {
-
-            
-        <div class="main-contain">
-            <div class="top-tool row">
-                <ul class="col-md-8">
-                    <li><a class="fa fa-star fa-fw"><span>收藏数  &nbsp;</span>@Html.DisplayFor(modelItem => item.CollectedTotal)</a></li>
-                </ul>
-            </div>
-           
-            <div class="wrap-introduce">
-                <dl class="wrap-introduce-title">
-                    <dd class="row">
-                        <h1 class="col-md-12">@Html.DisplayFor(modelItem=> item.SucculentName)</h1>
+        @foreach (var item in Model.succulent_Details)
+        {
+            <div class="main-contain">
+                <div class="wrap-introduce">
+                    <dl class="wrap-introduce-title">
+                        <dd class="row">
+                            <h1 class="col-md-8">
+                                @Html.DisplayFor(modelItem => item.SucculentName)<small class="small-add">
+                                @Ajax.ActionLink("赞一个", "UpdateAdd", "Succulent", new { id = item.SucculentID,flag=false }, new AjaxOptions { HttpMethod = "Post", UpdateTargetId = "collect-num", InsertionMode = InsertionMode.Replace }, new { @class = "a-add" }) <span id="collect-num">@Html.DisplayFor(modelItem => item.CollectedTotal)</span>
+                            </small>
+                        </h1>
                     </dd>
                 </dl>
                 <div class="wrap-introduce-para row">
                     <p class="col-md-12">
                         @Html.DisplayFor(modelItem => item.Feature)
                     </p>
-                </div>            
+                </div>
             </div>
             <div class="wrap-mulu row">
                 <div class="wrap-mulu-left col-md-6">
@@ -50,46 +76,36 @@
                 <div class="wrap-mulu-right col-md-6">
                     <ol>
                         <li>
-                            <span><a>养殖要点</a></span>
+                            <span><a href="javascript:void(0)" id="wrap-yangzhi">养殖要点</a></span>
+                        </li>                       
+                        <li>
+                            <span><a href="javascript:void(0)" id="wrap-yuanlin">园林应用</a></span>
                         </li>
                         <li>
-                            <span><a>生长周期</a></span>
-                        </li>
-                        <li>
-                            <span><a>园林应用</a></span>
-                        </li>
-                        <li>
-                            <span><a>图册</a></span>
+                            <span><a href="javascript:void(0)" id="wrap-tuce">图册</a></span>
                         </li>
                     </ol>
                 </div>
             </div>
             <div class="wrap-yangzhi">
                 <div class="wrap-yangzhi-title">
-                    <h2>养殖要点</h2> 
+                    <h2>养殖要点</h2>
                     <div></div>
                 </div>
                 <div class="wrap-yangzhi-content row">
-                 <p class="col-md-12">
-                     @Html.Raw(item.BreedMode)
-                 </p>
+                    <p class="col-md-12 wrap-p">
+                        @Html.Raw(item.BreedMode)
+                    </p>
                 </div>
             </div>
-            @*<div class="wrap-shengzhang">
-                <div class="wrap-shengzhang-title">
-                    <h2>生长周期</h2>
-                    <div></div>
-                </div>
-                <div class="wrap-shengzhang-content"></div>
-            </div>*@
             <div class="wrap-yuanlin">
                 <div class="wrap-yuanlin-title">
                     <h2>园林应用</h2>
                     <div></div>
                 </div>
                 <div class="wrap-yuanlin-content row">
-                    <p class="col-md-12">
-                       @Html.Raw(item.Application)
+                    <p class="col-md-12 wrap-p">
+                        @Html.Raw(item.Application)
                     </p>
                 </div>
             </div>
@@ -99,56 +115,47 @@
                 </div>
                 <div class="wrap-tuce-content row">
                     <p class="col-md-12">
-                       @Html.Raw(item.SucculentImg)
+                        @Html.Raw(item.SucculentImg)
                     </p>
                 </div>
             </div>
-
-
         </div>
-  
-        <div class="side-contain"> 
+        <div class="side-contain">
             <div class="side-contain-img row">
-                <p class="col-md-12">
-                    @Html.Raw(item.Photo)
+                <p class="col-md-12 img-photo">
+                    <img src="@item.Photo" width="350" height="230" />
                 </p>
-            </div>    
+            </div>
             <div class="side-contain-main">
                 <div class="side-contain-main-similate">
-                  <div class="side-contain-main-similate-title row"><h1 class="col-md-12">相似植物</h1></div> 
+                    <div class="side-contain-main-similate-title row"><h1 class="col-md-12">相似多肉</h1></div>
                     <div class="side-contain-main-similate-contain row">
-                        <div class="col-md-4">
-                            <img />
-                            <span></span>
-                        </div>
-                        <div class="col-md-4">
-                            <img />
-                            <span></span>
-                        </div>
-                        <div class="col-md-4">
-                            <img />
-                            <span></span>
-                        </div>
+                        @foreach (var item1 in Model.Like)
+                        {
+                            <div class="col-md-4 side-contain-main-similate-contain-img">
+                                <a href="@Url.Action("Succulent_Details", "Succulent", new { id = item1.SucculentID, categoryid = item1.CategoryID})">
+                                    <img src="@item1.Photo" width="110" height="100" />
+                                    <span class="img-span">@item1.SucculentName</span>
+                                </a>
+                            </div>
+                        }
                     </div>
                 </div>
                 <div class="side-contain-main-well">
-                    <div class="side-contain-main-well-title row"><h1 class="col-md-12">适合办公室的植物</h1></div> 
+                    <div class="side-contain-main-well-title row"><h1 class="col-md-12">适合办公室的多肉</h1></div>
                     <div class="side-contain-main-well-contain row">
-                        <div class="col-md-4">
-                            <img />
-                            <span></span>
-                        </div>
-                        <div class="col-md-4">
-                            <img />
-                            <span></span>
-                        </div>
-                        <div class="col-md-4">
-                            <img />
-                            <span></span>
-                        </div>
+                        @foreach (var item2 in Model.Room)
+                        {
+                            <div class="col-md-4 side-contain-main-well-contain-img">
+                                <a href="@Url.Action("Succulent_Details", "Succulent", new { id = item2.SucculentID, categoryid = item2.CategoryID})">
+                                    <img src="@item2.Photo" width="110" height="100" />
+                                    <span class="img-span">@item2.SucculentName</span>
+                                </a>
+                            </div>
+                        }
                     </div>
                 </div>
-            </div>           
+            </div>
         </div>
         }
     </div>

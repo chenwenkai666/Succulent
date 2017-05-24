@@ -4,24 +4,30 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Model;
+using SucculentWeb.ViewModels;
 using BLL;
+using System.Data.Entity;
 
 namespace SucculentWeb.Controllers
 {
     public class SucculentController : Controller
     {
+
         public ActionResult Succulent()
         {
             return View();
         }
-        // GET: Succulent
-        //查找
-        public ActionResult Succulent_Details()
+       
+        public ActionResult Succulent_Details(int id=18, int categoryid=1)
         {
-            //var succulent = SucculentManager.SelectSucculent();
-            //return View(succulent);
-            var succulent = SucculentManager.SelectSucculentByID();
-            return View(succulent);
+            var details = SucculentManager.SelectSucculentBySucculentid(id);
+            var succulent =BLL.SucculentManager.SelectSucculentByCatogaryid(categoryid);
+            var room = BLL.SucculentManager.SelectRoomSucculent();
+            SucculentIndexViewModels si = new ViewModels.SucculentIndexViewModels();
+            si.succulent_Details = details;
+            si.Like = succulent;
+            si.Room = room;
+            return View("Succulent_Details", si);
         }
         [HttpGet]
         public ActionResult Create()
@@ -42,5 +48,16 @@ namespace SucculentWeb.Controllers
             ViewBag.CategoryID = new SelectList(SucculentCategoryManager.Select(), "SucculentCategoryID", "SucculentCategoryName", succulent.CategoryID);
             return View(succulent);
         }
+        [HttpPost]
+        public int UpdateAdd(int id,bool flag)
+        {
+            var succulent =SucculentManager.SelectByID(id);
+            if (!flag)
+            {
+                succulent.CollectedTotal += 1;
+                SucculentManager.UpdateAdd(succulent);
+            }           
+            return int.Parse((succulent.CollectedTotal).ToString());
+        }    
     }
     }
