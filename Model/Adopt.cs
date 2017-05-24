@@ -17,7 +17,9 @@ namespace Model
         public int AdoptID { get; set; }
         public int GoodsID { get; set; }
         public int Total { get; set; }
+        public int ActivityID { get; set; }
     
         public virtual Goods Goods { get; set; }
+        public virtual Activity Activity { get; set; }
     }
 }

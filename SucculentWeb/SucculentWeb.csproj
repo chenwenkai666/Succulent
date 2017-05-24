@@ -359,6 +359,7 @@
     <Content Include="Content\foundation\foundation.css" />
     <Content Include="Content\foundation\normalize.css" />
     <Content Include="Content\index.css" />
+    <Content Include="Content\liMarquee.css" />
     <Content Include="Content\Login.css" />
     <Content Include="Content\magnific-popup.min.css" />
     <Content Include="Content\mislider-custom.css" />
@@ -711,6 +712,7 @@
     <Content Include="Scripts\jquery-form.js" />
     <Content Include="Scripts\jquery.countup.js" />
     <Content Include="Scripts\jquery.flexslider.js" />
+    <Content Include="Scripts\jquery.liMarquee.js" />
     <Content Include="Scripts\jquery.magnific-popup.js" />
     <Content Include="Scripts\jquery.rwdImageMaps.min.js" />
     <Content Include="Scripts\jquery.textFx.js" />
