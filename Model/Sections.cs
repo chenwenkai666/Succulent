@@ -22,6 +22,8 @@ namespace Model
     
         public int SectionID { get; set; }
         public string SectionName { get; set; }
+        public string SectionDescribe { get; set; }
+        public string SectionImg { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Posts> Posts { get; set; }

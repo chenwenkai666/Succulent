@@ -21,7 +21,9 @@ namespace Model
         public string DonateContent { get; set; }
         public string ExoressNumber { get; set; }
         public string DonateState { get; set; }
+        public int ActivityID { get; set; }
     
         public virtual Users Users { get; set; }
+        public virtual Activity Activity { get; set; }
     }
 }

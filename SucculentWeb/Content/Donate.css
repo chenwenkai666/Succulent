@@ -39,4 +39,11 @@
 .donate_main .donate_box .AddDonateBox{
     display:none;
 }
+.donate_main .donate_box .donate_table table{
+    text-align:center;
+}
+.donate_main .donate_box .donate_table table th{
+    text-align:center;
+}
+
 textarea{outline:none;resize:none;}

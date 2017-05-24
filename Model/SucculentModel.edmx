@@ -12,8 +12,11 @@
           <Property Name="ActivityID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="UserID" Type="int" Nullable="false" />
           <Property Name="ActivityCategoryID" Type="int" Nullable="false" />
+          <Property Name="ActivityCover" Type="nvarchar(max)" Nullable="false" />
           <Property Name="ActivityName" Type="nchar" MaxLength="50" Nullable="false" />
           <Property Name="ActivityDescribe" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="AttendConditions" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="LevelRequest" Type="int" Nullable="false" />
           <Property Name="ActivityPlace" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="StartTime" Type="datetime" Nullable="false" />
           <Property Name="EndTime" Type="datetime" Nullable="false" />
@@ -42,6 +45,7 @@
             <PropertyRef Name="AdoptID" />
           </Key>
           <Property Name="AdoptID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ActivityID" Type="int" Nullable="false" />
           <Property Name="GoodsID" Type="int" Nullable="false" />
           <Property Name="Total" Type="int" Nullable="false" />
         </EntityType>
@@ -88,6 +92,7 @@
             <PropertyRef Name="DonateID" />
           </Key>
           <Property Name="DonateID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ActivityID" Type="int" Nullable="false" />
           <Property Name="UserID" Type="int" Nullable="false" />
           <Property Name="DonateTime" Type="datetime" Nullable="false" />
           <Property Name="DonoteTotal" Type="int" Nullable="false" />
@@ -228,6 +233,8 @@
           </Key>
           <Property Name="SectionID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="SectionName" Type="nchar" MaxLength="50" Nullable="false" />
+          <Property Name="SectionDescribe" Type="nvarchar(max)" />
+          <Property Name="SectionImg" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="ShoppingCarts">
           <Key>
@@ -262,9 +269,9 @@
           <Property Name="Photo" Type="nvarchar(max)" />
           <Property Name="Feature" Type="nvarchar(max)" />
           <Property Name="Application" Type="nvarchar(max)" />
+          <Property Name="SucculentImg" Type="nvarchar(max)" />
           <Property Name="BreedMode" Type="nvarchar(max)" />
           <Property Name="CollectedTotal" Type="int" />
-          <Property Name="SucculentImg" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="SucculentCategory">
           <Key>
@@ -272,6 +279,7 @@
           </Key>
           <Property Name="SucculentCategoryID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="SucculentCategoryName" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="SucculentCategoryDescribe" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="Users">
           <Key>
@@ -280,7 +288,7 @@
           <Property Name="UserID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="UserName" Type="nchar" MaxLength="10" Nullable="false" />
           <Property Name="Password" Type="nchar" MaxLength="20" Nullable="false" />
-          <Property Name="Photo" Type="nchar" MaxLength="10" />
+          <Property Name="Photo" Type="nvarchar(max)" />
           <Property Name="Sex" Type="nchar" MaxLength="1" />
           <Property Name="Birth" Type="datetime" />
           <Property Name="Email" Type="nvarchar" MaxLength="50" />
@@ -324,6 +332,18 @@
             </Principal>
             <Dependent Role="Address">
               <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Adopt_Activity">
+          <End Role="Activity" Type="Self.Activity" Multiplicity="1" />
+          <End Role="Adopt" Type="Self.Adopt" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Activity">
+              <PropertyRef Name="ActivityID" />
+            </Principal>
+            <Dependent Role="Adopt">
+              <PropertyRef Name="ActivityID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -432,6 +452,18 @@
             </Principal>
             <Dependent Role="Collection">
               <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Donate_Activity">
+          <End Role="Activity" Type="Self.Activity" Multiplicity="1" />
+          <End Role="Donate" Type="Self.Donate" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Activity">
+              <PropertyRef Name="ActivityID" />
+            </Principal>
+            <Dependent Role="Donate">
+              <PropertyRef Name="ActivityID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -763,6 +795,10 @@
             <End Role="Users" EntitySet="Users" />
             <End Role="Address" EntitySet="Address" />
           </AssociationSet>
+          <AssociationSet Name="FK_Adopt_Activity" Association="Self.FK_Adopt_Activity">
+            <End Role="Activity" EntitySet="Activity" />
+            <End Role="Adopt" EntitySet="Adopt" />
+          </AssociationSet>
           <AssociationSet Name="FK_Adopt_Goods" Association="Self.FK_Adopt_Goods">
             <End Role="Goods" EntitySet="Goods" />
             <End Role="Adopt" EntitySet="Adopt" />
@@ -798,6 +834,10 @@
           <AssociationSet Name="FK_Collection_Users" Association="Self.FK_Collection_Users">
             <End Role="Users" EntitySet="Users" />
             <End Role="Collection" EntitySet="Collection" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Donate_Activity" Association="Self.FK_Donate_Activity">
+            <End Role="Activity" EntitySet="Activity" />
+            <End Role="Donate" EntitySet="Donate" />
           </AssociationSet>
           <AssociationSet Name="FK_Donate_Users" Association="Self.FK_Donate_Users">
             <End Role="Users" EntitySet="Users" />
@@ -919,6 +959,11 @@
           <NavigationProperty Name="Attendance" Relationship="Self.FK_Attendance_Activity" FromRole="Activity" ToRole="Attendance" />
           <NavigationProperty Name="CharitableResult" Relationship="Self.FK_CharitableResult_Activity" FromRole="Activity" ToRole="CharitableResult" />
           <NavigationProperty Name="Entries" Relationship="Self.FK_Entries_Activity" FromRole="Activity" ToRole="Entries" />
+          <Property Name="ActivityCover" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="AttendConditions" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="LevelRequest" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Adopt" Relationship="SucculentModel.FK_Adopt_Activity" FromRole="Activity" ToRole="Adopt" />
+          <NavigationProperty Name="Donate" Relationship="SucculentModel.FK_Donate_Activity" FromRole="Activity" ToRole="Donate" />
         </EntityType>
         <EntityType Name="ActivityCategory">
           <Key>
@@ -948,6 +993,8 @@
           <Property Name="GoodsID" Type="Int32" Nullable="false" />
           <Property Name="Total" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Goods" Relationship="Self.FK_Adopt_Goods" FromRole="Adopt" ToRole="Goods" />
+          <Property Name="ActivityID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Activity" Relationship="SucculentModel.FK_Adopt_Activity" FromRole="Adopt" ToRole="Activity" />
         </EntityType>
         <EntityType Name="AdoptResult">
           <Key>
@@ -1007,6 +1054,8 @@
           <Property Name="ExoressNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="DonateState" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Users" Relationship="Self.FK_Donate_Users" FromRole="Donate" ToRole="Users" />
+          <Property Name="ActivityID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Activity" Relationship="SucculentModel.FK_Donate_Activity" FromRole="Donate" ToRole="Activity" />
         </EntityType>
         <EntityType Name="Entries">
           <Key>
@@ -1171,6 +1220,8 @@
           <Property Name="SectionID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="SectionName" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Posts" Relationship="Self.FK_Posts_Sections" FromRole="Sections" ToRole="Posts" />
+          <Property Name="SectionDescribe" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SectionImg" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="ShoppingCarts">
           <Key>
@@ -1206,7 +1257,7 @@
           <Property Name="SucculentID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="SucculentName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="CategoryID" Type="Int32" Nullable="false" />
-          <Property Name="Photo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="true" />
+          <Property Name="Photo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Feature" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Application" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="BreedMode" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
@@ -1222,6 +1273,7 @@
           <Property Name="SucculentCategoryID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="SucculentCategoryName" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Succulent" Relationship="Self.FK_Succulent_SucculentCategory" FromRole="SucculentCategory" ToRole="Succulent" />
+          <Property Name="SucculentCategoryDescribe" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Users">
           <Key>
@@ -1230,7 +1282,7 @@
           <Property Name="UserID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="UserName" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
           <Property Name="Password" Type="String" MaxLength="20" FixedLength="true" Unicode="true" Nullable="false" />
-          <Property Name="Photo" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="Photo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Sex" Type="String" MaxLength="1" FixedLength="true" Unicode="true" />
           <Property Name="Birth" Type="DateTime" Precision="3" />
           <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
@@ -1862,7 +1914,39 @@
             <End Role="SucculentCategory" EntitySet="SucculentCategory" />
             <End Role="Succulent" EntitySet="Succulent" />
           </AssociationSet>
+          <AssociationSet Name="FK_Adopt_Activity" Association="SucculentModel.FK_Adopt_Activity">
+            <End Role="Activity" EntitySet="Activity" />
+            <End Role="Adopt" EntitySet="Adopt" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Donate_Activity" Association="SucculentModel.FK_Donate_Activity">
+            <End Role="Activity" EntitySet="Activity" />
+            <End Role="Donate" EntitySet="Donate" />
+          </AssociationSet>
         </EntityContainer>
+        <Association Name="FK_Adopt_Activity">
+          <End Type="SucculentModel.Activity" Role="Activity" Multiplicity="1" />
+          <End Type="SucculentModel.Adopt" Role="Adopt" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Activity">
+              <PropertyRef Name="ActivityID" />
+            </Principal>
+            <Dependent Role="Adopt">
+              <PropertyRef Name="ActivityID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Donate_Activity">
+          <End Type="SucculentModel.Activity" Role="Activity" Multiplicity="1" />
+          <End Type="SucculentModel.Donate" Role="Donate" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Activity">
+              <PropertyRef Name="ActivityID" />
+            </Principal>
+            <Dependent Role="Donate">
+              <PropertyRef Name="ActivityID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1872,6 +1956,9 @@
           <EntitySetMapping Name="Activity">
             <EntityTypeMapping TypeName="SucculentModel.Activity">
               <MappingFragment StoreEntitySet="Activity">
+                <ScalarProperty Name="LevelRequest" ColumnName="LevelRequest" />
+                <ScalarProperty Name="AttendConditions" ColumnName="AttendConditions" />
+                <ScalarProperty Name="ActivityCover" ColumnName="ActivityCover" />
                 <ScalarProperty Name="ActivityID" ColumnName="ActivityID" />
                 <ScalarProperty Name="UserID" ColumnName="UserID" />
                 <ScalarProperty Name="ActivityCategoryID" ColumnName="ActivityCategoryID" />
@@ -1907,6 +1994,7 @@
           <EntitySetMapping Name="Adopt">
             <EntityTypeMapping TypeName="SucculentModel.Adopt">
               <MappingFragment StoreEntitySet="Adopt">
+                <ScalarProperty Name="ActivityID" ColumnName="ActivityID" />
                 <ScalarProperty Name="AdoptID" ColumnName="AdoptID" />
                 <ScalarProperty Name="GoodsID" ColumnName="GoodsID" />
                 <ScalarProperty Name="Total" ColumnName="Total" />
@@ -1958,6 +2046,7 @@
           <EntitySetMapping Name="Donate">
             <EntityTypeMapping TypeName="SucculentModel.Donate">
               <MappingFragment StoreEntitySet="Donate">
+                <ScalarProperty Name="ActivityID" ColumnName="ActivityID" />
                 <ScalarProperty Name="DonateID" ColumnName="DonateID" />
                 <ScalarProperty Name="UserID" ColumnName="UserID" />
                 <ScalarProperty Name="DonateTime" ColumnName="DonateTime" />
@@ -2110,6 +2199,8 @@
           <EntitySetMapping Name="Sections">
             <EntityTypeMapping TypeName="SucculentModel.Sections">
               <MappingFragment StoreEntitySet="Sections">
+                <ScalarProperty Name="SectionImg" ColumnName="SectionImg" />
+                <ScalarProperty Name="SectionDescribe" ColumnName="SectionDescribe" />
                 <ScalarProperty Name="SectionID" ColumnName="SectionID" />
                 <ScalarProperty Name="SectionName" ColumnName="SectionName" />
               </MappingFragment>
@@ -2158,6 +2249,7 @@
           <EntitySetMapping Name="SucculentCategory">
             <EntityTypeMapping TypeName="SucculentModel.SucculentCategory">
               <MappingFragment StoreEntitySet="SucculentCategory">
+                <ScalarProperty Name="SucculentCategoryDescribe" ColumnName="SucculentCategoryDescribe" />
                 <ScalarProperty Name="SucculentCategoryID" ColumnName="SucculentCategoryID" />
                 <ScalarProperty Name="SucculentCategoryName" ColumnName="SucculentCategoryName" />
               </MappingFragment>

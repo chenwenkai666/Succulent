@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=Edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+    <link type="image/x-icon" href="~/images/多肉项目Logo.png" rel="icon" />
     <script src="~/Scripts/jquery-1.10.2.min.js"></script>
     <link rel="stylesheet" href="~/Content/animate.min.css">
     <link rel="stylesheet" href="~/Content/bootstrap.min.css">
@@ -33,12 +34,12 @@
                 </div>
                 <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a href="#home" class="smoothScroll">首页</a></li>
+                        <li><a href="@Url.Action("Index","Index")" class="smoothScroll">首页</a></li>
                         <li><a href="#portfolio" class="smoothScroll">多肉</a></li>
                         <li><a href="#" class="smoothScroll">论坛</a></li>
-                        <li><a href="#" class="smoothScroll">活动</a></li>
+                        <li><a href="@Url.Action("Index","SucculentActivity")" class="smoothScroll">活动</a></li>
                         <li><a href="#" class="smoothScroll">商城</a></li>
-                        <li><a href="#" class="smoothScroll">登录</a></li>
+                        <li><a href="@Url.Action("Login","User")" class="smoothScroll">登录</a></li>
                     </ul>
                 </div>
             </div>

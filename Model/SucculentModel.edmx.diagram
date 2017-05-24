@@ -68,6 +68,8 @@
         <AssociationConnector Association="SucculentModel.FK_ShoppingCarts_Users" ManuallyRouted="false" />
         <AssociationConnector Association="SucculentModel.FK_Shops_Users" ManuallyRouted="false" />
         <AssociationConnector Association="SucculentModel.FK_Succulent_SucculentCategory" ManuallyRouted="false" />
+        <AssociationConnector Association="SucculentModel.FK_Adopt_Activity" />
+        <AssociationConnector Association="SucculentModel.FK_Donate_Activity" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
