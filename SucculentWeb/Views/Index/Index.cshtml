@@ -244,3 +244,15 @@
     </div>
 </section>
 
+@section Foot{
+    <script>
+        $(window).scroll(function () { //绑定scroll事件
+            var t = $(window).scrollTop();  //获取滚动距离
+            if (t >= 300) { //判断
+                $(".templatemo_homewrapper>form").removeClass('search_form').addClass('fixed_form');
+            } else {
+                $(".templatemo_homewrapper>form").removeClass('fixed_form').addClass('search_form');
+            }
+        });
+</script>
+}

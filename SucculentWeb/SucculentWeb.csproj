@@ -452,6 +452,7 @@
     <Content Include="images\相机.png" />
     <Content Include="images\绿色的布纹理.jpg" />
     <Content Include="images\绿草背景.png" />
+    <Content Include="images\荷塘.png" />
     <Content Include="js\demo.js" />
     <Content Include="css\GoodsDetail.css" />
     <Content Include="css\imghover.css" />

@@ -11,7 +11,8 @@ namespace Model
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Activity
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -22,17 +23,44 @@ namespace Model
             this.CharitableResult = new HashSet<CharitableResult>();
             this.Entries = new HashSet<Entries>();
         }
-    
+
         public int ActivityID { get; set; }
+
+        [Required(ErrorMessage = "请输入主办方名称")]
         public int UserID { get; set; }
+
+        [Required(ErrorMessage = "请选择活动类别")]
         public int ActivityCategoryID { get; set; }
+
+        [Required(ErrorMessage = "请输入活动名称")]
         public string ActivityName { get; set; }
+
+        [Required(ErrorMessage = "请输入活动描述")]
         public string ActivityDescribe { get; set; }
+
+        [Required(ErrorMessage = "请输入活动地点")]
         public string ActivityPlace { get; set; }
+
+        [Required(ErrorMessage = "请输入开始时间")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public System.DateTime StartTime { get; set; }
+
+        [Required(ErrorMessage = "请输入结束时间")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public System.DateTime EndTime { get; set; }
         public Nullable<int> UpvoteNum { get; set; }
-    
+
+        [Required(ErrorMessage = "请上传活动封面图")]
+        public string ActivityCover { get; set; }
+
+        [Required(ErrorMessage = "请输入参赛条件")]
+        public string AttendConditions { get; set; }
+
+        [Required(ErrorMessage = "请输入参赛等级要求(0-100)")]
+        public Nullable<int> LevelRequest { get; set; }
+
         public virtual ActivityCategory ActivityCategory { get; set; }
         public virtual Users Users { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
@@ -43,5 +71,9 @@ namespace Model
         public virtual ICollection<CharitableResult> CharitableResult { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Entries> Entries { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Adopt> Adopt { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Donate> Donate { get; set; }
     }
 }

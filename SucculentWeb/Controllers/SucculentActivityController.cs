@@ -434,6 +434,26 @@ namespace SucculentWeb.Controllers
         }
         #endregion
 
-
+        #region 用户投票
+        [HttpPost]
+        public string Vote(int UserID, int ActID)
+        {
+            if (Session["UserName"] != null)
+            {
+                if (EntriesManager.AddUpvoteNum(UserID, ActID))
+                {
+                    return "1";
+                }
+                else
+                {
+                    return "系统出错";
+                }
+            }
+            else
+            {
+                return "请您先登录！";
+            }
+        }
+        #endregion 
     }
 }
