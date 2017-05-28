@@ -46,35 +46,55 @@
                             @*<a href="@Url.Action("Login","User")" class="smoothScroll">登录</a>*@
                             <div class="userinfobox">
                                 <div class="index_loginbox" id="index_loginbox">
-                                    <img src="~/images/头像.png" />
+                                    @{
+                                        if (Session["UserName"] != null)
+                                        {
+                                            Users user = UsersManager.GetUserByName(Session["UserName"].ToString());
+                                            if (user.Photo != null)
+                                            {
+                                                <img src="@user.Photo" />
+                                            }
+                                            else
+                                            {
+                                                <img src="~/images/头像.png" />
+                                            }
+
+                                        }
+                                        else
+                                        {
+                                            <img src="~/images/灰色头像.png" />
+                                        }
+                                    }
+
                                 </div>
                                 <div class="login_registerbox" id="login_registerbox_id">
                                     @{
                                         if (Session["UserName"] != null)
                                         {
-                                           <div class="userinfo">
-                                            <p>@Session["UserName"]</p>
-                                            @{
-                                                int level = 25;
-                                                Users user = UsersManager.GetUserByName(Session["UserName"].ToString());
-                                              }
-                                            <span>我的等级：Lv @level</span><br />
-                                             <a href="#" class="am-btn am-btn-success am-btn-xs am-round" target="_parent">个人中心</a><br />
-                                            <a href="@Url.Action("LoginOut","User")" class="am-btn am-btn-danger am-btn-xs am-round" target="_parent">退出登录</a>
+                                            <div class="userinfo">
+                                                <p>@Session["UserName"]</p>
+                                                @{
+                                                    int level = 25;
+
+                                                }
+                                                <span>我的等级：Lv @level</span><br />
+                                                <a href="#" class="am-btn am-btn-success am-btn-xs am-round" target="_parent">个人中心</a><br />
+                                                <a href="@Url.Action("LoginOut","User")" class="am-btn am-btn-danger am-btn-xs am-round" target="_parent">退出登录</a>
                                             </div>
-                                         }
-                                         else
-                                         {
-                                            <div class="login_register">
-                                              <a class="am-btn am-btn-success am-btn-sm am-round am-btn-block" href="@Url.Action("Login","User")" target="_blank">登 录</a>
-                                              <a class="am-btn am-btn-success am-btn-sm am-round am-btn-block" href="@Url.Action("Register","User")" target="_blank">注 册</a>
-                                            </div>
-                                         }
+                                        }
+                                        else
+                                        {
+                                           <div class="login_register">
+                                            <a class="am-btn am-btn-success am-btn-sm am-round am-btn-block" href="@Url.Action("Login","User")" target="_blank">登 录</a>
+                                            <a class="am-btn am-btn-success am-btn-sm am-round am-btn-block" href="@Url.Action("Register","User")" target="_blank">注 册</a>
+                                           </div>
+                                        }
                                     }
                                 </div>
                             </div>
                         </li>
                     </ul>
+
                 </div>
             </div>
         </nav>

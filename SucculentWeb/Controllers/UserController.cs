@@ -28,7 +28,7 @@ namespace SucculentWeb.Controllers
             if (u > 0)
             {
                 Session["UserName"] = user.UserName;
-                return Redirect(Url.Action("Index", "Home"));
+                return Redirect(Url.Action("Index", "Index"));
             }
             else
             {

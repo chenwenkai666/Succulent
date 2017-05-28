@@ -27,5 +27,18 @@ namespace SucculentWeb.Controllers
             ViewBag.photo = shop.ShopPhoto;
             return View(indexvm);
         }
+
+        [HttpPost]
+        public ActionResult SearchResult(string keywords)
+        {
+            ViewBag.KeyWords = keywords;
+            SearchResultVM searchresultvm = new SearchResultVM();
+            searchresultvm.Activity = ActivityManager.GetActivityByKeywords(keywords);
+            searchresultvm.Goods = GoodsManager.SelectAllGoods().Where(g => g.GoodsName.Contains(keywords));
+            searchresultvm.BaiKe = SucculentManager.SelectSucculent().Where(s =>( s.SucculentName.Contains(keywords)) ||(s.Feature.Contains(keywords) || (s.SucculentCategory.SucculentCategoryName.Contains(keywords)) ));
+  
+
+            return View(searchresultvm);
+        }
     }
 }

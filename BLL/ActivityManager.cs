@@ -29,5 +29,9 @@ namespace BLL
         {
             return iactivity.GetActivityByCategoryID(id);
         }
+        public static IList<Activity> GetActivityByKeywords(string keywords)
+        {
+            return iactivity.GetActivityByKeywords(keywords);
+        }
     }
 }
