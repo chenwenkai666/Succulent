@@ -48,6 +48,7 @@
     <Compile Include="IEntries.cs" />
     <Compile Include="IGoods.cs" />
     <Compile Include="IGoodsComments.cs" />
+    <Compile Include="IPosts.cs" />
     <Compile Include="IShops.cs" />
     <Compile Include="ISucculent.cs" />
     <Compile Include="ISucculentCategory.cs" />
