@@ -213,8 +213,6 @@
     <Compile Include="Controllers\GoodsController.cs" />
     <Compile Include="Controllers\ShopMallController.cs" />
     <Compile Include="Controllers\SucculentIndexController.cs" />
-    <Compile Include="Controllers\Tribune\TribuneBoardController.cs" />
-    <Compile Include="Controllers\Tribune\TribuneIndexController.cs" />
     <Compile Include="Controllers\UserCenterController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
@@ -469,8 +467,6 @@
     <Content Include="Content\UserCenter.css" />
     <Content Include="css\ShopMallTopAndFoot.css" />
     <Content Include="css\Shops.css" />
-    <Content Include="css\Tribune\TribuneBoard.css" />
-    <Content Include="css\Tribune\TribuneIndex.css" />
     <Content Include="css\xiaomi.css" />
     <Content Include="Content\reset.css" />
     <Content Include="Content\style.css" />
@@ -643,14 +639,6 @@
     <Content Include="images\Succulent\zaolinyu.jpg" />
     <Content Include="images\Succulent\zhenzhudiaolan.jpg" />
     <Content Include="images\Succulent\zihuangxing.jpg" />
-    <Content Include="images\Tribune\timg.jpg" />
-    <Content Include="images\Tribune\timg1.jpg" />
-    <Content Include="images\Tribune\timg2.jpg" />
-    <Content Include="images\Tribune\web\chart.jpg" />
-    <Content Include="images\Tribune\web\gonggao.jpg" />
-    <Content Include="images\Tribune\web\huodong.jpg" />
-    <Content Include="images\Tribune\web\kankan.jpg" />
-    <Content Include="images\Tribune\web\testlogo.png" />
     <Content Include="images\wb.png" />
     <Content Include="images\wechat.png" />
     <Content Include="images\wx.png" />
@@ -675,8 +663,6 @@
     <Content Include="js\setup.js" />
     <Content Include="js\ShopMallTopFoot.js" />
     <Content Include="js\Shops.js" />
-    <Content Include="js\Tribune\bootstrap.min.js" />
-    <Content Include="js\Tribune\jquery.SuperSlide.js" />
     <Content Include="js\xiaomi.js" />
     <Content Include="js\xzoom.min.js" />
     <Content Include="obj\Debug\SucculentWeb.csproj.FileListAbsolute.txt" />
@@ -1341,8 +1327,6 @@
     <Content Include="Views\ShopMall\ShopMallIndex.cshtml" />
     <Content Include="Views\Goods\CreatGoods.cshtml" />
     <Content Include="Views\Succulent\Create.cshtml" />
-    <Content Include="Views\TribuneIndex\Index.cshtml" />
-    <Content Include="Views\TribuneBoard\Index.cshtml" />
     <Content Include="Views\Succulent\Succulent.cshtml" />
     <Content Include="Views\MallSearch\Index.cshtml" />
     <Content Include="Views\MallSearch\Tuijian.cshtml" />
