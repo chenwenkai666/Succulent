@@ -194,7 +194,7 @@
           <Property Name="PostTitle" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="PostContent" Type="nvarchar(max)" Nullable="false" />
           <Property Name="PublishTime" Type="datetime" Nullable="false" />
-          <Property Name="PostFlag" Type="int" Nullable="false" />
+          <Property Name="PostFlag" Type="int" />
         </EntityType>
         <EntityType Name="Pots">
           <Key>
@@ -1171,7 +1171,7 @@
           <Property Name="PostTitle" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="PostContent" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="PublishTime" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="PostFlag" Type="Int32" Nullable="false" />
+          <Property Name="PostFlag" Type="Int32" />
           <NavigationProperty Name="PostComments" Relationship="Self.FK_PostComments_Posts" FromRole="Posts" ToRole="PostComments" />
           <NavigationProperty Name="Sections" Relationship="Self.FK_Posts_Sections" FromRole="Posts" ToRole="Sections" />
           <NavigationProperty Name="Users" Relationship="Self.FK_Posts_Users" FromRole="Posts" ToRole="Users" />
