@@ -66,6 +66,10 @@ namespace BLL
         {
             return iposts.SelectUserInfo(UserName);
         }
+        public static Posts SelectPostFirstFloor(int userid, DateTime time)  //查找帖子一楼
+        {
+            return iposts.SelectPostFirstFloor(userid, time);
+        }
     }
 }
 

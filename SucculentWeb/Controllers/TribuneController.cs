@@ -41,21 +41,36 @@ namespace SucculentWeb.Controllers
         }
         [HttpPost]
         [ValidateInput(false)]
-        public ActionResult CreatePost(Posts posts)
+        public ActionResult CreatePost(Posts posts, PostComments postscom)
         {
+            int BoardID = Convert.ToInt32(Session["BoardID"]);
             try
             {
                 if (posts.PostTitle.Length <= 24)
                 {
                     if (posts.PostContent.ToString() != null)
                     {
-                        posts.UserID = Convert.ToInt32(Session["UserID"]);
-                        posts.PublishTime = DateTime.Now;
+                        int userid = Convert.ToInt32(Session["UserID"]);
+                        string timer = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+                        DateTime PubTime = DateTime.Parse(timer);
+                        posts.UserID = userid;
+                        posts.PublishTime = PubTime;
                         db.Posts.Add(posts);
                         db.Configuration.ValidateOnSaveEnabled = false;
                         db.SaveChanges();
                         db.Configuration.ValidateOnSaveEnabled = true;
-                        return Redirect("BoardIndex?BoardID=1");
+
+                        //var DATER = PostsManager.SelectPostFirstFloor(userid, PubTime);
+                        //postscom.UserID = userid;
+                        //postscom.PostID = DATER.PostID;
+                        //postscom.PostCommentContent = DATER.PostContent;
+                        //postscom.PostCommentTime = PubTime;
+                        //db.PostComments.Add(postscom);
+                        //db.Configuration.ValidateOnSaveEnabled = false;
+                        //db.SaveChanges();
+                        //db.Configuration.ValidateOnSaveEnabled = true;
+
+                        return RedirectToAction("BoardIndex", "Tribune", new { BoardID = BoardID });
                     }
                     else
                     {

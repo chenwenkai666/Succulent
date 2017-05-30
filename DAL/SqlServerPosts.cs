@@ -98,6 +98,13 @@ namespace DAL
                        select p;
             return data;
         }
+        public Posts SelectPostFirstFloor(int userid, DateTime time)  //查找帖子一楼
+        {
+            Posts data = (from p in db.Posts
+                          where p.UserID == userid && p.PublishTime == time
+                          select p).FirstOrDefault();
+            return data;
+        }
     }
 }
 
