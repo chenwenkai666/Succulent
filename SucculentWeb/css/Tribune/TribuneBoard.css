@@ -1,0 +1,167 @@
+
+
+/*主体*/
+#bodyer {
+    min-width: 1000px;
+    min-height:604px;
+    width: 1000px;
+    margin: 25px auto 0;
+}
+
+    #bodyer a:link {
+        color: #000000;
+        text-decoration: none;
+    }
+
+    #bodyer a:hover {
+        color: #199475;
+        text-decoration: none;
+    }
+
+#bodyer-A1 {
+    width: 1000px;
+    height: 25px;
+    padding-top: 3px;
+    padding-left: 8px;
+}
+
+#bodyer-A2 {
+    width: 1000px;
+    height: 25px;
+    margin-top: 10px;
+}
+
+#A2-left {
+    width: 700px;
+    height: 25px;
+    float: left;
+    padding-top: 3px;
+    padding-left: 8px;
+}
+
+#A2-right {
+    width: 300px;
+    height: 25px;
+    float: right;
+    padding-top: 3px;
+    padding-left: 8px;
+}
+
+#bodyer-A3 {
+    width: 1000px;
+    height: 60px;
+    margin-top: 10px;
+}
+
+#A3-left {
+    width: 200px;
+    height: 60px;
+    float: left;
+    padding-top: 15px;
+    padding-left: 15px;
+}
+
+#A3-btn {
+    background-color: #199475;
+    color: #FFF;
+}
+
+#A3-right {
+    width: 800px;
+    height: 60px;
+    float: right;
+}
+
+#bodyer-A4 {
+    width: 1000px;
+    height: 50px;
+    margin-top: 10px;
+    border-bottom: 1px solid #C7CEB2;
+}
+
+#A4-Style {
+    width: 1000px;
+    height: 50px;
+    background-color: #C7CEB2;
+}
+
+    #A4-Style p {
+        color: #199475;
+    }
+
+#bodyer-A5 {
+    width: 1000px;
+}
+
+#A5-bottom {
+    width:1000px;
+    height:25px;
+    background-color: #C7CEB2;
+}
+
+.A5-list {
+    width: 1000px;
+    height: 50px;
+    border-bottom: 1px solid #C7CEB2;
+    border-right: 1px solid #C7CEB2;
+    border-left: 1px solid #C7CEB2;
+    background-color: #FFF;
+}
+
+.list-A {
+    width: 50px;
+    height: 49px;
+    float: left;
+    margin-left: 15px;   
+}
+
+.list-A-Img {
+    width: 43px;
+    height: 43px;
+    margin-top: 3px;
+    margin-left: 3px;
+    background-image: url('../../images/Tribune/web/defaultPhoto.jpg');
+    background-size:contain;
+}
+
+.list-B {
+    width: 500px;
+    height: 49px;
+    float: left;
+    padding-top: 15px;
+    margin-left: 35px;
+}
+
+.list-C {
+    width: 125px;
+    height: 49px;
+    float: left;
+    padding-top: 15px;
+    margin-left: 5px;
+}
+
+.list-D {
+    width: 125px;
+    height: 49px;
+    float: left;
+    padding-top: 15px;
+    margin-left: 5px;
+}
+
+.list-E {
+    width: 125px;
+    height: 49px;
+    float: left;
+    padding-top: 15px;
+    margin-left: 5px;
+}
+
+#bodyer-A6 {
+    width: 1000px;
+    margin-top: 7px;
+}
+
+#A6-Style {
+    width: 1000px;
+}
+/*主体结束*/

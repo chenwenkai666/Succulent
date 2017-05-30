@@ -1,0 +1,154 @@
+﻿
+@model SucculentWeb.ViewModels.TribuneVM.TribunePostVM
+@using BLL;
+@{
+    ViewBag.Title = "PostsDetails";
+    Layout = "~/Views/Shared/Tribune/TribuneView.cshtml";
+}
+
+<script src="~/js/jquery-2.1.4.min.js"></script>
+<link href="~/css/Tribune/TribunePosts.css" rel="stylesheet" />
+<script src="~/ueditor/ueditor.config.js"></script>
+<script src="~/ueditor/ueditor.all.js"></script>
+
+<script type="text/javascript">
+    var editorOption = {
+        initialFrameWidth: 1000,
+        autoHeightEnabled: true,
+        maximumWords: 1000,
+        initialFrameHeight: 150,
+        toolbars: [['source', 'undo', 'redo', 'bold', 'italic', 'underline', 'strikethrough', 'superscript', 'subscript', 'date', 'time', 'link', 'unlink', 'fontfamily', 'fontsize', 'forecolor', 'insertimage', 'simpleupload', 'emotion', 'scrawl', 'insertvideo', 'music', 'attachment', 'map', 'inserttable', 'help', 'justifyleft', 'justifyright', 'justifycenter', 'justifyjustify', ]]
+    };
+    var editor = new baidu.editor.ui.Editor(editorOption);
+    editor.render('PostCommentContent');
+</script>
+
+<!-- 主体 -->
+<section id="bodyer">
+    <div id="bodyer">
+        <div id="PostTitle">
+            <div id="titleLeft">
+                @foreach (var A in Model.Posts)
+                {
+                    <p>@A.PostTitle</p>
+                }
+            </div>
+            <div id="titleRight">
+                <button class="btn btn-sm btn-default">只看楼主</button>
+                <button id="PLbtn" class="btn btn-sm btn-default">评论</button>
+                <input type="button" class="btn btn-sm btn-default" onClick="location.href='@Url.Action("BoardIndex", "Tribune", new { BoardID = int.Parse(Session["BoardID"].ToString()) })'" value="返回">
+            </div>
+        </div>
+        @foreach (var A in Model.Posts)
+        {
+            <div class="PostFloor">
+                <div class="PostIMG">
+                    <div class="IMG01">@A.Users.Photo</div>
+                    <div class="IMG02">@A.Users.UserName</div>
+                </div>
+                <div class="PostContent">
+                    <div class="Content01">
+                        @Html.Raw(@A.PostContent)
+                    </div>
+                    <div class="PostBottom">
+                        <div class="Bottomtime">@A.PublishTime</div>
+                        <div class="BottomReply">
+                            <button class="btn btn-xs btn-default">&nbsp;回复本层&nbsp;</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+        @{ string tempid; }
+        @foreach (var A in Model.PostComment)
+        {
+            tempid = "dev" + A.PostCommentID;
+            <div class="PostFloor">
+                <div class="PostIMG">
+                    <div class="IMG01">@A.Users.Photo</div>
+                    <div class="IMG02">@A.Users.UserName</div>
+                </div>
+                <div class="PostContent">
+                    <div class="Content01">
+                        @Html.Raw(@A.PostCommentContent)
+                    </div>
+                    <div class="PostBottom">
+                        <div class="Bottomtime">@A.PostCommentTime</div>
+                        <div class="BottomReply">
+                            @{ int ReplyNum = PostsManager.GetReplyComNum(A.PostCommentID);}
+                            <button class="btn btn-xs btn-default" onclick="document.getElementById('@tempid').style.display = document.getElementById('@tempid').style.display == '' ? 'none' : ''">&nbsp;回复本层&nbsp;@ReplyNum&nbsp;</button>
+                        </div>
+                    </div>
+                    <div id="@tempid" style="display:none;" class="ReplyBox">
+                        @foreach (Model.ReplyPost B in A.ReplyPost.Where(C => C.PostCommentID == A.PostCommentID).ToList().AsReadOnly())
+                        {
+                            <div class="ReplyList">
+                                <div class="ReplyPhoto"></div>
+                                <div class="ReplyText">
+                                    <div class="ReText01">@B.Users.UserName : @Html.Raw(@B.ReplyContent)</div>
+                                    <div class="ReText02">@B.ReplyPostTime</div>
+                                </div>
+                            </div>
+                        }
+                        <div class="ReplyToPost">
+                            @using (Html.BeginForm("RlyPosts", "Tribune", new { PostCommentID = A.PostCommentID }, FormMethod.Post, new { id = "CreateForm", enctype = "multipart/form-data" }))
+                            {
+                                <div class="PostRly01">
+                                    <textarea style="resize:none;" class="form-control" rows="3" name="textarea1" placeholder="我也要简单说两句"></textarea>
+                                </div>
+                                <div class="PostRly02">
+                                    <div class="Rly02-A">
+                                        <p>此处放错误信息</p>
+                                    </div>
+                                    <div class="Rly02-B">
+                                        @if (Session["UserID"] != null)
+                                        {
+                                            <input type="submit" value="&nbsp;发表回复&nbsp;" class="btn btn-xs btn-default" />
+                                        }
+                                        else
+                                        {
+                                            <input type="button" value="&nbsp;发表回复&nbsp;" class="btn btn-xs btn-default" onclick="alert(' 请先登录 ')" />
+                                        }
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+        <div id="PostComment">
+            @using (Html.BeginForm("PostsDetails", "Tribune", FormMethod.Post, new { id = "CreateForm", enctype = "multipart/form-data" }))
+            {
+                <div id="PostComTile">
+                    <div id="Comtitlephoto"></div>
+                    <div id="Comtitle"><p>发表评论</p></div>
+                </div>
+                <div id="PostCom01" class="text">
+                    @Html.TextArea("PostCommentContent")
+                </div>
+                <div id="PostCom02" class="text">
+                    <div id="Com02-A">
+                        @*此处放错误信息*@
+                    </div>
+                    <div id="Com02-B">
+                        @if (Session["UserID"] != null)
+                        {
+                            <input type="submit" value="发 表 评 论" class="btn btn-success" />
+                        }
+                        else
+                        {
+                            <input type="button" value="发 表 评 论" class="btn btn-success" onclick="alert(' 请先登录 ')" />
+                        }
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</section>
+<!-- 主体结束 -->
+<script type="text/javascript">
+    jQuery(document).ready(function ($) {
+        $('#PLbtn').click(function () { $('html,body').animate({ scrollTop: $('#PostComment').offset().top }, 800); });
+    });
+</script>

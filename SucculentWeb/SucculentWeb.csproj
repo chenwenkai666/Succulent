@@ -213,6 +213,7 @@
     <Compile Include="Controllers\GoodsController.cs" />
     <Compile Include="Controllers\ShopMallController.cs" />
     <Compile Include="Controllers\SucculentIndexController.cs" />
+    <Compile Include="Controllers\TribuneController.cs" />
     <Compile Include="Controllers\UserCenterController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
@@ -239,6 +240,9 @@
     <Compile Include="ViewModels\SearchResultVM.cs" />
     <Compile Include="ViewModels\ShopMallIndexViewModels.cs" />
     <Compile Include="ViewModels\SucculentIndexViewModels.cs" />
+    <Compile Include="ViewModels\TribuneVM\TribuneBoardVM.cs" />
+    <Compile Include="ViewModels\TribuneVM\TribuneIndexVM.cs" />
+    <Compile Include="ViewModels\TribuneVM\TribunePostVM.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="bin\Antlr3.Runtime.dll" />
@@ -374,6 +378,11 @@
     <Content Include="Content\Succulent.css" />
     <Content Include="Content\SucculentActivity.css" />
     <Content Include="Content\zeroModal.css" />
+    <Content Include="css\Tribune\TribuneBoard.css" />
+    <Content Include="css\Tribune\TribuneCreatePost.css" />
+    <Content Include="css\Tribune\TribuneIndex.css" />
+    <Content Include="css\Tribune\TribunePosts.css" />
+    <Content Include="css\Tribune\TribuneView.css" />
     <Content Include="fonts\dropify.svg" />
     <Content Include="images\161.jpg" />
     <Content Include="images\162.jpg" />
@@ -448,6 +457,22 @@
     <Content Include="images\Sprites\tag2.png" />
     <Content Include="images\Sprites\vote.png" />
     <Content Include="images\Sprites\vote2.png" />
+    <Content Include="images\Tribune\timg.jpg" />
+    <Content Include="images\Tribune\timg1.jpg" />
+    <Content Include="images\Tribune\timg2.jpg" />
+    <Content Include="images\Tribune\web\1gonggao.jpg" />
+    <Content Include="images\Tribune\web\2huodong.jpg" />
+    <Content Include="images\Tribune\web\3kankan.jpg" />
+    <Content Include="images\Tribune\web\4jiaoliu.jpg" />
+    <Content Include="images\Tribune\web\5jinyan.jpg" />
+    <Content Include="images\Tribune\web\6jieda.jpg" />
+    <Content Include="images\Tribune\web\7linyang.jpg" />
+    <Content Include="images\Tribune\web\8meitu.jpg" />
+    <Content Include="images\Tribune\web\9guanli.jpg" />
+    <Content Include="images\Tribune\web\chart.jpg" />
+    <Content Include="images\Tribune\web\defaultPhoto.jpg" />
+    <Content Include="images\Tribune\web\FaBiaoPL.jpg" />
+    <Content Include="images\Tribune\web\testlogo.png" />
     <Content Include="images\更多活动敬请期待.png" />
     <Content Include="images\淡黄色的纸张.jpg" />
     <Content Include="images\相机.png" />
@@ -663,6 +688,8 @@
     <Content Include="js\setup.js" />
     <Content Include="js\ShopMallTopFoot.js" />
     <Content Include="js\Shops.js" />
+    <Content Include="js\Tribune\bootstrap.min.js" />
+    <Content Include="js\Tribune\jquery.SuperSlide.js" />
     <Content Include="js\xiaomi.js" />
     <Content Include="js\xzoom.min.js" />
     <Content Include="obj\Debug\SucculentWeb.csproj.FileListAbsolute.txt" />
@@ -1359,6 +1386,12 @@
     <Content Include="Views\SucculentIndex\PartialViewDate.cshtml" />
     <Content Include="Views\UserCenter\Index.cshtml" />
     <Content Include="Views\Index\SearchResult.cshtml" />
+    <Content Include="Views\Shared\Tribune\TribuneView.cshtml" />
+    <Content Include="Views\Tribune\BoardIndex.cshtml" />
+    <Content Include="Views\Tribune\CreatePost.cshtml" />
+    <Content Include="Views\Tribune\PostsDetails.cshtml" />
+    <Content Include="Views\Tribune\PostsList.cshtml" />
+    <Content Include="Views\Tribune\TribuneIndex.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

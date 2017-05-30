@@ -1,0 +1,58 @@
+﻿
+@model SucculentWeb.ViewModels.TribuneBoardVM
+
+@{
+    ViewBag.Title = "BoardIndex";
+    Layout = "~/Views/Shared/Tribune/TribuneView.cshtml";
+}
+
+<link href="~/css/Tribune/TribuneBoard.css" rel="stylesheet" />
+
+<!-- 主体 -->
+<section id="bodyer">
+    <div id="bodyer">
+        <div id="bodyer-A1">
+            <div>
+                <a href=""> 多肉网 </a>
+                <em>&rsaquo;</em>
+                <a href="@Url.Action("TribuneIndex", "Tribune")"> 论坛 </a>
+                <em>&rsaquo;</em>
+                @foreach (var A in Model.Sections)
+                {
+                    <a href=""> ［@A.SectionName］ </a>
+                }
+            </div>
+        </div>
+        <div id="bodyer-A2">
+            <div id="A2-left">
+                <a>
+                    @foreach (var A in Model.Sections)
+                    {
+                        <a href=""> ［@A.SectionName］ </a>
+                    }
+                    <span>
+                        今日:
+                        <strong>@Model.PostsNumberToday</strong>
+                        <b>&nbsp;</b>
+                        <span>|</span>
+                        <b>&nbsp;</b>
+                        主题:
+                        <strong>@Model.PostsNumberAll</strong>
+                        @*<b>&nbsp;</b>
+                        <span>|</span>
+                        <b>&nbsp;</b>
+                        排名:
+                        <strong>2</strong>*@
+                    </span>
+                </a>
+            </div>
+            <div id="A2-right" class="text-right">
+                @*<a href="">刷新&nbsp;<span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>&nbsp;</a>*@
+            </div>
+        </div>
+        @{ Html.RenderAction("PostsList", "Tribune");}
+    </div>
+</section>
+<!-- 主体结束 -->
+
+

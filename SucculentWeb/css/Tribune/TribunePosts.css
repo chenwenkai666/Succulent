@@ -1,0 +1,263 @@
+﻿
+/*主体*/
+#bodyer {
+    width: 1000px;
+    height: auto;
+    min-width: 1000px;
+    min-height: 554px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 25px;
+    margin-top: 88px;
+}
+
+#PostTitle {
+    width: 1000px;
+    height: 50px;
+    border: 1px solid #C7CEB2;
+    background-color: #FFF;
+    position: fixed;
+    top: 38px;
+    z-index: 5555;
+}
+
+#titleLeft {
+    width: 748px;
+    height: 48px;
+    padding-top: 9px;
+    padding-left: 25px;
+    float: left;
+    font-weight: normal;
+    font-size: 20px;
+}
+
+#titleRight {
+    width: 250px;
+    height: 48px;
+    padding-top: 10px;
+    padding-left: 10px;
+    float: right;
+    text-align: center;
+}
+
+/*楼层样式*/
+.PostFloor {
+    width: 1000px;
+    height: auto;
+    min-height: 200px;
+    border-bottom: 1px solid #C7CEB2;
+    border-right: 1px solid #C7CEB2;
+    border-left: 1px solid #C7CEB2;
+    overflow: hidden;
+}
+
+.PostIMG {
+    width: 150px;
+    height: 200px;
+    float: left;
+    padding-top: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.IMG01 {
+    width: 130px;
+    height: 130px;
+    background-image: url('../../images/Tribune/web/defaultPhoto.jpg');
+    background-size: contain;
+}
+
+.IMG02 {
+    width: 130px;
+    height: 25px;
+    text-align: center;
+    padding-top: 2px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    background-color: #FFF;
+}
+
+.PostContent {
+    width: 848px;
+    height: auto;
+    min-height: 200px;
+    float: right;
+    padding-top: 15px;
+    padding-left: 15px;
+    padding-right: 15px;
+    background-color: #FFF;
+}
+
+.Content01 {
+    width: 818px;
+    height: auto;
+    min-height: 145px;
+    background-color: #FFF;
+    border-bottom: 1px dashed #C7CEB2;
+}
+
+.PostBottom {
+    width: 818px;
+    height: auto;
+    min-height: 25px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    background-color: #FFF;
+}
+
+.Bottomtime {
+    width: 200px;
+    height: 25px;
+    text-align: right;
+    color: darkgray;
+    padding-top: 2px;
+    margin-left: 510px;
+    float: left;
+}
+
+.BottomReply {
+    width: 100px;
+    height: 25px;
+    float: right;
+    text-align: center;
+    padding-top: 2px;
+}
+
+.ReplyBox {
+    width: 100%;
+    height: auto;
+    margin-bottom: 10px;
+}
+
+.ReplyList {
+    width: 100%;
+    height: auto;
+    min-height: 70px;
+    border-top: 1px solid #C7CEB2;
+    border-left: 1px solid #C7CEB2;
+    border-right: 1px solid #C7CEB2;
+    overflow: hidden;
+}
+
+.ReplyPhoto {
+    float: left;
+    width: 50px;
+    height: 50px;
+    margin-top: 7px;
+    margin-left: 7px;
+    margin-right: 7px;
+    background-image: url('../../images/Tribune/web/defaultPhoto.jpg');
+    background-size: contain;
+}
+
+.ReplyText {
+    float: right;
+    width: 750px;
+    min-height: 70px;
+}
+
+.ReText01 {
+    width: 750px;
+    min-height: 55px;
+    padding: 7px;
+}
+
+.ReText01>p { 
+}
+
+.ReText02 {
+    width: 750px;
+    height: 15px;
+    border-top: 1px dashed #C7CEB2;
+    padding-right: 15px;
+    font-size: 10px;
+    text-align: right;
+    color: darkgray;
+}
+
+.ReplyToPost {
+    width: 100%;
+    height: auto;
+    border-top: 1px solid #C7CEB2;
+}
+
+.PostRly01 {
+    width: 100%;
+    height: auto;
+    margin-top: 3px;
+}
+
+.PostRly02 {
+    width: 100%;
+    height: 22px;
+    margin-top: 3px;
+    margin-bottom: 3px;
+}
+
+.Rly02-A {
+    width: 650px;
+    height: 22px;
+    float: left;
+}
+
+.Rly02-B {
+    width: 100px;
+    height: 22px;
+    float: right;
+    text-align: center;
+}
+
+#PostComment {
+    width: 1000px;
+    height: auto;
+}
+
+#PostComTile {
+    width: 1000px;
+    height: 25px;
+    margin-top: 5px;
+}
+
+#Comtitlephoto {
+    width: 25px;
+    height: 25px;
+    float: left;
+    background-image: url('../../images/Tribune/web/FaBiaoPL.jpg');
+    background-size: contain;
+}
+
+#Comtitle {
+    width: 965px;
+    height: 25px;
+    padding-top: 1px;
+    float: right;
+    font-size: 16px;
+}
+
+#PostCom01 {
+    width: 1000px;
+    height: auto;
+    margin-top: 5px;
+}
+
+#PostCom02 {
+    width: 1000px;
+    height: 34px;
+    margin-top: 5px;
+}
+
+#Com02-A {
+    width: 850px;
+    height: 34px;
+    float: left;
+}
+
+#Com02-B {
+    width: 150px;
+    height: 34px;
+    float: right;
+    text-align: right;
+}
+/*楼层样式结束*/
+
+/*主体结束*/

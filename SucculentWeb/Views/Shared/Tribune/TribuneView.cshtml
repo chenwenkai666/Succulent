@@ -1,0 +1,89 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/css/Tribune/TribuneView.css" rel="stylesheet" />
+    @RenderSection("Head", false)
+</head>
+<body>
+    <!-- 导航栏 -->
+    <section id="header">
+        <div id="header" class="text-center">
+            <div id="header-a">
+                <!-- 顶部搜索框 -->
+                <div id="header-a-left">
+                    <div id="header-a-left-search" class="input-group input-group-sm">
+                        <input type="text" class="form-control" placeholder="在本论坛搜点什么吧">
+                        <span class="input-group-btn">
+                            <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+                        </span>
+                    </div>
+                </div>
+                <!-- 顶部搜索框结束 -->
+                <!-- 顶部链接 -->
+                <div id="header-a-right">
+                    <div id="homebox">
+                        <a href="">首页</a>
+                    </div>
+                    <div id="homebox2">
+                        <a href="@Url.Action("TribuneIndex", "Tribune")">论坛</a>
+                    </div>
+                    @if (Session["UserName"] != null)
+                    {
+                        <div id="UserBox">
+                            <div id="boxphoto">
+                                @*用户头像*@
+                            </div>
+                        </div>
+                    }
+                    else
+                    {
+                        <div id="homebox03">
+                            <a href="@Url.Action("Login", "User")">登录</a>
+                        </div>
+                        <div id="homebox04">
+                            <a href="">注册</a>
+                        </div>
+                    }
+                    </div>
+                <!-- 顶部链接结束 -->
+            </div>
+        </div>
+    </section>
+    <!-- 导航栏结束 -->
+    <!-- 主体 -->
+    @RenderBody()
+    <!-- 主体结束 -->
+    <!-- 底部 -->
+    <section id="footer">
+        <div id="footer">
+            <div id="footer-a" class="text-right">
+                <div id="footer-aa">
+                    <a href="">多肉论坛</a>
+                    ( <a href="http://www.beianbeian.com/" target=_blank>黑ICP备99999999号-0</a> )
+                </div>
+                <div id="footer-bb">
+                    <div id="time">
+                        <script language="javascript"> setInterval("time.innerHTML=new Date().toLocaleString()+' 星期'+'日一二三四五六'.charAt(new Date().getDay());", 1000); </script>
+                    </div>
+                </div>
+                <div id="footer-cc">
+                    <p>
+                        Powered by &nbsp;<a href="http://www.w3school.com.cn/html5/index.asp" target=_blank>Html5</a>
+                        &nbsp;<a href="http://www.w3school.com.cn/css3/index.asp" target=_blank>CSS3</a>
+                        &nbsp;&copy; 2017-2017
+                        &nbsp;<a href="">ASP.NET工作室</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- 底部结束 -->
+    <script src="~/js/jquery-2.1.4.min.js"></script>
+    <script src="~/js/Tribune/bootstrap.min.js"></script>
+</body>
+</html>

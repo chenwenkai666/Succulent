@@ -1,0 +1,106 @@
+﻿
+/*顶部*/
+#topA {
+    min-width: 1000px;
+    width: 1000px;
+    height: 100px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#topA-logo {
+    width: 250px;
+    height: 100px;
+    float: left;
+}
+
+#topA-right {
+    width: 500px;
+    height: 100px;
+    float: right;
+    /*background-color:red;*/
+}
+
+.topA-box {
+    width: 125px;
+    height: 100px;
+    float: left;
+    /*border:1px solid #199475;*/
+    line-height: 95px;
+    text-align: center;
+    font-size: 17px;
+}
+/*顶部结束*/
+
+/*主体*/
+#bodyer {
+    width: 1000px;
+    height: auto;
+    min-width: 1000px;
+    min-height: 479px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 25px;
+}
+
+#A1 {
+    width: 1000px;
+    height: auto;
+    min-height: 45px;
+    margin-bottom: 3px;
+    overflow: hidden;
+}
+
+#A1-left {
+    width: 650px;
+    height: auto;
+    min-height: 45px;
+    padding-top: 5px;
+    padding-right: 5px;
+    float: left;
+}
+
+#A1-right {
+    width: 300px;
+    height: 45px;
+    float: right;
+}
+
+#right-01 {
+    width: 145px;
+    height: 45px;
+    padding-top: 5px;
+    float: left;
+}
+
+#right-02 {
+    width: 145px;
+    height: 45px;
+    padding-top: 5px;
+    float: right;
+}
+
+#A1Message {
+    width: 1000px;
+    height: 22px;
+    padding-left: 15px;
+    margin-bottom: 3px;
+}
+
+#A2 {
+    width: 1000px;
+    margin-bottom: 5px;
+}
+
+#A2Message {
+    width: 1000px;
+    height: 22px;
+    padding-left: 15px;
+    margin-bottom: 3px;
+}
+
+#A3 {
+    width: 1000px;
+    height: 45px;
+}
+/*主体结束*/

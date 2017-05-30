@@ -1,0 +1,71 @@
+﻿
+@model PagedList.IPagedList<Model.Posts>
+@using PagedList
+@using PagedList.Mvc
+
+@{
+    Layout = null;
+}
+
+<div id="bodyer-A3">
+    <div id="A3-left">
+        @if (Session["UserID"] != null)
+        {
+            <button id="A3-btn" class="btn" onclick="window.open('@Url.Action("CreatePost", "Tribune")')">我要发帖</button>
+        }
+        else
+        {
+            <button id="A3-btn" class="btn" onclick="alert(' 请先登录 ')">我要发帖</button>
+        }       
+    </div>
+    <div id="A3-right" class="text-right">
+        @Html.PagedListPager((IPagedList)Model, page => Url.Action("BoardIndex", new { page, BoardID = int.Parse(Session["BoardID"].ToString()) }))
+    </div>
+</div>
+<div id="bodyer-A4">
+    <div id="A4-Style">
+        <div class="list-A">
+        </div>
+        <div class="list-B">
+        </div>
+        <div class="list-C">
+            <p class="text-center">时间</p>
+        </div>
+        <div class="list-D">
+            <p class="text-center">作者</p>
+        </div>
+        <div class="list-E">
+            <p class="text-center">评论</p>
+        </div>
+    </div>
+</div>
+<div id="bodyer-A5">
+    @foreach (var A in Model)
+            {
+        <div class="A5-list">
+            <div class="list-A">
+                <div class="list-A-Img">
+                    @*<img src=""/>*@
+                </div>
+            </div>
+            <div class="list-B">
+                <a href="@Url.Action("PostsDetails", "Tribune",new { PostID = @A.PostID })">@A.PostTitle</a>
+            </div>
+            <div class="list-C">
+                <p class="text-center">@A.PublishTime.ToString("y/M/d h:m")</p>
+            </div>
+            <div class="list-D">
+                <p class="text-center">@A.Users.UserName</p>
+            </div>
+            <div class="list-E">
+                <p class="text-center">999</p>
+            </div>
+        </div>
+    }
+    <div id="A5-bottom"></div>
+</div>
+<div id="bodyer-A6">
+    <div id="A6-Style" class="text-right">
+        @Html.PagedListPager((IPagedList)Model, page => Url.Action("BoardIndex", new { page, BoardID = int.Parse(Session["BoardID"].ToString()) }))
+    </div>
+</div>

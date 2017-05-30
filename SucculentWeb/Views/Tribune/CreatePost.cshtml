@@ -1,0 +1,74 @@
+﻿
+@model Model.Posts
+@{
+    ViewBag.Title = "CreatePost";
+    Layout = "~/Views/Shared/Tribune/TribuneView.cshtml";
+}
+@section Head
+{
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/ueditor/ueditor.config.js"></script>
+    <script src="~/ueditor/ueditor.all.js"></script>
+    <link href="~/css/Tribune/TribuneCreatePost.css" rel="stylesheet" />
+}
+<script type="text/javascript">
+    var editorOption = {
+        initialFrameWidth: 1000,
+        autoHeightEnabled: true,
+        maximumWords: 1000,
+        initialFrameHeight: 270,
+        toolbars: [['source', 'undo', 'redo', 'bold', 'italic', 'underline', 'strikethrough', 'superscript', 'subscript', 'date', 'time', 'link', 'unlink', 'fontfamily', 'fontsize', 'forecolor', 'insertimage', 'simpleupload', 'emotion', 'scrawl', 'insertvideo', 'music', 'attachment', 'map', 'inserttable', 'help', 'justifyleft', 'justifyright', 'justifycenter', 'justifyjustify',]]
+    };
+    var editor = new baidu.editor.ui.Editor(editorOption);
+    editor.render('PostContent');
+</script>
+
+<!-- 主体 -->
+<!-- 顶部 -->
+<section id="top">
+    <div id="topA">
+        <div id="topA-logo"><img src="~/images/Tribune/web/testlogo.png" /></div>
+        <div id="topA-right">
+            <div class="topA-box">东青龙</div>
+            <div class="topA-box">西白虎</div>
+            <div class="topA-box">南朱雀</div>
+            <div class="topA-box">北玄武</div>
+        </div>
+    </div>
+</section>
+<!-- 顶部结束 -->
+<section id="bodyer">
+    <div id="bodyer">
+        @using (Html.BeginForm("CreatePost", "Tribune", FormMethod.Post, new { id = "CreateForm", enctype = "multipart/form-data" }))
+        {
+            <div id="A1">
+                <div id="A1-left">
+                    @Html.EditorFor(model => model.PostTitle, new { htmlAttributes = new { @class = "form-control", placeholder = " 帖子标题   不能超过二十四个字" } })
+                </div>
+                <div id="A1-right">
+                    <div id="right-01">
+                        @Html.EditorFor(model => model.SectionID, new { htmlAttributes = new { @class = "form-control", placeholder = "所属板块 4-9" } })
+                    </div>
+                    <div id="right-02">
+                        @Html.EditorFor(model => model.PostFlag, new { htmlAttributes = new { @class = "form-control", placeholder = "帖子标签 1-3" } })
+                    </div>
+                </div>
+            </div>
+            <div id="A1Message">
+                @Html.ValidationMessageFor(model => model.PostTitle, "", new { style = "color:red;" })
+            </div>
+            <div id="A2" class="text">
+                @Html.TextAreaFor(model => model.PostContent)
+            </div>
+            <div id="A2Message">
+                @Html.ValidationMessageFor(model => model.PostContent, "", new { style = "color:red;" })
+            </div>
+            <div id="A3" class="text">
+                <input type="submit" value=" 发 帖 " class="btn btn-lg btn-block btn-success" />
+            </div>
+        }
+    </div>
+</section>
+<!-- 主体结束 -->
