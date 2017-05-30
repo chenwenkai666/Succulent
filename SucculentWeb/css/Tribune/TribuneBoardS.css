@@ -1,0 +1,9 @@
+﻿
+/*主体*/
+
+#bodyer {
+    min-width: 1000px;
+    min-height:604px;
+    width: 1000px;
+    margin: 25px auto 0;
+}
