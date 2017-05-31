@@ -11,25 +11,39 @@
 <!-- 主体 -->
 <section id="bodyer">
     <div id="bodyer">
-        <div id="bodyer-A1">
-            <div>
-                <a href=""> 多肉网 </a>
-                <em>&rsaquo;</em>
-                <a href="@Url.Action("TribuneIndex", "Tribune")"> 论坛 </a>
-                <em>&rsaquo;</em>
-                @foreach (var A in Model.Sections)
-                {
-                    <a href=""> ［@A.SectionName］ </a>
-                }
+        <div id="bodyer-left">
+            <div id="LeftBox">
+                <div id="A4-Style">
+                    <div class="list-A">
+                    </div>
+                    <div class="list-B">
+                    </div>
+                    <div class="list-C">
+                        <p class="text-center">时间</p>
+                    </div>
+                    <div class="list-D">
+                        <p class="text-center">作者</p>
+                    </div>
+                    <div class="list-E">
+                        <p class="text-center">评论</p>
+                    </div>
+                </div>
             </div>
+            @{ Html.RenderAction("PostsList", "Tribune");}
         </div>
-        <div id="bodyer-A2">
-            <div id="A2-left">
-                <a>
+        <div id="bodyer-right">
+            <div id="RightBox">
+                <div id="RB-01">
+                    <a href=""> 多肉网 </a>
+                    <em>&rsaquo;</em>
+                    <a href="@Url.Action("TribuneIndex", "Tribune")"> 论坛 </a>
+                    <em>&rsaquo;</em>
                     @foreach (var A in Model.Sections)
                     {
                         <a href=""> ［@A.SectionName］ </a>
                     }
+                </div>
+                <div id="RB-02">
                     <span>
                         今日:
                         <strong>@Model.PostsNumberToday</strong>
@@ -38,21 +52,20 @@
                         <b>&nbsp;</b>
                         主题:
                         <strong>@Model.PostsNumberAll</strong>
-                        @*<b>&nbsp;</b>
-                        <span>|</span>
-                        <b>&nbsp;</b>
-                        排名:
-                        <strong>2</strong>*@
                     </span>
-                </a>
-            </div>
-            <div id="A2-right" class="text-right">
-                @*<a href="">刷新&nbsp;<span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>&nbsp;</a>*@
+                </div>
+                <div id="RB-03">
+                    @if (Session["UserID"] != null)
+                    {
+                        <button id="A3-btn" class="btn btn-block btn-sm" onclick="window.open('@Url.Action("CreatePost", "Tribune")')"> 我 要 发 帖 </button>
+                    }
+                    else
+                    {
+                        <button id="A3-btn" class="btn btn-block" onclick="alert(' 请先登录 ')">我要发帖</button>
+                    }
+                </div>
             </div>
         </div>
-        @{ Html.RenderAction("PostsList", "Tribune");}
     </div>
 </section>
 <!-- 主体结束 -->
-
-

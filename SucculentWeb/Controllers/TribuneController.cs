@@ -132,10 +132,27 @@ namespace SucculentWeb.Controllers
         }
         public ActionResult PostsList(int? page, int BoardID)
         {
-            const int pageSize = 10;
+            const int pageSize = 20;
             int pagenumber = (page ?? 1);
             var postslist = PostsManager.GetSectionPost(BoardID).ToPagedList(pagenumber, pageSize);
             return View(postslist);
+        }
+        public ActionResult UserQuit()
+        {
+            Session["UserName"] = null;
+            Session["UserID"] = null;
+            return Content("<script>window.location.href = document.referrer;</script>");
+        }
+        [HttpPost]
+        public ActionResult SearchPost()
+        {
+            TribuneSearchVM searchVM = new TribuneSearchVM();
+            string searchinfo = Request.Form["searchinfo"];
+            searchVM.infouser = PostsManager.SelectInfoUsers(searchinfo);
+            searchVM.infopost = PostsManager.SelectInfoPosts(searchinfo);
+            searchVM.infopostcom = PostsManager.SelectInfoPostCom(searchinfo);
+            searchVM.infopostrly = PostsManager.SelectInfoReplyPost(searchinfo);
+            return View(searchVM);
         }
     }
 }

@@ -243,6 +243,7 @@
     <Compile Include="ViewModels\TribuneVM\TribuneBoardVM.cs" />
     <Compile Include="ViewModels\TribuneVM\TribuneIndexVM.cs" />
     <Compile Include="ViewModels\TribuneVM\TribunePostVM.cs" />
+    <Compile Include="ViewModels\TribuneVM\TribuneSearchVM.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="bin\Antlr3.Runtime.dll" />
@@ -379,7 +380,6 @@
     <Content Include="Content\SucculentActivity.css" />
     <Content Include="Content\zeroModal.css" />
     <Content Include="css\Tribune\TribuneBoard.css" />
-    <Content Include="css\Tribune\TribuneBoardS.css" />
     <Content Include="css\Tribune\TribuneCreatePost.css" />
     <Content Include="css\Tribune\TribuneIndex.css" />
     <Content Include="css\Tribune\TribunePosts.css" />
@@ -1393,7 +1393,7 @@
     <Content Include="Views\Tribune\PostsDetails.cshtml" />
     <Content Include="Views\Tribune\PostsList.cshtml" />
     <Content Include="Views\Tribune\TribuneIndex.cshtml" />
-    <Content Include="Views\Tribune\BoardIndexS.cshtml" />
+    <Content Include="Views\Tribune\SearchPost.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

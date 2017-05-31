@@ -34,7 +34,7 @@
                 }
             </div>
             <div id="titleRight">
-                <button class="btn btn-sm btn-default">只看楼主</button>
+                @*<button class="btn btn-sm btn-default">只看楼主</button>*@
                 <button id="PLbtn" class="btn btn-sm btn-default">评论</button>
                 <input type="button" class="btn btn-sm btn-default" onClick="location.href='@Url.Action("BoardIndex", "Tribune", new { BoardID = int.Parse(Session["BoardID"].ToString()) })'" value="返回">
             </div>
@@ -98,7 +98,7 @@
                                 </div>
                                 <div class="PostRly02">
                                     <div class="Rly02-A">
-                                        <p>此处放错误信息</p>
+                                        @*<p>此处放错误信息</p>*@
                                     </div>
                                     <div class="Rly02-B">
                                         @if (Session["UserID"] != null)

@@ -105,6 +105,34 @@ namespace DAL
                           select p).FirstOrDefault();
             return data;
         }
+        public IEnumerable<Users> SelectInfoUsers(string postinfo)  //搜索帖子
+        {
+            var data = from p in db.Users
+                       where p.UserName.Contains(postinfo)
+                       select p;
+            return data;
+        }
+        public IEnumerable<Posts> SelectInfoPosts(string postinfo)  //搜索帖子
+        {
+            var data = from p in db.Posts
+                       where p.PostTitle.Contains(postinfo)
+                       select p;
+            return data;
+        }
+        public IEnumerable<PostComments> SelectInfoPostCom(string postinfo)  //搜索帖子
+        {
+            var data = from p in db.PostComments
+                       where p.PostCommentContent.Contains(postinfo)
+                       select p;
+            return data;
+        }
+        public IEnumerable<ReplyPost> SelectInfoReplyPost(string postinfo)  //搜索帖子
+        {
+            var data = from p in db.ReplyPost
+                       where p.ReplyContent.Contains(postinfo)
+                       select p;
+            return data;
+        }
     }
 }
 

@@ -113,7 +113,9 @@
 
     .tabox .bd {
         height: 208px;
-        border:1px solid #C7CEB2;
+        border-left:1px solid #C7CEB2;
+        border-right:1px solid #C7CEB2;
+        border-bottom:1px solid #C7CEB2;
     }
 
     .tabox .lh {
