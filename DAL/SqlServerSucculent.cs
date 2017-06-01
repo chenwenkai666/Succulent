@@ -57,7 +57,19 @@ namespace DAL
             db.Entry(succulent).State = EntityState.Modified;
             db.SaveChanges();
             db.Configuration.ValidateOnSaveEnabled = true;
-           
+            //Succulent su = new Succulent();
+            //su.Application = succulent.Application;
+            //su.BreedMode = succulent.BreedMode;
+            //su.CategoryID = succulent.CategoryID;
+            //su.CollectedTotal = succulent.CollectedTotal;
+            //su.Collection = succulent.Collection;
+            //su.Feature = succulent.Feature;
+            //su.Photo = succulent.Photo;
+            //su.SucculentID = succulent.SucculentID;
+            //su.SucculentImg = succulent.SucculentImg;
+            //su.SucculentName = succulent.SucculentName;
+
+            //db.Succulent.Attach(succulent);
 
         }
         public Succulent SelectByID(int id)
