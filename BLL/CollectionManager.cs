@@ -16,5 +16,9 @@ namespace BLL
         {
             icollection.Create(collection);
         }
+        public static Collection SelectbySucculentId(int succulentid)
+        {
+            return icollection.SelectbySucculentId(succulentid);
+        }
     }
 }

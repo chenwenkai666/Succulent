@@ -50,7 +50,7 @@
                         <dd class="row">
                             <h1 class="col-md-8">
                                 @Html.DisplayFor(modelItem => item.SucculentName)<small class="small-add">
-                                @Ajax.ActionLink("赞一个", "UpdateAdd", "Succulent", new { id = item.SucculentID,flag=false }, new AjaxOptions { HttpMethod = "Post", UpdateTargetId = "collect-num", InsertionMode = InsertionMode.Replace }, new { @class = "a-add" }) <span id="collect-num">@Html.DisplayFor(modelItem => item.CollectedTotal)</span>
+                                @Ajax.ActionLink("赞一个", "Collection", "Succulent", new { id = item.SucculentID}, new AjaxOptions { HttpMethod = "Post", UpdateTargetId = "collect-num", InsertionMode = InsertionMode.Replace }, new { @class = "a-add" }) <span id="collect-num">@Html.DisplayFor(modelItem => item.CollectedTotal)</span>
                             </small>
                         </h1>
                     </dd>

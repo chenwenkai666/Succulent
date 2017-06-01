@@ -22,7 +22,7 @@ namespace DAL
         }
         public List<Succulent> SelectSucculentByID(int id)
         {
-            var xiao = (from x in db.Succulent
+            var xiao = (from x in db.Succulent.AsNoTracking()
                              where x.SucculentID == id
                              select x).ToList();
             return xiao;
@@ -36,7 +36,7 @@ namespace DAL
         }
        public List<Succulent> SelectSucculentByCatogaryid(int categoryid)
         {
-            var succulent = db.Succulent.Where(c => c.CategoryID == categoryid).Take(9).ToList();
+            var succulent = db.Succulent.AsNoTracking().Where(c => c.CategoryID == categoryid).Take(9).ToList();
             return succulent;
         }
         public List<Succulent> SelectRoomSucculent()
