@@ -52,19 +52,7 @@ namespace DAL
       
         public void UpdateAdd(Succulent succulent)
         {
-            //Succulent su = new Succulent();
-            //su.Application = succulent.Application;
-            //su.BreedMode = succulent.BreedMode;
-            //su.CategoryID = succulent.CategoryID;
-            //su.CollectedTotal = succulent.CollectedTotal;
-            //su.Collection = succulent.Collection;
-            //su.Feature = succulent.Feature;
-            //su.Photo = succulent.Photo;
-            //su.SucculentID = succulent.SucculentID;
-            //su.SucculentImg = succulent.SucculentImg;
-            //su.SucculentName = succulent.SucculentName;
-
-            //db.Succulent.Attach(succulent);
+           
             db.Configuration.ValidateOnSaveEnabled = false;
             db.Entry(succulent).State = EntityState.Modified;
             db.SaveChanges();
