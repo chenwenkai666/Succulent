@@ -23,10 +23,11 @@
             <div class="slider-caption">
                 <div class="templatemo_homewrapper">
                     <span>多肉 引领你的绿色生活</span>
-                    <form class="search_form" action="#" method="post">
-                        <input class="inpu_txt" placeholder="输入你想所搜索的" type="text" />
-                        <a class="glyphicon glyphicon-search go" href=""></a>
-                    </form>
+                    @using (Html.BeginForm("SearchResult", "Index", FormMethod.Post, new { @class = "search_form" }))
+                    {
+                        <input class="inpu_txt" placeholder="输入你想所搜索的" type="text" name="keywords" />
+                            <a class="glyphicon glyphicon-search go" href="javascript:void(0)"></a>
+                    }
                 </div>
             </div>
             <ul class="slides">
@@ -244,3 +245,20 @@
     </div>
 </section>
 
+@section Foot{
+    <script>
+
+       $('.go').click(function () {
+           $('.search_form').submit();
+       });
+
+        $(window).scroll(function () { //绑定scroll事件
+            var t = $(window).scrollTop();  //获取滚动距离
+            if (t >= 300) { //判断
+                $(".templatemo_homewrapper>form").removeClass('search_form').addClass('fixed_form');
+            } else {
+                $(".templatemo_homewrapper>form").removeClass('fixed_form').addClass('search_form');
+            }
+        });
+</script>
+}

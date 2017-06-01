@@ -1,0 +1,39 @@
+﻿
+@model PagedList.IPagedList<Model.Posts>
+@using PagedList
+@using PagedList.Mvc
+
+@{
+    Layout = null;
+}
+
+<div id="bodyer-A5">
+    @foreach (var A in Model)
+            {
+        <div class="A5-list">
+            <div class="list-A">
+                <div class="list-A-Img">
+                    @*<img src=""/>*@
+                </div>
+            </div>
+            <div class="list-B">
+                <a href="@Url.Action("PostsDetails", "Tribune",new { PostID = @A.PostID })">@A.PostTitle</a>
+            </div>
+            <div class="list-C">
+                <p class="text-center">@A.PublishTime.ToString("M/d HH:mm")</p>
+            </div>
+            <div class="list-D">
+                <p class="text-center">@A.Users.UserName</p>
+            </div>
+            <div class="list-E">
+                <p class="text-center">999</p>
+            </div>
+        </div>
+    }
+    <div id="A5-bottom"></div>
+</div>
+<div id="bodyer-A6">
+    <div id="A6-Style" class="text-right">
+        @Html.PagedListPager((IPagedList)Model, page => Url.Action("BoardIndex", new { page, BoardID = int.Parse(Session["BoardID"].ToString()) }))
+    </div>
+</div>

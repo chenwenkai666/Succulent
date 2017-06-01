@@ -1,0 +1,33 @@
+﻿
+@model SucculentWeb.ViewModels.TribuneVM.TribuneSearchVM
+
+@{
+    ViewBag.Title = "SearchPost";
+    Layout = "~/Views/Shared/Tribune/TribuneView.cshtml";
+}
+
+<h2>SearchPost</h2>
+<ul>
+    @foreach (var A in Model.infouser)
+    {
+        <li>@A.UserName</li>
+    }
+</ul>
+<ul>
+    @foreach (var A in Model.infopost)
+    {
+        <li>@A.PostTitle</li>
+    }
+</ul>
+<ul>
+    @foreach (var A in Model.infopostcom)
+    {
+        <li>@A.PostCommentContent</li>
+    }
+</ul>
+<ul>
+    @foreach (var A in Model.infopostrly)
+    {
+        <li>@A.ReplyContent</li>
+    }
+</ul>

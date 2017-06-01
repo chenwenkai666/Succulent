@@ -52,5 +52,18 @@ namespace DAL
         {
             return db.Activity.Where(act => act.ActivityCategoryID == id).ToList();
         }
+
+        /// <summary>
+        /// 根据关键词搜索活动
+        /// </summary>
+        /// <param name="keywords">关键词</param>
+        /// <returns></returns>
+        public IList<Activity> GetActivityByKeywords(string keywords)
+        {
+            var acts = (from a in db.Activity
+                        where a.ActivityName.Contains(keywords)
+                        select a).ToList();
+            return acts;
+        }
     }
 }

@@ -12,7 +12,7 @@ namespace Model
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
-
+    
     public partial class Activity
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -25,7 +25,7 @@ namespace Model
             this.Adopt = new HashSet<Adopt>();
             this.Donate = new HashSet<Donate>();
         }
-
+    
         public int ActivityID { get; set; }
 
         [Required(ErrorMessage = "请输入主办方名称")]
@@ -53,7 +53,10 @@ namespace Model
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public System.DateTime EndTime { get; set; }
         public Nullable<int> UpvoteNum { get; set; }
-
+        public string ActivityCover { get; set; }
+        public string AttendConditions { get; set; }
+        public int LevelRequest { get; set; }
+    
         [Required(ErrorMessage = "请上传活动封面图")]
         public string ActivityCover { get; set; }
 

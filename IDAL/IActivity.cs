@@ -13,5 +13,6 @@ namespace IDAL
         bool InsertActivity(Activity act);
         Activity GetActivity(int id);
         IList<Activity> GetActivityByCategoryID(int id);
+        IList<Activity> GetActivityByKeywords(string keywords);
     }
 }

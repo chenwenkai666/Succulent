@@ -213,8 +213,7 @@
     <Compile Include="Controllers\GoodsController.cs" />
     <Compile Include="Controllers\ShopMallController.cs" />
     <Compile Include="Controllers\SucculentIndexController.cs" />
-    <Compile Include="Controllers\Tribune\TribuneBoardController.cs" />
-    <Compile Include="Controllers\Tribune\TribuneIndexController.cs" />
+    <Compile Include="Controllers\TribuneController.cs" />
     <Compile Include="Controllers\UserCenterController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
@@ -238,8 +237,13 @@
     <Compile Include="ueditor\net\App_Code\NotSupportedHandler.cs" />
     <Compile Include="ueditor\net\App_Code\PathFormater.cs" />
     <Compile Include="ueditor\net\App_Code\UploadHandler.cs" />
+    <Compile Include="ViewModels\SearchResultVM.cs" />
     <Compile Include="ViewModels\ShopMallIndexViewModels.cs" />
     <Compile Include="ViewModels\SucculentIndexViewModels.cs" />
+    <Compile Include="ViewModels\TribuneVM\TribuneBoardVM.cs" />
+    <Compile Include="ViewModels\TribuneVM\TribuneIndexVM.cs" />
+    <Compile Include="ViewModels\TribuneVM\TribunePostVM.cs" />
+    <Compile Include="ViewModels\TribuneVM\TribuneSearchVM.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="bin\Antlr3.Runtime.dll" />
@@ -370,10 +374,17 @@
     <Content Include="Content\Overlay.css" />
     <Content Include="Content\PagedList.css" />
     <Content Include="Content\Register.css" />
+    <Content Include="Content\search-form.css" />
+    <Content Include="Content\SearchResult.css" />
     <Content Include="Content\Succulent.css" />
     <Content Include="Content\SucculentActivity.css" />
     <Content Include="Content\UserInfo.css" />
     <Content Include="Content\zeroModal.css" />
+    <Content Include="css\Tribune\TribuneBoard.css" />
+    <Content Include="css\Tribune\TribuneCreatePost.css" />
+    <Content Include="css\Tribune\TribuneIndex.css" />
+    <Content Include="css\Tribune\TribunePosts.css" />
+    <Content Include="css\Tribune\TribuneView.css" />
     <Content Include="fonts\dropify.svg" />
     <Content Include="images\161.jpg" />
     <Content Include="images\162.jpg" />
@@ -448,12 +459,29 @@
     <Content Include="images\Sprites\tag2.png" />
     <Content Include="images\Sprites\vote.png" />
     <Content Include="images\Sprites\vote2.png" />
+    <Content Include="images\Tribune\timg.jpg" />
+    <Content Include="images\Tribune\timg1.jpg" />
+    <Content Include="images\Tribune\timg2.jpg" />
+    <Content Include="images\Tribune\web\1gonggao.jpg" />
+    <Content Include="images\Tribune\web\2huodong.jpg" />
+    <Content Include="images\Tribune\web\3kankan.jpg" />
+    <Content Include="images\Tribune\web\4jiaoliu.jpg" />
+    <Content Include="images\Tribune\web\5jinyan.jpg" />
+    <Content Include="images\Tribune\web\6jieda.jpg" />
+    <Content Include="images\Tribune\web\7linyang.jpg" />
+    <Content Include="images\Tribune\web\8meitu.jpg" />
+    <Content Include="images\Tribune\web\9guanli.jpg" />
+    <Content Include="images\Tribune\web\chart.jpg" />
+    <Content Include="images\Tribune\web\defaultPhoto.jpg" />
+    <Content Include="images\Tribune\web\FaBiaoPL.jpg" />
+    <Content Include="images\Tribune\web\testlogo.png" />
     <Content Include="images\usercenter-back.jpg" />
     <Content Include="images\更多活动敬请期待.png" />
     <Content Include="images\淡黄色的纸张.jpg" />
     <Content Include="images\相机.png" />
     <Content Include="images\绿色的布纹理.jpg" />
     <Content Include="images\绿草背景.png" />
+    <Content Include="images\荷塘.png" />
     <Content Include="js\demo.js" />
     <Content Include="css\GoodsDetail.css" />
     <Content Include="css\imghover.css" />
@@ -467,8 +495,6 @@
     <Content Include="Content\UserCenter.css" />
     <Content Include="css\ShopMallTopAndFoot.css" />
     <Content Include="css\Shops.css" />
-    <Content Include="css\Tribune\TribuneBoard.css" />
-    <Content Include="css\Tribune\TribuneIndex.css" />
     <Content Include="css\xiaomi.css" />
     <Content Include="Content\reset.css" />
     <Content Include="Content\style.css" />
@@ -641,14 +667,6 @@
     <Content Include="images\Succulent\zaolinyu.jpg" />
     <Content Include="images\Succulent\zhenzhudiaolan.jpg" />
     <Content Include="images\Succulent\zihuangxing.jpg" />
-    <Content Include="images\Tribune\timg.jpg" />
-    <Content Include="images\Tribune\timg1.jpg" />
-    <Content Include="images\Tribune\timg2.jpg" />
-    <Content Include="images\Tribune\web\chart.jpg" />
-    <Content Include="images\Tribune\web\gonggao.jpg" />
-    <Content Include="images\Tribune\web\huodong.jpg" />
-    <Content Include="images\Tribune\web\kankan.jpg" />
-    <Content Include="images\Tribune\web\testlogo.png" />
     <Content Include="images\wb.png" />
     <Content Include="images\wechat.png" />
     <Content Include="images\wx.png" />
@@ -743,6 +761,7 @@
     <Content Include="Scripts\jquery.pager-1.0.2.js" />
     <Content Include="Scripts\jquery.pager-1.0.2.min.js" />
     <Content Include="Scripts\jquery.textFx.js" />
+    <Content Include="Scripts\jquery.textSearch-1.0.js" />
     <Content Include="Scripts\jquery.transit.js" />
     <Content Include="Scripts\jquery.ui.core.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
@@ -1340,6 +1359,7 @@
     <Content Include="Views\Succulent\Create.cshtml" />
     <Content Include="Views\TribuneIndex\Index.cshtml" />
     <Content Include="Views\TribuneBoard\Index.cshtml" />
+    <Content Include="Views\Succulent\Succulent.cshtml" />
     <Content Include="Views\MallSearch\Index.cshtml" />
     <Content Include="Views\MallSearch\Tuijian.cshtml" />
     <Content Include="Views\ShopMall\ShopMallClass.cshtml" />
@@ -1370,6 +1390,14 @@
     <Content Include="Views\SucculentIndex\Succulent.cshtml" />
     <Content Include="Views\SucculentIndex\PartialViewDate.cshtml" />
     <Content Include="Views\UserCenter\Index.cshtml" />
+    <Content Include="Views\Index\SearchResult.cshtml" />
+    <Content Include="Views\Shared\Tribune\TribuneView.cshtml" />
+    <Content Include="Views\Tribune\BoardIndex.cshtml" />
+    <Content Include="Views\Tribune\CreatePost.cshtml" />
+    <Content Include="Views\Tribune\PostsDetails.cshtml" />
+    <Content Include="Views\Tribune\PostsList.cshtml" />
+    <Content Include="Views\Tribune\TribuneIndex.cshtml" />
+    <Content Include="Views\Tribune\SearchPost.cshtml" />
     <Content Include="Views\UserCenter\UserInfo.cshtml" />
   </ItemGroup>
   <ItemGroup>

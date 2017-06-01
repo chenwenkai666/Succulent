@@ -24,5 +24,9 @@ namespace BLL
         {
             return ientries.GetAllEntriesByActID(ActID);
         }
+        public static bool AddUpvoteNum(int UserID, int ActID)
+        {
+            return ientries.AddUpvoteNum(UserID, ActID);
+        }
     }
 }

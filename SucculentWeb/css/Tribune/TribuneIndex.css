@@ -1,351 +1,247 @@
 
-
-body
-{
-	background-color: #F5F5DC;
-}
-/*导航栏*/
-#header
-{
-	min-width: 1000px;
-	width: 100%;
-	height: 38px;
-	background-color: #199475;
-}
-#header-a
-{
-	width: 1000px;
-	height: 38px;
-	margin: 0 auto;
-}
-#header-a-left
-{
-	width: 250px;
-	height: 38px;
-	float: left;
-}
-#header-a-left-search
-{
-	margin-top: 4px;
-}
-#header-a-right
-{
-	width: 160px;
-	height: 38px;
-	float: right;
-}
-#header-a-right a:link
-{
-	font-size:12px;color:#FFF;
-	text-decoration:none;
-}
-#header-a-right a:hover
-{
-	color:#5BC0DE;
-	text-decoration:none;
-} 
-#homebox,#homebox2,#signin,#signout
-{
-	margin-top: 9px;
-	width: 40px;
-	height: 27px;
-	float: left;
-}
-/*导航栏结束*/
-
 /*顶部*/
-#topA
-{
-	min-width: 1000px;
-	width: 1000px;
-	height: 100px;
-	margin: 25px auto;
+#topA {
+    min-width: 1000px;
+    width: 1000px;
+    height: 100px;
+    margin: 25px auto;
 }
-#topA-logo
-{
-	width: 250px;
-	height: 100px;
-	float: left;
+
+#topA-logo {
+    width: 250px;
+    height: 100px;
+    float: left;
 }
-#topA-right
-{
-	width: 350px;
-	height: 100px;
-	float: right;
-	/*background-color: #E08031;*/
+
+#topA-right {
+    width: 500px;
+    height: 100px;
+    float: right;
+    /*background-color:red;*/
+}
+.topA-box {
+    width:125px;
+    height:100px;
+    float:left;
+    /*border:1px solid #199475;*/
+    line-height: 95px;
+    text-align: center;
+    font-size:17px;
 }
 /*顶部结束*/
 
 /*主体*/
-#pagebody
-{
-	min-width: 1000px;
-	width: 1000px;
-	margin: 25px auto;
+#pagebody {
+    min-width: 1000px;
+    width: 1000px;
+    margin: 25px auto;
 }
-#pagebody a:link
-{
-	color:#000000;
-	text-decoration:none;
+
+    #pagebody a:link {
+        color: #000000;
+        text-decoration: none;
+    }
+
+    #pagebody a:hover {
+        color: #5BC0DE;
+        text-decoration: none;
+    }
+
+#pagebody-A1 {
+    width: 1000px;
+    height: 270px;
+    border: 1px solid #C7CEB2;
+    background-color: #FFF;
 }
-#pagebody a:hover
-{
-	color:#5BC0DE;
-	text-decoration:none;
-} 
-#pagebody-A1
-{
-	width: 1000px;
-	height: 270px;
-	border: 1px solid #C7CEB2;
-	background-color: #FFF;
+
+#A1-left {
+    width: 500px;
+    height: 268px;
+    padding: 10px;
+    float: left;
+    border-right:1px solid #C7CEB2;
 }
-#A1-left
-{
-	width: 500px;
-	height: 269px;
-	padding: 5px;
-	float: left;
+
+#A1-right {
+    width: 497px;
+    height: 268px;
+    padding: 10px;
+    float: right;
 }
-#A1-right
-{
-	width: 498px;
-	height: 269px;
-	padding: 5px;
-	float: right;
-}
-#A1-tab
-{
-	width: 493px;
-	height: 259px;
+
+#A1-tab {
+    width: 477px;
+    height: 248px;
 }
 
 /* css 重置 */
-*
-{
-	margin:0;
-	padding:0;
-	list-style:none;
+* {
+    margin: 0;
+    padding: 0;
+    list-style: none;
 }
 /*css重置结束*/
 
 /*选项卡*/
-.tabox
-{
-	width: 488px;
-	height: 259px;
+.tabox {
+    width: 477px;
+    height: 248px;
 }
-.tabox .hd
-{
-	height: 40px;
-	overflow:hidden;
-	background-color: #C7CEB2;
-}
-.tabox .hd li
-{
-	position:relative;
-	height:40px;
-	line-height:40px;
-	text-align:center;
-	width:162px;
-	float:left;
-	cursor:default;
-}
-.tabox .hd li.on
-{
-	width:162px;
-	border-bottom:2px solid #199745;
-	color:#199745;
-}
-.tabox .bd
-{
-	margin-top: 20px;
-	height:199px;
-}
-.tabox .lh
-{
-	overflow:hidden;
-}
-.tabox .lh li
-{
-	width:486px;
-	margin:1px;
-	padding: 1px 25px;
-	/*border: 1px solid #199745;*/
-}
-.tabox .lh li .p-name
-{
-	height:25px;
-	padding-top: 3px;
-}
+
+    .tabox .hd {
+        height: 40px;
+        overflow: hidden;
+        /*background-color: #C7CEB2;*/
+    }
+
+        .tabox .hd li {
+            position: relative;
+            height: 40px;
+            line-height: 35px;
+            text-align: center;
+            width: 159px;
+            border-bottom: 2px solid #C7CEB2;
+            float: left;
+            cursor: default;
+        }
+
+            .tabox .hd li.on {
+                width: 159px;
+                border-bottom: 2px solid #199745;
+                color: #199745;
+            }
+
+    .tabox .bd {
+        height: 208px;
+        border-left:1px solid #C7CEB2;
+        border-right:1px solid #C7CEB2;
+        border-bottom:1px solid #C7CEB2;
+    }
+
+    .tabox .lh {
+        min-height:208px;
+        padding:10px 0;
+        overflow: hidden;
+        /*border:1px solid #C7CEB2;*/
+    }
+
+        .tabox .lh li {
+            width: 477px;
+            margin: 1px;
+            padding: 1px 25px;
+            /*border:1px solid #C7CEB2;*/
+        }
+
+            .tabox .lh li .p-name {
+                height: 25px;
+                padding-top: 3px;
+                /*border:1px solid #C7CEB2;*/
+            }
 /*选项卡结束*/
 
-#pagebody-A2
-{
-	width: 1000px;
-	height: 50px;
+#pagebody-A2 {
+    width: 1000px;
+    height: 50px;
 }
-#A2-left
-{
-	width: 500px;
-	height: 25px;
-	padding-top: 15px;
-	padding-left: 15px;
-	color: #999;
-	font: 12px/1.5 'Microsoft Yahei','Simsun';
-	
-}
-#pagebody-A3
-{
-	width: 1000px;
-	height: 120px;
-	border: 1px solid #C7CEB2;
-	background-color: #FFF;
-}
-.A3-box
-{
-	width: 332px;
-	height: 119px;
-	float: left;
-}
-.A3-photo
-{
-	width: 75px;
-	height: 75px;
-	float: left;
-	margin-top: 21px;
-	margin-left: 21px;
-}
-.A3-table
-{
-	width: 200px;
-	height: 75px;
-	float: left;
-	margin-top: 21px;
-	margin-left: 21px;
-}
-.BanKuaiTitle
-{
-	width: 100%;
-	height: 29px;
-}
-.BanKuaiTitle p
-{
-	padding-top: 5px;
-	padding-left: 3px;
-	font: 16px/1.5 'Microsoft Yahei','Simsun';
-}
-.BanKuaiNumber
-{
-	width: 100%;
-	height: 23px;
-}
-.BanKuaiNumber p
-{
-	padding-top: 3px;
-	padding-left: 3px;
-	font: 10px/1.5 'Microsoft Yahei','Simsun';
-}
-.BanKuaiP
-{
-	width: 100%;
-	height: 23px;
-}
-.BanKuaiP p
-{
-	padding-top: 1px;
-	padding-left: 3px;
-	font: 14px/1.5 'Microsoft Yahei','Simsun';
 
+#A2-left {
+    width: 500px;
+    height: 25px;
+    padding-top: 15px;
+    padding-left: 15px;
+    color: #999;
+    font: 12px/1.5 'Microsoft Yahei','Simsun';
 }
-#pagebody-A4
-{
-	width: 1000px;
-	height: 240px;
-	margin-top: 25px;
-	border: 1px solid #C7CEB2;
-	background-color: #FFF;
+
+#pagebody-A3 {
+    width: 1000px;
+    height: 120px;
+    border: 1px solid #C7CEB2;
+    background-color: #FFF;
 }
-.A4-A4
-{
-	width: 100%;
-	height: 119px;
+
+.A3-box {
+    width: 332px;
+    height: 119px;
+    float: left;
 }
-.A4-box
-{
-	width: 332px;
-	height: 119px;
-	float: left;
+
+.A3-photo {
+    width: 75px;
+    height: 75px;
+    float: left;
+    margin-top: 21px;
+    margin-left: 21px;
 }
-.A4-photo
-{
-	width: 75px;
-	height: 75px;
-	float: left;
-	margin-top: 21px;
-	margin-left: 21px;
+
+.A3-table {
+    width: 200px;
+    height: 75px;
+    float: left;
+    margin-top: 21px;
+    margin-left: 21px;
 }
-.A4-table
-{
-	width: 200px;
-	height: 75px;
-	float: left;
-	margin-top: 21px;
-	margin-left: 21px;
+
+.BanKuaiTitle {
+    width: 100%;
+    height: 29px;
 }
-#pagebody-A5
-{
-	width: 1000px;
-	height: 120px;
-	margin-top: 25px;
-	border: 1px solid #C7CEB2;
-	background-color: #FFF;
+
+    .BanKuaiTitle p {
+        padding-top: 5px;
+        padding-left: 3px;
+        font: 16px/1.5 'Microsoft Yahei','Simsun';
+    }
+
+.BanKuaiNumber {
+    width: 100%;
+    height: 23px;
+}
+
+    .BanKuaiNumber p {
+        padding-top: 3px;
+        padding-left: 3px;
+        font: 10px/1.5 'Microsoft Yahei','Simsun';
+    }
+
+.BanKuaiP {
+    width: 100%;
+    height: 23px;
+}
+
+    .BanKuaiP p {
+        padding-top: 1px;
+        padding-left: 3px;
+        font: 14px/1.5 'Microsoft Yahei','Simsun';
+    }
+
+#pagebody-A4 {
+    width: 1000px;
+    height: 240px;
+    margin-top: 25px;
+    border: 1px solid #C7CEB2;
+    background-color: #FFF;
+}
+
+.A4-box {
+    width: 332px;
+    height: 119px;
+    float: left;
+}
+
+.A4-photo {
+    width: 75px;
+    height: 75px;
+    float: left;
+    margin-top: 21px;
+    margin-left: 21px;
+}
+
+.A4-table {
+    width: 200px;
+    height: 75px;
+    float: left;
+    margin-top: 21px;
+    margin-left: 21px;
 }
 /*主体结束*/
-
-/*底部*/
-#footer
-{
-	min-width: 1000px;
-	width: 100%;
-	height: 100px;
-	margin-top: 25px;
-	background-color: #199475;
-}
-#footer a:link
-{
-	font-size:12px;color:#FFF;
-	text-decoration:none;
-}
-#footer a:hover
-{
-	color:#5BC0DE;
-	text-decoration:none;
-} 
-#footer-a
-{
-	width: 1000px;
-	height: 100px;
-	margin: 25px auto 0;
-	padding-top: 10px;
-	font-size:12px;color:#FFF;
-}
-#footer-aa
-{
-	width: 100%;
-	height: 25px;
-	font-size:17px;color:#FFF;
-}
-#footer-bb
-{
-	width: 100%;
-	height: 20px;
-	margin-top: 2px;
-}
-#footer-cc
-{
-	width: 100%;
-	height: 20px;
-	margin-top: 2px;
-}
-/*底部结束*/

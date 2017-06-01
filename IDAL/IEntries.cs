@@ -12,5 +12,6 @@ namespace IDAL
         bool InsertEntries(Entries entry);
         bool IsPublishEntry(int UserID, int ActID);
         IList<Entries> GetAllEntriesByActID(int ActID);
+        bool AddUpvoteNum(int UserID, int ActID);
     }
 }
