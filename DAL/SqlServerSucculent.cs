@@ -10,7 +10,7 @@ using System.Data.Entity;
 
 namespace DAL
 {
-   public  class SqlServerSucculent:ISucculent
+   public class SqlServerSucculent:ISucculent
     {
         SucculentEntities db = new SucculentEntities();
         public List<Succulent> SelectSucculent()

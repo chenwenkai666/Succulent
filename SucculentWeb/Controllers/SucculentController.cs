@@ -58,6 +58,17 @@ namespace SucculentWeb.Controllers
                 SucculentManager.UpdateAdd(succulent);
             }           
             return int.Parse((succulent.CollectedTotal).ToString());
-        }    
+        }  
+        
+        public int Collection(int id,Collection collection)
+        {
+            var succulent = SucculentManager.SelectByID(id);
+            succulent.CollectedTotal += 1; 
+            SucculentManager.UpdateAdd(succulent);
+            collection.SucculentID = succulent.SucculentID;
+            collection.UserID = Session[""];
+            CollectionManager.Create(collection);                  
+            return int.Parse((succulent.CollectedTotal).ToString());
+        }  
     }
     }

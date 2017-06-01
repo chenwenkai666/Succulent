@@ -44,6 +44,7 @@
     <Compile Include="IAdopt.cs" />
     <Compile Include="IAdoptResult.cs" />
     <Compile Include="IAttendance.cs" />
+    <Compile Include="ICollection.cs" />
     <Compile Include="IDonate.cs" />
     <Compile Include="IEntries.cs" />
     <Compile Include="IGoods.cs" />

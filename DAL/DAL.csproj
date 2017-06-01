@@ -57,6 +57,7 @@
     <Compile Include="SqlServerAdopt.cs" />
     <Compile Include="SqlServerAdoptResult.cs" />
     <Compile Include="SqlServerAttendance.cs" />
+    <Compile Include="SqlServerCollection.cs" />
     <Compile Include="SqlServerDonate.cs" />
     <Compile Include="SqlServerEntries.cs" />
     <Compile Include="SqlServerGoods.cs" />
