@@ -63,6 +63,7 @@
     <Compile Include="SqlServerGoods.cs" />
     <Compile Include="SqlServerGoodsComments.cs" />
     <Compile Include="SqlServerPosts.cs" />
+    <Compile Include="SqlServerPots.cs" />
     <Compile Include="SqlServerShops.cs" />
     <Compile Include="SqlServerSucculent.cs" />
     <Compile Include="SqlServerSucculentCategory.cs" />

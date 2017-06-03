@@ -1,4 +1,5 @@
-﻿using System.Web;
+﻿using SucculentWeb.Attributes;
+using System.Web;
 using System.Web.Mvc;
 
 namespace SucculentWeb
@@ -8,6 +9,7 @@ namespace SucculentWeb
         public static void RegisterGlobalFilters(GlobalFilterCollection filters)
         {
             filters.Add(new HandleErrorAttribute());
+            filters.Add(new IsLogInAttribute() { IsCheck = true });
         }
     }
 }

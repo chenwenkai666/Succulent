@@ -84,5 +84,10 @@ namespace DALFactory
             string className = assemblyName + "." + db + "Posts";
             return (IPosts)Assembly.Load(assemblyName).CreateInstance(className);
         }
+        public static IPots CreatePots()
+        {
+            string className = assemblyName + "." + db + "Pots";
+            return (IPots)Assembly.Load(assemblyName).CreateInstance(className);
+        }
     }
 }

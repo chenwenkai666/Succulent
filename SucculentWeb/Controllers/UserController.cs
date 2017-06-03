@@ -5,9 +5,11 @@ using System.Web;
 using System.Web.Mvc;
 using Model;
 using BLL;
+using SucculentWeb.Attributes;
 
 namespace SucculentWeb.Controllers
 {
+    [IsLogIn(IsCheck = false)]
     public class UserController : Controller
     {
         // GET: User
