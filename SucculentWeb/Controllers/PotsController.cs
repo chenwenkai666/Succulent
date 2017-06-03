@@ -18,16 +18,8 @@ namespace SucculentWeb.Controllers
         [IsLogIn(IsCheck =true)]
         public ActionResult Index()
         {
-            //Session["UserID"] = "1";
-            //if (Session["UserID"] != null)
-            //{
                 Pots pots = potsmanager.GetPotsByUserID(int.Parse(Session["UserID"].ToString()));
                 return View(pots);
-            //}
-            //else
-            //{
-            //    return Content("<script>alert('请先登录！');window.open('" + Url.Content("~/User/Login") + "', '_self')</script>");
-            //}
         }
 
         [HttpPost]
@@ -94,6 +86,4 @@ namespace SucculentWeb.Controllers
             }
         }
     }
-
-
 }

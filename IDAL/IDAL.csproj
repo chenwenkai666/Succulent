@@ -49,6 +49,7 @@
     <Compile Include="IEntries.cs" />
     <Compile Include="IGoods.cs" />
     <Compile Include="IGoodsComments.cs" />
+    <Compile Include="ILevel.cs" />
     <Compile Include="IPosts.cs" />
     <Compile Include="IPots.cs" />
     <Compile Include="IShops.cs" />

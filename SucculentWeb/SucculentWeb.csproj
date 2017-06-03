@@ -208,6 +208,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Attributes\IsLogInAttribute.cs" />
     <Compile Include="Controllers\IndexController.cs" />
+    <Compile Include="Controllers\LevelController.cs" />
     <Compile Include="Controllers\MallSearchController.cs" />
     <Compile Include="Controllers\PotsController.cs" />
     <Compile Include="Controllers\SucculentActivityController.cs" />
@@ -1430,6 +1431,7 @@
     <Content Include="Views\UserCenter\UserInfo.cshtml" />
     <Content Include="Views\SucculentActivity\PhotoResult.cshtml" />
     <Content Include="Views\Pots\Index.cshtml" />
+    <Content Include="Views\Level\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

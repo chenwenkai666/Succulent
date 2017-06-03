@@ -39,9 +39,9 @@ namespace DAL
             }
             else
             {
-                oldsign = DateTime.Parse(pot.Sign.ToString());//获取旧的签到日期
+                oldsign = DateTime.Parse(pot.Sign.ToString());//获取上次的签到日期
             }
-            TimeSpan range = DateTime.Now - oldsign;//获取当前时间和旧签到日期的时间差
+            TimeSpan range = DateTime.Now - oldsign;//获取当前时间和上次签到日期的时间差
             int rangeDays = range.Days;//获取天数差
             pot.Sign = DateTime.Now;
             if (pot.SignDays==null ||rangeDays!=1)//新用户第一次签到或老用户间断签到，连续签到天数设置为0，经验+2

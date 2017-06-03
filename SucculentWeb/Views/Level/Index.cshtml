@@ -1,0 +1,43 @@
+﻿@model IEnumerable<Model.Level>
+@{
+    ViewBag.Title = "等级规则";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section head{
+    <link href="~/Content/amazeui.min.css" rel="stylesheet" />
+    <style>
+        .LevelMain{
+            width:80%;
+            height:auto;
+            margin:100px auto;
+            text-align:center;
+        }
+        .LevelMain table th{
+            text-align:center;
+        }
+    </style>
+}
+
+<div class="LevelMain">
+    <table class="am-table am-table-striped">
+        <thead>
+            <tr>
+                <th>等级</th>
+                <th>头衔</th>
+                <th>经验值下限</th>
+                <th>经验值上限</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.LevelID</td>
+                    <td>@item.LevelName</td>
+                    <td>@item.Levellowerlimit</td>
+                    <td>@item.LevelToplimit</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

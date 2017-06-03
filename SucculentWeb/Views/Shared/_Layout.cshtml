@@ -74,7 +74,17 @@
                                             <div class="userinfo">
                                                 <p>@Session["UserName"]</p>
                                                 @{
-                                                    int level = 25;
+                                                    PotsManager potmanager = new PotsManager();
+                                                    int level;
+                                                    Pots pot = potmanager.GetPotsByUserID(int.Parse(Session["UserID"].ToString()));
+                                                    if (pot == null)
+                                                    {
+                                                        level = 0;
+                                                    }
+                                                    else
+                                                    {
+                                                        level = pot.LevelID;
+                                                    }
 
                                                 }
                                                 <span>我的等级：Lv @level</span><br />
