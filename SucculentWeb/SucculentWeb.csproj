@@ -244,6 +244,7 @@
     <Compile Include="ViewModels\ShopMallIndexViewModels.cs" />
     <Compile Include="ViewModels\SucculentIndexViewModels.cs" />
     <Compile Include="ViewModels\TribuneVM\TribuneBoardVM.cs" />
+    <Compile Include="ViewModels\TribuneVM\TribuneCreateVM.cs" />
     <Compile Include="ViewModels\TribuneVM\TribuneIndexVM.cs" />
     <Compile Include="ViewModels\TribuneVM\TribunePostVM.cs" />
     <Compile Include="ViewModels\TribuneVM\TribuneSearchVM.cs" />
@@ -393,6 +394,7 @@
     <Content Include="css\Tribune\TribuneCreatePost.css" />
     <Content Include="css\Tribune\TribuneIndex.css" />
     <Content Include="css\Tribune\TribunePosts.css" />
+    <Content Include="css\Tribune\TribuneSearch.css" />
     <Content Include="css\Tribune\TribuneView.css" />
     <Content Include="fonts\dropify.svg" />
     <Content Include="fonts\icomoon.svg" />

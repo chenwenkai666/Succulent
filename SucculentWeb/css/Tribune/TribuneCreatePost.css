@@ -24,20 +24,8 @@
     width: 125px;
     height: 100px;
     float: left;
-    line-height: 95px;
-    text-align: right;
-    font-size: 13px;
+    padding-top: 50px;
 }
-
-    .topA-box a:link {
-        color: #000000;
-        text-decoration: none;
-    }
-
-    .topA-box a:hover {
-        color: #199475;
-        text-decoration: none;
-    }
 
 /*顶部结束*/
 
@@ -61,7 +49,7 @@
 }
 
 #A1-left {
-    width: 650px;
+    width: 825px;
     height: auto;
     min-height: 45px;
     padding-top: 5px;
@@ -70,20 +58,7 @@
 }
 
 #A1-right {
-    width: 300px;
-    height: 45px;
-    float: right;
-}
-
-#right-01 {
-    width: 145px;
-    height: 45px;
-    padding-top: 5px;
-    float: left;
-}
-
-#right-02 {
-    width: 145px;
+    width: 125px;
     height: 45px;
     padding-top: 5px;
     float: right;
@@ -109,7 +84,8 @@
 }
 
 #A3 {
-    width: 1000px;
-    height: 45px;
+    width: 300px;
+    height: auto;
+    margin-left: 700px;
 }
 /*主体结束*/

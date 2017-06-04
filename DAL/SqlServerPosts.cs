@@ -133,6 +133,17 @@ namespace DAL
                        select p;
             return data;
         }
+        public int GetPostComNum(int PostID)  //获取评论数量
+        {
+            int q = db.PostComments.Count(p => p.PostID == PostID);
+            return q;
+        }
+        public int SelectSectionID(string SectionName) //获取板块ID
+        {
+            int q = (from p in db.Sections
+                     where p.SectionName == SectionName
+                     select p.SectionID).FirstOrDefault();
+            return q;
+        }
     }
 }
-

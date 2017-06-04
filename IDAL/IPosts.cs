@@ -27,6 +27,7 @@ namespace IDAL
         IEnumerable<Posts> SelectInfoPosts(string postinfo);  //搜索帖子
         IEnumerable<PostComments> SelectInfoPostCom(string postinfo);  //搜索帖子
         IEnumerable<ReplyPost> SelectInfoReplyPost(string postinfo);  //搜索帖子
+        int GetPostComNum(int PostID);  //获取评论数量
+        int SelectSectionID(string SectionName); //获取板块ID
     }
 }
-

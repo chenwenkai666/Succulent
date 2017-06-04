@@ -1,5 +1,6 @@
 ﻿
 @model PagedList.IPagedList<Model.Posts>
+@using BLL;
 @using PagedList
 @using PagedList.Mvc
 
@@ -26,10 +27,11 @@
                 <p class="text-center">@A.Users.UserName</p>
             </div>
             <div class="list-E">
-                <p class="text-center">999</p>
+                @{ int ComNum = PostsManager.GetPostComNum(@A.PostID);}
+                <p class="text-center">@ComNum</p>
             </div>
         </div>
-    }
+                    }
     <div id="A5-bottom"></div>
 </div>
 <div id="bodyer-A6">

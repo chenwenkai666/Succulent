@@ -15,10 +15,10 @@ namespace DALFactory
         private static string db = ConfigurationManager.AppSettings["DB"].ToString();
 
         public static IUsers CreateUsers()
-      {
-          string className = assemblyName + "." + db + "Users";
-           return (IUsers)Assembly.Load(assemblyName).CreateInstance(className);
-      }
+        {
+            string className = assemblyName + "." + db + "Users";
+            return (IUsers)Assembly.Load(assemblyName).CreateInstance(className);
+        }
         public static ISucculent CreateSucculent()
         {
             string className = assemblyName + "." + db + "Succulent";

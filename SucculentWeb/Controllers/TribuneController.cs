@@ -4,7 +4,6 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using BLL;
-using SucculentWeb.ViewModels;
 using SucculentWeb.ViewModels.TribuneVM;
 using Model;
 using PagedList;
@@ -37,7 +36,10 @@ namespace SucculentWeb.Controllers
         }
         public ActionResult CreatePost()
         {
-            return View();
+            TribuneCreateVM tribuneCreate = new TribuneCreateVM();
+            tribuneCreate.Sections03 = PostsManager.GetSection03();
+            tribuneCreate.Sections06 = PostsManager.GetSection06();
+            return View(tribuneCreate);
         }
         [HttpPost]
         [ValidateInput(false)]
@@ -46,45 +48,35 @@ namespace SucculentWeb.Controllers
             int BoardID = Convert.ToInt32(Session["BoardID"]);
             try
             {
-                if (posts.PostTitle.Length <= 24)
-                {
-                    if (posts.PostContent.ToString() != null)
-                    {
-                        int userid = Convert.ToInt32(Session["UserID"]);
-                        string timer = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
-                        DateTime PubTime = DateTime.Parse(timer);
-                        posts.UserID = userid;
-                        posts.PublishTime = PubTime;
-                        db.Posts.Add(posts);
-                        db.Configuration.ValidateOnSaveEnabled = false;
-                        db.SaveChanges();
-                        db.Configuration.ValidateOnSaveEnabled = true;
+                int userid = Convert.ToInt32(Session["UserID"]);
+                string timer = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+                DateTime PubTime = DateTime.Parse(timer);
+                string SectionName = Request.Form["selectdetailtype"];
+                int SectionID = PostsManager.SelectSectionID(SectionName);
+                posts.SectionID = SectionID;
+                posts.UserID = userid;
+                posts.PublishTime = PubTime;
+                db.Posts.Add(posts);
+                db.Configuration.ValidateOnSaveEnabled = false;
+                db.SaveChanges();
+                db.Configuration.ValidateOnSaveEnabled = true;
 
-                        //var DATER = PostsManager.SelectPostFirstFloor(userid, PubTime);
-                        //postscom.UserID = userid;
-                        //postscom.PostID = DATER.PostID;
-                        //postscom.PostCommentContent = DATER.PostContent;
-                        //postscom.PostCommentTime = PubTime;
-                        //db.PostComments.Add(postscom);
-                        //db.Configuration.ValidateOnSaveEnabled = false;
-                        //db.SaveChanges();
-                        //db.Configuration.ValidateOnSaveEnabled = true;
+                //var DATER = PostsManager.SelectPostFirstFloor(userid, PubTime);
+                //postscom.UserID = userid;
+                //postscom.PostID = DATER.PostID;
+                //postscom.PostCommentContent = DATER.PostContent;
+                //postscom.PostCommentTime = PubTime;
+                //db.PostComments.Add(postscom);
+                //db.Configuration.ValidateOnSaveEnabled = false;
+                //db.SaveChanges();
+                //db.Configuration.ValidateOnSaveEnabled = true;
 
-                        return RedirectToAction("BoardIndex", "Tribune", new { BoardID = BoardID });
-                    }
-                    else
-                    {
-                        return RedirectToAction("CreatePost", "Tribune");
-                    }
-                }
-                else
-                {
-                    return View();
-                }
+                return RedirectToAction("BoardIndex", "Tribune", new { BoardID = BoardID });
+
             }
             catch (System.Data.Entity.Validation.DbEntityValidationException dbEx)
             {
-                throw dbEx;
+                return Content("<script>alert('输入有误！');window.location.href = document.referrer;</script>");
             }
         }
         public ActionResult PostsDetails(int PostID)
@@ -146,8 +138,10 @@ namespace SucculentWeb.Controllers
         [HttpPost]
         public ActionResult SearchPost()
         {
+            Session["searchinfo"] = null;
             TribuneSearchVM searchVM = new TribuneSearchVM();
             string searchinfo = Request.Form["searchinfo"];
+            Session["searchinfo"] = searchinfo;
             searchVM.infouser = PostsManager.SelectInfoUsers(searchinfo);
             searchVM.infopost = PostsManager.SelectInfoPosts(searchinfo);
             searchVM.infopostcom = PostsManager.SelectInfoPostCom(searchinfo);

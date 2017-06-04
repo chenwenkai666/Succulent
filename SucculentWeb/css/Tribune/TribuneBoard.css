@@ -137,7 +137,7 @@ body {
 
 #RightBox {
     width: 249px;
-    min-height: 629px;
+    height: auto;
     background-color: #FFF;
     position: fixed;
     top: 38px;
