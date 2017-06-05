@@ -4,6 +4,7 @@
 @{
     ViewBag.Title = "PostsDetails";
     Layout = "~/Views/Shared/Tribune/TribuneView.cshtml";
+    PostsManager PostM = new PostsManager();
 }
 
 <script src="~/js/jquery-2.1.4.min.js"></script>
@@ -88,7 +89,7 @@
                     <div class="PostBottom">
                         <div class="Bottomtime">@A.PostCommentTime</div>
                         <div class="BottomReply">
-                            @{ int ReplyNum = PostsManager.GetReplyComNum(A.PostCommentID);}
+                            @{ int ReplyNum = PostM.GetReplyComNum(A.PostCommentID);}
                             <button class="btn btn-xs btn-default" onclick="document.getElementById('@tempid').style.display = document.getElementById('@tempid').style.display == '' ? 'none' : ''">&nbsp;回复本层&nbsp;@ReplyNum&nbsp;</button>
                         </div>
                     </div>
