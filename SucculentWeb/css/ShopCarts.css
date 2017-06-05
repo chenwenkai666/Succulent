@@ -11,7 +11,8 @@ clearfix:after{content:".";display:block;height:0;clear:both;visibility:hidden}
 .fl{float:left;}
 .fr{float:right;}
 /*素材家园 - www.sucaijiayuan.com*/
-.catbox{width:940px;margin:50px auto;}
+
+.catbox{width:1050px;margin:30px auto;}
 .catbox table{text-align:center;width:100%;}
 .catbox table th,.catbox table td{border:1px solid #CADEFF;}
 .catbox table th{background:#e2f2ff;border-top:3px solid #a7cbff;height:30px;}
@@ -20,7 +21,10 @@ clearfix:after{content:".";display:block;height:0;clear:both;visibility:hidden}
 .checkbox{width:60px;}
 .check-all{ vertical-align:middle;}
 .goods{width:300px;}
-.goods span{width:180px;margin-top:20px;text-align:left;float:left;}
+.goods a{width:180px;margin-top:30px;text-align:left;float:left;font-size:12px;}
+.goods a:hover{
+    color:red;
+}
 .goods img{width:100px;height:80px;margin-right:10px;float:left;}
 .price{width:130px;}
 .count{width:90px;}
@@ -29,14 +33,18 @@ clearfix:after{content:".";display:block;height:0;clear:both;visibility:hidden}
 .count .add:hover, .count .reduce:hover{color:#f50;z-index:3;border-color:#f60;cursor:pointer;}
 .count input{width:50px;height:15px;line-height:15px;border:1px solid #aaa;color:#343434;text-align:center;padding:4px 0;background-color:#fff;z-index:2;}
 .subtotal{width:150px;color:red;font-weight:bold;}
-.operation span:hover,a:hover{cursor:pointer;color:red;text-decoration:underline;}
+.operation span a {color:#000;}
+.operation a:hover{cursor:pointer;color:red;text-decoration:underline;}
 
 .foot{margin-top:0px;color:#666;height:48px;border:1px solid #c8c8c8;border-top:0;background-color:#eaeaea;background-image:linear-gradient(RGB(241,241,241),RGB(226,226,226));position:relative;z-index:8;}
+    .foot .con-box1 {width:500px;float:left;}
 .foot div, .foot a{line-height:48px;height:48px;}
 .foot .select-all{width:80px;height:48px;line-height:48px;color:#666;text-align:center;}
 .foot .delete{padding-left:10px;}
-.foot .closing{border-left:1px solid #c8c8c8;width:103px;text-align:center;color:#666;font-weight:bold;cursor:pointer;background-image:linear-gradient(RGB(241,241,241),RGB(226,226,226));}
-.foot .closing:hover{background-image:linear-gradient(RGB(226,226,226),RGB(241,241,241));color:#333;}
+    .foot .con-box {width:548px;margin-left:0px;float:left }
+.foot .closing{border-left:none;width:100px; height:50px; text-align:center;color:#fff;font-weight:bold;cursor:pointer;background-color:#c40000;}
+    .foot .closing input { width:100%;height:100%;background-color:#c40000;color:#fff; cursor:pointer}
+/*.foot .closing:hover{background-image:linear-gradient(RGB(226,226,226),RGB(241,241,241));color:#333;}*/
 .foot .total{margin:0 20px;cursor:pointer;}
 .foot  #priceTotal, .foot #selectedTotal{color:red;font-family:"Microsoft Yahei";font-weight:bold;}
 .foot .selected{cursor:pointer;}

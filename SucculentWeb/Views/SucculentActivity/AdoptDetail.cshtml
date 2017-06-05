@@ -85,7 +85,7 @@
         @foreach (var item in Model.AdoptList)
         {
             <div class="AdoptSucculentItem">
-                <a href="@Url.Action("GoodsDetail","Goods",new { goodid=item.GoodsID })" target="_blank">
+                <a href="@Url.Action("AdoptDetail","Goods",new { goodid=item.GoodsID })" target="_blank">
                     <div class="btn_Adopt">
                     </div>
                 </a>

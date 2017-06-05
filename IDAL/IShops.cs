@@ -14,6 +14,9 @@ namespace IDAL
         IEnumerable<Shops> GetShopTopImage(int shopid);
         Shops GetShopDetail(int goodid);
         Shops GetDetailTopimage(int shopid);
+        void CreateNewShops(Shops shop);
+        int GetShopID(int userid);
+        int GetIsShoper(int userid);
         Shops GetShopByUserID(int UserID);
     }
 }

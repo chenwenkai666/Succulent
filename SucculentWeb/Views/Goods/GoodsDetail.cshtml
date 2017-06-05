@@ -7,7 +7,7 @@
 <script src="~/js/jquery.js"></script>
 <link href="~/css/GoodsDetail.css" rel="stylesheet" />
 <script src="~/js/xzoom.min.js"></script>
-
+<script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
 
 <script>
     jQuery.extend( {
@@ -127,8 +127,8 @@
         </div>
         <div class="xiaoliang">
             <ul>
-                <li>销量<s>400</s></li>
-                <li>累计评价<s>50</s></li>
+                <li>销量<s>@ViewBag.Sales</s></li>
+                <li>累计评价<s>@ViewBag.pinglunshu </s></li>
                 <li>点赞数<s>@ViewBag.goodlikit</s></li>
             </ul>
         </div>
@@ -150,13 +150,23 @@
 
                 <a class="num_oper num_plus" href="javascript:jQuery.add('#J_Amount')">+</a>
                 <p class="caution_tips" id="J_Tip" style="display:none;"></p>
-                <input id="nAmount" type="hidden" value='1560' />
+                <input id="nAmount" type="hidden" value='@ViewBag.KuCun' />
             </div>
-            <div class="kucun">库存1560件</div>
+            <div class="kucun">库存 @ViewBag.KuCun 件</div>
         </div>
         <div class="goumai">
             <span class="buy"><a>立即购买</a></span>
-            <span class="car">@*@Html.ActionLink("加入购物车", "Carts", "Goods", new { goodid = Session["goodid"] })*@<input type="submit" value="加入购物车" formtarget="_blank" /></span>
+            <span class="car">
+    @*@Html.ActionLink("加入购物车", "Carts", "Goods", new { goodid = Session["goodid"] })*@
+                @if (Session["UserName"] != null)
+                {
+                    <input type="submit" value="加入购物车" @*formtarget="_blank"*@ />
+                }
+                else
+                {
+                    <a onclick="confirm('请先登录')?location.href='@Url.Action("Login","User")':''" href="javascript:;">加入购物车</a>
+                }
+            </span>
         </div>
         }
         <div class="baozheng">
@@ -182,71 +192,14 @@
         <figure class="tabBlock">
             <ul class="tabBlock-tabs">
                 <li class="tabBlock-tab is-active">宝贝详情</li>
-                <li class="tabBlock-tab">累计评论(110)</li>
+                <li class="tabBlock-tab">累计评论(@ViewBag.pinglunshu)</li>
             </ul>
             <div class="tabBlock-content">
                 <div class="tabBlock-pane">
                     <p style="margin-left:0px;">@Html.Raw(@ViewBag.goodDes)</p>
                 </div>
-                <div class="tabBlock-pane">
-                    @{ Html.RenderAction("GoodsComments","Goods");}
-                    @*<div class="PL-box">
-                        <div class="pinglun">评论</div>
-                        <div class="PL-neirong">
-                            <div class="PL-icon">
-                                <img src="~/images/头像.png" /></div>
-                            <div class="box"><textarea class="textarea" name="pingluntextarea"></textarea>  </div>
-                            <div class="PL-btn"><a>发表评论</a></div>
-                        </div>
-                    </div>
-                    <div class="comments">全部评论</div>
-                    <hr style="width:96%;margin:10px auto;" />
-                    <ul>
-                        <li>
-                            <div class="user-icon" ><img src="~/images/头像.png" /></div>
-                            <div class="PL-content">
-                                <p>陈文凯</p>
-                                <p>东西不错，好评，下次再来。</p>
-                                <div class="huifu">
-                                    <s>发表于2017/4/24 8:45:49</s>
-                                    <a>回复</a>
-                                </div>
-                            </div>
-                        </li>    
-                        <li>
-                            <div class="user-icon"><img src="~/images/头像.png" /></div>
-                            <div class="PL-content">
-                                <p>陈文凯</p>
-                                <p>东西不错，好评，下次再来。</p>
-                                <div class="huifu">
-                                    <s>发表于2017/4/24 8:45:49</s>
-                                    <a>回复</a>
-                                </div>
-                            </div>
-                        </li> 
-                        <li>
-                            <div class="user-icon"><img src="~/images/头像.png" /></div>
-                            <div class="PL-content">
-                                <p>陈文凯</p>
-                                <p>东西不错，好评，下次再来。</p>
-                                <div class="huifu">
-                                    <s>发表于2017/4/24 8:45:49</s>
-                                    <a>回复</a>
-                                </div>
-                            </div>
-                        </li> 
-                        <li>
-                            <div class="user-icon"><img src="~/images/头像.png" /></div>
-                            <div class="PL-content">
-                                <p>陈文凯</p>
-                                <p>东西不错，好评，下次再来。</p>
-                                <div class="huifu">
-                                    <s>发表于2017/4/24 8:45:49</s>
-                                    <a>回复</a>
-                                </div>
-                            </div>
-                        </li>                    
-                    </ul>*@
+                <div class="tabBlock-pane" id="GoodsCommentsPagedList">
+                    @{ Html.RenderAction("GoodsComments","Goods");}                  
                 </div>
             </div>
         </figure>

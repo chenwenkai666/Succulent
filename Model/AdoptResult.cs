@@ -19,6 +19,7 @@ namespace Model
         public int ActivityID { get; set; }
         public int GoodsID { get; set; }
         public System.DateTime AdoptTime { get; set; }
+        public string Address { get; set; }
     
         public virtual Activity Activity { get; set; }
         public virtual Goods Goods { get; set; }

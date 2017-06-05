@@ -11,34 +11,46 @@ namespace BLL
 {
    public class ShopManager
     {
-        public static IShops ishops = DataAccess.CreateShops();
-        public static IEnumerable<Shops> SelectTopShops()
+        public  IShops ishops = DataAccess.CreateShops();
+        public  IEnumerable<Shops> SelectTopShops()
         {
             return ishops.GetTopShops();
         }
-        public static IEnumerable<Shops> SelectAllShops()
+        public  IEnumerable<Shops> SelectAllShops()
         {
             return ishops.GetAllShops();
         }
-        public static int SelectShopGoodsCount(int shopid)
+        public  int SelectShopGoodsCount(int shopid)
         {
             return ishops.GetShopGoodsCount(shopid);
         }
-        public static IEnumerable<Shops> SelectShopTopImage(int shopid)
+        public  IEnumerable<Shops> SelectShopTopImage(int shopid)
         {
             return ishops.GetShopTopImage(shopid);
         }
-        public static Shops SelectShopDetail(int goodid)
+        public  Shops SelectShopDetail(int goodid)
         {
             return ishops.GetShopDetail(goodid);
         }
-        public static Shops SelectDetailTopImage(int shopid)
+        public  Shops SelectDetailTopImage(int shopid)
         {
             return ishops.GetDetailTopimage(shopid);
         }
-        public static Shops GetShopByUserID(int UserID)
+        public  void CreateNewShops(Shops shop)
         {
-            return ishops.GetShopByUserID(UserID);
+           ishops.CreateNewShops(shop);
+        }
+        public  int SelectShopid(int userid)
+        {
+            return ishops.GetShopID(userid);
+        }
+        public  int SelectIsShoper(int userid)
+        {
+            return ishops.GetIsShoper(userid);
+        }
+        public Shops GetShopByUserID(int id)
+        {
+            return ishops.GetShopByUserID(id);
         }
     }
 }

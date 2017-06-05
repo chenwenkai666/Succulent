@@ -3,18 +3,22 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using IDAL;
 using Model;
-
+using IDAL;
 namespace DAL
 {
-     public class SqlServerAdoptResult:IAdoptResult
+   public class SqlServerAdoptResult:IAdoptResult
     {
         SucculentEntities db = new SucculentEntities();
-
+       public void AddAdoptResult(AdoptResult adoptresult)
+        {
+            db.AdoptResult.Add(adoptresult);
+            db.SaveChanges();
+        }
         public IList<AdoptResult> GetAdoptResultByActID(int ActID)
         {
-            return db.AdoptResult.Where(ar => ar.ActivityID == ActID).ToList() ;
+            return db.AdoptResult.Where(ar => ar.ActivityID == ActID).ToList();
         }
+
     }
 }

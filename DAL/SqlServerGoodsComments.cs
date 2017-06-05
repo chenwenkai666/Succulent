@@ -22,5 +22,10 @@ namespace DAL
             db.GoodsComments.Add(goodscomments);
             db.SaveChanges();
         }
+        public int GoodsCommentCounts(int goodid)
+        {
+            var data= (from p in db.GoodsComments where p.GoodsID == goodid select p).Count();
+            return data;
+        }
     }
 }

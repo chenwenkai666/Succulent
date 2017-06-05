@@ -54,9 +54,11 @@ namespace DAL
             return data;
         }
         public IEnumerable<Goods> GetTopNewTen()
-        {            
-            var data = (from p in db.Goods orderby p.Time select p).Take(10);
-            return data;
+        {
+           
+                var data = (from p in db.Goods .AsNoTracking() orderby p.Time select p).Take(10);
+                return data;
+            
         }
         public IEnumerable<Goods> GetTopHotGoods()
         {
@@ -164,7 +166,7 @@ namespace DAL
         }
         public Goods GetGoodDetail(int goodid)
         {
-            var data = db.Goods.Where(b => b.GoodsID == goodid).FirstOrDefault();
+            var data = db.Goods.AsNoTracking().Where(b => b.GoodsID == goodid).FirstOrDefault();
             return data;
         }
         public Goods GetDetailTuijianGoodid(int goodid)

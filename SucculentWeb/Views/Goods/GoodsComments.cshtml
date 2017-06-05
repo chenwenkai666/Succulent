@@ -1,4 +1,6 @@
-﻿@model IEnumerable<Model.GoodsComments>
+﻿
+@model IEnumerable<Model.GoodsComments>
+
 @{
     Layout = null;
 }
@@ -9,6 +11,7 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>GoodsComments</title>
+
     <style>
         .tabBlock-pane:last-child .PL-box{
     height:120px;
@@ -81,28 +84,46 @@
      font-weight:600;
      margin:0 auto;
  }
-.tabBlock-pane:last-child ul{
+.tabBlock-pane:last-child .out-ul{
     width:96%;
     margin:20px auto;
 }
-.tabBlock-pane:last-child ul li{
+.tabBlock-pane:last-child .out-ul .out-li{
     width:100%;
-    height:100px;
+    min-height:100px;
+    height:auto;
     margin-top:10px;
     border-bottom:1px solid #c9c9c9;
 }
-.tabBlock-pane:last-child ul li .user-icon{
+.out-li .ReplyBox{
+    width:100%;
+}
+.out-li .ReplyBox .PostRly01{
+    width:100%;
+}
+.out-li .ReplyBox .PostRly01 textarea{
+    width:500px;
+    border-radius:5px;
+    height:60px;
+}
+.out-li .ReplyBox .PostRly02{
+    width:40px;
+}
+.out-li .ReplyBox .PostRly02 input{
+    cursor:pointer;
+}
+.tabBlock-pane:last-child .out-ul .out-li .user-icon{
     width:80px;
     height:80px;
     float:left;
     border-radius:50%;
 }
-.tabBlock-pane:last-child ul li .user-icon img{
+.tabBlock-pane:last-child .out-ul .out-li .user-icon img{
     width:100%;
     height:100%;
     background-size:cover;
 }
-.tabBlock-pane:last-child ul li .PL-content{
+.tabBlock-pane:last-child .out-ul .out-li .PL-content{
     width:600px;
     margin-left:20px;
     float:left;
@@ -142,7 +163,72 @@
     color:#3571eb;
     text-decoration:none;
     cursor:pointer;
+   
+}
+.PL-content .huifu  button{
+    width:40px;
+    height:20px;
+    line-height:20px;
+    font-size:15px;
+    text-align:center;
+    cursor:pointer;
     float:left;
+    margin-right:0px;
+}
+/*.PL-content .huifu a button:hover{
+    background-color:#c40000;
+    color:#fff;
+    border-color:#c40000;
+}*/
+.tabBlock-pane:last-child .out-ul  .in-li{
+    height:100px;
+    width:93%;
+    margin-left:7%;
+    margin-top:10px;
+    border-bottom:1px solid #c9c9c9;
+}
+.out-ul  .in-li .huifu-icon{
+    height:80px;
+    width:80px;
+    float:left;
+    border-radius:50%;
+}
+.out-ul  .in-li .huifu-icon img{
+    width:100%;
+    height:100%;
+    background-size:cover;
+}
+.out-ul .in-li .HF-content{
+    width:500px;
+    float:left;
+    margin-left:10px;
+}
+.out-ul .in-li .HF-content .names{
+    width:100%;
+    height:25px;
+    margin-top:10px;
+}
+.out-ul .in-li .HF-content .names s{
+    width:40px;
+    text-decoration:none;
+    font-size:15px;
+}
+.out-ul .in-li .HF-content .HF-comment{
+    height:25px;
+    width:100%;
+    line-height:25px;
+    font-size:16px;
+    font-family:'Microsoft Himalaya';
+    margin-top:10px;
+}
+.out-ul .in-li .HF-content .HF-time{
+    height:25px;
+    width:500px;
+    line-height:18px;
+    text-decoration:none;
+    color:#c9c9c9;
+    float:left;
+    font-size:16px;
 }
     </style>
 </head>
@@ -156,29 +242,84 @@
                 <img src="~/images/头像.png" />
             </div>
             <div class="box"><textarea class="textarea" name="pingluntextarea"></textarea>  </div>
-            <div class="PL-btn"><a href="javascript:document.getElementById('pinglun').submit()" >发表评论</a></div>
+            <div class="PL-btn">
+                @if(Session["UserName"]!=null)
+                {
+                 <a href="javascript:document.getElementById('pinglun').submit()" >发表评论</a>
+                }
+                else
+                {
+                    <a onclick="confirm('请先登录')?location.href='@Url.Action("Login","User")':''" href="javascript:;">发表评论</a>
+                }
+            </div>
         </div>
     </div>
     }
     <div class="comments">全部评论</div>
     <hr style="width:96%;margin:10px auto;" />
-    <ul>
+    <ul class="out-ul">
+        @{ string tempid; }
         @foreach (var p in Model)
-        {          
-        <li>            
-            <div class="user-icon">@*<img src="@p.Users.Photo" />*@ 
-                <img src="~/images/头像.png" /></div>
+        {
+            tempid = "dev" + p.GoodsCommentID;
+            <li class="out-li">
+                <div class="user-icon">
+                    @*<img src="@p.Users.Photo" />*@
+                <img src="~/images/头像.png" />
+            </div>
+            <input type="hidden" value="@p.GoodsCommentID" name="GoodCommentid" />
             <div class="PL-content">
                 <p>@p.Users.UserName</p>
                 <p>@p.GoodsCommentContent</p>
                 <div class="huifu">
                     <s>@p.PublishTime</s>
-                    <a>回复</a>
+                     <button class="btn btn-xs btn-default" onclick="document.getElementById('@tempid').style.display = document.getElementById('@tempid').style.display == '' ? 'none' : ''">回复</button>
                 </div>
             </div>
+                <div id="@tempid" style="display:none;" class="ReplyBox">
+                    <div class="ReplyToPost">
+                        @using (Html.BeginForm("ReplyGoodComments", "Goods", new { GoodsCommentid = p.GoodsCommentID }, FormMethod.Post, new { id = "CreateForm", enctype = "multipart/form-data" }))
+                {
+                            <div class="PostRly01">
+                                <textarea style="resize:none;" class="form-control" rows="3" name="textarea1" placeholder="我也要简单说两句"></textarea>
+                            </div>
+                            <div class="PostRly02">
+                                <div class="Rly02-A">
+                                    @*<p>此处放错误信息</p>*@
+                                </div>
+                                <div class="Rly02-B">
+                                    @if (Session["UserID"] != null)
+                                    {
+                                        <input type="submit" value="提交" class="btn btn-xs btn-default" />
+                                    }
+                                    else
+                                    {
+                                        @*<input type="button" value="&nbsp;发表回复&nbsp;" class="btn btn-xs btn-default" onclick="alert(' 请先登录 ')" />*@
+                                        <input onclick="confirm('请先登录')?location.href='@Url.Action("Login","User")':''" href="javascript:;" type="button" value="提交">
+                                    }
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
         </li>
-            }      
-    </ul>
-    
+        
+           foreach (Model.ReplyGoods B in p.ReplyGoods.Where(c => c.GoodsCommentID == p.GoodsCommentID).ToList().AsReadOnly())
+            {
+            <li class="in-li">
+                <div class="huifu-icon"><img src="~/images/头像.png" /></div>
+                <div class="HF-content">
+                    <div class="names"><s>@B.Users.UserName</s>   回复  <s>@B.GoodsComments.Users.UserName</s></div>
+                    <div class="HF-comment">@B.ReplyContent</div>
+                    <div class="HF-time">@B.ReplyTime</div>
+                </div>
+            </li>
+            }
+
+        }
+
+</ul>
+
 </body>
+
 </html>
