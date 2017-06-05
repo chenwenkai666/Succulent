@@ -98,5 +98,9 @@ namespace BLL
         {
             return iposts.SelectUserLevel(userid);
         }
+        public IEnumerable<Posts> SelectAllPosts()//获取全部帖子
+        {
+            return iposts.SelectAllPosts();
+        }
     }
 }

@@ -10,5 +10,6 @@ namespace IDAL
     {
         IEnumerable<GoodsComments> GetGoodsComments(int goodid);
           void InsertGoodsComments(GoodsComments goodscomments);
+        int GoodsCommentCounts(int goodid);
     }
 }

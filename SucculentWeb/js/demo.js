@@ -26,25 +26,47 @@ window.onload = function () {
     var selectedViewList = document.getElementById('selectedViewList'); //浮层已选商品列表容器
     var selected = document.getElementById('selected'); //已选商品
     var foot = document.getElementById('foot');
+    var Hiddentotal = document.getElementById('HiddenTotal');
+    var DanJia = document.getElementById('jiage');
+    var GeShu = document.getElementById('shuliang');
+    
+
 
     // 更新总数和总价格，已选浮层
     function getTotal() {
+        var danjia = 0;
+        var geshu = 0;
 		var seleted = 0;
 		var price = 0;
 		var HTMLstr = '';
 		for (var i = 0, len = tr.length; i < len; i++) {
 			if (tr[i].getElementsByTagName('input')[0].checked) {
-				tr[i].className = 'on';
+			    tr[i].className = 'on';
+			    danjia = parseFloat(tr[i].cells[2].innerHTML);
+			    geshu = parseInt(tr[i].getElementsByTagName('input')[1].value);
 				seleted += parseInt(tr[i].getElementsByTagName('input')[1].value);
 				price += parseFloat(tr[i].cells[4].innerHTML);
 				HTMLstr += '<div><img src="' + tr[i].getElementsByTagName('img')[0].src + '"><span class="del" index="' + i + '">取消选择</span></div>'
+				//DanJia.value = danjia;
+				//GeShu.value = geshu;
 			}
 			else {
 				tr[i].className = '';
 			}
-		}	
-		selectedTotal.innerHTML = seleted;
+		}
+	
 		priceTotal.innerHTML = price.toFixed(2);
+		Hiddentotal.value = seleted;
+		selectedTotal.innerHTML = seleted;
+        var btn = document.getElementById("subbtn");
+        if (Hiddentotal.value == 0)
+		{		    
+		    btn.disabled = true;
+		}
+        else
+        {
+            btn.disabled = false;          
+		}
 		selectedViewList.innerHTML = HTMLstr;
 	
 		if (seleted == 0) {
@@ -166,6 +188,26 @@ window.onload = function () {
     //}
 	//console.log("\u767e\u5ea6\u641c\u7d22\u3010\u7d20\u6750\u5bb6\u56ed\u3011\u4e0b\u8f7d\u66f4\u591aJS\u7279\u6548\u4ee3\u7801");
     //// 默认全选
-    //checkAllInputs[0].checked = true;
-    //checkAllInputs[0].onclick();
+    checkAllInputs[0].checked = true;
+    checkAllInputs[0].onclick();
+
+
+    $('#subbtn').click( function()
+    {
+        
+        var checkbox1 = document.getElementsByClassName('check-one');
+        var chekbox2 = document.getElementsByClassName('chekbox2');
+        for (var i = 0, len = tr.length; i < len; i++) {
+            if (tr[i].getElementsByTagName('input')[0].checked) {
+
+                checkbox1[i].value = 1;
+                chekbox2[i].value = 1;
+
+            }
+            else {
+                checkbox1[i].value = 2;
+                chekbox2[i].value = 2;
+            }
+        }
+    });
 }

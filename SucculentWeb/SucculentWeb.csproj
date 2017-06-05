@@ -207,10 +207,13 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Attributes\IsLogInAttribute.cs" />
+    <Compile Include="Controllers\AdminManagementController.cs" />
+    <Compile Include="Controllers\AdminUsersManagementController.cs" />
     <Compile Include="Controllers\IndexController.cs" />
     <Compile Include="Controllers\LevelController.cs" />
     <Compile Include="Controllers\MallSearchController.cs" />
     <Compile Include="Controllers\PotsController.cs" />
+    <Compile Include="Controllers\ShopUsersManagementController.cs" />
     <Compile Include="Controllers\SucculentActivityController.cs" />
     <Compile Include="Controllers\SucculentController.cs" />
     <Compile Include="Controllers\GoodsController.cs" />
@@ -219,6 +222,7 @@
     <Compile Include="Controllers\TribuneController.cs" />
     <Compile Include="Controllers\UserCenterController.cs" />
     <Compile Include="Controllers\UserController.cs" />
+    <Compile Include="Controllers\UsersManagementController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -226,9 +230,11 @@
     <Compile Include="obj\Debug\TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs" />
     <Compile Include="obj\Debug\TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs" />
     <Compile Include="ViewModels\ActivityIndexVM.cs" />
+    <Compile Include="ViewModels\AdoptDetailViewModel.cs" />
     <Compile Include="ViewModels\AdoptListAddVM.cs" />
     <Compile Include="ViewModels\AdoptSucculentVM.cs" />
     <Compile Include="ViewModels\GoodDetailViewModel.cs" />
+    <Compile Include="ViewModels\GoodsCommentsViewModel.cs" />
     <Compile Include="ViewModels\indexVM.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -354,6 +360,9 @@
     <Content Include="bin\zh-Hans\System.Web.WebPages.Razor.resources.dll" />
     <Content Include="bin\zh-Hans\System.Web.WebPages.resources.dll" />
     <Content Include="Content\ActivityPublsih.css" />
+    <Content Include="Content\AdminManagement\Index.css" />
+    <Content Include="Content\AdminManagement\jquery-accordion-menu.css" />
+    <Content Include="Content\AdminManagement\Layout.css" />
     <Content Include="Content\amazeui.min.css" />
     <Content Include="Content\animate.css" />
     <Content Include="Content\animate.min.css" />
@@ -722,6 +731,7 @@
     <Content Include="obj\Debug\SucculentWeb.csproj.FileListAbsolute.txt" />
     <Content Include="obj\Debug\SucculentWeb.dll" />
     <Content Include="obj\Debug\SucculentWeb.pdb" />
+    <Content Include="Scripts\AdminManagement\jquery-accordion-menu.js" />
     <Content Include="Scripts\amazeui.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -1432,6 +1442,24 @@
     <Content Include="Views\SucculentActivity\PhotoResult.cshtml" />
     <Content Include="Views\Pots\Index.cshtml" />
     <Content Include="Views\Level\Index.cshtml" />
+    <Content Include="Views\AdminManagement\Index.cshtml" />
+    <Content Include="Views\AdminManagement\UsersManagement.cshtml" />
+    <Content Include="Views\AdminUsersManagement\Create.cshtml" />
+    <Content Include="Views\AdminUsersManagement\Delete.cshtml" />
+    <Content Include="Views\AdminUsersManagement\Details.cshtml" />
+    <Content Include="Views\AdminUsersManagement\Edit.cshtml" />
+    <Content Include="Views\AdminUsersManagement\Index.cshtml" />
+    <Content Include="Views\ShopUsersManagement\Create.cshtml" />
+    <Content Include="Views\ShopUsersManagement\Delete.cshtml" />
+    <Content Include="Views\ShopUsersManagement\Details.cshtml" />
+    <Content Include="Views\ShopUsersManagement\Edit.cshtml" />
+    <Content Include="Views\ShopUsersManagement\Index.cshtml" />
+    <Content Include="Views\UsersManagement\Create.cshtml" />
+    <Content Include="Views\UsersManagement\Delete.cshtml" />
+    <Content Include="Views\UsersManagement\Details.cshtml" />
+    <Content Include="Views\UsersManagement\Edit.cshtml" />
+    <Content Include="Views\UsersManagement\Index.cshtml" />
+    <Content Include="Views\Shared\_LayoutAdminManagement.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

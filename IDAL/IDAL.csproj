@@ -41,6 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IActivity.cs" />
+    <Compile Include="IAddress.cs" />
     <Compile Include="IAdopt.cs" />
     <Compile Include="IAdoptResult.cs" />
     <Compile Include="IAttendance.cs" />
@@ -50,8 +51,12 @@
     <Compile Include="IGoods.cs" />
     <Compile Include="IGoodsComments.cs" />
     <Compile Include="ILevel.cs" />
+    <Compile Include="IOrderItems.cs" />
+    <Compile Include="IOrders.cs" />
     <Compile Include="IPosts.cs" />
     <Compile Include="IPots.cs" />
+    <Compile Include="IReplyGoods.cs" />
+    <Compile Include="IShoppingCarts.cs" />
     <Compile Include="IShops.cs" />
     <Compile Include="ISucculent.cs" />
     <Compile Include="ISucculentCategory.cs" />

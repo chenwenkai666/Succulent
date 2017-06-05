@@ -12,6 +12,10 @@ namespace SucculentWeb.Controllers
     public class IndexController : Controller
     {
         SucculentEntities db = new SucculentEntities();
+        GoodsManager goodsmanager = new GoodsManager();
+        ActivityManager activitymanager = new ActivityManager();
+        SucculentManager succulentmanager = new SucculentManager();
+        PostsManager postsmanager = new PostsManager();
         // GET: Index
         public ActionResult Index()
         {
@@ -33,10 +37,10 @@ namespace SucculentWeb.Controllers
         {
             ViewBag.KeyWords = keywords;
             SearchResultVM searchresultvm = new SearchResultVM();
-            searchresultvm.Activity = ActivityManager.GetActivityByKeywords(keywords);
-            searchresultvm.Goods = GoodsManager.SelectAllGoods().Where(g => g.GoodsName.Contains(keywords));
-            searchresultvm.BaiKe = SucculentManager.SelectSucculent().Where(s =>( s.SucculentName.Contains(keywords)) ||(s.Feature.Contains(keywords) || (s.SucculentCategory.SucculentCategoryName.Contains(keywords)) ));
-  
+            searchresultvm.Activity = activitymanager.GetActivityByKeywords(keywords);
+            searchresultvm.Goods = goodsmanager.SelectAllGoods().Where(g => g.GoodsName.Contains(keywords));
+            searchresultvm.BaiKe = succulentmanager.SelectSucculent().Where(s =>( s.SucculentName.Contains(keywords)) ||(s.Feature.Contains(keywords) || (s.SucculentCategory.SucculentCategoryName.Contains(keywords)) ));
+            searchresultvm.Posts = postsmanager.SelectAllPosts().Where(p => (p.PostTitle.Contains(keywords)) || (p.PostContent.Contains(keywords)));
 
             return View(searchresultvm);
         }

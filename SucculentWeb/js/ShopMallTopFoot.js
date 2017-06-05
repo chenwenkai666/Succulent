@@ -1,15 +1,16 @@
 ﻿$("#head_car").hover(function () {
     $(this).css("background", "#FBFEE9");
-    $(".head_car_text").css("color", "#339933");
-    $("#car_content").css({ "width": "300px" }).animate({
-        height: "100px"
-    }, 400).finish();
-}, function () {
+    $(".head_car_text").css("color", "#b0b0b0");
+    //$("#car_content").css({ "width": "300px" }).animate({
+    //    height: "100px"
+    //}, 400).finish();
+}
+, function () {
     $(this).css("background", "#424242");
     $(".head_car_text").css("color", "#b0b0b0");
-    $("#car_content").css({ "width": "300px" }).animate({
-        height: "0px"
-    }, 400);
+    //$("#car_content").css({ "width": "300px" }).animate({
+    //    height: "0px"
+    //}, 400);
 })
 //导航栏控制显示
 $(".menu_li").hover(function () {

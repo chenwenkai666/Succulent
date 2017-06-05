@@ -1,0 +1,239 @@
+﻿body {
+}
+.Address{
+    width:1050px;
+    margin:20px auto;
+    display:block;
+}
+.Address .biaoti{
+    margin-bottom:15px;
+    width:100%;
+}
+.biaoti h2{
+    line-height:25px;
+    font-size:14px;
+    font-weight:700;
+    color:#333;
+    font-family:STSong;
+}
+.Address .ZQ-Address{
+    width:100%;
+    /*height:106px;*/
+    /*display:block;*/
+    padding:0;
+}
+.ZQ-Address ul{
+    width:100%;
+    height:106px;
+    
+}
+    .ZQ-Address ul li {
+        width: 22.5%;
+        height: 106px;        
+        margin-right: 2%;
+        float: left;
+        cursor: pointer;
+        background-image: url('../images/地址边框.png');
+        overflow:hidden;
+        margin-top:20px;
+    }
+        .ZQ-Address ul li:hover {
+            background-image: url('../images/地址边框2.png');
+        }
+.ZQ-Address ul li:last-child{
+    margin-right:0px;
+}
+
+/*.ZQ-Address ul li:first-child{
+    background-image: url('../images/地址边框2.png');
+}*/
+.ZQ-Address ul li .first-li{
+    width:90%;
+    margin-left:5%;
+    height:24px;
+    border-bottom:1px solid #c9c9c9;
+    font-size:13px;
+    color:#666;
+    font-family: tahoma, arial, 宋体;
+    margin-top:10px;
+}
+.ZQ-Address ul li .first-li{
+    width:90%;
+}
+.ZQ-Address ul li .first-li input{
+    width:10%;
+    float:right;
+    margin-top:-15px;
+}
+.ZQ-Address ul li .second-li{
+    width:90%;
+    margin-left:5%;
+    height:34px;
+    line-height:17px;
+   font-size:12px;
+    color:#666;
+    font-family: tahoma, arial, 宋体;
+}
+.ZQ-Address ul li .third-li{
+    width:90%;
+    height:25px;
+    margin:5px auto;
+}
+.ZQ-Address ul li .third-li a{
+    height:25px;
+    font-size:13px;
+    width:35%;
+    color:#c97;
+    cursor:pointer;
+}
+/*.ZQ-Address ul li .third-li input{
+    width:70%;
+}*/
+.ZQ-Address ul li .third-li a:hover{
+    color:#ff6a00;
+}
+.ZQ-Address ul li .third-li a:nth-child(2){
+    margin-left:5%;
+}
+.Address .control{
+    width:100%;
+    height:25px;
+    margin-top:20px;
+}
+.control a{
+    font-size:13px;
+    color:#c97;
+    cursor:pointer;
+}
+.biaoti2{
+    width:1050px;
+    margin:20px auto 0 auto;
+}
+.biaoti2 h2{
+      line-height:25px;
+    font-size:14px;
+    font-weight:700;
+    color:#333;
+    font-family:STSong;
+}
+/*.Order-Good{
+    width:1050px;
+    margin:30px auto;
+}
+.Order-Good .biaoti2{
+    margin-bottom:15px;
+    width:100%;
+}
+.Order-Good .biaoti2 h2{
+    line-height:25px;
+    font-size:14px;
+    font-weight:700;
+    color:#333;
+    font-family:STSong;
+}*/
+/*.Order-Good .Order-box{
+    width:1050px;
+    padding:0;  
+}
+.Order-box table{
+    width:1050px;
+    
+}
+.Order-box table thead{
+    width:1050px;
+    background-color:rebeccapurple
+}
+.Order-box table thead tr{
+    width:1050px;
+}
+.Order-box table thead tr th{
+    height:30px;
+    border-bottom:2px solid #ff6a00;
+    width:13%;
+    font-size:12px;
+    color:#333;
+    font-family:STSong;
+    margin-right:2%;
+    float:left;
+}
+.Order-box table thead tr th:first-child{
+    width:32%;
+}
+.Order-box table thead tr th:nth-child(2)
+{
+    width:21%;
+}
+.Order-box table thead tr th:last-child{
+    margin-right:0px;
+}
+.Order-box table tbody{
+    width:100%;
+    margin-top:20px;
+}
+.Order-box table tbody tr{
+    width:100%;
+    margin-top:20px;
+}
+.Order-box table tbody tr td{
+    text-align:center;
+    font-size:12px;
+}
+.Order-box table tbody tr .goods{
+    width:336px;
+}
+.Order-box table tbody tr .goods img{
+    width:120px;
+    height:120px;
+    background-size:cover;
+    float:left;
+}
+.Order-box table tbody tr .goods span{
+    float:left;
+    width:200px;
+    height:120px;
+    line-height:120px;
+    font-size:12px;
+    text-align:center;
+    cursor:pointer;
+}
+.Order-box table tbody tr .goods span:hover{
+    color:#ff6a00;
+}
+.Order-box table tbody tr .shop a:hover{
+    color:#ff6a00;
+    cursor:pointer;
+    text-decoration:none;
+}
+.Order-box table tbody tr .subtotal{
+    font-size:15px;
+    font-weight:bold;
+    color:#ff6a00
+}*/
+
+/*.catbox{width:1050px;margin:30px auto;}
+.catbox table{text-align:center;width:100%;}
+.catbox table th,.catbox table td{border:1px solid #CADEFF;}
+.catbox table th{background:#e2f2ff;border-top:3px solid #a7cbff;height:30px;}
+.catbox table td{padding:10px;color:#444;}
+.catbox table tbody tr:hover{background:RGB(238,246,255);}
+.checkbox{width:60px;}
+.check-all{ vertical-align:middle;}
+.goods{width:300px;}
+.goods a{width:180px;margin-top:30px;text-align:left;float:left;font-size:12px;color:#333;}
+    .goods a:hover {
+    color:#ff6a00;
+    cursor:pointer;
+    }
+    .shop a{
+        font-size:12px; 
+        color:#333;
+    }
+    .shop a:hover{
+         color:#ff6a00;
+    cursor:pointer;
+    }
+.goods img{width:100px;height:80px;margin-right:10px;float:left;}
+.price{width:130px;}
+.count{width:90px;}
+.count input{width:50px;height:15px;line-height:15px;border:1px solid #aaa;color:#343434;text-align:center;padding:4px 0;background-color:#fff;z-index:2;}
+.subtotal{width:150px;color:red;font-weight:700;}*/

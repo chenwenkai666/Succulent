@@ -16,7 +16,7 @@
 <hr style="height:0px;width:100%;color:#00ff21;" />
 <script type="text/javascript" src="http://keleyi.com/keleyi/pmedia/jquery/jquery-1.10.2.min.js"></script>
 <script type="text/javascript" src="/js/jquery-1.10.2.min.js"></script>
-
+<script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
 
 <script type="text/javascript">
 $(document).ready(function () {
@@ -153,7 +153,7 @@ $(function(){
                 <p>综合排序</p>
                 <ul class="free">
                     <li class="header"><a class="dock-keleyi-com">固定</a><a class="undock" style="text-decoration:none;cursor:pointer;">隐藏</a>排序</li>
-                    <li><button name="button" value="点赞" style="width:100%;">@Html.ActionLink("点赞","Shops",  new { goods = "1", Shopid = Session["shopid"] })</button></li>
+                    <li><button name="button" value="点赞" style="width:100%;">@Html.ActionLink("点赞", "Shops", new { goods = "1", Shopid = Session["shopid"] })</button></li>
                     <li><button name="button" value="价格" style="width:100%;">@Html.ActionLink("价格", "Shops", new { goods = "2", Shopid = Session["shopid"] })</button></li>
                     <li><button name="button" value="销量" style="width:100%;">@Html.ActionLink("销量", "Shops", new { goods = "3", Shopid = Session["shopid"] })</button></li>
                     <li><button name="button" value="时间" style="width:100%;">@Html.ActionLink("时间", "Shops", new { goods = "4", Shopid = Session["shopid"] })</button></li>
@@ -161,7 +161,10 @@ $(function(){
             </li>
         </ul>
     </div>
-    <div class="main">
+    <div id="shopcontent">
+        @{ Html.RenderAction("ShopsContent","Goods");}
+    </div>
+    @*<div class="main">
         <hr style="width:100%;color:#f3f2f2;" />
         <ul> 
             @foreach(var p in Model)
@@ -194,7 +197,7 @@ $(function(){
             </ul>
         </nav>
     </div>
-</div>
+</div>*@
 <div class="over"> 
     <div class="fenlei">
         <ul>

@@ -94,5 +94,32 @@ namespace DALFactory
             string className = assemblyName + "." + db + "Level";
             return (ILevel)Assembly.Load(assemblyName).CreateInstance(className);
         }
+
+
+        public static IShoppingCarts CreateShoppingCarts()
+        {
+            string className = assemblyName + "." + db + "ShoppingCarts";
+            return (IShoppingCarts)Assembly.Load(assemblyName).CreateInstance(className);
+        }
+        public static IAddress CreateAddress()
+        {
+            string className = assemblyName + "." + db + "Address";
+            return (IAddress)Assembly.Load(assemblyName).CreateInstance(className);
+        }
+        public static IOrders CreateOrders()
+        {
+            string className = assemblyName + "." + db + "Orders";
+            return (IOrders)Assembly.Load(assemblyName).CreateInstance(className);
+        }
+        public static IOrderItems CreateOrderItems()
+        {
+            string className = assemblyName + "." + db + "OrderItems";
+            return (IOrderItems)Assembly.Load(assemblyName).CreateInstance(className);
+        }
+        public static IReplyGoods CreateReplyGoods()
+        {
+            string className = assemblyName + "." + db + "ReplyGoods";
+            return (IReplyGoods)Assembly.Load(assemblyName).CreateInstance(className);
+        }
     }
 }

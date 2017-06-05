@@ -11,25 +11,25 @@ namespace BLL
 {
     public class ActivityManager
     {
-        private static IActivity iactivity = DataAccess.CreateActivity();
+        public IActivity iactivity = DataAccess.CreateActivity();
 
-        public static IList<ActivityCategory> GetActivityCategory()
+        public IList<ActivityCategory> GetActivityCategory()
         {
             return iactivity.GetActivityCategory();
         }
-        public static bool InsertActivity(Activity act)
+        public bool InsertActivity(Activity act)
         {
             return iactivity.InsertActivity(act);
         }
-        public static Activity GetActivity(int id)
+        public Activity GetActivity(int id)
         {
             return iactivity.GetActivity(id);
         }
-        public static IList<Activity> GetActivityByCategoryID(int id)
+        public IList<Activity> GetActivityByCategoryID(int id)
         {
             return iactivity.GetActivityByCategoryID(id);
         }
-        public static IList<Activity> GetActivityByKeywords(string keywords)
+        public IList<Activity> GetActivityByKeywords(string keywords)
         {
             return iactivity.GetActivityByKeywords(keywords);
         }
