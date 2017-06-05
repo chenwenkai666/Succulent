@@ -28,14 +28,16 @@ namespace SucculentWeb.Controllers
         public ActionResult BoardIndex(int BoardID)
         {
             Session["BoardID"] = BoardID;
-            int userid = Convert.ToInt32(Session["UserID"]);
-            string UserName = Session["UserName"].ToString();
             TribuneBoardVM tribuneBoard = new TribuneBoardVM();
             tribuneBoard.Posts = PostsManager.GetSectionPost(BoardID);
             tribuneBoard.Sections = PostsManager.GetSectionName(BoardID);
             tribuneBoard.PostsNumberAll = PostsManager.GetPostNumberAll(BoardID);
             tribuneBoard.PostsNumberToday = PostsManager.GetPostNumberToday(BoardID);
-            tribuneBoard.Boardlevels = PostsManager.SelectUserLevel(userid);
+            if (Session["UserID"] != null)
+            {
+                int userid = Convert.ToInt32(Session["UserID"]);
+                tribuneBoard.Boardlevels = PostsManager.SelectUserLevel(userid);
+            }
             return View(tribuneBoard);
         }
         public ActionResult CreatePost()
@@ -65,17 +67,6 @@ namespace SucculentWeb.Controllers
                 db.SaveChanges();
                 db.Configuration.ValidateOnSaveEnabled = true;
                 potsmanager.UpdateExperience(userid, 5);
-
-                //var DATER = PostsManager.SelectPostFirstFloor(userid, PubTime);
-                //postscom.UserID = userid;
-                //postscom.PostID = DATER.PostID;
-                //postscom.PostCommentContent = DATER.PostContent;
-                //postscom.PostCommentTime = PubTime;
-                //db.PostComments.Add(postscom);
-                //db.Configuration.ValidateOnSaveEnabled = false;
-                //db.SaveChanges();
-                //db.Configuration.ValidateOnSaveEnabled = true;
-
                 return RedirectToAction("BoardIndex", "Tribune", new { BoardID = BoardID });
 
             }

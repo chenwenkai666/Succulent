@@ -39,7 +39,7 @@
                 <input type="button" class="btn btn-sm btn-default" onClick="location.href='@Url.Action("BoardIndex", "Tribune", new { BoardID = int.Parse(Session["BoardID"].ToString()) })'" value="返回">
             </div>
         </div>
-        @foreach (var A in Model.Posts)
+        @*@foreach (var A in Model.Posts)
         {
             <div class="PostFloor">
                 <div class="PostIMG">
@@ -64,7 +64,7 @@
                     </div>
                 </div>
             </div>
-        }
+        }*@
         @{ string tempid; }
         @foreach (var A in Model.PostComment)
         {

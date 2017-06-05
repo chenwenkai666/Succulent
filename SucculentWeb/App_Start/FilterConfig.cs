@@ -9,7 +9,7 @@ namespace SucculentWeb
         public static void RegisterGlobalFilters(GlobalFilterCollection filters)
         {
             filters.Add(new HandleErrorAttribute());
-            filters.Add(new IsLogInAttribute() { IsCheck = true });
+            filters.Add(new IsLogInAttribute() { IsCheck = false });
         }
     }
 }

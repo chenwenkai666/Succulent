@@ -169,43 +169,57 @@ body {
     padding-right: 30px;
     text-align: center;
 }
+
 #RB-04 {
     width: 100%;
     height: auto;
 }
+
 #A4-PhotoBox {
-    width:120px;
-    height:120px;
-    padding:5px;
-    margin-left:auto;
-    margin-right:auto;
-    background-color:#FFF;
-    border:1px solid #C7CEB2;
+    width: 120px;
+    height: 120px;
+    padding: 5px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #FFF;
+    border: 1px solid #C7CEB2;
 }
+
 #A4-UserPhoto {
     width: 108px;
     height: 108px;
     background-image: url('../../images/Tribune/web/defaultPhoto.jpg');
     background-size: contain;
 }
+
 #A4-NameBox {
-    width:120px;
-    height:25px;
-    margin-top:5px;
-    margin-left:auto;
-    margin-right:auto;
-    text-align:center;
-    font-weight:bold;
-    padding-top:1px;
+    width: 120px;
+    height: 25px;
+    margin-top: 5px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    font-weight: bold;
+    padding-top: 1px;
 }
+
 #A4-LevelBox {
-    width:120px;
-    height:21px;
-    margin-left:auto;
-    margin-right:auto;
-    text-align:center;
-    padding-top:1px;
-    font-size:12px;
-    border:1px solid #C7CEB2;
+    width: 120px;
+    height: 21px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    padding-top: 1px;
+    font-size: 12px;
+    border: 1px solid #C7CEB2;
+}
+
+#A4-LoginInfo {
+    width: 120px;
+    height: 46px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    padding-top: 12px;
 }
 /*主体结束*/
