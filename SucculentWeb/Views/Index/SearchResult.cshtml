@@ -42,7 +42,7 @@
                 <div class="am-panel-bd">
                     @foreach (var item in Model.BaiKe)
                     {
-                        <a href="@Url.Action("Succulent_Details","Succulent", new { id=item.SucculentID,categoryid=item.SucculentCategory.SucculentCategoryID })">
+                        <a href="@Url.Action("Succulent_Details","Succulent", new { id=item.SucculentID,categoryid=item.SucculentCategory.SucculentCategoryID })" target="_blank">
                             <div class="Baike_Item">
                                 <div class="Baike_Img">
                                     <img src="@item.Photo" />
