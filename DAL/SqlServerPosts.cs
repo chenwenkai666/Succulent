@@ -13,7 +13,7 @@ namespace DAL
     {
         SucculentEntities db = new SucculentEntities();
 
-        public IEnumerable<Sections> GetSection03()    //获取前三个板块
+        public IEnumerable<Sections> GetSection03() //获取前三个板块
         {
             var data = (from p in db.Sections select p).OrderBy(p => p.SectionID).Take(3);
             return data;
@@ -144,6 +144,16 @@ namespace DAL
                      where p.SectionName == SectionName
                      select p.SectionID).FirstOrDefault();
             return q;
+        }
+        public IEnumerable<Level> SelectUserLevel(int userid)  //搜索用户等级
+        {
+            int level = (from p in db.Pots
+                         where p.UserID == userid
+                         select p.LevelID).FirstOrDefault();
+            var lev = from b in db.Level
+                      where b.LevelID == level
+                      select b;
+            return lev;
         }
     }
 }

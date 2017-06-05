@@ -14,7 +14,7 @@ namespace BLL
     {
         public static IPosts iposts = DataAccess.CreatePosts();
 
-        public static IEnumerable<Sections> GetSection03()    //获取前三个板块
+        public static IEnumerable<Sections> GetSection03() //获取前三个板块
         {
             return iposts.GetSection03();
         }
@@ -93,6 +93,10 @@ namespace BLL
         public static int SelectSectionID(string SectionName) //获取板块ID
         {
             return iposts.SelectSectionID(SectionName);
+        }
+        public static IEnumerable<Level> SelectUserLevel(int userid)  //搜索用户等级
+        {
+            return iposts.SelectUserLevel(userid);
         }
     }
 }

@@ -13,6 +13,7 @@ namespace SucculentWeb.Controllers
     public class TribuneController : Controller
     {
         SucculentEntities db = new SucculentEntities();
+        PotsManager potsmanager = new PotsManager();
         // GET: Tribune
         public ActionResult TribuneIndex()
         {
@@ -27,11 +28,14 @@ namespace SucculentWeb.Controllers
         public ActionResult BoardIndex(int BoardID)
         {
             Session["BoardID"] = BoardID;
+            int userid = Convert.ToInt32(Session["UserID"]);
+            string UserName = Session["UserName"].ToString();
             TribuneBoardVM tribuneBoard = new TribuneBoardVM();
             tribuneBoard.Posts = PostsManager.GetSectionPost(BoardID);
             tribuneBoard.Sections = PostsManager.GetSectionName(BoardID);
             tribuneBoard.PostsNumberAll = PostsManager.GetPostNumberAll(BoardID);
             tribuneBoard.PostsNumberToday = PostsManager.GetPostNumberToday(BoardID);
+            tribuneBoard.Boardlevels = PostsManager.SelectUserLevel(userid);
             return View(tribuneBoard);
         }
         public ActionResult CreatePost()
@@ -60,6 +64,7 @@ namespace SucculentWeb.Controllers
                 db.Configuration.ValidateOnSaveEnabled = false;
                 db.SaveChanges();
                 db.Configuration.ValidateOnSaveEnabled = true;
+                potsmanager.UpdateExperience(userid, 5);
 
                 //var DATER = PostsManager.SelectPostFirstFloor(userid, PubTime);
                 //postscom.UserID = userid;
@@ -96,6 +101,7 @@ namespace SucculentWeb.Controllers
         [ValidateInput(false)]
         public ActionResult PostsDetails(PostComments postcom)
         {
+            int userid = Convert.ToInt32(Session["UserID"]);
             int PostID = int.Parse(Session["PostID"].ToString());
             postcom.UserID = Convert.ToInt32(Session["UserID"]);
             postcom.PostID = PostID;
@@ -105,12 +111,14 @@ namespace SucculentWeb.Controllers
             db.Configuration.ValidateOnSaveEnabled = false;
             db.SaveChanges();
             db.Configuration.ValidateOnSaveEnabled = true;
+            potsmanager.UpdateExperience(userid, 2);
             return RedirectToAction("PostsDetails", "Tribune", new { PostID = PostID });
         }
         [HttpPost]
         [ValidateInput(false)]
         public ActionResult RlyPosts(ReplyPost rlypost, int PostCommentID)
         {
+            int userid = Convert.ToInt32(Session["UserID"]);
             int PostID = int.Parse(Session["PostID"].ToString());
             rlypost.UserID = Convert.ToInt32(Session["UserID"]);
             rlypost.PostCommentID = PostCommentID;
@@ -120,6 +128,7 @@ namespace SucculentWeb.Controllers
             db.Configuration.ValidateOnSaveEnabled = false;
             db.SaveChanges();
             db.Configuration.ValidateOnSaveEnabled = true;
+            potsmanager.UpdateExperience(userid, 2);
             return RedirectToAction("PostsDetails", "Tribune", new { PostID = PostID });
         }
         public ActionResult PostsList(int? page, int BoardID)

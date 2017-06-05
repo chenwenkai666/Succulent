@@ -13,5 +13,6 @@ namespace SucculentWeb.ViewModels.TribuneVM
         public IEnumerable<Posts> Posts { get; set; }
         public int PostsNumberAll { get; set; }
         public int PostsNumberToday { get; set; }
+        public IEnumerable<Level> Boardlevels { get; set; }
     }
 }

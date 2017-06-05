@@ -54,6 +54,26 @@
                         <strong>@Model.PostsNumberAll</strong>
                     </span>
                 </div>
+                <div id="RB-04">
+                    @if (Session["UserID"] != null)
+                    {
+                        <div id="A4-PhotoBox">
+                            <div id="A4-UserPhoto">
+                            </div>
+                        </div>
+                        <div id="A4-NameBox">
+                            @Session["UserName"]
+                        </div>
+                        <div id="A4-LevelBox">
+                            @foreach (var A in Model.Boardlevels)
+                            {
+                                <p>Lv.@A.LevelID&nbsp;@A.LevelName</p>
+                            }
+                        </div>
+                    }
+                    else
+                    { }
+                </div>
                 <div id="RB-03">
                     @if (Session["UserID"] != null)
                     {
