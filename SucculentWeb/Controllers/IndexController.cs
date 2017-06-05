@@ -14,7 +14,6 @@ namespace SucculentWeb.Controllers
         SucculentEntities db = new SucculentEntities();
         GoodsManager goodsmanager = new GoodsManager();
         ActivityManager activitymanager = new ActivityManager();
-        GoodsManager goodsmanager = new GoodsManager();
         SucculentManager succulentmanager = new SucculentManager();
         PostsManager postsmanager = new PostsManager();
         // GET: Index
