@@ -10,6 +10,7 @@
 <script src="/js/jquery.animate-colors-min.js"></script>
 @*<link href="~/Content/bootstrap.css" rel="stylesheet" />*@
 <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
 <style>
     body,button, input, select, textarea,h1 ,h2, h3, h4, h5, h6 ,a { font-family: Microsoft YaHei,'宋体' , Tahoma, Helvetica, Arial, "\5b8b\4f53", sans-serif;}
     #big_banner_wrap {
@@ -228,30 +229,7 @@
     </div>
 </div>
 <div class="content">
-    @*<div class="left">
-        <div class="left-title"><p>爆款推荐</p></div>
-        <hr />
-        <div class="left-image">
-            <ul>
-                <li>
-                    <img src="~/images/Goods/万象更新蓝色天使进口特价多肉植物.jpg" />
-                    <a>万象更新蓝色天使多肉植物</a>
-                </li>
-                <li>
-                    <img src="~/images/Goods/万象更新珠丽娜多肉植物.jpg" />
-                    <a>万象更新朱丽娜多肉植物</a>
-                </li>
-                <li>
-                    <img src="~/images/Goods/万象更新树冰韩国进口多肉植物.jpg" />
-                    <a>万象更新朱丽娜多肉植物</a>
-                </li>
-                <li>
-                    <img src="~/images/Goods/壹分皿水晶寿多肉植物.jpg" />
-                    <a>万象更新朱丽娜多肉植物</a>
-                </li>
-            </ul>
-        </div>
-    </div>*@
+
     @{Html.RenderAction("Tuijian", "MallSearch");}
     <div style="float:left;width:2px;height:940px;background-color:#339933;margin:20px 1% 0 21%;"></div>
     <div class="right">
@@ -259,30 +237,8 @@
             <p>搜索列表</p>
         </div>
         <hr />
-        <div class="right-content">
-            <ul>
-                @foreach(var goods in Model)
-                { 
-                <li>
-                    <div class="rigth-image">
-                    <a  href="@Url.Action("GoodsDetail","Goods",new { goodid=goods.GoodsID})"><img src="@goods.GoodsPhoto" /></a>  </div>
-                    <a style="width:100%;height:8%;margin-top:2%;text-align:center;text-decoration:none ;color:black;">￥@goods.Price</a><br />
-                    <a  href="@Url.Action("GoodsDetail","Goods",new { goodid=goods.GoodsID})" style="width:100%;height:8%;margin-top:2%;text-align:center;text-decoration:none ;color:black;">@goods.GoodsName</a>
-                </li>
-
-                }
-            </ul>
-        </div>
-
-        <div class="fenye">
-            <nav aria-label="Page navigation" class="container">
-                <ul class="pagination ">
-                    <li>
-                        @Html.PagedListPager(Model, page => Url.Action("Index", "MallSearch", new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
-
-                    </li>
-                </ul>
-            </nav>
+        <div id="mallsearch">
+            @{ Html.RenderAction("MallSearchContent","MallSearch");}
         </div>
     </div>
 

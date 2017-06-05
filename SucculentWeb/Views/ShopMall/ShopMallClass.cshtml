@@ -6,9 +6,12 @@
 }
 
 <script type="text/javascript" src="/js/jquery-2.1.4.min.js"></script>
+<script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
 <script src="/js/jquery.animate-colors-min.js"></script>
 <link href="~/css/ShopMallClass.css" rel="stylesheet" />
 <link href="~/css/imghover.css" rel="stylesheet" />
+<link href="~/css/PagedList.css" rel="stylesheet" />
+<link href="~/css/ShopMallShopsContent.css" rel="stylesheet" />
 <link href="~/css/PagedList.css" rel="stylesheet" />
 <!--侧边导航栏轮播图开始-->
 <div id="big_banner_wrap">
@@ -171,8 +174,9 @@
     <span>相关商品</span>
 </div>
 <hr  style="height:1px;width:90%;margin-left:3%;background-color:#eceaea;"/>
-
-@{Html.RenderAction("ShopMallClassContent", "ShopMall");}
+<div id="shopmallclasscontent">
+    @{Html.RenderAction("ShopMallClassContent", "ShopMall");}
+</div>
 @*<div class="good-content">
 
   <div class="good_ul">

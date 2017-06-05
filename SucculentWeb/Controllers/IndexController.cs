@@ -12,6 +12,7 @@ namespace SucculentWeb.Controllers
     public class IndexController : Controller
     {
         SucculentEntities db = new SucculentEntities();
+        GoodsManager goodsmanager = new GoodsManager();
         ActivityManager activitymanager = new ActivityManager();
         GoodsManager goodsmanager = new GoodsManager();
         SucculentManager succulentmanager = new SucculentManager();

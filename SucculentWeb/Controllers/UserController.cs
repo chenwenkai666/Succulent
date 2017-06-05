@@ -24,7 +24,7 @@ namespace SucculentWeb.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult Login(Users user)
+        public ActionResult Login(Users user,string returnUrl)
         {
             int u = UsersManager.Login(user);
             if (u > 0)
@@ -32,7 +32,14 @@ namespace SucculentWeb.Controllers
                 Session["UserName"] = user.UserName;
                 Users users = UsersManager.GetUserByName(Session["UserName"].ToString());
                 Session["UserID"] = users.UserID;
-                return Redirect(Url.Action("Index", "Index"));
+                if (returnUrl != null)
+                {
+                    return Redirect(returnUrl);
+                }
+                else
+                {
+                    return Redirect(Url.Action("Index", "Index"));
+                }
             }
             else
             {

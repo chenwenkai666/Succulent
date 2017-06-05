@@ -51,6 +51,23 @@ namespace DAL
             var data = (from p in db.Shops where p.ShopID == shopid select p).FirstOrDefault();
             return data;
         }
+        public void CreateNewShops(Shops shop)
+        {
+            db.Shops.Add(shop);
+            db.Configuration.ValidateOnSaveEnabled = false;
+            db.SaveChanges();
+            db.Configuration.ValidateOnSaveEnabled = true;
+        }
+        public int GetShopID(int userid)
+        {
+            int shopid= (from p in db.Shops where p.UserID == userid select p.ShopID).FirstOrDefault();
+            return shopid;
+        }
+        public int GetIsShoper(int userid)
+        {
+            var data = (from p in db.Shops where p.UserID == userid select p).Count();
+            return data;
+        }
         public Shops GetShopByUserID(int UserID)
         {
             return db.Shops.Where(p => p.UserID == UserID).FirstOrDefault();

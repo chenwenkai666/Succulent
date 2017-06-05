@@ -13,6 +13,9 @@ namespace SucculentWeb.Controllers
 {
     public class SucculentActivityController : Controller
     {
+        AdoptResultManager adoptresultmanager = new AdoptResultManager();
+        GoodsManager goodsmanager = new GoodsManager();
+        ShopManager shopmanager = new ShopManager();
         ActivityManager activitymanager = new ActivityManager();
         // GET: SucculentActivity
         #region 活动首页
@@ -148,7 +151,7 @@ namespace SucculentWeb.Controllers
             AdoptSucculentVM AdoptVM = new AdoptSucculentVM();
             AdoptVM.Activity = activitymanager.GetActivity(id);
             AdoptVM.AdoptList = AdoptManager.GetAdoptListByActID(id);
-            AdoptVM.AdoptResult = AdoptResultManager.GetAdoptResultByActID(id);
+            AdoptVM.AdoptResult = adoptresultmanager.GetAdoptResultByActID(id);
 
             return View(AdoptVM);
         }
@@ -165,11 +168,11 @@ namespace SucculentWeb.Controllers
                     Activity act = activitymanager.GetActivity(ActID);
                     if (user.UserFlag == 1 && act.UserID == user.UserID)
                     {
-                        Shops shop = ShopManager.GetShopByUserID(user.UserID);
+                        Shops shop = shopmanager.GetShopByUserID(user.UserID);
                         AdoptListAddVM adoptadd = new AdoptListAddVM();
                         adoptadd.Activity = act;
                         adoptadd.Shops = shop;
-                        adoptadd.Goods = GoodsManager.SelectShopDuorouZhiwu(shop.ShopID);
+                        adoptadd.Goods = goodsmanager.SelectShopDuorouZhiwu(shop.ShopID);
                         return View(adoptadd);
                     }
                     else
@@ -185,7 +188,7 @@ namespace SucculentWeb.Controllers
             catch (Exception ex)
             {
                 string error = ex.Message;
-                return Content("<script>alert('请先登录');window.location='" + Url.Action("Login", "User") + "'</script>");
+                return Content("<script>alert('系统出错');window.location='" + Url.Action("Login", "User") + "'</script>");
             }
 
 

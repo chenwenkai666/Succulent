@@ -33,6 +33,8 @@ namespace Model
         public Nullable<int> LikeIt { get; set; }
         public int Flag { get; set; }
         public Nullable<System.DateTime> Time { get; set; }
+        public int Stock { get; set; }
+        public int Sales { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Adopt> Adopt { get; set; }

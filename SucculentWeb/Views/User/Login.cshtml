@@ -73,6 +73,7 @@
                        <input type="submit" class="button success expand" value="登录" />
                     </div>
                 </div>
+                @Html.Hidden("returnUrl", Request.UrlReferrer.ToString())
             }
             <div class="forget_register">
                 <a href="@Url.Action("ForgetPassword", "User")"><span>忘记密码</span></a>

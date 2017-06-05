@@ -12,9 +12,10 @@ namespace SucculentWeb.Controllers
     {
         // GET: MallSearch
         SucculentEntities db = new SucculentEntities();
+        GoodsManager goodsmanager = new GoodsManager();
         public ActionResult Index(string searchString,string currentFilter,int? page)
         {
-            var goods = GoodsManager.SelectAllGoods();
+            var goods = goodsmanager.SelectAllGoods();
             if(searchString!=null)
             {
                 page = 1;
@@ -26,15 +27,50 @@ namespace SucculentWeb.Controllers
             ViewBag.CurrentFilter = searchString;
             if(!String.IsNullOrEmpty(searchString))
             {
-                goods = GoodsManager.SelectSearchGoods(searchString);
+                goods = goodsmanager.SelectSearchGoods(searchString);
             }
             int pageSize = 12;
             int pageNumber = (page ?? 1);
-            return View(goods.ToPagedList(pageNumber,pageSize));
+            if(Request.IsAjaxRequest())
+            {
+                return PartialView("MallSearch", goods.ToPagedList(pageNumber, pageSize));
+            }
+            else
+            {
+                return View(goods.ToPagedList(pageNumber, pageSize));
+            }
+            
+        }
+        public ActionResult MallSearchContent(string searchString, string currentFilter, int? page)
+        {
+            var goods = goodsmanager.SelectAllGoods();
+            if (searchString != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+            ViewBag.CurrentFilter = searchString;
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                goods = goodsmanager.SelectSearchGoods(searchString);
+            }
+            int pageSize = 12;
+            int pageNumber = (page ?? 1);
+            if (Request.IsAjaxRequest())
+            {
+                return PartialView("MallSearchContent", goods.ToPagedList(pageNumber, pageSize));
+            }
+            else
+            {
+                return View(goods.ToPagedList(pageNumber, pageSize));
+            }
         }
         public ActionResult Tuijian()
         {
-            var good = GoodsManager.SelectTuijian();
+            var good = goodsmanager.SelectTuijian();
             return View(good);
         }
     }

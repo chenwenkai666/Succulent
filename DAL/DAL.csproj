@@ -54,6 +54,7 @@
     <Compile Include="MailHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SqlServerActivity.cs" />
+    <Compile Include="SqlServerAddress.cs" />
     <Compile Include="SqlServerAdopt.cs" />
     <Compile Include="SqlServerAdoptResult.cs" />
     <Compile Include="SqlServerAttendance.cs" />
@@ -63,8 +64,12 @@
     <Compile Include="SqlServerGoods.cs" />
     <Compile Include="SqlServerGoodsComments.cs" />
     <Compile Include="SqlServerLevel.cs" />
+    <Compile Include="SqlServerOrderItems.cs" />
+    <Compile Include="SqlServerOrders.cs" />
     <Compile Include="SqlServerPosts.cs" />
     <Compile Include="SqlServerPots.cs" />
+    <Compile Include="SqlServerReplyGoods.cs" />
+    <Compile Include="SqlServerShoppingCarts.cs" />
     <Compile Include="SqlServerShops.cs" />
     <Compile Include="SqlServerSucculent.cs" />
     <Compile Include="SqlServerSucculentCategory.cs" />
