@@ -32,7 +32,7 @@ body {
 }
 
 #header-a-right {
-    width: 152px;
+    width: auto;
     height: 38px;
     float: right;
 }
@@ -54,20 +54,32 @@ body {
     height: 27px;
     float: left;
 }
+
 #UserBox {
-    width:76px;
-    height:38px;
-    float:right;
-    padding-left:19px;
+    width: auto;
+    height: 38px;
+    margin-left: 15px;
+    float: left;
 }
+
 #boxphoto {
     width: 30px;
     height: 30px;
     margin: 4px;
     border: 2px solid #FFF;
     background-image: url('../../images/Tribune/web/defaultPhoto.jpg');
-    background-size:contain;
+    background-size: contain;
+    float: left;
 }
+
+#boxname {
+    width: auto;
+    height: 38px;
+    margin-top: 9px;
+    margin-left: 5px;
+    float: right;
+}
+
 /*导航栏结束*/
 
 /*底部*/

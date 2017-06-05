@@ -10,7 +10,7 @@ using System.Data.Entity;
 
 namespace DAL
 {
-   public  class SqlServerSucculent:ISucculent
+   public class SqlServerSucculent:ISucculent
     {
         SucculentEntities db = new SucculentEntities();
         public List<Succulent> SelectSucculent()
@@ -22,7 +22,7 @@ namespace DAL
         }
         public List<Succulent> SelectSucculentByID(int id)
         {
-            var xiao = (from x in db.Succulent
+            var xiao = (from x in db.Succulent.AsNoTracking()
                              where x.SucculentID == id
                              select x).ToList();
             return xiao;
@@ -36,7 +36,7 @@ namespace DAL
         }
        public List<Succulent> SelectSucculentByCatogaryid(int categoryid)
         {
-            var succulent = db.Succulent.Where(c => c.CategoryID == categoryid).Take(9).ToList();
+            var succulent = db.Succulent.AsNoTracking().Where(c => c.CategoryID == categoryid).Take(9).ToList();
             return succulent;
         }
         public List<Succulent> SelectRoomSucculent()
@@ -52,6 +52,11 @@ namespace DAL
       
         public void UpdateAdd(Succulent succulent)
         {
+           
+            db.Configuration.ValidateOnSaveEnabled = false;
+            db.Entry(succulent).State = EntityState.Modified;
+            db.SaveChanges();
+            db.Configuration.ValidateOnSaveEnabled = true;
             //Succulent su = new Succulent();
             //su.Application = succulent.Application;
             //su.BreedMode = succulent.BreedMode;
@@ -65,11 +70,6 @@ namespace DAL
             //su.SucculentName = succulent.SucculentName;
 
             //db.Succulent.Attach(succulent);
-            db.Configuration.ValidateOnSaveEnabled = false;
-            db.Entry(succulent).State = EntityState.Modified;
-            db.SaveChanges();
-            db.Configuration.ValidateOnSaveEnabled = true;
-           
 
         }
         public Succulent SelectByID(int id)

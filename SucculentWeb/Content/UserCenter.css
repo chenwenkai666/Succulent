@@ -1,12 +1,13 @@
 ﻿.main-contain {
     display: block;
-    width:95%;
+    width:100%;
     height:1200px;
-    border:1px solid red;
+    /*border:1px solid red;*/
     margin:0 auto;
     margin-top:100px;
     overflow:hidden;
-    background:#ececec;
+    background:#f7f8fa;
+    font-family:Microsoft YaHei;
 }
 .main-contain-top{
     position: relative;
@@ -20,13 +21,23 @@
     z-index: 2;
     width: 100%;
     height:150px;
-    background:rgba(131,139,131,0.8);
+    background:linear-gradient(to bottom,rgba(131,139,131,0.6),rgba(131,139,131,0.2));
     overflow: hidden;
     border-top-right-radius: 1px;
     border-top-left-radius: 1px;
     overflow:hidden;
 }
-.user-back-inner {
+.user-back .back-img{
+    display:block;
+    position:absolute;
+    left:0;
+    top:0;
+    z-index:2;
+    width:100%;
+    height:150px;
+    border:1px solid red;
+}
+/*.user-back-inner {
     position: relative;
     z-index: 2;
     float: right;
@@ -41,7 +52,7 @@
     text-align: center;
     cursor: pointer;
     background: none;
-    border: 1px solid rgba(193,205,205,1);
+    border: 1px solid rgba(0,0,0,0.3);
     border-radius: 3px;
 }
 .user-back-inner-button i,
@@ -54,9 +65,9 @@
     margin-left:5px;
 }
 .user-back-inner:hover .user-back-inner-button{
-     border:0.05px solid rgba(193,205,205,1);
-     box-shadow:0px 0px 0px 1.5px rgba(193,205,205,0.5);
-}
+     border:0.05px solid rgba(0,0,0,0.5);
+     box-shadow:0px 0px 0px 2px rgba(193,205,205,0.5);
+}*/
 .user-info{
     width: 100%;
     height:355px;
@@ -72,13 +83,14 @@
 .user-info-section{
     display:inline-block;
     position: relative;
-    width:17%;
+    width:15%;
     height:200px;
     margin-top:100px;
+    border-radius: 8px;
     z-index:90;
     background: #fff;
     box-sizing: border-box;
-    border:1px solid red;
+    /*border:1px solid red;*/
     overflow:hidden;
    
 }
@@ -153,6 +165,9 @@
 .user-info-details span{
     display:block;
 }
+.user-info-details span i{
+    color:burlywood;
+}
 .user-info-go{
     display:inline-block;
     width:120px;
@@ -172,32 +187,76 @@
     cursor:pointer;
     color:rgba(30,144,255,1);
 }
-.user-info-go-buttom:hover{
+.user-info-go-bottom:hover{
     border:0.5px solid rgba(30,144,255,1);
      box-shadow:0px 0px 0px 2px rgba(30,144,255,0.3); 
 }
-.main-contain-buttom{
-    width:70%;
-    height:1000px;
-    margin:0 auto;
-    border:1px solid red;
+.main-contain-bottom {
+    width: 70%;
+    height: auto;
+    background: #fff;
+    border: 1px solid #e7eaf1;
+    border-radius: 2px;
+    box-shadow: 0 1px 3px rgba(0,37,55,.05);
+    margin: 0 auto;
+    border: 1px solid red;
 }
-.main-contain-buttom-dao{
+.main-contain-bottom-dao{
     width:60%;
-    height:55px;
-    margin:0 auto;
-    background:rgba(131,139,131,0.8);
+    height:50px;
+    background:#fff;
     overflow:hidden;
+    margin-left:0;
 }
-.main-contain-bottom-dao ul{
+.main-contain-bottom-dao ul,
+.main-contain-bottom-details ul{
     list-style:none;
     padding-left:0px;
     overflow:hidden;
 }
-.main-contain-bottom-dao ul li{
+.main-contain-bottom-dao ul li,
+.main-contain-bottom-details ul li{
     display:inline-block;
     overflow:hidden;
+    cursor:pointer;
 }
-.main-contain-bottom-dao ul li:hover{
+.main-contain-bottom-dao ul li a{
+    display:inline-block;
+    height:49px;
+    line-height:48px;
+    font-size:17px;
+    font-weight:500;
+    color:#333;
+    letter-spacing:2px;
+    /*border:2px solid rgba(30,144,255,1);*/
+}
+.main-contain-bottom-dao ul a:hover{
     border-bottom:2px solid rgba(30,144,255,1);
+}
+.main-contain-bottom-details{
+    width:55%;
+    height:500px;
+    margin-left:10px;
+    border:1px solid red;
+}
+.main-contain-bottom-details li{
+     border-bottom: 1px solid #ebeef5;
+}
+.main-contain-bottom-details h3{
+    line-height:48px;
+    font-size:15px;
+    font-weight:700;
+    color:#333;
+    letter-spacing:1px;
+}
+.main-contain-bottom-details a{
+    line-height:50px;
+    font-size:15px;
+    font-weight:500;
+    color:#333;
+}
+.main-contain-bottom-details span{
+    font-size:12px;
+    font-weight:500;
+    color:#333;
 }

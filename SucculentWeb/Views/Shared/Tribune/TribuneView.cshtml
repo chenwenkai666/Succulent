@@ -16,18 +16,32 @@
             <div id="header-a">
                 <!-- 顶部搜索框 -->
                 <div id="header-a-left">
-                    <div id="header-a-left-search" class="input-group input-group-sm">
-                        <input type="text" class="form-control" placeholder="在本论坛搜点什么吧">
-                        <span class="input-group-btn">
-                            <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
-                        </span>
-                    </div>
+                    @using (Html.BeginForm("SearchPost", "Tribune", FormMethod.Post, new { id = "search" }))
+                    {
+                        <div id="header-a-left-search" class="input-group input-group-sm">
+                            <input type="text" name="searchinfo" class="form-control" placeholder="在本论坛搜点什么吧">
+                            <span class="input-group-btn">
+                                @*@if (Session["UserID"] != null)
+                                    {*@
+                                <button class="btn btn-default" type="submit">
+                                    <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                                </button>
+                                @*}
+                                    else
+                                    {
+                                        <button class="btn btn-default" type="button" onclick="alert(' 内容为空 ')" >
+                                            <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                                        </button>
+                                    }*@
+                            </span>
+                        </div>
+                    }
                 </div>
                 <!-- 顶部搜索框结束 -->
                 <!-- 顶部链接 -->
                 <div id="header-a-right">
                     <div id="homebox">
-                        <a href="">首页</a>
+                        <a href="@Url.Action("Index", "Index")">首页</a>
                     </div>
                     <div id="homebox2">
                         <a href="@Url.Action("TribuneIndex", "Tribune")">论坛</a>
@@ -38,6 +52,12 @@
                             <div id="boxphoto">
                                 @*用户头像*@
                             </div>
+                            <div id="boxname">
+                                <a href="">@Session["UserName"]</a>
+                            </div>
+                        </div>
+                        <div id="homebox04">
+                            <a href="@Url.Action("UserQuit", "Tribune")">退出</a>
                         </div>
                     }
                     else
@@ -46,10 +66,10 @@
                             <a href="@Url.Action("Login", "User")">登录</a>
                         </div>
                         <div id="homebox04">
-                            <a href="">注册</a>
+                            <a href="@Url.Action("Register", "User")">注册</a>
                         </div>
                     }
-                    </div>
+                </div>
                 <!-- 顶部链接结束 -->
             </div>
         </div>

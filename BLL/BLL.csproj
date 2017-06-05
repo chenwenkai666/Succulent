@@ -44,11 +44,14 @@
     <Compile Include="AdoptManager.cs" />
     <Compile Include="AdoptResultManager.cs" />
     <Compile Include="AttendanceManager.cs" />
+    <Compile Include="CollectionManager.cs" />
     <Compile Include="DonateManager.cs" />
     <Compile Include="EntriesManager.cs" />
     <Compile Include="GoodsCommentsManager.cs" />
     <Compile Include="GoodsManager.cs" />
+    <Compile Include="LevelManager.cs" />
     <Compile Include="PostsManager.cs" />
+    <Compile Include="PotsManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SucculentCategoryManager.cs" />
     <Compile Include="SucculentManager.cs" />

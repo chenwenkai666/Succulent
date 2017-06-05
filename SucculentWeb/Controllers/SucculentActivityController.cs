@@ -455,5 +455,13 @@ namespace SucculentWeb.Controllers
             }
         }
         #endregion 
+
+        #region 摄影、DIY大赛评选结果作品展示
+        public ActionResult PhotoResult()
+        {
+            var entry = EntriesManager.GetAllEntriesByActID(1).OrderByDescending(e => e.UpvoteNum);
+            return View(entry);
+        }
+        #endregion
     }
 }

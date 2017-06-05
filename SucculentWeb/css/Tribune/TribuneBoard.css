@@ -1,11 +1,17 @@
 
+body {
+    margin-top: 88px;
+}
 
 /*主体*/
 #bodyer {
     min-width: 1000px;
-    min-height:604px;
+    min-height: 579px;
     width: 1000px;
-    margin: 25px auto 0;
+    margin: 0 auto;
+    overflow: hidden;
+    background-color: #FFF;
+    border-right: 1px solid #C7CEB2;
 }
 
     #bodyer a:link {
@@ -18,47 +24,18 @@
         text-decoration: none;
     }
 
-#bodyer-A1 {
-    width: 1000px;
-    height: 25px;
-    padding-top: 3px;
-    padding-left: 8px;
-}
-
-#bodyer-A2 {
-    width: 1000px;
-    height: 25px;
-    margin-top: 10px;
-}
-
-#A2-left {
-    width: 700px;
-    height: 25px;
+#bodyer-left {
+    width: 750px;
+    min-height: 579px;
     float: left;
-    padding-top: 3px;
-    padding-left: 8px;
 }
 
-#A2-right {
-    width: 300px;
-    height: 25px;
-    float: right;
-    padding-top: 3px;
-    padding-left: 8px;
-}
-
-#bodyer-A3 {
-    width: 1000px;
-    height: 60px;
-    margin-top: 10px;
-}
-
-#A3-left {
-    width: 200px;
-    height: 60px;
-    float: left;
-    padding-top: 15px;
-    padding-left: 15px;
+#LeftBox {
+    width: 750px;
+    height: 50px;
+    position: fixed;
+    top: 38px;
+    z-index: 5555;
 }
 
 #A3-btn {
@@ -66,21 +43,8 @@
     color: #FFF;
 }
 
-#A3-right {
-    width: 800px;
-    height: 60px;
-    float: right;
-}
-
-#bodyer-A4 {
-    width: 1000px;
-    height: 50px;
-    margin-top: 10px;
-    border-bottom: 1px solid #C7CEB2;
-}
-
 #A4-Style {
-    width: 1000px;
+    width: 750px;
     height: 50px;
     background-color: #C7CEB2;
 }
@@ -90,17 +54,17 @@
     }
 
 #bodyer-A5 {
-    width: 1000px;
+    width: 750px;
 }
 
 #A5-bottom {
-    width:1000px;
-    height:25px;
+    width: 750px;
+    height: 25px;
     background-color: #C7CEB2;
 }
 
 .A5-list {
-    width: 1000px;
+    width: 100%;
     height: 50px;
     border-bottom: 1px solid #C7CEB2;
     border-right: 1px solid #C7CEB2;
@@ -112,7 +76,7 @@
     width: 50px;
     height: 49px;
     float: left;
-    margin-left: 15px;   
+    margin-left: 15px;
 }
 
 .list-A-Img {
@@ -121,19 +85,19 @@
     margin-top: 3px;
     margin-left: 3px;
     background-image: url('../../images/Tribune/web/defaultPhoto.jpg');
-    background-size:contain;
+    background-size: contain;
 }
 
 .list-B {
-    width: 500px;
+    width: 425px;
     height: 49px;
     float: left;
     padding-top: 15px;
-    margin-left: 35px;
+    margin-left: 15px;
 }
 
 .list-C {
-    width: 125px;
+    width: 75px;
     height: 49px;
     float: left;
     padding-top: 15px;
@@ -141,7 +105,7 @@
 }
 
 .list-D {
-    width: 125px;
+    width: 75px;
     height: 49px;
     float: left;
     padding-top: 15px;
@@ -149,7 +113,7 @@
 }
 
 .list-E {
-    width: 125px;
+    width: 75px;
     height: 49px;
     float: left;
     padding-top: 15px;
@@ -157,11 +121,52 @@
 }
 
 #bodyer-A6 {
-    width: 1000px;
+    width: 750px;
     margin-top: 7px;
 }
 
 #A6-Style {
-    width: 1000px;
+    width: 750px;
+}
+
+#bodyer-right {
+    width: 249px;
+    min-height: 579px;
+    float: right;
+}
+
+#RightBox {
+    width: 249px;
+    height: auto;
+    background-color: #FFF;
+    position: fixed;
+    top: 38px;
+    z-index: 5555;
+}
+
+#RB-01 {
+    width: 250px;
+    height: 50px;
+    padding-top: 15px;
+    padding-left: 20px;
+    border-right: 1px solid #C7CEB2;
+    border-bottom: 1px solid #C7CEB2;
+}
+
+#RB-02 {
+    width: 100%;
+    height: 50px;
+    padding-top: 15px;
+    padding-left: 20px;
+}
+
+#RB-03 {
+    width: 100%;
+    height: auto;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    padding-left: 30px;
+    padding-right: 30px;
+    text-align: center;
 }
 /*主体结束*/

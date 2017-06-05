@@ -12,7 +12,7 @@ namespace Model
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
-    
+
     public partial class Users
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -53,9 +53,12 @@ namespace Model
         public string PasswordAgain { get; set; }
         public string Photo { get; set; }
         public string Sex { get; set; }
-        public Nullable<System.DateTime> Birth { get; set; }
 
-        [Required(ErrorMessage = "请输入电子邮箱")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        public DateTime Birth { get; set; }
+
+       [Required(ErrorMessage = "请输入电子邮箱")]
         [RegularExpression(@"\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*", ErrorMessage = "电子邮箱格式不正确！")]
         public string Email { get; set; }
 

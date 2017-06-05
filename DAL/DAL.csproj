@@ -57,11 +57,14 @@
     <Compile Include="SqlServerAdopt.cs" />
     <Compile Include="SqlServerAdoptResult.cs" />
     <Compile Include="SqlServerAttendance.cs" />
+    <Compile Include="SqlServerCollection.cs" />
     <Compile Include="SqlServerDonate.cs" />
     <Compile Include="SqlServerEntries.cs" />
     <Compile Include="SqlServerGoods.cs" />
     <Compile Include="SqlServerGoodsComments.cs" />
+    <Compile Include="SqlServerLevel.cs" />
     <Compile Include="SqlServerPosts.cs" />
+    <Compile Include="SqlServerPots.cs" />
     <Compile Include="SqlServerShops.cs" />
     <Compile Include="SqlServerSucculent.cs" />
     <Compile Include="SqlServerSucculentCategory.cs" />

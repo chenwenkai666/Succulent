@@ -23,6 +23,11 @@ namespace IDAL
         int GetYesterdayPostNum();  //获取昨日帖子数量
         IEnumerable<Users> SelectUserInfo(string UserName);  //查询用户信息
         Posts SelectPostFirstFloor(int userid, DateTime time);  //查找帖子一楼
+        IEnumerable<Users> SelectInfoUsers(string postinfo);  //搜索帖子
+        IEnumerable<Posts> SelectInfoPosts(string postinfo);  //搜索帖子
+        IEnumerable<PostComments> SelectInfoPostCom(string postinfo);  //搜索帖子
+        IEnumerable<ReplyPost> SelectInfoReplyPost(string postinfo);  //搜索帖子
+        int GetPostComNum(int PostID);  //获取评论数量
+        int SelectSectionID(string SectionName); //获取板块ID
     }
 }
-

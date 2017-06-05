@@ -70,6 +70,29 @@ namespace BLL
         {
             return iposts.SelectPostFirstFloor(userid, time);
         }
+        public static IEnumerable<Users> SelectInfoUsers(string postinfo)  //搜索帖子
+        {
+            return iposts.SelectInfoUsers(postinfo);
+        }
+        public static IEnumerable<Posts> SelectInfoPosts(string postinfo)  //搜索帖子
+        {
+            return iposts.SelectInfoPosts(postinfo);
+        }
+        public static IEnumerable<PostComments> SelectInfoPostCom(string postinfo)  //搜索帖子
+        {
+            return iposts.SelectInfoPostCom(postinfo);
+        }
+        public static IEnumerable<ReplyPost> SelectInfoReplyPost(string postinfo)  //搜索帖子
+        {
+            return iposts.SelectInfoReplyPost(postinfo);
+        }
+        public static int GetPostComNum(int PostID)  //获取评论数量
+        {
+            return iposts.GetPostComNum(PostID);
+        }
+        public static int SelectSectionID(string SectionName) //获取板块ID
+        {
+            return iposts.SelectSectionID(SectionName);
+        }
     }
 }
-

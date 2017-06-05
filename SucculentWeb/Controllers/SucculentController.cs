@@ -48,16 +48,46 @@ namespace SucculentWeb.Controllers
             ViewBag.CategoryID = new SelectList(SucculentCategoryManager.Select(), "SucculentCategoryID", "SucculentCategoryName", succulent.CategoryID);
             return View(succulent);
         }
+        //[HttpPost]
+        //public int UpdateAdd(int id,bool flag)
+        //{
+        //    var succulent =SucculentManager.SelectByID(id);
+        //    if (!flag)
+        //    {
+        //        succulent.CollectedTotal += 1;
+        //        SucculentManager.UpdateAdd(succulent);
+        //    }           
+        //    return int.Parse((succulent.CollectedTotal).ToString());
+        //}
         [HttpPost]
-        public int UpdateAdd(int id,bool flag)
+        public ActionResult Collection(int id)
         {
-            var succulent =SucculentManager.SelectByID(id);
-            if (!flag)
+            Collection collection=new Collection();
+            var succulent = SucculentManager.SelectByID(id);         
+            if (Session["UserID"] == null)
             {
-                succulent.CollectedTotal += 1;
-                SucculentManager.UpdateAdd(succulent);
-            }           
-            return int.Parse((succulent.CollectedTotal).ToString());
-        }    
+                return Content("<script>alert('请先登录哦！');window.open('" + Url.Content("~/User/Login") + "', '_self')</script>");
+            }
+            else {
+
+                Collection c = CollectionManager.SelectbySucculentId(succulent.SucculentID);
+                if (c == null)
+                {
+                    collection.SucculentID = succulent.SucculentID;
+                    collection.UserID = int.Parse(Session["UserID"].ToString());
+                    collection.CollectionTime = DateTime.Now;
+                    CollectionManager.Create(collection);
+                    succulent.CollectedTotal += 1;
+                    SucculentManager.UpdateAdd(succulent);
+
+                }
+                else
+                {
+                    return Content("<script>alert('你已经收藏过啦！');location=location;</script>");/*window.location.reload();*/
+                }
+                return View(succulent);
+            }
+           
+        }  
     }
     }

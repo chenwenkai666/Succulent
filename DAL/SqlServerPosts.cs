@@ -105,6 +105,45 @@ namespace DAL
                           select p).FirstOrDefault();
             return data;
         }
+        public IEnumerable<Users> SelectInfoUsers(string postinfo)  //搜索帖子
+        {
+            var data = from p in db.Users
+                       where p.UserName.Contains(postinfo)
+                       select p;
+            return data;
+        }
+        public IEnumerable<Posts> SelectInfoPosts(string postinfo)  //搜索帖子
+        {
+            var data = from p in db.Posts
+                       where p.PostTitle.Contains(postinfo)
+                       select p;
+            return data;
+        }
+        public IEnumerable<PostComments> SelectInfoPostCom(string postinfo)  //搜索帖子
+        {
+            var data = from p in db.PostComments
+                       where p.PostCommentContent.Contains(postinfo)
+                       select p;
+            return data;
+        }
+        public IEnumerable<ReplyPost> SelectInfoReplyPost(string postinfo)  //搜索帖子
+        {
+            var data = from p in db.ReplyPost
+                       where p.ReplyContent.Contains(postinfo)
+                       select p;
+            return data;
+        }
+        public int GetPostComNum(int PostID)  //获取评论数量
+        {
+            int q = db.PostComments.Count(p => p.PostID == PostID);
+            return q;
+        }
+        public int SelectSectionID(string SectionName) //获取板块ID
+        {
+            int q = (from p in db.Sections
+                     where p.SectionName == SectionName
+                     select p.SectionID).FirstOrDefault();
+            return q;
+        }
     }
 }
-

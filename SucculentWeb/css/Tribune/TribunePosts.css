@@ -35,9 +35,9 @@
     width: 250px;
     height: 48px;
     padding-top: 10px;
-    padding-left: 10px;
+    padding-right: 10px;
     float: right;
-    text-align: center;
+    text-align: right;
 }
 
 /*楼层样式*/
@@ -162,8 +162,8 @@
     padding: 7px;
 }
 
-.ReText01>p { 
-}
+    .ReText01 > p {
+    }
 
 .ReText02 {
     width: 750px;

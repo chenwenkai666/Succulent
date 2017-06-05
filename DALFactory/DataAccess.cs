@@ -15,10 +15,10 @@ namespace DALFactory
         private static string db = ConfigurationManager.AppSettings["DB"].ToString();
 
         public static IUsers CreateUsers()
-      {
-          string className = assemblyName + "." + db + "Users";
-           return (IUsers)Assembly.Load(assemblyName).CreateInstance(className);
-      }
+        {
+            string className = assemblyName + "." + db + "Users";
+            return (IUsers)Assembly.Load(assemblyName).CreateInstance(className);
+        }
         public static ISucculent CreateSucculent()
         {
             string className = assemblyName + "." + db + "Succulent";
@@ -74,10 +74,25 @@ namespace DALFactory
             string className = assemblyName + "." + db + "AdoptResult";
             return (IAdoptResult)Assembly.Load(assemblyName).CreateInstance(className);
         }
+        public static ICollection CreateCollection()
+        {
+            string className = assemblyName + "." + db + "Collection";
+            return (ICollection)Assembly.Load(assemblyName).CreateInstance(className);
+        }
         public static IPosts CreatePosts()
         {
             string className = assemblyName + "." + db + "Posts";
             return (IPosts)Assembly.Load(assemblyName).CreateInstance(className);
+        }
+        public static IPots CreatePots()
+        {
+            string className = assemblyName + "." + db + "Pots";
+            return (IPots)Assembly.Load(assemblyName).CreateInstance(className);
+        }
+        public static ILevel CreateLevel()
+        {
+            string className = assemblyName + "." + db + "Level";
+            return (ILevel)Assembly.Load(assemblyName).CreateInstance(className);
         }
     }
 }
