@@ -13,38 +13,39 @@ namespace SucculentWeb.Controllers
     public class TribuneController : Controller
     {
         SucculentEntities db = new SucculentEntities();
+        PostsManager PostM = new PostsManager();
         PotsManager potsmanager = new PotsManager();
         // GET: Tribune
         public ActionResult TribuneIndex()
         {
             TribuneIndexVM indexvm = new TribuneIndexVM();
-            indexvm.Sections03 = PostsManager.GetSection03();
-            indexvm.Sections06 = PostsManager.GetSection06();
-            indexvm.GetAllPostNum = PostsManager.GetAllPostNum();
-            indexvm.GetTodayPostNum = PostsManager.GetTodayPostNum();
-            indexvm.GetYesterdayPostNum = PostsManager.GetYesterdayPostNum();
+            indexvm.Sections03 = PostM.GetSection03();
+            indexvm.Sections06 = PostM.GetSection06();
+            indexvm.GetAllPostNum = PostM.GetAllPostNum();
+            indexvm.GetTodayPostNum = PostM.GetTodayPostNum();
+            indexvm.GetYesterdayPostNum = PostM.GetYesterdayPostNum();
             return View(indexvm);
         }
         public ActionResult BoardIndex(int BoardID)
         {
             Session["BoardID"] = BoardID;
             TribuneBoardVM tribuneBoard = new TribuneBoardVM();
-            tribuneBoard.Posts = PostsManager.GetSectionPost(BoardID);
-            tribuneBoard.Sections = PostsManager.GetSectionName(BoardID);
-            tribuneBoard.PostsNumberAll = PostsManager.GetPostNumberAll(BoardID);
-            tribuneBoard.PostsNumberToday = PostsManager.GetPostNumberToday(BoardID);
+            tribuneBoard.Posts = PostM.GetSectionPost(BoardID);
+            tribuneBoard.Sections = PostM.GetSectionName(BoardID);
+            tribuneBoard.PostsNumberAll = PostM.GetPostNumberAll(BoardID);
+            tribuneBoard.PostsNumberToday = PostM.GetPostNumberToday(BoardID);
             if (Session["UserID"] != null)
             {
                 int userid = Convert.ToInt32(Session["UserID"]);
-                tribuneBoard.Boardlevels = PostsManager.SelectUserLevel(userid);
+                tribuneBoard.Boardlevels = PostM.SelectUserLevel(userid);
             }
             return View(tribuneBoard);
         }
         public ActionResult CreatePost()
         {
             TribuneCreateVM tribuneCreate = new TribuneCreateVM();
-            tribuneCreate.Sections03 = PostsManager.GetSection03();
-            tribuneCreate.Sections06 = PostsManager.GetSection06();
+            tribuneCreate.Sections03 = PostM.GetSection03();
+            tribuneCreate.Sections06 = PostM.GetSection06();
             return View(tribuneCreate);
         }
         [HttpPost]
@@ -58,7 +59,7 @@ namespace SucculentWeb.Controllers
                 string timer = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
                 DateTime PubTime = DateTime.Parse(timer);
                 string SectionName = Request.Form["selectdetailtype"];
-                int SectionID = PostsManager.SelectSectionID(SectionName);
+                int SectionID = PostM.SelectSectionID(SectionName);
                 posts.SectionID = SectionID;
                 posts.UserID = userid;
                 posts.PublishTime = PubTime;
@@ -79,12 +80,12 @@ namespace SucculentWeb.Controllers
         {
             Session["PostID"] = PostID;
             TribunePostVM tribunePost = new TribunePostVM();
-            tribunePost.Posts = PostsManager.GetPostDetails(PostID);
-            tribunePost.PostComment = PostsManager.GetPostComments(PostID);
+            tribunePost.Posts = PostM.GetPostDetails(PostID);
+            tribunePost.PostComment = PostM.GetPostComments(PostID);
             if (Session["UserName"] != null)
             {
                 string UserName = Session["UserName"].ToString();
-                tribunePost.UserInfo = PostsManager.SelectUserInfo(UserName);
+                tribunePost.UserInfo = PostM.SelectUserInfo(UserName);
             }
             return View(tribunePost);
         }
@@ -126,7 +127,7 @@ namespace SucculentWeb.Controllers
         {
             const int pageSize = 20;
             int pagenumber = (page ?? 1);
-            var postslist = PostsManager.GetSectionPost(BoardID).ToPagedList(pagenumber, pageSize);
+            var postslist = PostM.GetSectionPost(BoardID).ToPagedList(pagenumber, pageSize);
             return View(postslist);
         }
         public ActionResult UserQuit()
@@ -142,10 +143,10 @@ namespace SucculentWeb.Controllers
             TribuneSearchVM searchVM = new TribuneSearchVM();
             string searchinfo = Request.Form["searchinfo"];
             Session["searchinfo"] = searchinfo;
-            searchVM.infouser = PostsManager.SelectInfoUsers(searchinfo);
-            searchVM.infopost = PostsManager.SelectInfoPosts(searchinfo);
-            searchVM.infopostcom = PostsManager.SelectInfoPostCom(searchinfo);
-            searchVM.infopostrly = PostsManager.SelectInfoReplyPost(searchinfo);
+            searchVM.infouser = PostM.SelectInfoUsers(searchinfo);
+            searchVM.infopost = PostM.SelectInfoPosts(searchinfo);
+            searchVM.infopostcom = PostM.SelectInfoPostCom(searchinfo);
+            searchVM.infopostrly = PostM.SelectInfoReplyPost(searchinfo);
             return View(searchVM);
         }
     }

@@ -4,6 +4,7 @@
 @{
     ViewBag.Title = "TribuneIndex";
     Layout = "~/Views/Shared/Tribune/TribuneView.cshtml";
+    PostsManager PostM = new PostsManager();
 }
 
 <script src="~/js/jquery-2.1.4.min.js"></script>
@@ -143,7 +144,7 @@
                         </div>
                         <div class="BanKuaiNumber">
                             <p>
-                                @{ int AllNum = PostsManager.GetPostNumberAll(A.SectionID); int TodayNum = PostsManager.GetPostNumberToday(A.SectionID); }
+                                @{ int AllNum = PostM.GetPostNumberAll(A.SectionID); int TodayNum = PostM.GetPostNumberToday(A.SectionID); }
                                 今日 @TodayNum &nbsp;总帖数 @AllNum
                             </p>
                         </div>
@@ -173,7 +174,7 @@
                         </div>
                         <div class="BanKuaiNumber">
                             <p>
-                                @{ int AllNum = PostsManager.GetPostNumberAll(A.SectionID); int TodayNum = PostsManager.GetPostNumberToday(A.SectionID); }
+                                @{ int AllNum = PostM.GetPostNumberAll(A.SectionID); int TodayNum = PostM.GetPostNumberToday(A.SectionID); }
                                 今日 @TodayNum &nbsp;总帖数 @AllNum
                             </p>
                         </div>

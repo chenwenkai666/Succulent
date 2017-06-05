@@ -6,6 +6,7 @@
 
 @{
     Layout = null;
+    PostsManager PostM = new PostsManager();
 }
 
 <div id="bodyer-A5">
@@ -27,7 +28,7 @@
                 <p class="text-center">@A.Users.UserName</p>
             </div>
             <div class="list-E">
-                @{ int ComNum = PostsManager.GetPostComNum(@A.PostID);}
+                @{ int ComNum = PostM.GetPostComNum(@A.PostID);}
                 <p class="text-center">@ComNum</p>
             </div>
         </div>
