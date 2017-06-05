@@ -155,5 +155,9 @@ namespace DAL
                       select b;
             return lev;
         }
+        public IEnumerable<Posts> SelectAllPosts()
+        {
+            return db.Posts.ToList();
+        }
     }
 }

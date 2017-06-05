@@ -40,7 +40,7 @@ namespace SucculentWeb.Controllers
             searchresultvm.Activity = activitymanager.GetActivityByKeywords(keywords);
             searchresultvm.Goods = goodsmanager.SelectAllGoods().Where(g => g.GoodsName.Contains(keywords));
             searchresultvm.BaiKe = succulentmanager.SelectSucculent().Where(s =>( s.SucculentName.Contains(keywords)) ||(s.Feature.Contains(keywords) || (s.SucculentCategory.SucculentCategoryName.Contains(keywords)) ));
-            searchresultvm.Posts = postsmanager;
+            searchresultvm.Posts = postsmanager.SelectAllPosts().Where(p => (p.PostTitle.Contains(keywords)) || (p.PostContent.Contains(keywords)));
 
             return View(searchresultvm);
         }

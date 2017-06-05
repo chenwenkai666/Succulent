@@ -12,6 +12,7 @@ namespace SucculentWeb.Controllers
 {
     public class SucculentController : Controller
     {
+        SucculentManager succulentmanager = new SucculentManager();
 
         public ActionResult Succulent()
         {
@@ -20,9 +21,9 @@ namespace SucculentWeb.Controllers
        
         public ActionResult Succulent_Details(int id=18, int categoryid=1)
         {
-            var details = SucculentManager.SelectSucculentBySucculentid(id);
-            var succulent =BLL.SucculentManager.SelectSucculentByCatogaryid(categoryid);
-            var room = BLL.SucculentManager.SelectRoomSucculent();
+            var details = succulentmanager.SelectSucculentBySucculentid(id);
+            var succulent = succulentmanager.SelectSucculentByCatogaryid(categoryid);
+            var room = succulentmanager.SelectRoomSucculent();
             SucculentIndexViewModels si = new ViewModels.SucculentIndexViewModels();
             si.succulent_Details = details;
             si.Like = succulent;
@@ -42,7 +43,7 @@ namespace SucculentWeb.Controllers
         {
             if (ModelState.IsValid)
             {
-                SucculentManager.Create(succulent);
+                succulentmanager.Create(succulent);
                 return RedirectToAction("Succulent_Details");
             }
             ViewBag.CategoryID = new SelectList(SucculentCategoryManager.Select(), "SucculentCategoryID", "SucculentCategoryName", succulent.CategoryID);
@@ -63,7 +64,7 @@ namespace SucculentWeb.Controllers
         public ActionResult Collection(int id)
         {
             Collection collection=new Collection();
-            var succulent = SucculentManager.SelectByID(id);         
+            var succulent = succulentmanager.SelectByID(id);         
             if (Session["UserID"] == null)
             {
                 return Content("<script>alert('请先登录哦！');window.open('" + Url.Content("~/User/Login") + "', '_self')</script>");
@@ -78,7 +79,7 @@ namespace SucculentWeb.Controllers
                     collection.CollectionTime = DateTime.Now;
                     CollectionManager.Create(collection);
                     succulent.CollectedTotal += 1;
-                    SucculentManager.UpdateAdd(succulent);
+                    succulentmanager.UpdateAdd(succulent);
 
                 }
                 else

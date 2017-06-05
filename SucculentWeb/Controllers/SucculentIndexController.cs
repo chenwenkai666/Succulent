@@ -6,12 +6,14 @@ using System.Web.Mvc;
 using SucculentWeb.ViewModels;
 using Model;
 using PagedList;
+using BLL;
 
 namespace SucculentWeb.Controllers
 {
     public class SucculentIndexController : Controller
     {
         SucculentEntities db = new SucculentEntities();
+        SucculentManager succulentmanager = new SucculentManager();
         public ActionResult Succulent()
         {
             var category = db.SucculentCategory.ToList();
