@@ -1,6 +1,7 @@
 ﻿
 @model SucculentWeb.ViewModels.TribuneVM.TribuneSearchVM
-
+@using BLL;
+@using Model;
 @{
     ViewBag.Title = "SearchPost";
     Layout = "~/Views/Shared/Tribune/TribuneView.cshtml";
@@ -43,12 +44,17 @@
                                     <div class="sUserBox">
                                         <div class="UserBoxPhoto">
                                             <div class="BackPhoto">
-                                                <img src="" />
+                                                <img src="@A.Photo" width="88" height="88" />
                                             </div>
                                         </div>
                                         <div class="UserBoxInfo">
+                                            @{ PostsManager PostM = new PostsManager();}
+                                            @{ IEnumerable<Level> lev = PostM.SelectUserLevel(A.UserID); }
                                             <div class="InfoName">
-                                                <p>LV.18 &nbsp;<a href="#">@A.UserName</a></p>
+                                                @foreach (var E in lev)
+                                                {
+                                                    <p>Lv.@E.LevelID&nbsp;<a href="#">@A.UserName</a></p>
+                                                }
                                             </div>
                                             <div class="InfoMess">
                                                 <p>这个人很懒......什么也没留下</p>

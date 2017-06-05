@@ -84,6 +84,13 @@ body {
     height: 43px;
     margin-top: 3px;
     margin-left: 3px;
+    border:1px solid #C7CEB2;
+    background-color:#FFF;
+}
+.ImgImg {
+    width:37px;
+    height:37px;
+    margin:2px;
     background-image: url('../../images/Tribune/web/defaultPhoto.jpg');
     background-size: contain;
 }

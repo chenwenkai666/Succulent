@@ -1,6 +1,7 @@
 ﻿
 @model SucculentWeb.ViewModels.TribuneVM.TribunePostVM
 @using BLL;
+@using Model;
 @{
     ViewBag.Title = "PostsDetails";
     Layout = "~/Views/Shared/Tribune/TribuneView.cshtml";
@@ -40,32 +41,6 @@
                 <input type="button" class="btn btn-sm btn-default" onClick="location.href='@Url.Action("BoardIndex", "Tribune", new { BoardID = int.Parse(Session["BoardID"].ToString()) })'" value="返回">
             </div>
         </div>
-        @*@foreach (var A in Model.Posts)
-        {
-            <div class="PostFloor">
-                <div class="PostIMG">
-                    <div class="IMG01">
-                        <div class="IMG01A">
-                            @A.Users.Photo
-                        </div>
-                    </div>
-                    <div class="IMG02">@A.Users.UserName</div>
-                    <div class="IMG03">
-                    </div>
-                </div>
-                <div class="PostContent">
-                    <div class="Content01">
-                        @Html.Raw(@A.PostContent)
-                    </div>
-                    <div class="PostBottom">
-                        <div class="Bottomtime">@A.PublishTime</div>
-                        <div class="BottomReply">
-                            <button class="btn btn-xs btn-default">&nbsp;回复本层&nbsp;</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        }*@
         @{ string tempid; }
         @foreach (var A in Model.PostComment)
         {
@@ -74,12 +49,16 @@
                 <div class="PostIMG">
                     <div class="IMG01">
                         <div class="IMG01A">
-                            @A.Users.Photo
+                            <img src="@A.Users.Photo" width="118" height="118" />
                         </div>
                     </div>
                     <div class="IMG02">@A.Users.UserName</div>
-                    @*@{ int ReplyNuma = PostsManager.SelectUserLevel(A.UserID);}*@
+                    @{ IEnumerable<Level> lev = PostM.SelectUserLevel(A.UserID); }
                     <div class="IMG03">
+                        @foreach (var E in lev)
+                        {
+                            <p>Lv.@E.LevelID&nbsp;@E.LevelName</p>
+                        }
                     </div>
                 </div>
                 <div class="PostContent">
@@ -97,7 +76,11 @@
                         @foreach (Model.ReplyPost B in A.ReplyPost.Where(C => C.PostCommentID == A.PostCommentID).ToList().AsReadOnly())
                         {
                             <div class="ReplyList">
-                                <div class="ReplyPhoto"></div>
+                                <div class="ReplyPhoto">
+                                    <div class="RePPP">
+                                        <img src="@B.Users.Photo" width="44" height="44" />
+                                    </div>
+                                </div>
                                 <div class="ReplyText">
                                     <div class="ReText01">@B.Users.UserName : @Html.Raw(@B.ReplyContent)</div>
                                     <div class="ReText02">@B.ReplyPostTime</div>
