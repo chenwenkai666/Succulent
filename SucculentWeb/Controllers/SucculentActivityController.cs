@@ -13,6 +13,7 @@ namespace SucculentWeb.Controllers
 {
     public class SucculentActivityController : Controller
     {
+        ActivityManager activitymanager = new ActivityManager();
         // GET: SucculentActivity
         #region 活动首页
         //public ActionResult Index()
@@ -60,7 +61,7 @@ namespace SucculentWeb.Controllers
         public ActionResult Details(int id = 1)
         {
             DateTime nowtime = DateTime.Now;
-            Activity act = ActivityManager.GetActivity(id);
+            Activity act = activitymanager.GetActivity(id);
             if (nowtime > act.EndTime)
             {
                 return Content("<script>alert('活动已结束');window.location='" + Url.Action("Index", "SucculentActivity") + "'</script>");
@@ -87,7 +88,7 @@ namespace SucculentWeb.Controllers
         #region 慈善活动详情
         public ActionResult CharitableDetail(int ActID = 5)
         {
-            Activity act = ActivityManager.GetActivity(ActID);
+            Activity act = activitymanager.GetActivity(ActID);
             return View(act);
         }
         #endregion
@@ -145,7 +146,7 @@ namespace SucculentWeb.Controllers
         public ActionResult AdoptDetail(int id = 6)
         {
             AdoptSucculentVM AdoptVM = new AdoptSucculentVM();
-            AdoptVM.Activity = ActivityManager.GetActivity(id);
+            AdoptVM.Activity = activitymanager.GetActivity(id);
             AdoptVM.AdoptList = AdoptManager.GetAdoptListByActID(id);
             AdoptVM.AdoptResult = AdoptResultManager.GetAdoptResultByActID(id);
 
@@ -161,7 +162,7 @@ namespace SucculentWeb.Controllers
                 if (Session["UserName"].ToString() != "")
                 {
                     Users user = UsersManager.GetUserByName(Session["UserName"].ToString());
-                    Activity act = ActivityManager.GetActivity(ActID);
+                    Activity act = activitymanager.GetActivity(ActID);
                     if (user.UserFlag == 1 && act.UserID == user.UserID)
                     {
                         Shops shop = ShopManager.GetShopByUserID(user.UserID);
@@ -218,7 +219,7 @@ namespace SucculentWeb.Controllers
         #region 活动发布
         public ActionResult Publish()
         {
-            IList<ActivityCategory> activityCategory = ActivityManager.GetActivityCategory();
+            IList<ActivityCategory> activityCategory = activitymanager.GetActivityCategory();
 
             ViewBag.ActivityCategory = new SelectList(activityCategory, "ActivityCategoryID", "ActivityCategoryName");
             return View();
@@ -247,7 +248,7 @@ namespace SucculentWeb.Controllers
 
                 act.ActivityCategoryID = int.Parse(Request.Form["ActivityCategory"]);
                 act.UpvoteNum = 0;
-                if (ActivityManager.InsertActivity(act))
+                if (activitymanager.InsertActivity(act))
                 {
                     return Content("<script>alert('发布成功！');window.open('" + Url.Action("Index", "SucculentActivity") + "', '_self')</script>");
                 }
@@ -297,7 +298,7 @@ namespace SucculentWeb.Controllers
                 {
                     int level = UsersManager.GetUserLevel(Session["UserName"].ToString());
                     Users user = UsersManager.GetUserByName(Session["UserName"].ToString());
-                    Activity act = ActivityManager.GetActivity(ActivityID);
+                    Activity act = activitymanager.GetActivity(ActivityID);
                     bool UserAttend = AttendanceManager.IsAttendActivity(user.UserID, ActivityID);
                     if (user != null && !UserAttend && level >= act.LevelRequest)
                     {
@@ -341,9 +342,9 @@ namespace SucculentWeb.Controllers
         [ChildActionOnly]
         public ActionResult PatialActivityList(int? page, int ACid = 1)
         {
-            int pageSize = 1;
+            int pageSize = 6;
             int pageNum = (page ?? 1);
-            var acts = ActivityManager.GetActivityByCategoryID(ACid);
+            var acts = activitymanager.GetActivityByCategoryID(ACid);
             if (Request.IsAjaxRequest())
             {
                 return PartialView("PatialActivityList", acts.OrderBy(a => a.ActivityID).ToPagedList(pageNum, pageSize));
@@ -366,7 +367,7 @@ namespace SucculentWeb.Controllers
                 try
                 {
 
-                    Activity act = ActivityManager.GetActivity(ActID);
+                    Activity act = activitymanager.GetActivity(ActID);
 
                     HttpPostedFileBase file = Request.Files["filePortfolio"];//判断是否已经选择上传文件
                     string filePath = file.FileName;
