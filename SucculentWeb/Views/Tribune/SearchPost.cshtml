@@ -108,19 +108,20 @@
                             {
                                 <li>
                                     <div class="sCommBox">
-                                        <div class="Comtitlebox"></div>
-                                        <div class="CommInfo">
-                                            <p></p>
+                                        <div class="Comtitlebox">
+                                            <p><a href="@Url.Action("PostsDetails", "Tribune",new { PostID = A.Posts.PostID })">@A.Posts.PostTitle</a></p>
                                         </div>
-                                        <div class="PostBoxInfo">
-                                            <div class="Infouser">
+                                        <div class="CommInfo">
+                                            <p>@Html.Raw(A.PostCommentContent)</p>
+                                        </div>
+                                        <div class="CommBoxInfo">
+                                            <div class="Infousercom">
                                                 <p>@A.Users.UserName</p>
                                             </div>
-                                            <div class="Infotime">
+                                            <div class="Infotimecom">
                                                 <p>@A.PostCommentTime</p>
                                             </div>
                                         </div>
-                                        <a href="#">@A.PostCommentContent</a>
                                     </div>
                                 </li>
                             }
@@ -141,7 +142,20 @@
                             {
                                 <li>
                                     <div class="sRelyBox">
-                                        <a href="#">@A.ReplyContent</a>
+                                        <div class="Comtitlebox">
+                                            <p><a href="@Url.Action("PostsDetails", "Tribune",new { PostID = A.PostComments.Posts.PostID })">@A.PostComments.Posts.PostTitle</a></p>
+                                        </div>
+                                        <div class="ReplyInfo">
+                                            <p>@Html.Raw(A.ReplyContent)</p>
+                                        </div>
+                                        <div class="CommBoxInfo">
+                                            <div class="Infousercom">
+                                                <p>@A.Users.UserName</p>
+                                            </div>
+                                            <div class="Infotimecom">
+                                                <p>@A.ReplyPostTime</p>
+                                            </div>
+                                        </div>
                                     </div>
                                 </li>
                             }
