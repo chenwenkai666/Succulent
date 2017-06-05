@@ -43,8 +43,14 @@
         {
             <div class="PostFloor">
                 <div class="PostIMG">
-                    <div class="IMG01">@A.Users.Photo</div>
+                    <div class="IMG01">
+                        <div class="IMG01A">
+                            @A.Users.Photo
+                        </div>
+                    </div>
                     <div class="IMG02">@A.Users.UserName</div>
+                    <div class="IMG03">
+                    </div>
                 </div>
                 <div class="PostContent">
                     <div class="Content01">
@@ -65,8 +71,15 @@
             tempid = "dev" + A.PostCommentID;
             <div class="PostFloor">
                 <div class="PostIMG">
-                    <div class="IMG01">@A.Users.Photo</div>
+                    <div class="IMG01">
+                        <div class="IMG01A">
+                            @A.Users.Photo
+                        </div>
+                    </div>
                     <div class="IMG02">@A.Users.UserName</div>
+                    @*@{ int ReplyNuma = PostsManager.SelectUserLevel(A.UserID);}*@
+                    <div class="IMG03">
+                    </div>
                 </div>
                 <div class="PostContent">
                     <div class="Content01">

@@ -1389,8 +1389,6 @@
     <Content Include="Views\ShopMall\ShopMallIndex.cshtml" />
     <Content Include="Views\Goods\CreatGoods.cshtml" />
     <Content Include="Views\Succulent\Create.cshtml" />
-    <Content Include="Views\TribuneIndex\Index.cshtml" />
-    <Content Include="Views\TribuneBoard\Index.cshtml" />
     <Content Include="Views\Succulent\Succulent.cshtml" />
     <Content Include="Views\MallSearch\Index.cshtml" />
     <Content Include="Views\MallSearch\Tuijian.cshtml" />

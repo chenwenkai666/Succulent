@@ -63,6 +63,13 @@
 .IMG01 {
     width: 130px;
     height: 130px;
+    padding:5px;
+    border:1px solid #C7CEB2;
+    background-color:#FFF;
+}
+.IMG01A {
+    width:118px;
+    height:118px;
     background-image: url('../../images/Tribune/web/defaultPhoto.jpg');
     background-size: contain;
 }
@@ -72,9 +79,19 @@
     height: 25px;
     text-align: center;
     padding-top: 2px;
-    margin-top: 10px;
-    margin-bottom: 10px;
+    margin-top: 5px;
+    margin-bottom:3px;
     background-color: #FFF;
+    border:1px solid #C7CEB2;
+}
+
+.IMG03 {
+    width: 130px;
+    height: 21px;
+    text-align: center;
+    padding-top: 2px;
+    background-color: #FFF;
+    border:1px solid #C7CEB2;
 }
 
 .PostContent {
