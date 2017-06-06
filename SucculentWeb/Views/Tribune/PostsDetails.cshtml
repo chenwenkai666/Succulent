@@ -2,6 +2,8 @@
 @model SucculentWeb.ViewModels.TribuneVM.TribunePostVM
 @using BLL;
 @using Model;
+@using PagedList
+@using PagedList.Mvc
 @{
     ViewBag.Title = "PostsDetails";
     Layout = "~/Views/Shared/Tribune/TribuneView.cshtml";
@@ -114,6 +116,9 @@
                 </div>
             </div>
                                 }
+        <div id="PagedListBox">
+            @Html.PagedListPager(Model.PostComment, page => Url.Action("PostsDetails", new { page, PostID = int.Parse(Session["PostID"].ToString()) }))
+        </div>
         <div id="PostComment">
             @using (Html.BeginForm("PostsDetails", "Tribune", FormMethod.Post, new { id = "CreateForm", enctype = "multipart/form-data" }))
             {

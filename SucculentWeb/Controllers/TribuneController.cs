@@ -76,12 +76,14 @@ namespace SucculentWeb.Controllers
                 return Content("<script>alert('输入有误！');window.location.href = document.referrer;</script>");
             }
         }
-        public ActionResult PostsDetails(int PostID)
+        public ActionResult PostsDetails(int PostID, int? page)
         {
+            const int pagesize = 10;
+            int pageNum = (page ?? 1);
             Session["PostID"] = PostID;
             TribunePostVM tribunePost = new TribunePostVM();
             tribunePost.Posts = PostM.GetPostDetails(PostID);
-            tribunePost.PostComment = PostM.GetPostComments(PostID);
+            tribunePost.PostComment = PostM.GetPostComments(PostID).ToPagedList(pageNum, pagesize);
             if (Session["UserName"] != null)
             {
                 string UserName = Session["UserName"].ToString();
