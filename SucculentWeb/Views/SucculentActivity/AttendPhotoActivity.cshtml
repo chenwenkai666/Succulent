@@ -22,7 +22,8 @@
         <div class="act_title">
             <p>
                 @{
-                    Activity act=ActivityManager.GetActivity(int.Parse( Request.QueryString["actID"].ToString()));
+                    ActivityManager activitymanager = new ActivityManager();
+                    Activity act= activitymanager.GetActivity(int.Parse( Request.QueryString["actID"].ToString()));
                  }
                 @act.ActivityName
             </p>

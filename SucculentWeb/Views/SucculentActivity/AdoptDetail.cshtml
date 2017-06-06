@@ -1,7 +1,10 @@
 ﻿@model  SucculentWeb.ViewModels.AdoptSucculentVM
+@using Model;
+@using BLL;
 @{
     ViewBag.Title = "AdoptDetail";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    ShopManager shopmanager = new ShopManager();
 }
 
 @section head{
@@ -24,11 +27,11 @@
                     @{
                         if (Model.Activity.Users.UserFlag == 0)
                         {
-                            @:主办方：<a href='@Url.Action("AddAdoptSucculentList","SucculentActivity",new { ActID=Model.Activity.ActivityID })' target="_blank">多肉网官方</a>
+                            @:主办方：<a href='@Url.Action("AddAdoptSucculentList", "SucculentActivity", new { ActID = Model.Activity.ActivityID })' target="_blank">多肉网官方</a>
                         }
                         else
                         {
-                            @:主办方：<a href='@Url.Action("AddAdoptSucculentList","SucculentActivity",new { ActID=Model.Activity.ActivityID })' target="_blank">@Model.Activity.Users.UserName </a>
+                            @:主办方：<a href='@Url.Action("AddAdoptSucculentList", "SucculentActivity", new { ActID = Model.Activity.ActivityID })' target="_blank">@{Shops shop= shopmanager.GetShopByUserID(Model.Activity.Users.UserID);} @shop.ShopName </a>
                         }
                     }
                </p>

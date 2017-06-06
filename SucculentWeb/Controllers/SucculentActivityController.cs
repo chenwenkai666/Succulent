@@ -77,11 +77,11 @@ namespace SucculentWeb.Controllers
                 }
                 else if (act.ActivityCategoryID == 3)
                 {
-                    return RedirectToAction("AdoptDetail", id);
+                    return RedirectToAction("AdoptDetail", new {id= id} );
                 }
                 else
                 {
-                    return RedirectToAction("CharitableDetail", id);
+                    return RedirectToAction("CharitableDetail", new { ActID = id });
                 }
             }
 
