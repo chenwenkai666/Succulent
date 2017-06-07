@@ -112,30 +112,30 @@ namespace DAL
         }
         public IEnumerable<Users> SelectInfoUsers(string postinfo)  //搜索帖子
         {
-            var data = from p in db.Users
-                       where p.UserName.Contains(postinfo)
-                       select p;
+            var data = (from p in db.Users
+                        where p.UserName.Contains(postinfo)
+                        select p).ToList().OrderBy(i => Guid.NewGuid()).ToList();
             return data;
         }
         public IEnumerable<Posts> SelectInfoPosts(string postinfo)  //搜索帖子
         {
-            var data = from p in db.Posts
-                       where p.PostTitle.Contains(postinfo)
-                       select p;
+            var data = (from p in db.Posts
+                        where p.PostTitle.Contains(postinfo)
+                        select p).OrderByDescending(p => p.PublishTime);
             return data;
         }
         public IEnumerable<PostComments> SelectInfoPostCom(string postinfo)  //搜索帖子
         {
-            var data = from p in db.PostComments
-                       where p.PostCommentContent.Contains(postinfo)
-                       select p;
+            var data = (from p in db.PostComments
+                        where p.PostCommentContent.Contains(postinfo)
+                        select p).OrderByDescending(p => p.PostCommentTime);
             return data;
         }
         public IEnumerable<ReplyPost> SelectInfoReplyPost(string postinfo)  //搜索帖子
         {
-            var data = from p in db.ReplyPost
-                       where p.ReplyContent.Contains(postinfo)
-                       select p;
+            var data = (from p in db.ReplyPost
+                        where p.ReplyContent.Contains(postinfo)
+                        select p).OrderByDescending(p => p.ReplyPostTime);
             return data;
         }
         public int GetPostComNum(int PostID)  //获取评论数量
@@ -170,6 +170,11 @@ namespace DAL
                           where p.UserID == userid
                           select p).FirstOrDefault();
             return data;
+        }
+        public int GetUserPotLev(int userid)    //获取用户有无花盆
+        {
+            int q = db.Pots.Count(p => p.UserID == userid);
+            return q;
         }
     }
 }
