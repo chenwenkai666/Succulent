@@ -46,6 +46,7 @@ namespace SucculentWeb.Controllers
             TribuneCreateVM tribuneCreate = new TribuneCreateVM();
             tribuneCreate.Sections03 = PostM.GetSection03();
             tribuneCreate.Sections06 = PostM.GetSection06();
+            tribuneCreate.Sections33 = PostM.GetSection33();
             return View(tribuneCreate);
         }
         [HttpPost]

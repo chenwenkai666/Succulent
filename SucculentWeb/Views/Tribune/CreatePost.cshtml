@@ -1,5 +1,7 @@
 ﻿
 @model SucculentWeb.ViewModels.TribuneVM.TribuneCreateVM
+@using BLL;
+@using Model;
 @{
     ViewBag.Title = "CreatePost";
     Layout = "~/Views/Shared/Tribune/TribuneView.cshtml";
@@ -51,13 +53,29 @@
                 </div>
                 <div id="A1-right">
                     <select class="form-control text-center" id="selectdetailtype" name="selectdetailtype">
-                        @foreach (var A in Model.Sections03)
+                        @{ PostsManager userM = new PostsManager(); }
+                        @{ Users users = userM.GetUserFlag(Convert.ToInt32(Session["UserID"])); }
+                        @if (users.UserFlag != 0)
                         {
-                            <option>@A.SectionName</option>
+                            foreach (var B in Model.Sections06)
+                            {
+                                <option>@B.SectionName</option>
+                            }
+                            foreach (var c in Model.Sections33)
+                            {
+                                <option>@c.SectionName</option>
+                            }
                         }
-                        @foreach (var B in Model.Sections06)
+                        else
                         {
-                            <option>@B.SectionName</option>
+                            foreach (var A in Model.Sections03)
+                            {
+                                <option>@A.SectionName</option>
+                            }
+                            foreach (var B in Model.Sections06)
+                            {
+                                <option>@B.SectionName</option>
+                            }
                         }
                     </select>
                 </div>

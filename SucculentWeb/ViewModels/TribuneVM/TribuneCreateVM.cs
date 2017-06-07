@@ -12,5 +12,6 @@ namespace SucculentWeb.ViewModels.TribuneVM
         public Posts Posts { get; set; }
         public IEnumerable<Sections> Sections03 { get; set; }
         public IEnumerable<Sections> Sections06 { get; set; }
+        public IEnumerable<Sections> Sections33 { get; set; }
     }
 }
