@@ -49,8 +49,8 @@
                                     @{
                                         if (Session["UserName"] != null)
                                         {
-                                            UsersManager usersmanager = new UsersManager();
-                                            Users user = usersmanager.GetUserByName(Session["UserName"].ToString());
+                                            UsersManager usermanager = new UsersManager();
+                                            Users user = usermanager.GetUserByName(Session["UserName"].ToString());
                                             if (user.Photo != null)
                                             {
                                                 <img src="@user.Photo" />

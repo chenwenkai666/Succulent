@@ -56,10 +56,18 @@
                     </div>
                     <div class="IMG02">@A.Users.UserName</div>
                     @{ IEnumerable<Level> lev = PostM.SelectUserLevel(A.UserID); }
+                    @{ int Lev = PostM.GetUserPotLev(A.UserID); }
                     <div class="IMG03">
-                        @foreach (var E in lev)
+                        @if (Lev != 0)
                         {
-                            <p>Lv.@E.LevelID&nbsp;@E.LevelName</p>
+                            foreach (var E in lev)
+                            {
+                                <p>Lv.@E.LevelID&nbsp;@E.LevelName</p>
+                            }
+                        }
+                        else
+                        {
+                            <p>Lv.0&nbsp;路人</p>
                         }
                     </div>
                 </div>

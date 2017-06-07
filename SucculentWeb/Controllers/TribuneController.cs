@@ -69,7 +69,11 @@ namespace SucculentWeb.Controllers
                 db.Configuration.ValidateOnSaveEnabled = false;
                 db.SaveChanges();
                 db.Configuration.ValidateOnSaveEnabled = true;
-                potsmanager.UpdateExperience(userid, 5);
+                int Lev = PostM.GetUserPotLev(Convert.ToInt32(Session["UserID"]));
+                if (Lev != 0)
+                {
+                    potsmanager.UpdateExperience(userid, 5);
+                }
                 return RedirectToAction("BoardIndex", "Tribune", new { BoardID = BoardID });
 
             }
@@ -107,7 +111,11 @@ namespace SucculentWeb.Controllers
             db.Configuration.ValidateOnSaveEnabled = false;
             db.SaveChanges();
             db.Configuration.ValidateOnSaveEnabled = true;
-            potsmanager.UpdateExperience(userid, 2);
+            int Lev = PostM.GetUserPotLev(Convert.ToInt32(Session["UserID"]));
+            if (Lev != 0)
+            {
+                potsmanager.UpdateExperience(userid, 2);
+            }
             return RedirectToAction("PostsDetails", "Tribune", new { PostID = PostID });
         }
         [HttpPost]
@@ -124,7 +132,11 @@ namespace SucculentWeb.Controllers
             db.Configuration.ValidateOnSaveEnabled = false;
             db.SaveChanges();
             db.Configuration.ValidateOnSaveEnabled = true;
-            potsmanager.UpdateExperience(userid, 2);
+            int Lev = PostM.GetUserPotLev(Convert.ToInt32(Session["UserID"]));
+            if (Lev != 0)
+            {
+                potsmanager.UpdateExperience(userid, 2);
+            }
             return RedirectToAction("PostsDetails", "Tribune", new { PostID = PostID });
         }
         public ActionResult PostsList(int? page, int BoardID)
