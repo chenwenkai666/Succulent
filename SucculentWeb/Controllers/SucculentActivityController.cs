@@ -17,6 +17,10 @@ namespace SucculentWeb.Controllers
         GoodsManager goodsmanager = new GoodsManager();
         ShopManager shopmanager = new ShopManager();
         ActivityManager activitymanager = new ActivityManager();
+        UsersManager usermanager = new UsersManager();
+        DonateManager donatemanager = new DonateManager();
+        AdoptManager adoptmanager = new AdoptManager();
+        EntriesManager entriesmanager = new EntriesManager();
         // GET: SucculentActivity
         #region 活动首页
         //public ActionResult Index()
@@ -101,10 +105,10 @@ namespace SucculentWeb.Controllers
         {
             try
             {
-                Users user = UsersManager.GetUserByName(Session["UserName"].ToString());
+                Users user = usermanager.GetUserByName(Session["UserName"].ToString());
                 int actid = ActID;
                 int UserID = user.UserID;
-                Donate donate = DonateManager.GetUserDonate(UserID, ActID);
+                Donate donate = donatemanager.GetUserDonate(UserID, ActID);
                 return View(donate);
             }
             catch (Exception ex)
@@ -121,12 +125,12 @@ namespace SucculentWeb.Controllers
         {
             try
             {
-                Users user = UsersManager.GetUserByName(Session["UserName"].ToString());
+                Users user = usermanager.GetUserByName(Session["UserName"].ToString());
                 donate.UserID = user.UserID;
                 donate.DonateTime = DateTime.Now;
                 donate.ActivityID = int.Parse(Request.Form["actid"]);
                 donate.DonateState = "待收货";
-                if (DonateManager.InsertDonate(donate))
+                if (donatemanager.InsertDonate(donate))
                 {
                     return "1";
                 }
@@ -150,7 +154,7 @@ namespace SucculentWeb.Controllers
         {
             AdoptSucculentVM AdoptVM = new AdoptSucculentVM();
             AdoptVM.Activity = activitymanager.GetActivity(id);
-            AdoptVM.AdoptList = AdoptManager.GetAdoptListByActID(id);
+            AdoptVM.AdoptList = adoptmanager.GetAdoptListByActID(id);
             AdoptVM.AdoptResult = adoptresultmanager.GetAdoptResultByActID(id);
 
             return View(AdoptVM);
@@ -164,7 +168,7 @@ namespace SucculentWeb.Controllers
             {
                 if (Session["UserName"].ToString() != "")
                 {
-                    Users user = UsersManager.GetUserByName(Session["UserName"].ToString());
+                    Users user = usermanager.GetUserByName(Session["UserName"].ToString());
                     Activity act = activitymanager.GetActivity(ActID);
                     if (user.UserFlag == 1 && act.UserID == user.UserID)
                     {
@@ -206,7 +210,7 @@ namespace SucculentWeb.Controllers
                 adopt.ActivityID = int.Parse(actid[i]);
                 adopt.GoodsID = int.Parse(goodsid[i]);
                 adopt.Total = int.Parse(total[i]);
-                if (AdoptManager.InsertAdopt(adopt))
+                if (adoptmanager.InsertAdopt(adopt))
                 {
 
                 }
@@ -272,7 +276,7 @@ namespace SucculentWeb.Controllers
         public string GetUserName(string UserID)
         {
             int userid = int.Parse(UserID);
-            Users user = UsersManager.GetUserByID(userid);
+            Users user = usermanager.GetUserByID(userid);
             if (user != null)
             {
                 return user.UserName;
@@ -299,8 +303,8 @@ namespace SucculentWeb.Controllers
             {
                 if (Session["UserName"].ToString() != "")
                 {
-                    int level = UsersManager.GetUserLevel(Session["UserName"].ToString());
-                    Users user = UsersManager.GetUserByName(Session["UserName"].ToString());
+                    int level = usermanager.GetUserLevel(Session["UserName"].ToString());
+                    Users user = usermanager.GetUserByName(Session["UserName"].ToString());
                     Activity act = activitymanager.GetActivity(ActivityID);
                     bool UserAttend = AttendanceManager.IsAttendActivity(user.UserID, ActivityID);
                     if (user != null && !UserAttend && level >= act.LevelRequest)
@@ -336,7 +340,7 @@ namespace SucculentWeb.Controllers
         #region 参与活动页面
         public ActionResult AttendPhotoActivity(int actID)
         {
-            var entries = EntriesManager.GetAllEntriesByActID(actID);
+            var entries = entriesmanager.GetAllEntriesByActID(actID);
             return View(entries);
         }
         #endregion
@@ -364,8 +368,8 @@ namespace SucculentWeb.Controllers
         public ActionResult UploadPortfolio(string TextDescription)
         {
             int ActID = int.Parse(Request.Form["actID"].ToString());
-            Users user = UsersManager.GetUserByName(Session["UserName"].ToString());
-            if (!EntriesManager.IsPublishEntry(user.UserID, ActID))
+            Users user = usermanager.GetUserByName(Session["UserName"].ToString());
+            if (!entriesmanager.IsPublishEntry(user.UserID, ActID))
             {
                 try
                 {
@@ -391,7 +395,7 @@ namespace SucculentWeb.Controllers
                     entries.JoinTime = DateTime.Now;
                     entries.UserID = user.UserID;
                     entries.UpvoteNum = 0;
-                    if (EntriesManager.InsertEntries(entries))
+                    if (entriesmanager.InsertEntries(entries))
                     {
                         return Content("<script>alert('发布成功！');window.open('" + Url.Action("AttendPhotoActivity", "SucculentActivity", new { actID = ActID }) + "', '_self')</script>");
                     }
@@ -419,9 +423,9 @@ namespace SucculentWeb.Controllers
         {
             if (Session["UserName"] != null)
             {
-                Users user = UsersManager.GetUserByName(Session["UserName"].ToString());
+                Users user = usermanager.GetUserByName(Session["UserName"].ToString());
                 int actid = int.Parse(ActID);
-                if (!EntriesManager.IsPublishEntry(user.UserID, actid))
+                if (!entriesmanager.IsPublishEntry(user.UserID, actid))
                 {
                     return "0";
                 }
@@ -444,7 +448,7 @@ namespace SucculentWeb.Controllers
         {
             if (Session["UserName"] != null)
             {
-                if (EntriesManager.AddUpvoteNum(UserID, ActID))
+                if (entriesmanager.AddUpvoteNum(UserID, ActID))
                 {
                     return "1";
                 }
@@ -463,7 +467,7 @@ namespace SucculentWeb.Controllers
         #region 摄影、DIY大赛评选结果作品展示
         public ActionResult PhotoResult()
         {
-            var entry = EntriesManager.GetAllEntriesByActID(1).OrderByDescending(e => e.UpvoteNum);
+            var entry = entriesmanager.GetAllEntriesByActID(1).OrderByDescending(e => e.UpvoteNum);
             return View(entry);
         }
         #endregion

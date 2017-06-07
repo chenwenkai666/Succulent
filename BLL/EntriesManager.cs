@@ -11,20 +11,20 @@ namespace BLL
 {
     public class EntriesManager
     {
-        private static IEntries ientries = DataAccess.CreateEntries();
-        public static bool InsertEntries(Entries entry)
+        public IEntries ientries = DataAccess.CreateEntries();
+        public bool InsertEntries(Entries entry)
         {
             return ientries.InsertEntries(entry);
         }
-        public static bool IsPublishEntry(int UserID, int ActID)
+        public bool IsPublishEntry(int UserID, int ActID)
         {
             return ientries.IsPublishEntry(UserID,ActID);
         }
-        public static IList<Entries> GetAllEntriesByActID(int ActID)
+        public IList<Entries> GetAllEntriesByActID(int ActID)
         {
             return ientries.GetAllEntriesByActID(ActID);
         }
-        public static bool AddUpvoteNum(int UserID, int ActID)
+        public bool AddUpvoteNum(int UserID, int ActID)
         {
             return ientries.AddUpvoteNum(UserID, ActID);
         }

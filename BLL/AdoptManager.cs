@@ -11,12 +11,12 @@ namespace BLL
 {
      public class AdoptManager
     {
-        private static IAdopt iadopt = DataAccess.CreateAdopt();
-        public static IList<Adopt> GetAdoptListByActID(int ActID)
+        public IAdopt iadopt = DataAccess.CreateAdopt();
+        public IList<Adopt> GetAdoptListByActID(int ActID)
         {
             return iadopt.GetAdoptListByActID(ActID);
         }
-        public static bool InsertAdopt(Adopt adopt)
+        public bool InsertAdopt(Adopt adopt)
         {
             return iadopt.InsertAdopt(adopt);
         }
