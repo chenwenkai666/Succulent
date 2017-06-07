@@ -129,12 +129,12 @@
             width: 477px;
             margin: 1px;
             padding: 1px 25px;
+            background-color:#F5F5DC;
         }
 
             .tabox .lh li .p-name {
                 height: 25px;
                 padding-top: 3px;
-                background-color:#F5F5DC;
             }
 /*选项卡结束*/
 
