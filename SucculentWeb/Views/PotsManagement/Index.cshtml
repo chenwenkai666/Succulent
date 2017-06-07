@@ -1,0 +1,58 @@
+﻿@model IEnumerable<Model.Pots>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutAdminManagement.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Experience)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Sign)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SignDays)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Level.LevelName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Users.UserName)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Experience)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Sign)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SignDays)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Level.LevelName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Users.UserName)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.PotID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.PotID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.PotID })
+        </td>
+    </tr>
+}
+
+</table>

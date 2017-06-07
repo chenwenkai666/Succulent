@@ -1,0 +1,43 @@
+﻿@model Model.Sections
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_LayoutAdminManagement.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Sections</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.SectionName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SectionName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SectionDescribe)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SectionDescribe)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SectionImg)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SectionImg)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.SectionID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

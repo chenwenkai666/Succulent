@@ -78,24 +78,42 @@
                         <li><a href="@Url.Action("Index","AdminUsersManagement")">网站管理员管理 </a></li>
                     </ul>
                 </li>
-
+                <li>
+                    <a href="#"><i class="fa fa-cog"></i>百科管理 </a>
+                    <ul class="submenu">
+                        <li><a href="@Url.Action("Index","SucculentCateManagement")" target="_blank">多肉科属管理 </a></li>
+                        <li><a href="@Url.Action("Index","SucculentManagement")">多肉管理 </a></li>
+                        <li><a href="@Url.Action("Index","PotsManagement")">虚拟多肉管理 </a></li>
+                        <li><a href="@Url.Action("Index","LevelManagement")">等级管理 </a></li>
+                        <li>
+                    </ul>
+                </li>
                 <li>
                     <a href="#"><i class="fa fa-cog"></i>活动管理 </a>
                     <ul class="submenu">
                         <li><a href="@Url.Action("Publish","SucculentActivity")" target="_blank">活动发布 </a></li>
-                        <li><a href="#">活动操作 </a></li>
-                        <li><a href="#">捐赠管理 </a></li>
+                        <li><a href="@Url.Action("Index","ActivityManagement")">活动操作 </a></li>
+                        <li><a href="@Url.Action("Index","DonateManagement")">捐赠管理 </a></li>
                         <li>
                     </ul>
                 </li>
                 <li>
                   <a href="#">商城管理 </a>
                   <ul class="submenu">
-                    <li><a href="#">店铺管理 </a></li>
-                    <li><a href="#">商品管理 </a></li>
-                    <li><a href="#">评论管理 </a></li>
-                    <li><a href="#">回复管理 </a></li>
+                    <li><a href="@Url.Action("Index","ShopsManagement")">店铺管理 </a></li>
+                    <li><a href="@Url.Action("Index","GoodsManagement")">商品管理 </a></li>
+                    <li><a href="@Url.Action("Index","GoodsComManagement")">评论管理 </a></li>
+                    <li><a href="@Url.Action("Index","ReplyGoodsManagement")">回复管理 </a></li>
                  </ul>
+                </li>
+                <li>
+                    <a href="#">社区管理 </a>
+                    <ul class="submenu">
+                        <li><a href="@Url.Action("Index","SectionsManagement")">板块管理 </a></li>
+                        <li><a href="@Url.Action("Index","PostsManagement")">帖子管理 </a></li>
+                        <li><a href="@Url.Action("Index","PostComManagement")">评论管理 </a></li>
+                        <li><a href="@Url.Action("Index","ReplyPostsManagement")">回复管理 </a></li>
+                    </ul>
                 </li>
             </ul>
             <div class="jquery-accordion-menu-footer">

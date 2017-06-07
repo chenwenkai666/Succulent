@@ -1,0 +1,94 @@
+﻿@model IEnumerable<Model.Activity>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutAdminManagement.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ActivityName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ActivityDescribe)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ActivityPlace)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.StartTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EndTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UpvoteNum)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ActivityCover)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AttendConditions)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LevelRequest)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ActivityCategory.ActivityCategoryName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Users.UserName)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ActivityName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ActivityDescribe)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ActivityPlace)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.StartTime)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EndTime)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UpvoteNum)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ActivityCover)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AttendConditions)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LevelRequest)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ActivityCategory.ActivityCategoryName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Users.UserName)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ActivityID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ActivityID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ActivityID })
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,0 +1,76 @@
+﻿@model IEnumerable<Model.Succulent>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutAdminManagement.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.SucculentName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Photo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Feature)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Application)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BreedMode)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CollectedTotal)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SucculentImg)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SucculentCategory.SucculentCategoryName)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.SucculentName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Photo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Feature)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Application)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BreedMode)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CollectedTotal)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SucculentImg)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SucculentCategory.SucculentCategoryName)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.SucculentID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.SucculentID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.SucculentID })
+        </td>
+    </tr>
+}
+
+</table>

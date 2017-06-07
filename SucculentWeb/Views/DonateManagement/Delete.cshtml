@@ -1,0 +1,81 @@
+﻿@model Model.Donate
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_LayoutAdminManagement.cshtml";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Donate</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.DonateTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DonateTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DonoteTotal)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DonoteTotal)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DonateContent)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DonateContent)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ExoressNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ExoressNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DonateState)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DonateState)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Users.UserName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Users.UserName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Activity.ActivityName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Activity.ActivityName)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

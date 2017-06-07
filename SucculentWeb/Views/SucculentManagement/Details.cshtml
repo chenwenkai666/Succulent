@@ -1,0 +1,83 @@
+﻿@model Model.Succulent
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_LayoutAdminManagement.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Succulent</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.SucculentName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SucculentName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Photo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Photo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Feature)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Feature)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Application)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Application)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BreedMode)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BreedMode)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CollectedTotal)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CollectedTotal)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SucculentImg)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SucculentImg)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SucculentCategory.SucculentCategoryName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SucculentCategory.SucculentCategoryName)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.SucculentID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
