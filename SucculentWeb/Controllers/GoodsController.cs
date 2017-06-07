@@ -24,6 +24,7 @@ namespace SucculentWeb.Controllers
         OrdersManager ordersmanager = new OrdersManager();
         ShopManager shopmanager = new ShopManager();
         ShoppingCartsManager shoppingcarsmanager = new ShoppingCartsManager();
+        AdoptManager adoptmanager = new AdoptManager();
         // GET: Goods
         public ActionResult CreatGoods()
         {
@@ -613,16 +614,27 @@ namespace SucculentWeb.Controllers
         {
             if(ModelState.IsValid)
             {
-               int activityid = Convert.ToInt32(this.TempData["ActivityID"]);
-               int adoptgoodid = Convert.ToInt32(Session["AdoptGoodid"]);
-            adoptresult.UserID = Convert.ToInt32(Session["UserID"]);
-            adoptresult.GoodsID = adoptgoodid;
-            adoptresult.ActivityID =  activityid;
-                adoptresult.AdoptTime = DateTime.Now;
-            adoptresult.Address = Request.Form["sheng"]+Request.Form["shi"] + Request.Form["xian"] + Request.Form["xiangxi"];
-            adoptresultmanager.AddAdoptResult(adoptresult);
-            return Content("<script>alert('领养成功');history.go(-1)</script>");
+                int userid= Convert.ToInt32(Session["UserID"]);
+                int result = adoptresultmanager.getAdoptUser(userid);
+                if(result>0)
+                {
+                    return Content("<script>alert('您已经领养，不能多次领养');history.go(-1)</script>");
+                }
+                else
+                {
+                 int activityid = Convert.ToInt32(this.TempData["ActivityID"]);
+                 int adoptgoodid = Convert.ToInt32(Session["AdoptGoodid"]);
+                 adoptresult.UserID = Convert.ToInt32(Session["UserID"]);
+                 adoptresult.GoodsID = adoptgoodid;
+                 adoptresult.ActivityID =  activityid;
+                  adoptresult.AdoptTime = DateTime.Now;
+                  adoptresult.Address = Request.Form["sheng"]+Request.Form["shi"] + Request.Form["xian"] + Request.Form["xiangxi"];
+                  adoptresultmanager.AddAdoptResult(adoptresult);
+                    adoptmanager.updateAdoptTotal(activityid);
+                 return Content("<script>alert('领养成功');history.go(-1)</script>");
+               }
             }
+           
             else
             {
                 return Content("<script>alert('领养失败');history.go(-1)</script>");

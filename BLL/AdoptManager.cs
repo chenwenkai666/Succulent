@@ -20,5 +20,9 @@ namespace BLL
         {
             return iadopt.InsertAdopt(adopt);
         }
+        public void updateAdoptTotal(int activityid)
+        {
+            iadopt.updateAdoptTotal(activityid);
+        }
     }
 }

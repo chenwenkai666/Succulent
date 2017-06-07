@@ -22,6 +22,14 @@ namespace DAL
             db.Adopt.Add(adopt);
             return db.SaveChanges() > 0;
         }
+        public void updateAdoptTotal(int activityid)
+        {
+            Adopt adopt = (from p in db.Adopt where p.ActivityID == activityid select p).FirstOrDefault();
+            adopt.Total = adopt.Total - 1;
+            db.Configuration.ValidateOnSaveEnabled = false;
+            db.SaveChanges();
+            db.Configuration.ValidateOnSaveEnabled = true;
+        }
     }
 }
  

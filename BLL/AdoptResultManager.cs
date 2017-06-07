@@ -20,5 +20,9 @@ namespace BLL
         {
             return iadoptresult.GetAdoptResultByActID(ActID);
         }
+        public int getAdoptUser(int userid)
+        {
+            return iadoptresult.getAdoptUser(userid);
+        }
     }
 }
