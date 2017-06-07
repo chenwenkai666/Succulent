@@ -24,9 +24,9 @@
 
                 @foreach (var p in Model)
                 {
-                    <li>
+                    <li id="Addrli">
                        
-                            <div class="first-li"><div class="detail">@p.Province<b>@p.City</b><span>（@p.Users.UserName 收）</span></div><input type="checkbox" class="onlycheckbox" id="onlycheckbox" onclick="change(this)" /> </div>
+                            <div class="first-li" id="test"><div class="detail">@p.Province<b>@p.City</b><span>（@p.Users.UserName 收）</span></div><input type="checkbox" name="chk" class="onlycheckbox" id="onlycheckbox" onclick="chooseOne(this)" /> </div>
                             <div class="second-li">@p.AddressDetail</div>
                             <div class="third-li"><a id="example" class="example"></a><a>@Html.ActionLink("删除", "RemoveAddress", new { AddressID = @p.AddressID }, new { onclick = "return confirm('确认删除吗？')" })</a></div>
                             <input type="hidden" name="getAddressid" value="@p.AddressID" />
@@ -183,16 +183,38 @@
 
     </script>
 
-    <script language="javascript" type="text/javascript">
+    @*<script language="javascript" type="text/javascript">
         function change(obj) {
             var tr = obj.parentElement.parentElement;
             if (obj.checked) {
                 tr.style.background = "url('../images/地址边框2.png')";
+                
             } else {
                 tr.style.background = "url('../images/地址边框.png')";
             }
         }
 
+    </script>*@
+
+    <script>
+        function chooseOne(chk) {
+            //先取得同name的chekcBox的集合物件 
+            var obj = document.getElementsByClassName("onlycheckbox");
+            var tr = document.getElementById("Addrli");
+            for (i = 0; i < obj.length; i++) {
+                //判斷obj集合中的i元素是否為cb，若否則表示未被點選 
+                if (obj[i] != chk) {
+                    obj[i].checked = false;
+                }
+
+                    //若要至少勾選一個的話，則把上面那行else拿掉，換用下面那行 
+                else {
+                    obj[i].checked = true;
+                }
+            }
+        }
     </script>
+
+
 </body>
 </html>

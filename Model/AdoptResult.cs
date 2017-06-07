@@ -11,7 +11,7 @@ namespace Model
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
     public partial class AdoptResult
     {
         public int AdoptResultID { get; set; }

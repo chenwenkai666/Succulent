@@ -19,5 +19,10 @@ namespace DAL
             return category;
 
         }
+        public SucculentCategory SelectByID(int id)
+        {
+            var category = db.SucculentCategory.Where(c => c.SucculentCategoryID == id).FirstOrDefault();
+            return category;
+        }
     }
 }

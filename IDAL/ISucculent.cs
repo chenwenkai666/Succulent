@@ -17,5 +17,7 @@ namespace IDAL
         void Create(Succulent succulent);
         void UpdateAdd(Succulent succulent);
         Succulent SelectByID(int id);
+        Succulent SelectName(string name);
+        IEnumerable<Succulent> SelectBySearchName(string SearchName);
     }
 }

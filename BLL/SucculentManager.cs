@@ -13,7 +13,7 @@ namespace BLL
 {
    public class SucculentManager
     {
-        public ISucculent isucculent = DataAccess.CreateSucculent();
+        private ISucculent isucculent = DataAccess.CreateSucculent();
         public List<Succulent> SelectSucculent()
         {
             return isucculent.SelectSucculent();
@@ -26,17 +26,21 @@ namespace BLL
         {
             return isucculent.SelectSucculentBySucculentid(id);
         }
-        public List<Succulent> SelectSucculentByCatogaryid(int categoryid)
+        public  List<Succulent> SelectSucculentByCatogaryid(int categoryid)
         {
             return isucculent.SelectSucculentByCatogaryid(categoryid);
         }
-        public List<Succulent> SelectRoomSucculent()
+        public  List<Succulent> SelectRoomSucculent()
         {
             return isucculent.SelectRoomSucculent();
         }
         public void Create(Succulent succulent)
         {
             isucculent.Create(succulent);
+        }
+        public Succulent SelectName(string name)
+        {
+           return isucculent.SelectName(name);
         }
         public void UpdateAdd(Succulent succulent)
         {
@@ -46,6 +50,10 @@ namespace BLL
         {
             return isucculent.SelectByID(id);
 
+        }
+        public IEnumerable<Succulent> SelectBySearchName(string SearchName)
+        {
+            return isucculent.SelectBySearchName(SearchName);
         }
     }
 }

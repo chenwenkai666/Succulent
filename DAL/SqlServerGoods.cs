@@ -201,5 +201,22 @@ namespace DAL
             db.Configuration.ValidateOnSaveEnabled = true;
            
         }
+        public void GoodsZan(int goodid)
+        {
+            Goods good = (from p in db.Goods where p.GoodsID == goodid select p).FirstOrDefault();
+            good.LikeIt = good.LikeIt + 1;
+            db.Configuration.ValidateOnSaveEnabled = false;
+            db.SaveChanges();
+            db.Configuration.ValidateOnSaveEnabled = true;
+        }
+        public void updateStockAndSalse(int goodid, int stock, int salse)
+        {
+            Goods Good = (from p in db.Goods where p.GoodsID == goodid select p).FirstOrDefault();
+            Good.Sales = Good.Sales + salse;
+            Good.Stock = Good.Stock - stock;
+            db.Configuration.ValidateOnSaveEnabled = false;
+            db.SaveChanges();
+            db.Configuration.ValidateOnSaveEnabled = true;
+        }
     }
 }

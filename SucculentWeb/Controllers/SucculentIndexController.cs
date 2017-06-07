@@ -12,31 +12,53 @@ namespace SucculentWeb.Controllers
 {
     public class SucculentIndexController : Controller
     {
-        SucculentEntities db = new SucculentEntities();
         SucculentManager succulentmanager = new SucculentManager();
+        SucculentCategoryManager succulentcategorymanager = new SucculentCategoryManager();
         public ActionResult Succulent()
         {
-            var category = db.SucculentCategory.ToList();
+            ViewBag.CategoryID = new SelectList(succulentcategorymanager.Select(), "SucculentCategoryID", "SucculentCategoryName");
+            var category = succulentcategorymanager.Select();
             return View(category);
         }             
-        public ActionResult PartialViewDate(int? page,int SucculentCategoryID=1)
+        public ActionResult PartialViewDate(int? page,int SucculentCategoryID=0,string SearchSucculent = null)
         {
-            int pageSize = 9;
-            int pageNum = (page ?? 1);   
-            var succulent = db.Succulent.Where(s => s.CategoryID == SucculentCategoryID);
-            var category = db.SucculentCategory.Where(c => c.SucculentCategoryID == SucculentCategoryID).FirstOrDefault();
-            ViewBag.name = category.SucculentCategoryName;
-            ViewBag.details = category.SucculentCategoryDescribe;
-            ViewBag.id = category.SucculentCategoryID;
+            int pageSize = 4;
+            int pageNum = (page ?? 1);                    
+            var succulent = succulentmanager.SelectSucculent();
             if (Request.IsAjaxRequest())
             {
-              return PartialView("PartialViewDate", succulent.OrderBy(s => s.CollectedTotal).ToPagedList(pageNum, pageSize));
-            }          
+                if (SucculentCategoryID == 0&&SearchSucculent== null)
+               {
+                
+                return PartialView("PartialViewDate", succulent.OrderBy(s =>s.CollectedTotal).ToPagedList(pageNum, pageSize));
+               }
+                else
+                {
+                    if(SearchSucculent == null)
+                    {
+                    var Csucculent= succulentmanager.SelectSucculentByCatogaryid(SucculentCategoryID);                  
+                    return PartialView("PartialViewDate", Csucculent.OrderBy(s => s.CollectedTotal).ToPagedList(pageNum, pageSize));
+                    }
+                    else
+                    {
+                        var SchSucculent = succulentmanager.SelectBySearchName(SearchSucculent);
+                        return PartialView("PartialViewDate", SchSucculent.OrderBy(s => s.CollectedTotal).ToPagedList(pageNum, pageSize));
+                    }
+                   
+                }
+
+            }
             else
             {
                 return View("PartialViewDate", succulent.OrderBy(s => s.CollectedTotal).ToPagedList(pageNum, pageSize));
             }
         }
 
+        public ActionResult CategoryContent(int SucculentCategoryID=1)
+        {
+            var category= succulentcategorymanager.SelectByID(SucculentCategoryID);
+            return PartialView("CategoryContent",category);
         }
+
+    }
 }

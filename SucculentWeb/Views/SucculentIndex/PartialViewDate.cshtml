@@ -1,49 +1,45 @@
 ﻿@model PagedList.IPagedList<Model.Succulent>
 @using PagedList
-@using PagedList.Mvc
+@using PagedList.Mvc 
 
-<div class="succulent-wrap-bottom">  
-        <div class="succulent-wrap-left row" id="left">
-            <h4>@ViewBag.name<small></small></h4>
-            <p class="col-md-12">
-                &nbsp; &nbsp; &nbsp;@ViewBag.details
-            </p>
-        </div> 
-    <div class="succulent-wrap-right">
-        <div class="succulent-wrap-right-img row">
-            <ul>
-                @foreach (var item in Model)
-                {
-                    <li class="col-md-4 div-row">
-                        <a href="@Url.Action("Succulent_Details", "Succulent", new { id = item.SucculentID, categoryid = item.CategoryID})">
-                            <div class="div-img">
-                                <img class="mark" src="~/images/mark.png" height="300" />
-                                <span class="mark-span">@item.SucculentName</span>                     
-                                <p class="a-img">
-                                    <img src="@item.Photo" width="255" height="190" />
-                                </p>
-                            </div>
-                        </a>                       
-                    </li>
-                }
-            </ul>
-            <div class="row div-page">
-                <span class="col-md-12 span-page">
-                    @Html.PagedListPager(Model, page => Url.Action("PartialViewDate", "SucculentIndex", new { page, SucculentCategoryID = ViewBag.id }),
+  <div class="succulent-wrap-left">
+      <div class="succulent-wrap-left-img row">
+          <ul>
+              @foreach (var item in Model)
+            {
+                  <li class="col-md-12 div-row">
+                      <a href="@Url.Action("Succulent_Details", "Succulent", new { id = item.SucculentID, categoryid = item.CategoryID})">
+                          <div class="all-succulent">
+                              <div class="a-img">
+                                  <img src="@item.Photo" width="260" height="150" />
+                              </div>
+                              <div class="succulent-describe">
+                                  <span class="succulent-name">@item.SucculentName</span>
+                                  <p class="succulent-feature">
+                                      @item.Feature
+                                  </p>
+                                  <div class="succulent-span"><span><i class="fa fa-eye"></i>&nbsp;&nbsp;@item.CollectedTotal</span></div>
+                              </div>
+
+                          </div>
+
+                      </a>
+                  </li>
+              }
+          </ul>
+      </div>
+        <div class="row div-page">
+            <div class="col-md-12 span-page">
+                @Html.PagedListPager(Model, page => Url.Action("PartialViewDate", "SucculentIndex", new { page, SucculentCategoryID = ViewBag.id }),
     PagedListRenderOptions.EnableUnobtrusiveAjaxReplacing(
              new AjaxOptions
              {
                  HttpMethod = "GET",
                  InsertionMode = InsertionMode.Replace,
-                 UpdateTargetId = "wrap-bottom"
+                 UpdateTargetId = "succulent-wrap-bottom-left"
              }))
-                </span>
-            
-                
-            </div>
-      
             </div>
         </div>
-    </div>
+</div>
 
 

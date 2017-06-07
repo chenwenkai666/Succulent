@@ -145,5 +145,13 @@ namespace BLL
         {
              igoods.CreateGoods(goods);
         }
+        public void GoodsZan(int goodid)
+        {
+            igoods.GoodsZan(goodid);
+        }
+        public void UpdateStockAndSalse(int goodid,int stock,int salse)
+        {
+            igoods.updateStockAndSalse(goodid,stock,salse);
+        }
     }
 }

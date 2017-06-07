@@ -65,6 +65,7 @@ window.onload = function () {
 		}
         else
         {
+            
             btn.disabled = false;          
 		}
 		selectedViewList.innerHTML = HTMLstr;
@@ -192,22 +193,58 @@ window.onload = function () {
     checkAllInputs[0].onclick();
 
 
-    $('#subbtn').click( function()
-    {
+
+
+
+    //$('#subbtn').click( function()
+    //{
         
+    //    var checkbox1 = document.getElementsByClassName('check-one');
+    //    var chekbox2 = document.getElementsByClassName('chekbox2');
+    //    for (var i = 0, len = tr.length; i < len; i++) {
+    //        if (tr[i].getElementsByTagName('input')[0].checked) {
+
+    //            checkbox1[i].value = 1;
+    //            chekbox2[i].value = 1;
+
+    //        }
+    //        else {
+    //            checkbox1[i].value = 2;
+    //            chekbox2[i].value = 2;
+    //        }
+    //    }
+    //});
+ 
+
+    $('#subbtn').click(function () {
+        var count = 0;
+        var checkArry = document.getElementsByName("chk");
         var checkbox1 = document.getElementsByClassName('check-one');
         var chekbox2 = document.getElementsByClassName('chekbox2');
-        for (var i = 0, len = tr.length; i < len; i++) {
-            if (tr[i].getElementsByTagName('input')[0].checked) {
+        for (var j = 0; j < checkArry.length; j++)
+        {
+            if (checkArry[j].checked == true) {
+                //选中的操作
+                count++;
 
-                checkbox1[i].value = 1;
-                chekbox2[i].value = 1;
+                for (var i = 0, len = tr.length; i < len; i++) {
+                    if (tr[i].getElementsByTagName('input')[0].checked) {
 
-            }
-            else {
-                checkbox1[i].value = 2;
-                chekbox2[i].value = 2;
+                        checkbox1[i].value = 1;
+                        chekbox2[i].value = 1;
+
+                    }
+                    else {
+                        checkbox1[i].value = 2;
+                        chekbox2[i].value = 2;
+                    }
+                }
             }
         }
+        if (count == 0) {
+            alert("请选择收货地址！")
+            return false;
+        }
+
     });
 }

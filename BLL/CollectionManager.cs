@@ -11,14 +11,18 @@ namespace BLL
 {
    public class CollectionManager
     {
-        private static ICollection icollection = DataAccess.CreateCollection();
-        public static void Create(Collection collection)
+        private ICollection icollection = DataAccess.CreateCollection();
+        public  void Create(Collection collection)
         {
             icollection.Create(collection);
         }
-        public static Collection SelectbySucculentId(int succulentid)
+        public Collection SelectbySucculentId(int succulentid)
         {
             return icollection.SelectbySucculentId(succulentid);
+        }
+        public IEnumerable<Collection> SelectByUserID(int UserID)
+        {
+            return icollection.SelectByUserID(UserID);
         }
     }
 }
