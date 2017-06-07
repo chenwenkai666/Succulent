@@ -1,0 +1,275 @@
+﻿
+/*主体*/
+
+#SearchBodyer {
+    min-width: 1000px;
+    min-height: 579px;
+    width: 1000px;
+    height: auto;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 25px;
+    background-color: #FFF;
+}
+
+#A1-message {
+    width: 100%;
+    min-height: 50px;
+    height: auto;
+    font-size: 18px;
+    padding: 10px 30px;
+}
+
+    #A1-message a {
+        font-size: 20px;
+        color: #BF0A10;
+        text-decoration: none;
+    }
+
+        #A1-message a:hover {
+            color: #5BC0DE;
+            text-decoration: none;
+        }
+
+#A2-result {
+    width: 100%;
+    height: auto;
+    min-height: 504px;
+}
+
+/*选项卡*/
+
+/* css 重置 */
+* {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+/*css重置结束*/
+
+.tabox {
+    width: 100%;
+    height: auto;
+}
+
+    .tabox .hd {
+        height: 38px;
+        overflow: hidden;
+        background-color: #C7CEB2;
+    }
+
+        .tabox .hd li {
+            position: relative;
+            height: 38px;
+            line-height: 38px;
+            text-align: center;
+            width: 75px;
+            float: left;
+            cursor: default;
+        }
+
+            .tabox .hd li.on {
+                width: 125px;
+                border-bottom: 2px solid #199745;
+                color: #199745;
+                font-weight: bold;
+            }
+
+    .tabox .bd {
+        min-height: 466px;
+        height: auto;
+    }
+
+    .tabox .lh {
+        min-height: 466px;
+        padding-top: 50px;
+        overflow: hidden;
+    }
+
+        .tabox .lh li {
+            width: 900px;
+            height: auto;
+            margin-left: auto;
+            margin-right: auto;
+            margin-bottom: 15px;
+        }
+
+.ErrorMessage {
+    width: 100%;
+    height: auto;
+    padding-top: 10px;
+    padding-left: 20px;
+    font-size: 18px;
+    color: red;
+    border: 1px solid #C7CEB2;
+}
+
+.sUserBox {
+    width: 750px;
+    height: auto;
+    margin-left: auto;
+    margin-right: auto;
+    overflow: hidden;
+}
+
+.UserBoxPhoto {
+    width: 100px;
+    height: 100px;
+    margin-left: 50px;
+    float: left;
+    border: 1px solid #C7CEB2;
+    background-color: #FFF;
+}
+
+    .UserBoxPhoto .BackPhoto {
+        width: 88px;
+        height: 88px;
+        margin: 5px;
+        background-image: url('../../images/Tribune/web/defaultPhoto.jpg');
+        background-size: contain;
+    }
+
+.UserBoxInfo {
+    width: 535px;
+    height: 100px;
+    margin-right: 50px;
+    float: right;
+}
+
+    .UserBoxInfo .InfoName {
+        width: 100%;
+        height: 30px;
+        margin-top: 10px;
+        padding-top: 3px;
+        padding-left: 15px;
+        font-size: 16px;
+        border-bottom: 1px dashed #C7CEB2;
+    }
+
+    .UserBoxInfo .InfoMess {
+        width: 100%;
+        height: 20px;
+        margin-top: 5px;
+        padding-left: 15px;
+    }
+
+    .UserBoxInfo .InfoEmail {
+        width: 100%;
+        height: 20px;
+        margin-top: 5px;
+        padding-left: 15px;
+    }
+
+.sPostBox {
+    width: 750px;
+    height: auto;
+    margin-left: auto;
+    margin-right: auto;
+    overflow: hidden;
+}
+
+.PostBoxTitle {
+    font-size: 18px;
+    width: 100%;
+    height: 30px;
+    padding-top: 1px;
+    padding-left: 15px;
+    margin-top: 5px;
+    margin-left: auto;
+    margin-right: auto;
+    border-bottom: 1px dashed #C7CEB2;
+}
+
+.PostBoxInfo {
+    width: 100%;
+    height: 20px;
+    font-size: 12px;
+}
+
+    .PostBoxInfo .Infouser {
+        width: 150px;
+        height: 20px;
+        padding-top: 2px;
+        text-align: center;
+        float: right;
+    }
+
+    .PostBoxInfo .Infotime {
+        width: 150px;
+        height: 20px;
+        padding-top: 2px;
+        text-align: center;
+        float: right;
+    }
+
+.sCommBox {
+    width: 750px;
+    height: auto;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 25px;
+    overflow: hidden;
+}
+
+    .sCommBox > p {
+        margin: 0px;
+    }
+
+.Comtitlebox {
+    width: 100%;
+    height: 25px;
+    padding-top: 2px;
+    padding-left: 50px;
+    border-bottom: 1px dashed #C7CEB2;
+}
+
+.CommInfo {
+    width: 100%;
+    height: auto;
+    min-height: 50px;
+    padding: 5px;
+    font-size: 18px;
+}
+
+.CommBoxInfo {
+    width: 100%;
+    height: 25px;
+    border-top: 1px dashed #C7CEB2;
+}
+
+    .CommBoxInfo .Infousercom {
+        width: 150px;
+        height: 25px;
+        padding-top: 2px;
+        text-align: center;
+        float: right;
+    }
+
+    .CommBoxInfo .Infotimecom {
+        width: 150px;
+        height: 25px;
+        padding-top: 2px;
+        text-align: center;
+        float: right;
+    }
+
+.sRelyBox {
+    width: 750px;
+    height: auto;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 25px;
+    overflow: hidden;
+}
+
+.ReplyInfo {
+    width: 100%;
+    height: auto;
+    min-height: 50px;
+    padding-top: 15px;
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-bottom: 5px;
+    font-size: 18px;
+}
+/*选项卡结束*/

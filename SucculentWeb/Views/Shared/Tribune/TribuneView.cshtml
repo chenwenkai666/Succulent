@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@using BLL;
+@using Model;
+<!DOCTYPE html>
 
 <html>
 <head>
@@ -16,23 +18,14 @@
             <div id="header-a">
                 <!-- 顶部搜索框 -->
                 <div id="header-a-left">
-                    @using (Html.BeginForm("SearchPost", "Tribune" , FormMethod.Post, new { id = "search" }))
+                    @using (Html.BeginForm("SearchPost", "Tribune", FormMethod.Post, new { id = "search" }))
                     {
                         <div id="header-a-left-search" class="input-group input-group-sm">
                             <input type="text" name="searchinfo" class="form-control" placeholder="在本论坛搜点什么吧">
                             <span class="input-group-btn">
-                                @if (Session["UserID"] != null)
-                                {
-                                    <button class="btn btn-default" type="submit">
-                                        <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
-                                    </button>
-                                }
-                                else
-                                {
-                                    <button class="btn btn-default" type="button" onclick="alert(' 内容为空 ')" >
-                                        <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
-                                    </button>
-                                }
+                                <button class="btn btn-default" type="submit">
+                                    <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                                </button>
                             </span>
                         </div>
                     }
@@ -50,7 +43,12 @@
                     {
                         <div id="UserBox">
                             <div id="boxphoto">
-                                @*用户头像*@
+                                @{ PostsManager PostM = new PostsManager();}
+                                @{ IEnumerable<Users> users = PostM.SelectUserInfo(Session["UserName"].ToString()); }
+                                @foreach (var A in users)
+                                {
+                                    <img src="@A.Photo" width="28" height="28" />
+                                }
                             </div>
                             <div id="boxname">
                                 <a href="">@Session["UserName"]</a>

@@ -1,0 +1,165 @@
+﻿.Main{
+    width:1190px;
+    margin:20px auto;
+
+}
+.Main .Top{
+    width:100%;
+    height:40px;
+    border-bottom:2px solid #c9c9c9;
+}
+.Top .title{
+    width:100px;
+    height:38px;
+    line-height:38px;
+    font-size:20px;
+    float:left;
+    border-bottom:2px solid #C40000;
+}
+.Top .removeAll{
+    width:100px;
+    height:38px;
+    line-height:38px;
+    float:left;
+    font-size:12px;
+    margin-left:990px;
+    margin-bottom:0px;
+    text-align:center;
+}
+.Top .removeAll a{
+    height:15px;
+    top:20px;
+    cursor:pointer;
+}
+.Top .removeAll a:hover{
+    color:#339933;
+}
+.Main .biaotou{
+    width:100%;
+    height:40px;
+    background-color:#f5f0f0;
+    border:1px solid #c9c9c9;
+    font-size:15px;
+    color:#000;
+    font-family:'Microsoft Himalaya';
+    line-height:40px;
+    margin-top:20px;
+}
+.biaotou ul{
+    width:100%;
+    height:100%;
+}
+.biaotou ul  li{
+    float:left;
+    width:17.5%;
+    text-align:center;
+}
+.biaotou ul .baobei{
+    width:30%;
+}
+
+.Main .content{
+    width:100%;
+    height:140px;
+    border:1px solid #c9c9c9;
+    margin-top:20px;
+}
+.Main .content .first-tr
+{
+    width:1190px;
+    height:30px;
+   background-color:#f5f0f0;
+}
+.Main .content .first-tr .time{
+    width:40%;
+    font-size:15px;
+    text-align:center;
+    float:left;
+}
+.Main .content .first-tr .shopname{
+    width:30%;
+    font-size:15px;
+    text-align:center;
+     float:left;
+}
+.Main .content .first-tr .shanchu{
+    width:30%;
+    text-align:right;
+    background-color:red;
+     float:left;
+}
+.Main t.content .first-tr .shanchu img{
+    width:20px;
+    height:20px;
+    background-size:cover;
+    cursor:pointer;
+    margin-right:50px;
+}
+.Main .content .second-tr{
+    width:100%;
+    height:110px;
+}
+.Main .content .second-tr .img-name{
+    width:30%;
+    height:110px;
+    float:left;
+}
+.Main .content .second-tr .img-name img{
+    margin-top:5px;
+    width:100px;
+    height:100px;
+    background-size:cover;
+    margin-left:20px;
+    float:left;
+    cursor:pointer;   
+    /*margin-top:20px;*/
+}
+.Main .content .second-tr .img-name .goodname{
+    width:220px;
+    margin-top:5px;
+    height:100px;
+    line-height:100px;
+    text-align:center;
+    float:left;
+}
+.Main .content .second-tr .img-name .goodname a{
+    cursor:pointer;
+}
+.Main .content .second-tr .img-name .goodname a:hover{
+    color:#339933;
+}
+.Main .content .second-tr .price{
+    width:17.5%;
+    height:110px;
+    line-height:110px;
+    float:left;
+    text-align:center;
+}
+.Main .content .second-tr .amount{
+    width:17.5%;
+    height:110px;
+    line-height:110px;
+    float:left;
+    text-align:center;
+}
+.Main .content .second-tr .zongjia{
+    width:17.5%;
+    height:110px;
+    line-height:110px;
+    float:left;
+    text-align:center;
+    font-weight:bold;
+}
+.Main .content .second-tr .control{
+   width:17.5%;
+    height:110px;
+    line-height:110px;
+    float:left;
+    text-align:center;
+}
+.Main .content .second-tr .control img{
+    width:30px;
+    height:30px;
+    cursor:pointer;
+    background-size:cover;
+}

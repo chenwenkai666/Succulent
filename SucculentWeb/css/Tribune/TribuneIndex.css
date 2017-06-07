@@ -19,14 +19,15 @@
     float: right;
     /*background-color:red;*/
 }
+
 .topA-box {
-    width:125px;
-    height:100px;
-    float:left;
+    width: 125px;
+    height: 100px;
+    float: left;
     /*border:1px solid #199475;*/
     line-height: 95px;
     text-align: center;
-    font-size:17px;
+    font-size: 17px;
 }
 /*顶部结束*/
 
@@ -59,7 +60,7 @@
     height: 268px;
     padding: 10px;
     float: left;
-    border-right:1px solid #C7CEB2;
+    border-right: 1px solid #C7CEB2;
 }
 
 #A1-right {
@@ -113,14 +114,14 @@
 
     .tabox .bd {
         height: 208px;
-        border-left:1px solid #C7CEB2;
-        border-right:1px solid #C7CEB2;
-        border-bottom:1px solid #C7CEB2;
+        border-left: 1px solid #C7CEB2;
+        border-right: 1px solid #C7CEB2;
+        border-bottom: 1px solid #C7CEB2;
     }
 
     .tabox .lh {
-        min-height:208px;
-        padding:10px 0;
+        min-height: 208px;
+        padding: 10px 0;
         overflow: hidden;
         /*border:1px solid #C7CEB2;*/
     }

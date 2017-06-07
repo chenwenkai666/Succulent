@@ -1,0 +1,143 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutAdminManagement.cshtml";
+}
+@section head{
+<link href="~/Content/amazeui.min.css" rel="stylesheet" />
+<link href="~/Content/AdminManagement/Index.css" rel="stylesheet" />
+}
+<div class="IndexMain">
+    <section class="am-panel am-panel-success">
+        <header class="am-panel-hd">
+            <h3 class="am-panel-title">系统信息</h3>
+        </header>
+        <div class="am-panel-bd">
+            <table class="am-table am-table-bordered am-table-striped">
+                <thead>
+                    <tr>
+                        <th>系统</th>
+                        <th>值</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>当前SessionID</td>
+                        <td>@Session.Contents.SessionID</td>
+                    </tr>
+                    <tr>
+                        <td>当前Session数量</td>
+                        <td>@Session.Contents.Count.ToString()</td>
+                    </tr>
+                    <tr>
+                        <td>本文件所在文件夹</td>
+                        <td>@Request.PhysicalApplicationPath</td>
+                    </tr>
+                    <tr>
+                        <td>当前程序占用内存</td>
+                        <td>@{string gc = ((Double)GC.GetTotalMemory(false) / 1048576).ToString("N2") + "M"; } @gc</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+    <section class="am-panel am-panel-primary">
+        <header class="am-panel-hd">
+            <h3 class="am-panel-title">客户端信息</h3>
+        </header>
+        <div class="am-panel-bd">
+            <table class="am-table am-table-bordered am-table-striped">
+                <thead>
+                    <tr>
+                        <th>客户端</th>
+                        <th>值</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>当前客户端计算机名</td>
+                        <td>@System.Environment.MachineName</td>
+                    </tr>
+                    <tr>
+                        <td>当前电脑所属网域</td>
+                        <td>@System.Environment.UserDomainName</td>
+                    </tr>
+                    <tr>
+                        <td>当前电脑用户</td>
+                        <td>@System.Environment.UserName</td>
+                    </tr>
+                    <tr>
+                        <td>浏览器类型</td>
+                        <td>@Request.Browser.Browser</td>
+                    </tr>
+                    <tr>
+                        <td>浏览器标识</td>
+                        <td>@Request.Browser.Id</td>
+                    </tr>
+                    <tr>
+                        <td>浏览器版本号</td>
+                        <td>@Request.Browser.Version</td>
+                    </tr>
+                    <tr>
+                        <td>浏览器是不是测试版本</td>
+                        <td>@Request.Browser.Beta</td>
+                    </tr>
+                    <tr>
+                        <td>客户端的操作系统</td>
+                        <td>@Request.Browser.Platform</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <section class="am-panel am-panel-warning">
+        <header class="am-panel-hd">
+            <h3 class="am-panel-title">服务端信息</h3>
+        </header>
+        <div class="am-panel-bd">
+            <table class="am-table am-table-bordered am-table-striped">
+                <thead>
+                    <tr>
+                        <th>服务端</th>
+                        <th>值</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>服务器IIS版本</td>
+                        <td>@Request.ServerVariables["Server_SoftWare"].ToString()</td>
+                    </tr>
+                    <tr>
+                        <td>服务器操作系统</td>
+                        <td>@Environment.OSVersion.ToString()</td>
+                    </tr>
+                    <tr>
+                        <td>服务器上次启动到现在已运行时间</td>
+                        <td>@{string servertime = ((Environment.TickCount / 0x3e8) / 60).ToString() + "分钟";}@servertime</td>
+                    </tr>
+                    <tr>
+                        <td>服务器域名</td>
+                        <td>@Request.ServerVariables["SERVER_NAME"].ToString()</td>
+                    </tr>
+                    <tr>
+                        <td>服务器端口</td>
+                        <td>@Request.ServerVariables["Server_Port"].ToString()</td>
+                    </tr>
+                    <tr>
+                        <td>服务器当前时间</td>
+                        <td>@DateTime.Now.ToString()</td>
+                    </tr>
+                    <tr>
+                        <td>.NET Framework 版本</td>
+                        <td>@string.Concat(new object[] { Environment.Version.Major, ".", Environment.Version.Minor, Environment.Version.Build, ".", Environment.Version.Revision })</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+
+</div>
+
+

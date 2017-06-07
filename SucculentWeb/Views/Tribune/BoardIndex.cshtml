@@ -1,6 +1,7 @@
 ﻿
-@model SucculentWeb.ViewModels.TribuneBoardVM
-
+@model SucculentWeb.ViewModels.TribuneVM.TribuneBoardVM
+@using BLL;
+@using Model;
 @{
     ViewBag.Title = "BoardIndex";
     Layout = "~/Views/Shared/Tribune/TribuneView.cshtml";
@@ -34,7 +35,7 @@
         <div id="bodyer-right">
             <div id="RightBox">
                 <div id="RB-01">
-                    <a href=""> 多肉网 </a>
+                    <a href="@Url.Action("Index", "Index")"> 多肉网 </a>
                     <em>&rsaquo;</em>
                     <a href="@Url.Action("TribuneIndex", "Tribune")"> 论坛 </a>
                     <em>&rsaquo;</em>
@@ -53,6 +54,40 @@
                         主题:
                         <strong>@Model.PostsNumberAll</strong>
                     </span>
+                </div>
+                <div id="RB-04">
+                    @if (Session["UserID"] != null)
+                    {
+                        <div id="A4-PhotoBox">
+                            <div id="A4-UserPhoto">
+                                @{ PostsManager PostM = new PostsManager();}
+                                @{ IEnumerable<Users> users = PostM.SelectUserInfo(Session["UserName"].ToString()); }
+                                @foreach (var A in users)
+                                {
+                                    <img src="@A.Photo" width="108" height="108" />
+                                }
+                            </div>
+                        </div>
+                        <div id="A4-NameBox">
+                            @Session["UserName"]
+                        </div>
+                        <div id="A4-LevelBox">
+                            @foreach (var A in Model.Boardlevels)
+                            {
+                                <p>Lv.@A.LevelID&nbsp;@A.LevelName</p>
+                            }
+                        </div>
+                    }
+                    else
+                    {
+                        <div id="A4-PhotoBox">
+                            <div id="A4-UserPhoto">
+                            </div>
+                        </div>
+                        <div id="A4-LoginInfo">
+                            <button class="btn btn-block btn-xs btn-default" onclick="window.open('@Url.Action("Login", "User")')"> 登 录 </button>
+                        </div>
+                    }
                 </div>
                 <div id="RB-03">
                     @if (Session["UserID"] != null)

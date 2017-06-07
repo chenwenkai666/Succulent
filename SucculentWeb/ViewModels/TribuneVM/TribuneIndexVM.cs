@@ -5,7 +5,7 @@ using System.Web;
 using SucculentWeb.ViewModels;
 using Model;
 
-namespace SucculentWeb.ViewModels
+namespace SucculentWeb.ViewModels.TribuneVM
 {
     public class TribuneIndexVM
     {

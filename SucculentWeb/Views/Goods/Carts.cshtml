@@ -5,7 +5,12 @@
 }
 <link href="~/css/ShopCarts.css" rel="stylesheet" />
 <script src="~/js/demo.js"></script>
+@{ Html.RenderAction("Address","Goods");}
+
+<div class="biaoti2"><h2>购物车详情</h2></div>
 <div class="catbox">
+    @using (Html.BeginForm("JieSuan", "Goods", FormMethod.Post, new { id = "formid2" }))
+{
     <table id="cartTable">
         <thead>
             <tr>
@@ -14,7 +19,7 @@
                         <input class="check-all check" type="checkbox" />&nbsp;&nbsp;全选
                     </label>
                 </th>
-                <th>商品</th>           
+                <th>商品</th>
                 <th>单价</th>
                 <th>数量</th>
                 <th>小计</th>
@@ -22,30 +27,51 @@
             </tr>
         </thead>
         <tbody>
-            @foreach(var p in Model)
-            { 
-            <tr>
-                <td class="checkbox"><input class="check-one check" type="checkbox" /></td>
-                <td class="goods"><img src="@p.Goods.GoodsPhoto" alt="" /><span>@p.Goods.GoodsName</span></td>        
-                <td class="price">@p.Goods.Price</td>
-                <td class="count">
-                    <span class="reduce"></span>
-                    <input class="count-input" type="text" value="@p.Number" />
-                    <span class="add">+</span>
-                </td>
-                <td class="subtotal">@p.TotalAmount</td>
-                <td class="operation"><span class="delete">@Html.ActionLink("删除","Remove",new { goodid=@p.GoodsID})</span></td>
-            </tr>
-            }           
+              
+         @foreach (var p in Model)
+         {
+            
+                <tr>
+                    <td class="checkbox"><input class="check-one check" type="checkbox" name="checkBox" id="checkBox1" value=""  /></td>
+                    <td class="goods"><img src="@p.Goods.GoodsPhoto" alt="" /><span><a>@p.Goods.GoodsName</a></span></td>
+                    <td class="price">@p.Goods.Price</td>
+                    <td class="count">
+                        <span class="reduce">-</span>
+                        <input class="count-input" type="text" value="@p.Number" name="geshu" />
+                        
+                        <span class="add">+</span>
+                    </td>
+                    <td class="subtotal" >@p.TotalAmount </td>
+                    
+                    <td class="operation"><span class="delete">@Html.ActionLink("删除", "Remove", new { goodid = @p.GoodsID }, new { onclick = "return confirm('确认删除吗？')" })</span></td>
+                </tr>
+               
+                  @Html.Hidden("danjia",@p.Goods.Price)
+                   @Html.Hidden("goodsid",@p.GoodsID)
+                   @Html.Hidden("chekbox2","",new { @class="chekbox2"})
+                        @*<input type="hidden" id="jiage" name="danjia" value="@p.Goods.Price" />
+                        <input type="hidden" name="goodsid" value="@p.GoodsID" />*@
+              
+            
+               }
+            
+          
         </tbody>
     </table>
     <div class="foot" id="foot">
-        <label class="fl select-all"><input type="checkbox" class="check-all check" />&nbsp;&nbsp;全选</label>
-        <a class="fl delete" id="deleteAll" href="javascript:;">@Html.ActionLink("删除","RemoveALL",new { UserID=1})</a>
-        <div class="fr closing" onclick="getTotal();">结 算</div>
-        <input type="hidden" id="cartTotalPrice" />
-        <div class="fr total">合计：￥<span id="priceTotal">0.00</span></div>
-        <div class="fr selected" id="selected">已选商品<span id="selectedTotal">0</span>件<span class="arrow up">︽</span><span class="arrow down">︾</span></div>
+        <div class="con-box1">
+            <label class="fl select-all"><input type="checkbox" class="check-all check"  />&nbsp;&nbsp;全选</label>
+            <a class="fl delete" id="deleteAll" href="javascript:;">@Html.ActionLink("删除", "RemoveALL", new { UserID = Session["UserID"] }, new { onclick = "return confirm('确认全部删除吗？')" })</a>
+        </div>
+         @*@using (Html.BeginForm("JieSuan", "Goods", FormMethod.Post, new { id = "formid" })){*@
+            <div class="con-box">
+                <div class="fr closing" ><input  type="submit" id="subbtn" value="结算" class="Count_JieSuan" @*onclick="return confirm('确认结算吗？')"*@ /></div>
+                <input type="hidden" id="cartTotalPrice" />
+                <div class="fr total">合计：￥<span id="priceTotal">0.00</span></div>
+                <div class="fr selected" id="selected">已选商品<span id="selectedTotal">0</span>件<span class="arrow up">︽</span><span class="arrow down">︾</span></div>
+                <input type="hidden" value="" name="selectTotal" id="HiddenTotal" />
+            </div>
+          
         <div class="selected-view">
             <div id="selectedViewList" class="clearfix">
                 <div><img src="images/1.jpg"><span>取消选择</span></div>
@@ -53,7 +79,10 @@
             <span class="arrow">◆<span>◆</span></span>
         </div>
     </div>
+    }
 </div>
+
+
 
 
 

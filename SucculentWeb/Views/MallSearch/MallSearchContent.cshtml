@@ -1,0 +1,50 @@
+﻿@model PagedList.IPagedList<Model.Goods>
+@using PagedList.Mvc;
+@using PagedList;
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>MallSearch</title>
+</head>
+<body>
+    <div class="right-content">
+        <ul>
+            @foreach (var goods in Model)
+            {
+                <li>
+                    <div class="rigth-image">
+                        <a href="@Url.Action("GoodsDetail","Goods",new { goodid=goods.GoodsID})"><img src="@goods.GoodsPhoto" /></a>
+                    </div>
+                    <a style="width:100%;height:8%;margin-top:2%;text-align:center;text-decoration:none ;color:black;">￥@goods.Price</a><br />
+                    <a href="@Url.Action("GoodsDetail","Goods",new { goodid=goods.GoodsID})" style="width:100%;height:8%;margin-top:2%;text-align:center;text-decoration:none ;color:black;">@goods.GoodsName</a>
+                </li>
+
+            }
+        </ul>
+    </div>
+    <div class="fenye">
+        <nav aria-label="Page navigation" class="container">
+            <ul class="pagination ">
+                <li>
+                    @Html.PagedListPager(Model, page => Url.Action("MallSearchContent", "MallSearch", new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }),
+                    PagedListRenderOptions.EnableUnobtrusiveAjaxReplacing(
+       new AjaxOptions
+       {
+           HttpMethod = "GET",
+           InsertionMode = InsertionMode.Replace,
+           UpdateTargetId = "mallsearch"
+       }
+           )
+                   )
+                </li>
+            </ul>
+        </nav>
+    </div>
+</body>
+</html>

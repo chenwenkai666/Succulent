@@ -1,0 +1,129 @@
+
+.PriceFile  #information {
+    color: red;
+    font-size: 14px;
+  }
+  
+.PriceFile  .wrapper {
+    display: inline-block;
+    text-align:center;
+    width: 100%;
+    height: 100%;
+    vertical-align: top;
+    margin:0 auto;
+    cursor: pointer;
+    position: relative;
+    font-family: Tahoma, Arial;
+    -webkit-perspective: 40000px;
+       -moz-perspective: 40000px;
+        -ms-perspective: 40000px;
+         -o-perspective: 40000px;
+            perspective: 40000px;
+  }
+  
+ .PriceFile  .item {
+    height: 100%;
+    text-align:center;
+      -webkit-transform-style: preserve-3d;
+         -moz-transform-style: preserve-3d;
+          -ms-transform-style: preserve-3d;
+           -o-transform-style: preserve-3d;
+              transform-style: preserve-3d;
+      -webkit-transition: -webkit-transform .6s;
+         -moz-transition: -moz-transform .6s;
+          -ms-transition: -ms-transform .6s;
+           -o-transition: -o-transform .6s;
+              transition: transform .6s;
+  }
+  
+ .PriceFile .item:hover {
+      -webkit-transform: translateZ(-50px) rotateX(95deg);
+         -moz-transform: translateZ(-50px) rotateX(95deg);
+          -ms-transform: translateZ(-50px) rotateX(95deg);
+           -o-transform: translateZ(-50px) rotateX(95deg);
+              transform: translateZ(-50px) rotateX(95deg);
+    }
+    
+ .PriceFile .item:hover img {
+        box-shadow: none;
+        margin:0 auto;
+        text-align:center;
+        border-radius: 15px;
+      }
+      
+ .PriceFile .item:hover .information {
+        box-shadow: 0px 3px 8px rgba(0,0,0,0.3);
+        border-radius: 3px;
+      }
+
+ .PriceFile .item img {
+      display: block;
+      position: absolute;
+      top: 10px;
+      left:29%;
+      border-radius: 3px;
+      box-shadow: 0px 3px 8px rgba(0,0,0,0.3);
+      -webkit-transform: translateZ(50px);
+         -moz-transform: translateZ(50px);
+          -ms-transform: translateZ(50px);
+           -o-transform: translateZ(50px);
+              transform: translateZ(50px);
+      -webkit-transition: all .6s;
+         -moz-transition: all .6s;
+          -ms-transition: all .6s;
+           -o-transition: all .6s;
+              transition: all .6s;
+      
+    }
+    
+  .PriceFile .item .information {
+      display: block;
+      position: absolute;
+      top: 45%;
+      left:29%;
+      height: 60%;
+      width: 40%;
+      text-align: center;
+      border-radius: 15px;
+      padding: 10px;
+      font-size: 12px;
+      color:rgb(215,97,114);
+      text-shadow: 1px 1px 1px rgba(255,255,255,0.5);
+      box-shadow: none;
+      background: rgb(255,255,255);
+      background: -moz-linear-gradient(top,  rgba(236,241,244,1) 0%, rgba(255,255,255,1) 100%);
+      background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(236,241,244,1)), color-stop(100%,rgba(255,255,255,1)));
+      background: -webkit-linear-gradient(top,  rgba(236,241,244,1) 0%,rgba(255,255,255,1) 100%);
+      background: -o-linear-gradient(top,  rgba(236,241,244,1) 0%,rgba(255,255,255,1) 100%);
+      background: -ms-linear-gradient(top,  rgba(236,241,244,1) 0%,rgba(255,255,255,1) 100%);
+      background: linear-gradient(to bottom,  rgba(236,241,244,1) 0%,rgba(255,255,255,1) 100%);
+      filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ecf1f4', endColorstr='#becad9',GradientType=0 );
+      -webkit-transform: rotateX(-90deg) translateZ(50px);
+         -moz-transform: rotateX(-90deg) translateZ(50px);
+          -ms-transform: rotateX(-90deg) translateZ(50px);
+           -o-transform: rotateX(-90deg) translateZ(50px);
+              transform: rotateX(-90deg) translateZ(50px);
+      -webkit-transition: all .6s;
+         -moz-transition: all .6s;
+          -ms-transition: all .6s;
+           -o-transition: all .6s;
+              transition: all .6s;
+      
+    }
+    
+  .PriceFile .information strong {
+        display: block;
+        margin: .2em 0 .5em 0;
+        font-size: 20px;
+        font-family: "¡• È";
+      }
+ .PriceFile .information i{
+     text-align:right;
+     line-height:50px;
+     font-size:12px;
+     color:rebeccapurple;
+ }
+  .PriceFile .information b{
+      font-size:25px;
+      line-height:30px;
+  }

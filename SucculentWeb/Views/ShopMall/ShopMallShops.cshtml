@@ -6,6 +6,7 @@
 }
 
 <script type="text/javascript" src="/js/jquery-2.1.4.min.js"></script>
+<script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
 <script src="/js/jquery.animate-colors-min.js"></script>
 <link href="~/css/ShopMallShops.css" rel="stylesheet" />
 
@@ -205,5 +206,7 @@
         }
     </ul>
 </div>*@
-@{Html.RenderAction("ShopMallShopsContent", "ShopMall");}
+<div id="shopmallcontent">
+    @{Html.RenderAction("ShopMallShopsContent", "ShopMall");}
+</div>
 <script type="text/javascript" src="/js/xiaomi.js"></script>

@@ -13,7 +13,7 @@ namespace DAL
     {
         SucculentEntities db = new SucculentEntities();
 
-        public IEnumerable<Sections> GetSection03()    //获取前三个板块
+        public IEnumerable<Sections> GetSection03() //获取前三个板块
         {
             var data = (from p in db.Sections select p).OrderBy(p => p.SectionID).Take(3);
             return data;
@@ -21,6 +21,11 @@ namespace DAL
         public IEnumerable<Sections> GetSection06()   //获取后六个板块
         {
             var data = (from p in db.Sections select p).OrderBy(p => p.SectionID).Skip(3).Take(6);
+            return data;
+        }
+        public IEnumerable<Sections> GetSection33() //获取第三个板块
+        {
+            var data = (from p in db.Sections select p).OrderBy(p => p.SectionID).Skip(2).Take(1);
             return data;
         }
         public IEnumerable<Sections> GetSectionName(int boardID)  //获取板块名称
@@ -133,6 +138,38 @@ namespace DAL
                        select p;
             return data;
         }
+        public int GetPostComNum(int PostID)  //获取评论数量
+        {
+            int q = db.PostComments.Count(p => p.PostID == PostID);
+            return q;
+        }
+        public int SelectSectionID(string SectionName) //获取板块ID
+        {
+            int q = (from p in db.Sections
+                     where p.SectionName == SectionName
+                     select p.SectionID).FirstOrDefault();
+            return q;
+        }
+        public IEnumerable<Level> SelectUserLevel(int userid)  //搜索用户等级
+        {
+            int level = (from p in db.Pots
+                         where p.UserID == userid
+                         select p.LevelID).FirstOrDefault();
+            var lev = from b in db.Level
+                      where b.LevelID == level
+                      select b;
+            return lev;
+        }
+        public IEnumerable<Posts> SelectAllPosts()
+        {
+            return db.Posts.ToList();
+        }
+        public Users GetUserFlag(int userid)   //获取用户权限ID
+        {
+            Users data = (from p in db.Users
+                          where p.UserID == userid
+                          select p).FirstOrDefault();
+            return data;
+        }
     }
 }
-

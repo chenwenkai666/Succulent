@@ -1,0 +1,198 @@
+﻿@model IEnumerable<Model.Address>
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Address</title>
+    <link href="~/css/JieSuan.css" rel="stylesheet" />
+    <link href="~/css/loginDialog.css" rel="stylesheet" />
+    <script src="~/js/jquery-1.8.3.min.js"></script>
+    <script src="~/js/city2.js"></script>
+    <script src="~/js/citySelect2.js"></script>
+    <script src="~/js/demo.js"></script>
+</head>
+<body>
+    <div class="Address">
+        <div class="biaoti"><h2>选择收货地址</h2></div>
+        <div class="ZQ-Address">
+            <ul>
+
+                @foreach (var p in Model)
+                {
+                    <li>
+                       
+                            <div class="first-li"><div class="detail">@p.Province<b>@p.City</b><span>（@p.Users.UserName 收）</span></div><input type="checkbox" class="onlycheckbox" id="onlycheckbox" onclick="change(this)" /> </div>
+                            <div class="second-li">@p.AddressDetail</div>
+                            <div class="third-li"><a id="example" class="example"></a><a>@Html.ActionLink("删除", "RemoveAddress", new { AddressID = @p.AddressID }, new { onclick = "return confirm('确认删除吗？')" })</a></div>
+                            <input type="hidden" name="getAddressid" value="@p.AddressID" />
+                        
+                    </li>
+                }
+            </ul>
+        </div>
+        <div class="control"><a id="example2">新增收货地址</a></div>
+    </div>
+    @*@{ Html.RenderAction("EditAddress","Goods");}*@
+    <div id="LoginBox">
+        <div class="title">
+            <div class="xiugai">修改地址</div> <a href="javascript:void(0)" title="关闭窗口" class="close_btn" id="closeBtn">×</a>
+        </div>
+        <div id="city_4" class="xuanze">
+            <select class="prov" id="prov4" data-code="220000"></select>
+            <select class="city" id="city4" data-code="220100"></select>
+            <select class="dist" id="area4" data-code="220104"></select>
+        </div>
+        <div class="Detail">
+            <div class="xiangxi">详细地址</div>
+            <div class="box"><textarea cols="40" rows="2"></textarea></div>
+        </div>
+        <div class="moren">
+            <div class="dizhi"><span>是否默认地址：</span></div>
+            <div class="radio">
+                <input type="radio" value="1" name="xuanze" />是&nbsp;&nbsp; <input type="radio" value="2" name="xuanze" checked="checked" />否
+            </div>
+        </div>
+        <div class="row">
+            <a href="#" id="loginbtn">确认</a>
+        </div>
+    </div>
+
+    @using (Html.BeginForm("AddAddress", "Goods", FormMethod.Post))
+    { 
+    <div id="LoginBox2">
+        <div class="title2">
+            <div class="xiugai2">新增地址</div> <a href="javascript:void(0)" title="关闭窗口" class="close_btn2" id="closeBtn2">×</a>
+        </div>
+        <div id="city_5" class="xuanze2">
+            <select class="prov" id="prov5" name="prov"></select>
+            <select class="city" id="city5" name="city"></select>
+            <select class="dist" id="area5" ></select>
+        </div>
+
+        <div class="Detail2">
+            <div class="xiangxi2">详细地址</div>
+            <div class="box2"><textarea cols="40" rows="2" name="detailAddr"></textarea></div>
+        </div>
+        <div class="moren2">
+            <div class="dizhi2"><span>是否默认地址：</span></div>
+            <div class="radio2">
+                <input type="radio" value="1" name="xuanze" />是&nbsp;&nbsp; <input type="radio" value="2" name="xuanze" checked="checked" />否
+            </div>
+        </div>
+        <div class="row2">
+            @*<a href="#" id="loginbtn2">确认</a>*@
+            <input type="submit" id="loginbtn2" value="确认"/>
+        </div>
+    </div>
+    }
+    <script>
+
+			var selectVal = new CitySelect({
+				data   : data,
+				provId : "#prov4",
+				cityId : '#city4',
+				areaId : '#area4'
+			});
+			var selectVa2 = new CitySelect({
+			    data: data,
+			    provId: "#prov5",
+			    cityId: '#city5',
+			    areaId: '#area5',
+			    isSelect: false
+			});
+
+
+    </script>
+
+
+
+    <script type="text/javascript">
+	$(function ($) {
+	   // 弹出修改框    
+	    $("#example").hover(function () {
+			$(this).stop().animate({
+				opacity: '1'
+			}, 600);
+		}, function () {
+			$(this).stop().animate({
+				opacity: '0.6'
+			}, 1000);
+		}).on('click', function () {
+			$("body").append("<div id='mask'></div>");
+			$("#mask").addClass("mask").fadeIn("slow");
+			$("#LoginBox").fadeIn("slow");
+	    });
+
+		//
+		//按钮的透明度
+		$("#loginbtn").hover(function () {
+			$(this).stop().animate({
+				opacity: '1'
+			}, 600);
+		}, function () {
+			$(this).stop().animate({
+				opacity: '0.8'
+			}, 1000);
+		});
+		//关闭
+		$(".close_btn").hover(function () { $(this).css({ color: 'black' }) }, function () { $(this).css({ color: '#999' }) }).on('click', function () {
+			$("#LoginBox").fadeOut("fast");
+			$("#mask").css({ display: 'none' });
+		});
+	});
+
+
+	$(function ($) {
+	    //弹出新增地址框
+	    $("#example2").hover(function () {
+	        $(this).stop().animate({
+	            opacity: '1'
+	        }, 600);
+	    }, function () {
+	        $(this).stop().animate({
+	            opacity: '0.6'
+	        }, 1000);
+	    }).on('click', function () {
+	        $("body").append("<div id='mask'></div>");
+	        $("#mask").addClass("mask").fadeIn("slow");
+	        $("#LoginBox2").fadeIn("slow");
+	    });
+
+	    //
+	    //按钮的透明度
+	    $("#loginbtn2").hover(function () {
+	        $(this).stop().animate({
+	            opacity: '1'
+	        }, 600);
+	    }, function () {
+	        $(this).stop().animate({
+	            opacity: '0.8'
+	        }, 1000);
+	    });
+	    //关闭
+	    $(".close_btn2").hover(function () { $(this).css({ color: 'black' }) }, function () { $(this).css({ color: '#999' }) }).on('click', function () {
+	        $("#LoginBox2").fadeOut("fast");
+	        $("#mask").css({ display: 'none' });
+	    });
+	});
+
+    </script>
+
+    <script language="javascript" type="text/javascript">
+        function change(obj) {
+            var tr = obj.parentElement.parentElement;
+            if (obj.checked) {
+                tr.style.background = "url('../images/地址边框2.png')";
+            } else {
+                tr.style.background = "url('../images/地址边框.png')";
+            }
+        }
+
+    </script>
+</body>
+</html>

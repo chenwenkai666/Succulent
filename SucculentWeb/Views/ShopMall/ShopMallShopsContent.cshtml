@@ -1,6 +1,7 @@
 ﻿@model PagedList.IPagedList<Model.Shops>
 @using PagedList
 @using PagedList.Mvc
+@using BLL
 @{
     Layout = null;
 }
@@ -26,34 +27,42 @@
                         <div class="left-content-top">
                             <div class="shop-icon">
                                 <input type="hidden" name="shopid" value=ShopID/>
-                                <a href="@Url.Action("Shops","Goods",new {ShopID=p.ShopID})">  <img src="@p.ShopPhoto" /></a>
+                                <a href="@Url.Action("Shops", "Goods", new { ShopID = p.ShopID })">  <img src="@p.ShopPhoto" /></a>
                                 <input type="hidden" name="shopID" value=@p.ShopID />
                             </div>
                             <div class="shop-jianjie">
-                                <p class="shop-name"><a href="@Url.Action("Shops","Goods",new{ShopID=p.ShopID})">@p.ShopName</a></p>
+                                <p class="shop-name"><a href="@Url.Action("Shops", "Goods", new { ShopID = p.ShopID })">@p.ShopName</a></p>
                                 
-                                <p class="maijia">卖家：<a href="@Url.Action("Shops","Goods",new{ShopID=p.ShopID})">@p.Users.UserName</a></p>
+                                <p class="maijia">卖家：<a href="@Url.Action("Shops", "Goods", new { ShopID = p.ShopID })">@p.Users.UserName</a></p>
                                 <p class="zhuying">主营：<a>多肉植物、盆栽、工具、花盆、定制礼包...</a></p>
                             </div>
                         </div>
                         <div class="left-content-down">
-                            <p class="xiaoliang">销量<b>36333</b></p>
-                            @*<p class="shuliang">共<b>@Model.ShopGoodsCount</b>件宝贝</p>*@
-                            @{Html.RenderAction("ShopMallShopsCount", "ShopMall");}
+                            @{ 
+                                GoodsManager goodsmanager = new GoodsManager();
+                                var Salse = goodsmanager.SelectShopTime(p.ShopID).ToList();
+                                int Total = 0;
+                                for (int i = 0; i < Salse.Count(); i++)
+                                {
+                                    Total = Total + Salse[i].Sales;
+                                }
+                                int count= ShopManager.SelectShopGoodsCount(p.ShopID);
+                                }
+                            <p class="xiaoliang">销量<b>@Total</b></p>
+                            <p class="shuliang">共<b>@count </b>件宝贝</p>
                         </div>
                     </div>
-                    @*<div class="right-content">
+                    <div class="right-content">
                         <ul class="right-content-box">
-                            @foreach (var b in Model.ShopMall4Goods)
+                            @foreach (Model.Goods B in p.Goods.Where(c=>c.ShopID==p.ShopID).ToList().Take(4))
                             {
                                 <li>
-                                    <img src="@b.GoodsPhoto" />
-                                    <a>@b.GoodsName</a>
+                                    <a href="@Url.Action("GoodsDetail","Goods",new { goodid = B.GoodsID})"><img src="@B.GoodsPhoto" /></a> 
+                                    <a>@B.GoodsName</a>
                                 </li>
                             }
                         </ul>
-                    </div>*@
-                    @{Html.RenderAction("ShopMallShopsImage", "ShopMall");}
+                    </div>
                 </li>
             }
         </ul>
@@ -63,7 +72,16 @@
     </div>*@
     <div class="fenye" style="width:50%;margin-left:45%; height:50px;display:block;margin-top:20px; margin-bottom:20px;text-align:center;">
         <div id="flickrpager">
-            @Html.PagedListPager(Model, page => Url.Action("ShopMallShops", "ShopMall", new { page, good = Session["id"] }))
+            @Html.PagedListPager(Model, page => Url.Action("ShopMallShopsContent", "ShopMall", new { page }),
+            PagedListRenderOptions.EnableUnobtrusiveAjaxReplacing(
+       new AjaxOptions
+       {
+           HttpMethod = "GET",
+           InsertionMode = InsertionMode.Replace,
+           UpdateTargetId = "shopmallcontent"
+       }
+           )
+           )
         </div>
     </div>
 </body>

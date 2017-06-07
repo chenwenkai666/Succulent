@@ -5,7 +5,7 @@ using System.Web;
 using SucculentWeb.ViewModels;
 using Model;
 
-namespace SucculentWeb.ViewModels
+namespace SucculentWeb.ViewModels.TribuneVM
 {
     public class TribuneBoardVM
     {
@@ -13,5 +13,6 @@ namespace SucculentWeb.ViewModels
         public IEnumerable<Posts> Posts { get; set; }
         public int PostsNumberAll { get; set; }
         public int PostsNumberToday { get; set; }
+        public IEnumerable<Level> Boardlevels { get; set; }
     }
 }

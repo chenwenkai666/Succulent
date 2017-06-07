@@ -1,9 +1,13 @@
 ﻿
 @model SucculentWeb.ViewModels.TribuneVM.TribunePostVM
 @using BLL;
+@using Model;
+@using PagedList
+@using PagedList.Mvc
 @{
     ViewBag.Title = "PostsDetails";
     Layout = "~/Views/Shared/Tribune/TribuneView.cshtml";
+    PostsManager PostM = new PostsManager();
 }
 
 <script src="~/js/jquery-2.1.4.min.js"></script>
@@ -39,34 +43,25 @@
                 <input type="button" class="btn btn-sm btn-default" onClick="location.href='@Url.Action("BoardIndex", "Tribune", new { BoardID = int.Parse(Session["BoardID"].ToString()) })'" value="返回">
             </div>
         </div>
-        @foreach (var A in Model.Posts)
-        {
-            <div class="PostFloor">
-                <div class="PostIMG">
-                    <div class="IMG01">@A.Users.Photo</div>
-                    <div class="IMG02">@A.Users.UserName</div>
-                </div>
-                <div class="PostContent">
-                    <div class="Content01">
-                        @Html.Raw(@A.PostContent)
-                    </div>
-                    <div class="PostBottom">
-                        <div class="Bottomtime">@A.PublishTime</div>
-                        <div class="BottomReply">
-                            <button class="btn btn-xs btn-default">&nbsp;回复本层&nbsp;</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        }
         @{ string tempid; }
         @foreach (var A in Model.PostComment)
         {
             tempid = "dev" + A.PostCommentID;
             <div class="PostFloor">
                 <div class="PostIMG">
-                    <div class="IMG01">@A.Users.Photo</div>
+                    <div class="IMG01">
+                        <div class="IMG01A">
+                            <img src="@A.Users.Photo" width="118" height="118" />
+                        </div>
+                    </div>
                     <div class="IMG02">@A.Users.UserName</div>
+                    @{ IEnumerable<Level> lev = PostM.SelectUserLevel(A.UserID); }
+                    <div class="IMG03">
+                        @foreach (var E in lev)
+                        {
+                            <p>Lv.@E.LevelID&nbsp;@E.LevelName</p>
+                        }
+                    </div>
                 </div>
                 <div class="PostContent">
                     <div class="Content01">
@@ -75,7 +70,7 @@
                     <div class="PostBottom">
                         <div class="Bottomtime">@A.PostCommentTime</div>
                         <div class="BottomReply">
-                            @{ int ReplyNum = PostsManager.GetReplyComNum(A.PostCommentID);}
+                            @{ int ReplyNum = PostM.GetReplyComNum(A.PostCommentID);}
                             <button class="btn btn-xs btn-default" onclick="document.getElementById('@tempid').style.display = document.getElementById('@tempid').style.display == '' ? 'none' : ''">&nbsp;回复本层&nbsp;@ReplyNum&nbsp;</button>
                         </div>
                     </div>
@@ -83,7 +78,11 @@
                         @foreach (Model.ReplyPost B in A.ReplyPost.Where(C => C.PostCommentID == A.PostCommentID).ToList().AsReadOnly())
                         {
                             <div class="ReplyList">
-                                <div class="ReplyPhoto"></div>
+                                <div class="ReplyPhoto">
+                                    <div class="RePPP">
+                                        <img src="@B.Users.Photo" width="44" height="44" />
+                                    </div>
+                                </div>
                                 <div class="ReplyText">
                                     <div class="ReText01">@B.Users.UserName : @Html.Raw(@B.ReplyContent)</div>
                                     <div class="ReText02">@B.ReplyPostTime</div>
@@ -117,6 +116,9 @@
                 </div>
             </div>
                                 }
+        <div id="PagedListBox">
+            @Html.PagedListPager(Model.PostComment, page => Url.Action("PostsDetails", new { page, PostID = int.Parse(Session["PostID"].ToString()) }))
+        </div>
         <div id="PostComment">
             @using (Html.BeginForm("PostsDetails", "Tribune", FormMethod.Post, new { id = "CreateForm", enctype = "multipart/form-data" }))
             {

@@ -1,0 +1,162 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link type="image/x-icon" href="~/images/多肉项目Logo.png" rel="icon" />
+    @*<link href="~/Content/reset.css" rel="stylesheet" />*@
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/amazeui.min.css" rel="stylesheet" />
+    <link href="~/Content/AdminManagement/jquery-accordion-menu.css" rel="stylesheet" />
+    <link href="~/Content/AdminManagement/Layout.css" rel="stylesheet" />
+    @RenderSection("head",false)
+</head>
+<body>
+    <div class="ManagementHead">
+        <header class="am-topbar am-topbar-inverse am-topbar-success">
+            <h1 class="am-topbar-brand">
+                <a href="#" class="am-text-ir"><span>多肉网后台管理系统</span></a>
+            </h1>
+
+            <button class="am-topbar-btn am-topbar-toggle am-btn am-btn-sm am-btn-success am-show-sm-only" data-am-collapse="{target: '#doc-topbar-collapse'}"><span class="am-sr-only">导航切换</span> <span class="am-icon-bars"></span></button>
+
+            <div class="am-collapse am-topbar-collapse" id="doc-topbar-collapse">
+                <ul class="am-nav am-nav-pills am-topbar-nav">
+                    <li class="am-active"><a href="@Url.Action("Index","Index")">多肉网首页</a></li>
+                    <li class="am-dropdown" data-am-dropdown>
+                        <a class="am-dropdown-toggle" data-am-dropdown-toggle href="javascript:;">
+                            功能页面 <span class="am-icon-caret-down"></span>
+                        </a>
+                        <ul class="am-dropdown-content">
+                            <li><a href="@Url.Action("Succulent", "SucculentIndex")">多肉百科</a></li>
+                            <li class="am-divider"></li>
+                            <li><a href="@Url.Action("Index","SucculentActivity")">多肉活动</a></li>
+                            <li class="am-divider"></li>
+                            <li><a href="@Url.Action("ShopMallIndex","ShopMall")">多肉商城</a></li>
+                            <li class="am-divider"></li>
+                            <li><a href="@Url.Action("TribuneIndex", "Tribune")">多肉社区</a></li>
+                            <li class="am-divider"></li>
+                            <li><a href="@Url.Action("Index","UserCenter")">个人中心</a></li>
+                        </ul>
+                    </li>
+                </ul>
+
+                <div class="am-topbar-right">
+                    <div class="am-dropdown" data-am-dropdown="{boundary: '.am-topbar'}">
+                        <button class="am-btn am-btn-secondary am-topbar-btn am-btn-sm am-dropdown-toggle" data-am-dropdown-toggle>
+                        <img src="~/images/吴彦祖.jpg" width="20" height="20" /> <span class="am-icon-caret-down"></span>
+                        </button>
+                        <ul class="am-dropdown-content">
+                            @*<li><a href="#">注册</a></li>*@
+                            <li><a href="#" class="am-btn am-btn-danger"><i class="am-icon-sign-out"></i>   退出后台</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="am-topbar-right">
+                    <button class="am-btn am-btn-primary am-topbar-btn am-btn-sm">现在时间：@DateTime.Now</button>
+                </div>
+            </div>
+        </header>
+    </div>
+    <div class="LeftNav">
+        <div id="jquery-accordion-menu" class="jquery-accordion-menu red">
+            <div class="jquery-accordion-menu-header" id="form"></div>
+            <ul id="nav-list">
+                <li class="active"><a href="@Url.Action("Index","AdminManagement")"><i class="fa fa-home"></i>首页 </a></li>
+                <li>
+                    <a href="#"><i class="fa fa-file-image-o"></i>我的待办 </a><span class="jquery-accordion-menu-label">
+                        12
+                    </span>
+                </li>
+                <li>
+                   <a href="#"><i class="fa fa-glass"></i>用户管理 </a>
+                    <ul class="submenu">
+                        <li><a href="@Url.Action("Index","UsersManagement")">普通用户管理</a></li>
+                        <li><a href="@Url.Action("Index","ShopUsersManagement")">商家用户管理 </a></li>
+                        <li><a href="@Url.Action("Index","AdminUsersManagement")">网站管理员管理 </a></li>
+                    </ul>
+                </li>
+
+                <li>
+                    <a href="#"><i class="fa fa-cog"></i>活动管理 </a>
+                    <ul class="submenu">
+                        <li><a href="@Url.Action("Publish","SucculentActivity")" target="_blank">活动发布 </a></li>
+                        <li><a href="#">活动操作 </a></li>
+                        <li><a href="#">捐赠管理 </a></li>
+                        <li>
+                    </ul>
+                </li>
+                <li>
+                  <a href="#">商城管理 </a>
+                  <ul class="submenu">
+                    <li><a href="#">店铺管理 </a></li>
+                    <li><a href="#">商品管理 </a></li>
+                    <li><a href="#">评论管理 </a></li>
+                    <li><a href="#">回复管理 </a></li>
+                 </ul>
+                </li>
+            </ul>
+            <div class="jquery-accordion-menu-footer">
+                到底啦
+            </div>
+        </div>
+    </div>
+    <div class="Content">
+          @RenderBody()
+    </div>
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/amazeui.min.js"></script>
+    <script src="~/Scripts/AdminManagement/jquery-accordion-menu.js"></script>
+    <script type="text/javascript">
+jQuery(document).ready(function () {
+	jQuery("#jquery-accordion-menu").jqueryAccordionMenu();
+
+});
+
+$(function(){
+	//顶部导航切换
+    $("#nav-list li").click(function () {
+        $("#nav-list li.active").removeClass("active")
+        $(this).addClass("active");
+    });
+
+    $.expr[":"].Contains = function (a, i, m) {
+        return (a.textContent || a.innerText || "").toUpperCase().indexOf(m[3].toUpperCase()) >= 0;
+    };
+    function filterList(header, list) {
+        //@@header 头部元素
+        //@@list 无序列表
+        //创建一个搜素表单
+        var form = $("<form>").attr({
+            "class": "filterform",
+            action: "#"
+        }), input = $("<input>").attr({
+            "class": "filterinput",
+            type: "text",
+            placeholder:'快速查找...'
+        });
+        $(form).append(input).appendTo(header);
+        $(input).change(function () {
+            var filter = $(this).val();
+            if (filter) {
+                $matches = $(list).find("a:Contains(" + filter + ")").parent();
+                $("li", list).not($matches).slideUp();
+                $matches.slideDown();
+            } else {
+                $(list).find("li").slideDown();
+            }
+            return false;
+        }).keyup(function () {
+            $(this).change();
+        });
+    }
+    $(function () {
+        filterList($("#form"), $("#nav-list"));
+    });
+})
+    </script>
+    @RenderSection("foot",false)
+</body>
+</html>

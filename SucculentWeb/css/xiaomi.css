@@ -263,6 +263,19 @@ html table {
             #big_banner_wrap #banner_menu_wrap li .banner_menu_content .banner_menu_content_ul li span:hover {
               background: #ff6700;
               color: #ffffff; }
+            #big_banner_wrap #banner_menu_wrap li .banner_menu_content .banner_menu_content_ul li span a{
+                float: right;
+                font-size: 13px;
+              line-height: 24px;
+                width: 59px;
+              height: 25px;
+                text-align:center;
+                color:#FF6700;
+            }
+             #big_banner_wrap #banner_menu_wrap li .banner_menu_content .banner_menu_content_ul li span a:hover{
+                 background: #ff6700;
+              color: #ffffff; 
+             }
   #big_banner_wrap #big_banner_pic_wrap {
     width: 991px;
     height: 460px;

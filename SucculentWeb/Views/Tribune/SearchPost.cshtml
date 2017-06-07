@@ -1,33 +1,178 @@
 ﻿
 @model SucculentWeb.ViewModels.TribuneVM.TribuneSearchVM
-
+@using BLL;
+@using Model;
 @{
     ViewBag.Title = "SearchPost";
     Layout = "~/Views/Shared/Tribune/TribuneView.cshtml";
 }
 
-<h2>SearchPost</h2>
-<ul>
-    @foreach (var A in Model.infouser)
-    {
-        <li>@A.UserName</li>
-    }
-</ul>
-<ul>
-    @foreach (var A in Model.infopost)
-    {
-        <li>@A.PostTitle</li>
-    }
-</ul>
-<ul>
-    @foreach (var A in Model.infopostcom)
-    {
-        <li>@A.PostCommentContent</li>
-    }
-</ul>
-<ul>
-    @foreach (var A in Model.infopostrly)
-    {
-        <li>@A.ReplyContent</li>
-    }
-</ul>
+<script src="~/js/jquery-2.1.4.min.js"></script>
+<script src="~/js/Tribune/jquery.SuperSlide.js"></script>
+<link href="~/css/Tribune/TribuneSearch.css" rel="stylesheet" />
+
+<section id="bodyer">
+    <div id="SearchBodyer">
+        <div id="A1-message">
+            <span>以下是<a>“@Session["searchinfo"]”</a>的搜索结果</span>
+        </div>
+        <div id="A2-result">
+            <div class="tabox">
+                <div class="hd">
+                    <ul>
+                        <li class=" ">用户</li>
+                        <li class=" ">帖子</li>
+                        <li class=" ">评论</li>
+                        <li class="on">回复</li>
+                    </ul>
+                </div>
+                <div class="bd">
+                    <ul class="lh" style="display: none;">
+                        @if (Model.infouser.Count() == 0)
+                        {
+                            <li>
+                                <div class="ErrorMessage">
+                                    <p>很抱歉 &nbsp; 没有找到相关信息</p>
+                                </div>
+                            </li>
+                        }
+                        else
+                        {
+                            foreach (var A in Model.infouser)
+                            {
+                                <li>
+                                    <div class="sUserBox">
+                                        <div class="UserBoxPhoto">
+                                            <div class="BackPhoto">
+                                                <img src="@A.Photo" width="88" height="88" />
+                                            </div>
+                                        </div>
+                                        <div class="UserBoxInfo">
+                                            @{ PostsManager PostM = new PostsManager();}
+                                            @{ IEnumerable<Level> lev = PostM.SelectUserLevel(A.UserID); }
+                                            <div class="InfoName">
+                                                @foreach (var E in lev)
+                                                {
+                                                    <p>Lv.@E.LevelID&nbsp;<a href="#">@A.UserName</a></p>
+                                                }
+                                            </div>
+                                            <div class="InfoMess">
+                                                <p>这个人很懒......什么也没留下</p>
+                                            </div>
+                                            <div class="InfoEmail">
+                                                <p>@A.Email</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                            }
+                        }
+                    </ul>
+                    <ul class="lh" style="display: none;">
+                        @if (Model.infopost.Count() == 0)
+                        {
+                            <li>
+                                <div class="ErrorMessage">
+                                    <p>很抱歉 &nbsp; 没有找到相关信息</p>
+                                </div>
+                            </li>
+                        }
+                        else
+                        {
+                            foreach (var A in Model.infopost)
+                            {
+                                <li>
+                                    <div class="sPostBox">
+                                        <div class="PostBoxTitle">
+                                            <p><a href="@Url.Action("PostsDetails", "Tribune",new { PostID = A.PostID })">@A.PostTitle</a></p>
+                                        </div>
+                                        <div class="PostBoxInfo">
+                                            <div class="Infouser">
+                                                <p>@A.Users.UserName</p>
+                                            </div>
+                                            <div class="Infotime">
+                                                <p>@A.PublishTime</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                            }
+                        }
+                    </ul>
+                    <ul class="lh" style="display: none;">
+                        @if (Model.infopostcom.Count() == 0)
+                        {
+                            <li>
+                                <div class="ErrorMessage">
+                                    <p>很抱歉 &nbsp; 没有找到相关信息</p>
+                                </div>
+                            </li>
+                        }
+                        else
+                        {
+                            foreach (var A in Model.infopostcom)
+                            {
+                                <li>
+                                    <div class="sCommBox">
+                                        <div class="Comtitlebox">
+                                            <p><a href="@Url.Action("PostsDetails", "Tribune",new { PostID = A.Posts.PostID })">@A.Posts.PostTitle</a></p>
+                                        </div>
+                                        <div class="CommInfo">
+                                            <p>@Html.Raw(A.PostCommentContent)</p>
+                                        </div>
+                                        <div class="CommBoxInfo">
+                                            <div class="Infousercom">
+                                                <p>@A.Users.UserName</p>
+                                            </div>
+                                            <div class="Infotimecom">
+                                                <p>@A.PostCommentTime</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                            }
+                        }
+                    </ul>
+                    <ul class="lh" style="display: none;">
+                        @if (Model.infopostrly.Count() == 0)
+                        {
+                            <li>
+                                <div class="ErrorMessage">
+                                    <p>很抱歉 &nbsp; 没有找到相关信息</p>
+                                </div>
+                            </li>
+                        }
+                        else
+                        {
+                            foreach (var A in Model.infopostrly)
+                            {
+                                <li>
+                                    <div class="sRelyBox">
+                                        <div class="Comtitlebox">
+                                            <p><a href="@Url.Action("PostsDetails", "Tribune",new { PostID = A.PostComments.Posts.PostID })">@A.PostComments.Posts.PostTitle</a></p>
+                                        </div>
+                                        <div class="ReplyInfo">
+                                            <p>@Html.Raw(A.ReplyContent)</p>
+                                        </div>
+                                        <div class="CommBoxInfo">
+                                            <div class="Infousercom">
+                                                <p>@A.Users.UserName</p>
+                                            </div>
+                                            <div class="Infotimecom">
+                                                <p>@A.ReplyPostTime</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                            }
+                        }
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    jQuery(".tabox").slide({ delayTime: 0 });
+</script>

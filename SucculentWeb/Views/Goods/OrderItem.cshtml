@@ -1,0 +1,41 @@
+﻿@model IEnumerable<Model.OrderItems>
+@{
+    ViewBag.Title = "OrderItem";
+    Layout = "~/Views/Shared/ShopMall.cshtml";
+}
+<link href="~/css/OrderItem.css" rel="stylesheet" />
+<div class="Main">
+    <div class="Top">
+        <div class="title">所有订单</div>
+        <div class="removeAll"><a href="@Url.Action("RemoveAllOrderItems","Goods")" onclick="return confirm('你确定要删除所有订单吗？')">删除所有订单</a></div>
+    </div>
+    
+        <div class="biaotou">
+            <ul>
+                <li class="baobei">宝贝</li>
+                <li>单价</li>
+                <li>数量</li>
+                <li>总价</li>
+                <li>操作</li>
+            </ul>
+        </div>   
+    @foreach(var p in Model)
+    {
+    <div class="content">
+            <ul class="first-tr">
+                <li class="time">@p.Orders.OrderTime</li>
+                <li class="shopname">@p.Goods.Shops.ShopName</li>
+            </ul>
+            <ul class="second-tr">
+                <li class="img-name">
+                    <div class="image"><img src="@p.Goods.GoodsPhoto" /></div> 
+                    <div class="goodname"><a>@p.Goods.GoodsName</a></div>
+                </li>
+                <li class="price">￥@p.UnitPrice</li>
+                <li class="amount">@p.Number 件 </li>
+                <li class="zongjia"> ￥@p.TotalAmount</li>
+                <li class="control"><a href="@Url.Action("RemoveOrderItem","Goods",new { orderitemid=@p.OrderItemsID} )"><img id="shanchu" onclick="return confirm('你确定要删除吗？')" src="~/images/删除.png" /></a></li>
+            </ul>
+    </div>
+    }
+</div>

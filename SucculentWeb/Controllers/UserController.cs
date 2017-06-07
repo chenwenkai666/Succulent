@@ -5,9 +5,11 @@ using System.Web;
 using System.Web.Mvc;
 using Model;
 using BLL;
+using SucculentWeb.Attributes;
 
 namespace SucculentWeb.Controllers
 {
+    [IsLogIn(IsCheck = false)]
     public class UserController : Controller
     {
         UsersManager usermanager = new UsersManager();
@@ -23,7 +25,7 @@ namespace SucculentWeb.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult Login(Users user)
+        public ActionResult Login(Users user,string returnUrl)
         {
             int u = usermanager.Login(user);
             if (u > 0)
@@ -31,7 +33,14 @@ namespace SucculentWeb.Controllers
                 Session["UserName"] = user.UserName;
                 Users users = usermanager.GetUserByName(Session["UserName"].ToString());
                 Session["UserID"] = users.UserID;
-                return Redirect(Url.Action("Index", "Index"));
+                if (returnUrl != null)
+                {
+                    return Redirect(returnUrl);
+                }
+                else
+                {
+                    return Redirect(Url.Action("Index", "Index"));
+                }
             }
             else
             {

@@ -15,52 +15,54 @@ namespace SucculentWeb.Controllers
     public class ShopMallController : Controller
     {
         // GET: ShopMall
-        //SucculentEntities db = new SucculentEntities();
+        SucculentEntities db = new SucculentEntities();
+        GoodsManager goodsmanager = new GoodsManager();
+        ShopManager shopmanager = new ShopManager();
         public ActionResult ShopMallIndex()
         {
             //var goods = db.Goods.Take(6);
             SucculentWeb.ViewModels.ShopMallIndexViewModels ShopMallIndex = new ShopMallIndexViewModels();
-            ShopMallIndex.Succulent = GoodsManager.SelectTopSucculent();
-            ShopMallIndex.Huapen = GoodsManager.SelectTopHuapen();
-            ShopMallIndex.Zhiliao = GoodsManager.SelectTopZhiliao();
-            ShopMallIndex.Gongju = GoodsManager.SelectTopGongju();
-            ShopMallIndex.Penzai = GoodsManager.SelectTopPenzai();
-            ShopMallIndex.Dingzhi = GoodsManager.SelectTopDingzhi();
-            ShopMallIndex.HotSearch = GoodsManager.SelectHotSearch();
-            ShopMallIndex.Shops = ShopManager.SelectTopShops();
-            ShopMallIndex.NewGoods = GoodsManager.SelectTopTen();
-            ShopMallIndex.HotGoods = GoodsManager.SelectTopHot();
-            ShopMallIndex.hotGoods = GoodsManager.Select9to14();
+            ShopMallIndex.Succulent = goodsmanager.SelectTopSucculent();
+            ShopMallIndex.Huapen = goodsmanager.SelectTopHuapen();
+            ShopMallIndex.Zhiliao = goodsmanager.SelectTopZhiliao();
+            ShopMallIndex.Gongju = goodsmanager.SelectTopGongju();
+            ShopMallIndex.Penzai = goodsmanager.SelectTopPenzai();
+            ShopMallIndex.Dingzhi = goodsmanager.SelectTopDingzhi();
+            ShopMallIndex.HotSearch = goodsmanager.SelectHotSearch();
+            ShopMallIndex.Shops = shopmanager.SelectTopShops();
+            ShopMallIndex.NewGoods = goodsmanager.SelectTopTen();
+            ShopMallIndex.HotGoods = goodsmanager.SelectTopHot();
+            ShopMallIndex.hotGoods = goodsmanager.Select9to14();
             return View(ShopMallIndex);
         }
         public ActionResult ShopMallClass(string good )
         {
             SucculentWeb.ViewModels.ShopMallIndexViewModels ShopMallIndex = new ShopMallIndexViewModels();
-            ShopMallIndex.Succulent = GoodsManager.SelectTopSucculent();
-            ShopMallIndex.Huapen = GoodsManager.SelectTopHuapen();
-            ShopMallIndex.Zhiliao = GoodsManager.SelectTopZhiliao();
-            ShopMallIndex.Gongju = GoodsManager.SelectTopGongju();
-            ShopMallIndex.Penzai = GoodsManager.SelectTopPenzai();
-            ShopMallIndex.Dingzhi = GoodsManager.SelectTopDingzhi();
-            ShopMallIndex.HotSearch = GoodsManager.SelectHotSearch();
-            ShopMallIndex.Shops = ShopManager.SelectTopShops();
+            ShopMallIndex.Succulent = goodsmanager.SelectTopSucculent();
+            ShopMallIndex.Huapen = goodsmanager.SelectTopHuapen();
+            ShopMallIndex.Zhiliao = goodsmanager.SelectTopZhiliao();
+            ShopMallIndex.Gongju = goodsmanager.SelectTopGongju();
+            ShopMallIndex.Penzai = goodsmanager.SelectTopPenzai();
+            ShopMallIndex.Dingzhi = goodsmanager.SelectTopDingzhi();
+            ShopMallIndex.HotSearch = goodsmanager.SelectHotSearch();
+            ShopMallIndex.Shops = shopmanager.SelectTopShops();
             return View(ShopMallIndex);
         }
         public ActionResult ShopMallShops()
         {
            
             SucculentWeb.ViewModels.ShopMallIndexViewModels ShopMallIndex = new ShopMallIndexViewModels();
-            ShopMallIndex.Succulent = GoodsManager.SelectTopSucculent();
-            ShopMallIndex.Huapen = GoodsManager.SelectTopHuapen();
-            ShopMallIndex.Zhiliao = GoodsManager.SelectTopZhiliao();
-            ShopMallIndex.Gongju = GoodsManager.SelectTopGongju();
-            ShopMallIndex.Penzai = GoodsManager.SelectTopPenzai();
-            ShopMallIndex.Dingzhi = GoodsManager.SelectTopDingzhi();
-            ShopMallIndex.HotSearch = GoodsManager.SelectHotSearch();
-            ShopMallIndex.Shops = ShopManager.SelectTopShops();
-            ShopMallIndex.ShopMallShops = ShopManager.SelectAllShops();
-            ShopMallIndex.ShopGoodsCount = ShopManager.SelectShopGoodsCount(2);
-            ShopMallIndex.ShopMall4Goods = GoodsManager.SelectShopMall4Goods(2);
+            ShopMallIndex.Succulent = goodsmanager.SelectTopSucculent();
+            ShopMallIndex.Huapen = goodsmanager.SelectTopHuapen();
+            ShopMallIndex.Zhiliao = goodsmanager.SelectTopZhiliao();
+            ShopMallIndex.Gongju = goodsmanager.SelectTopGongju();
+            ShopMallIndex.Penzai = goodsmanager.SelectTopPenzai();
+            ShopMallIndex.Dingzhi = goodsmanager.SelectTopDingzhi();
+            ShopMallIndex.HotSearch = goodsmanager.SelectHotSearch();
+            ShopMallIndex.Shops = shopmanager.SelectTopShops();
+            ShopMallIndex.ShopMallShops = shopmanager.SelectAllShops();
+            ShopMallIndex.ShopGoodsCount = shopmanager.SelectShopGoodsCount(2);
+            ShopMallIndex.ShopMall4Goods = goodsmanager.SelectShopMall4Goods(2);
             return View(ShopMallIndex);
         }
         public ActionResult ShopMallClassContent(int ? page,string good)
@@ -68,50 +70,92 @@ namespace SucculentWeb.Controllers
             Session["id"] = good;
             int pageSize = 15;
             int pageNumber = (page ?? 1);
+            IEnumerable<Goods> MallClass;
             switch (good)
             {
                 case "1":
-                    var MallClass = GoodsManager.SelectMallZhiwu();
-                    return View(MallClass.ToPagedList(pageNumber,pageSize));
+                     MallClass = goodsmanager.SelectMallZhiwu();
+                    //return View(MallClass.ToPagedList(pageNumber, pageSize));
+                    if (Request.IsAjaxRequest())
+                    {
+                        return PartialView("ShopMallClassContent", MallClass.ToPagedList(pageNumber, pageSize));
+                    }
+                    else
+                    {
+                        return View("ShopMallClassContent", MallClass.ToPagedList(pageNumber, pageSize));
+                    }
                 case "2":
-                    MallClass = GoodsManager.SelectMallHuaqi();
-                    return View(MallClass.ToPagedList(pageNumber, pageSize));
+                    MallClass= goodsmanager.SelectMallHuaqi();
 
+                    //return View(MallClass.ToPagedList(pageNumber, pageSize));
+                    if (Request.IsAjaxRequest())
+                    {
+                        return PartialView("ShopMallClassContent", MallClass.ToPagedList(pageNumber, pageSize));
+                    }
+                    else
+                    {
+                        return View("ShopMallClassContent", MallClass.ToPagedList(pageNumber, pageSize));
+                    }
                 case "3":
-                    MallClass = GoodsManager.SelectMallZhiliao();
-                    return View(MallClass.ToPagedList(pageNumber, pageSize));
+                    MallClass = goodsmanager.SelectMallZhiliao();
+                    //return View(MallClass.ToPagedList(pageNumber, pageSize));
+                    if (Request.IsAjaxRequest())
+                    {
+                        return PartialView("ShopMallClassContent", MallClass.ToPagedList(pageNumber, pageSize));
+                    }
+                    else
+                    {
+                        return View("ShopMallClassContent", MallClass.ToPagedList(pageNumber, pageSize));
+                    }
 
                 case "4":
-                    MallClass = GoodsManager.SelectMallGongju();
-                    return View(MallClass.ToPagedList(pageNumber, pageSize));
+                    MallClass = goodsmanager.SelectMallGongju();
+                    //return View(MallClass.ToPagedList(pageNumber, pageSize));
+                    if (Request.IsAjaxRequest())
+                    {
+                        return PartialView("ShopMallClassContent", MallClass.ToPagedList(pageNumber, pageSize));
+                    }
+                    else
+                    {
+                        return View("ShopMallClassContent", MallClass.ToPagedList(pageNumber, pageSize));
+                    }
 
                 case "5":
-                    MallClass = GoodsManager.SelectMallZuhe();
-                    return View(MallClass.ToPagedList(pageNumber, pageSize));
+                    MallClass = goodsmanager.SelectMallZuhe();
+                    //return View(MallClass.ToPagedList(pageNumber, pageSize));
+                    if (Request.IsAjaxRequest())
+                    {
+                        return PartialView("ShopMallClassContent", MallClass.ToPagedList(pageNumber, pageSize));
+                    }
+                    else
+                    {
+                        return View("ShopMallClassContent", MallClass.ToPagedList(pageNumber, pageSize));
+                    }
             }
             return Content("");
         }
-        public ActionResult ShopMallShopsContent(int ? page,FormCollection forcle)
+        public ActionResult ShopMallShopsContent(int ? page)
         {
-            int shopid = Convert.ToInt32( forcle["shopID"]);
-            //int shopid =Convert.ToInt32( Request.QueryString["shopID"]);
-            this.TempData["id"] = shopid;
+            //int shopid = Convert.ToInt32( forcle["shopID"]);
+            //int shopid = Convert.ToInt32(Request.QueryString["shopID"]);
+            //this.TempData["id"] = shopid;
             int pageSize = 5;
             int pageNumber = (page ?? 1);
-            var shop= ShopManager.SelectAllShops();
-            return View(shop.ToPagedList(pageNumber,pageSize));
+            var shop= shopmanager.SelectAllShops();
+            if(Request.IsAjaxRequest())
+            {
+                return PartialView("ShopMallShopsContent", shop.ToPagedList(pageNumber, pageSize));
+            }
+            else
+            {
+                return View("ShopMallShopsContent", shop.ToPagedList(pageNumber, pageSize));
+            }
+           
         }
-        public ActionResult ShopMallShopsCount()
+        public ActionResult ZhuXiao()
         {
-            int shopid =Convert.ToInt32( this.TempData["id"]);      
-            ViewData["count"]= ShopManager.SelectShopGoodsCount(2);
-            return View();
-        }
-        public ActionResult ShopMallShopsImage()
-        {
-            int shopid = Convert.ToInt32(this.TempData["id"]);
-            var good= GoodsManager.SelectShopMall4Goods(2);
-            return View(good);
+            Session["UserName"] = null;
+            return RedirectToAction("ShopMallIndex","ShopMall");
         }
     }
 }

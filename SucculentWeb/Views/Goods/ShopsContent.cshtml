@@ -1,0 +1,55 @@
+﻿@model PagedList.IPagedList<Model.Goods>
+@using PagedList.Mvc;
+@using PagedList;
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>ShopsContent</title>
+</head>
+<body>
+    <div class="main">
+        <hr style="width:100%;color:#f3f2f2;" />
+        <ul>
+            @foreach (var p in Model)
+            {
+                <li>
+                    <div class="image">
+                        <div class="hovereffect">
+                            <img src="@p.GoodsPhoto" />
+                            <div class="overlay">
+                                <a href="@Url.Action("GoodsDetail","Goods",new { goodid=@p.GoodsID})" class="info">点击购买</a>
+                            </div>
+                        </div>
+                    </div>
+                    <a><i style="font-size:16px;color:black;">￥@p.Price</i><span class="glyphicon glyphicon-thumbs-up">&nbsp;@p.LikeIt</span></a>
+                    <a href="@Url.Action("GoodsDetail","Goods",new {goodid=@p.GoodsID})">@p.GoodsName</a>
+                </li>
+            }
+        </ul>
+    </div>
+    <div class="fenye">
+        <nav aria-label="Page navigation" style="margin-top:0px;" class="container">
+            <ul class="pagination ">
+                <li>
+                    @Html.PagedListPager(Model, page => Url.Action("ShopsContent", "Goods", new { page, ShopID = Session["shopid"] }),
+            PagedListRenderOptions.EnableUnobtrusiveAjaxReplacing(
+       new AjaxOptions
+       {
+           HttpMethod = "POST",
+           InsertionMode = InsertionMode.Replace,
+           UpdateTargetId = "shopcontent"
+       }
+           ))
+                </li>
+            </ul>
+        </nav>
+    </div>
+    </div>
+</body>
+</html>

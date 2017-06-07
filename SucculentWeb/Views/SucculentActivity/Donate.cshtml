@@ -136,5 +136,15 @@
                 zeroModal.error(msg);
             }
         });
+
+        $('#DonoteTotal').blur(function () {
+            var num = $('#DonoteTotal').val();
+            if (num <= 0) {
+                $('#DonateSubmitBtn').attr('disabled',true);
+            }
+            else {
+                $('#DonateSubmitBtn').attr('disabled', false);
+            }
+        });
     </script>
 }

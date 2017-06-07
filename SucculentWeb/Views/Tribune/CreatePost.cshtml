@@ -1,5 +1,7 @@
 ﻿
-@model Model.Posts
+@model SucculentWeb.ViewModels.TribuneVM.TribuneCreateVM
+@using BLL;
+@using Model;
 @{
     ViewBag.Title = "CreatePost";
     Layout = "~/Views/Shared/Tribune/TribuneView.cshtml";
@@ -22,7 +24,7 @@
         toolbars: [['source', 'undo', 'redo', 'bold', 'italic', 'underline', 'strikethrough', 'superscript', 'subscript', 'date', 'time', 'link', 'unlink', 'fontfamily', 'fontsize', 'forecolor', 'simpleupload', 'emotion', 'scrawl', 'insertvideo', 'music', 'attachment', 'map', 'inserttable', 'help', 'justifyleft', 'justifyright', 'justifycenter', 'justifyjustify', ]]
     };
     var editor = new baidu.editor.ui.Editor(editorOption);
-    editor.render('PostContent');
+    editor.render('Posts_PostContent');
 </script>
 
 <!-- 主体 -->
@@ -35,7 +37,7 @@
             <div class="topA-box"></div>
             <div class="topA-box"></div>
             <div class="topA-box">
-                <input type="button" class="btn btn-sm btn-default" onClick="location.href='@Url.Action("BoardIndex", "Tribune", new { BoardID = int.Parse(Session["BoardID"].ToString()) })'" value="返回">
+                <input type="button" class="btn btn-block btn-warning" onClick="location.href='@Url.Action("BoardIndex", "Tribune", new { BoardID = int.Parse(Session["BoardID"].ToString()) })'" value="返回">
             </div>
         </div>
     </div>
@@ -47,28 +49,48 @@
         {
             <div id="A1">
                 <div id="A1-left">
-                    @Html.EditorFor(model => model.PostTitle, new { htmlAttributes = new { @class = "form-control", placeholder = " 帖子标题   不能超过二十四个字" } })
+                    @Html.EditorFor(Model => Model.Posts.PostTitle, new { htmlAttributes = new { @class = "form-control", placeholder = " 帖子标题   不能超过二十四个字" } })
                 </div>
                 <div id="A1-right">
-                    @*<div id="right-01">
-                        @Html.EditorFor(model => model.PostFlag, new { htmlAttributes = new { @class = "form-control", placeholder = "帖子标签 1-3" } })
-                    </div>*@
-                    <div id="right-02">
-                        @Html.EditorFor(model => model.SectionID, new { htmlAttributes = new { @class = "form-control", placeholder = "所属板块 4-9" } })
-                    </div>
+                    <select class="form-control text-center" id="selectdetailtype" name="selectdetailtype">
+                        @{ PostsManager userM = new PostsManager(); }
+                        @{ Users users = userM.GetUserFlag(Convert.ToInt32(Session["UserID"])); }
+                        @if (users.UserFlag != 0)
+                        {
+                            foreach (var B in Model.Sections06)
+                            {
+                                <option>@B.SectionName</option>
+                            }
+                            foreach (var c in Model.Sections33)
+                            {
+                                <option>@c.SectionName</option>
+                            }
+                        }
+                        else
+                        {
+                            foreach (var A in Model.Sections03)
+                            {
+                                <option>@A.SectionName</option>
+                            }
+                            foreach (var B in Model.Sections06)
+                            {
+                                <option>@B.SectionName</option>
+                            }
+                        }
+                    </select>
                 </div>
             </div>
             <div id="A1Message">
-                @Html.ValidationMessageFor(model => model.PostTitle, "", new { style = "color:red;" })
+                @Html.ValidationMessageFor(Model => Model.Posts.PostTitle, "", new { style = "color:red;" })
             </div>
             <div id="A2" class="text">
-                @Html.TextAreaFor(model => model.PostContent)
+                @Html.TextAreaFor(Model => Model.Posts.PostContent)
             </div>
             <div id="A2Message">
-                @Html.ValidationMessageFor(model => model.PostContent, "", new { style = "color:red;" })
+                @Html.ValidationMessageFor(Model => Model.Posts.PostContent, "", new { style = "color:red;" })
             </div>
             <div id="A3" class="text">
-                <input type="submit" value=" 发 帖 " class="btn btn-lg btn-block btn-success" />
+                <input type="submit" value=" 发 帖 " class="btn btn-block btn-success" />
             </div>
         }
     </div>

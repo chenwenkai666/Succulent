@@ -42,7 +42,7 @@
                 <div class="am-panel-bd">
                     @foreach (var item in Model.BaiKe)
                     {
-                        <a href="@Url.Action("Succulent_Details","Succulent", new { id=item.SucculentID,categoryid=item.SucculentCategory.SucculentCategoryID })">
+                        <a href="@Url.Action("Succulent_Details","Succulent", new { id=item.SucculentID,categoryid=item.SucculentCategory.SucculentCategoryID })" target="_blank">
                             <div class="Baike_Item">
                                 <div class="Baike_Img">
                                     <img src="@item.Photo" />
@@ -83,25 +83,28 @@
                     <h3 class="am-panel-title">多肉社区结果</h3>
                 </header>
                 <div class="am-panel-bd">
-                    <div class="Tribune_Item">
-                        <div class="Tribune_Img">
-                            <img src="~/images/头像.png" />
+                    @foreach (var item in Model.Posts)
+                    {
+                        <div class="Tribune_Item">
+                            <div class="Tribune_Img">
+                                @{
+                                    if (item.Users.Photo == null)
+                                    {
+                                        <img src="~/images/头像.png" />
+                                    }
+                                    else
+                                    {
+                                        <img src="@item.Users.Photo" />
+                                    }
+                                }
+                                
+                            </div>
+                            <div class="Tribune_Info">
+                                <h3>@item.PostTitle</h3>
+                                <p>@item.PostContent</p>
+                            </div>
                         </div>
-                        <div class="Tribune_Info">
-                            <h3>惜肉之人，不分贵贱、无关美丑，都是自己的宝。</h3>
-                            <p>本人入坑四年之久、肉肉曾经途过，仙去过，疼过！慢慢的觉得释然了，不是照顾的不好，而是太过关心疼爱给它太多溺爱画蛇添足了</p>
-                        </div>
-                    </div>
-
-                    <div class="Tribune_Item">
-                        <div class="Tribune_Img">
-                            <img src="~/images/头像.png" />
-                        </div>
-                        <div class="Tribune_Info">
-                            <h3>惜肉之人，不分贵贱、无关美丑，都是自己的宝。</h3>
-                            <p>本人入坑四年之久、肉肉曾经途过，仙去过，疼过！慢慢的觉得释然了，不是照顾的不好，而是太过关心疼爱给它太多溺爱画蛇添足了</p>
-                        </div>
-                    </div>
+                    }
                 </div>
             </section>
             <section class="am-panel am-panel-success">
