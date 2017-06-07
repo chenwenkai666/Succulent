@@ -10,5 +10,6 @@ namespace IDAL
     {
         void AddAdoptResult(AdoptResult adoptresult);
         IList<AdoptResult> GetAdoptResultByActID(int ActID);
+        int getAdoptUser(int userid);
     }
 }

@@ -11,5 +11,6 @@ namespace IDAL
     {
         IList<Adopt> GetAdoptListByActID(int ActID);
         bool InsertAdopt(Adopt adopt);
+        void updateAdoptTotal(int activityid);
     }
 }

@@ -1477,6 +1477,14 @@
     <Content Include="Views\SucculentIndex\CategoryContent.cshtml" />
     <Content Include="Views\UserCenter\UpdateInfo.cshtml" />
     <Content Include="Views\UserCenter\IndexPartial.cshtml" />
+    <Content Include="Views\MallSearch\MallSearchContent.cshtml" />
+    <Content Include="Views\Goods\ShopsContent.cshtml" />
+    <Content Include="Views\Goods\OrderItem.cshtml" />
+    <Content Include="Views\Goods\JieSuan.cshtml" />
+    <Content Include="Views\Goods\EditAddress.cshtml" />
+    <Content Include="Views\Goods\edit.cshtml" />
+    <Content Include="Views\Goods\AdoptDetail.cshtml" />
+    <Content Include="Views\Goods\Address.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
