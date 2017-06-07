@@ -23,6 +23,11 @@ namespace DAL
             var data = (from p in db.Sections select p).OrderBy(p => p.SectionID).Skip(3).Take(6);
             return data;
         }
+        public IEnumerable<Sections> GetSection33() //获取第三个板块
+        {
+            var data = (from p in db.Sections select p).OrderBy(p => p.SectionID).Skip(2).Take(1);
+            return data;
+        }
         public IEnumerable<Sections> GetSectionName(int boardID)  //获取板块名称
         {
             var data = from p in db.Sections
@@ -154,6 +159,17 @@ namespace DAL
                       where b.LevelID == level
                       select b;
             return lev;
+        }
+        public IEnumerable<Posts> SelectAllPosts()
+        {
+            return db.Posts.ToList();
+        }
+        public Users GetUserFlag(int userid)   //获取用户权限ID
+        {
+            Users data = (from p in db.Users
+                          where p.UserID == userid
+                          select p).FirstOrDefault();
+            return data;
         }
     }
 }

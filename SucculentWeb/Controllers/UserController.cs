@@ -12,6 +12,7 @@ namespace SucculentWeb.Controllers
     [IsLogIn(IsCheck = false)]
     public class UserController : Controller
     {
+        UsersManager usermanager = new UsersManager();
         // GET: User
         public ActionResult Index()
         {
@@ -26,11 +27,11 @@ namespace SucculentWeb.Controllers
         [HttpPost]
         public ActionResult Login(Users user,string returnUrl)
         {
-            int u = UsersManager.Login(user);
+            int u = usermanager.Login(user);
             if (u > 0)
             {
                 Session["UserName"] = user.UserName;
-                Users users = UsersManager.GetUserByName(Session["UserName"].ToString());
+                Users users = usermanager.GetUserByName(Session["UserName"].ToString());
                 Session["UserID"] = users.UserID;
                 if (returnUrl != null)
                 {
@@ -58,13 +59,13 @@ namespace SucculentWeb.Controllers
         {
             try
             {
-                var username = UsersManager.SelectUser(user.UserName);
+                var username = usermanager.SelectUser(user.UserName);
                 if (ModelState.IsValid && username != null)
                 {
                     string code = user.CheckCode;
                     if (code == Session["CheckCode"].ToString())
                     {
-                        UsersManager.InsertUser(user);
+                        usermanager.InsertUser(user);
                         return Content("<script>alert('注册成功！');window.open('" + Url.Content("~/User/Login") + "','_self');</script>");
                     }
                     else
@@ -108,7 +109,7 @@ namespace SucculentWeb.Controllers
         [HttpPost]
         public string CheckUser(string UserName)
         {
-            var result = UsersManager.SelectUser(UserName);
+            var result = usermanager.SelectUser(UserName);
             if (result.Count()>0)
             {
                 return "抱歉，该用户名已存在！";
@@ -133,7 +134,7 @@ namespace SucculentWeb.Controllers
         {
             try
             {
-                Users users = UsersManager.GetUserByName(UserName);
+                Users users = usermanager.GetUserByName(UserName);
                 if (users != null)
                 {
                     return View("ResetWays", users);
@@ -161,7 +162,7 @@ namespace SucculentWeb.Controllers
         #region 密保问题验证
         public ActionResult SecretQuestion(string UserName)
         {
-            Users users = UsersManager.GetUserByName(UserName);
+            Users users = usermanager.GetUserByName(UserName);
             if (users != null)
             {
                 if (users.SecretQues != null)
@@ -183,7 +184,7 @@ namespace SucculentWeb.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult SecretQuestion(string UserName, string SecretAnws)
         {
-            Users users = UsersManager.GetUserByName(UserName);
+            Users users = usermanager.GetUserByName(UserName);
             if (users != null)
             {
                 if (users.SecretAnws == SecretAnws)
@@ -205,7 +206,7 @@ namespace SucculentWeb.Controllers
         #region 邮箱验证方式
         public ActionResult EmailValidate(string UserName)
         {
-            Users users = UsersManager.GetUserByName(UserName);
+            Users users = usermanager.GetUserByName(UserName);
             if (users != null)
             {
                 if (users.Email != null)
@@ -227,7 +228,7 @@ namespace SucculentWeb.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult EmailValidate(string UserName, string Email, string CheckCode)
         {
-            Users users = UsersManager.GetUserByName(UserName);
+            Users users = usermanager.GetUserByName(UserName);
             if (users != null)
             {
                 if (users.Email == Email)
@@ -256,7 +257,7 @@ namespace SucculentWeb.Controllers
         #region 手机号验证方式
         public ActionResult PhoneValidate(string UserName)
         {
-            Users users = UsersManager.GetUserByName(UserName);
+            Users users = usermanager.GetUserByName(UserName);
             if (users != null)
             {
                 return View(users);
@@ -271,7 +272,7 @@ namespace SucculentWeb.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult PhoneValidate(string UserName, string Phone)
         {
-            Users users = UsersManager.GetUserByName(UserName);
+            Users users = usermanager.GetUserByName(UserName);
             if (users != null)
             {
                 if (users.Phone == Phone)
@@ -293,7 +294,7 @@ namespace SucculentWeb.Controllers
         #region 重置密码
         public ActionResult ResetPassword(string UserName)
         {
-            Users users = UsersManager.GetUserByName(UserName);
+            Users users = usermanager.GetUserByName(UserName);
             if (users != null)
             {
                 return View(users);
@@ -311,13 +312,13 @@ namespace SucculentWeb.Controllers
         {
             try
             {
-                Users users = UsersManager.GetUserByName(UserName);
+                Users users = usermanager.GetUserByName(UserName);
                 users.Password = Password;
                 users.PasswordAgain = PasswordAgain;
                 users.CheckCode = "000";
                 users.Phone = Phone;
                 users.Email = Email;
-                UsersManager.UpdateUserInfo(users);
+                usermanager.UpdateUserInfo(users);
                 return Content("<script>alert('密码重置成功！请牢记密码');window.open('" + Url.Action("Login", "User") + "','_self');</script>");
 
             }
@@ -333,10 +334,10 @@ namespace SucculentWeb.Controllers
         #region 用户异步登录
         public string AjaxLogin(string UserName, string Password)
         {
-            int result = UsersManager.AjaxLogin(UserName, Password);
+            int result = usermanager.AjaxLogin(UserName, Password);
             if (result > 0)
             {
-                Users users = UsersManager.GetUserByName(UserName);
+                Users users = usermanager.GetUserByName(UserName);
                 Session["UserName"] = UserName;
                 Session["UserID"] = users.UserID;
                 return "登录成功！";

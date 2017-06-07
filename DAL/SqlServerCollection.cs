@@ -23,5 +23,10 @@ namespace DAL
                            select c).FirstOrDefault();
             return collection;
         }
+        public IEnumerable<Collection> SelectByUserID(int UserID)
+        {
+            var collection = (from c in db.Collection join s in db.Succulent on c.SucculentID equals s.SucculentID where c.UserID == UserID select c).ToList();
+            return collection;
+        }
     }
 }

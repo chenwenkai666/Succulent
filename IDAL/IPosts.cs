@@ -11,6 +11,7 @@ namespace IDAL
     {
         IEnumerable<Sections> GetSection03(); //获取前三个板块
         IEnumerable<Sections> GetSection06(); //获取后六个板块
+        IEnumerable<Sections> GetSection33(); //获取第三个板块
         IEnumerable<Sections> GetSectionName(int boardID);  //获取板块名称
         IEnumerable<Posts> GetSectionPost(int boardID);  //获取板块帖子
         IEnumerable<Posts> GetPostDetails(int PostID);  //获取帖子详情
@@ -30,5 +31,7 @@ namespace IDAL
         int GetPostComNum(int PostID);  //获取评论数量
         int SelectSectionID(string SectionName); //获取板块ID
         IEnumerable<Level> SelectUserLevel(int userid);  //搜索用户等级
+        IEnumerable<Posts> SelectAllPosts();//获取全部帖子
+        Users GetUserFlag(int userid);   //获取用户权限ID
     }
 }

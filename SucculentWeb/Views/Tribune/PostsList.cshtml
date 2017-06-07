@@ -11,11 +11,13 @@
 
 <div id="bodyer-A5">
     @foreach (var A in Model)
-            {
+    {
         <div class="A5-list">
             <div class="list-A">
                 <div class="list-A-Img">
-                    @*<img src=""/>*@
+                    <div class="ImgImg">
+                        <img src="@A.Users.Photo" width="37" height="37" />
+                    </div>
                 </div>
             </div>
             <div class="list-B">

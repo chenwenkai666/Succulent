@@ -22,6 +22,10 @@ namespace BLL
         {
             return iposts.GetSection06();
         }
+        public IEnumerable<Sections> GetSection33() //获取第三个板块
+        {
+            return iposts.GetSection33();
+        }
         public  IEnumerable<Sections> GetSectionName(int boardID)  //获取板块名称
         {
             return iposts.GetSectionName(boardID);
@@ -97,6 +101,14 @@ namespace BLL
         public  IEnumerable<Level> SelectUserLevel(int userid)  //搜索用户等级
         {
             return iposts.SelectUserLevel(userid);
+        }
+        public IEnumerable<Posts> SelectAllPosts()//获取全部帖子
+        {
+            return iposts.SelectAllPosts();
+        }
+        public Users GetUserFlag(int userid)   //获取用户权限ID
+        {
+            return iposts.GetUserFlag(userid);
         }
     }
 }

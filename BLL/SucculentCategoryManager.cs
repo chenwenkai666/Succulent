@@ -11,10 +11,14 @@ namespace BLL
 {
    public class SucculentCategoryManager
     {
-        private static ISucculentCategory isucculentcategory = DataAccess.CreateSucculentCategory();
-        public static List<SucculentCategory> Select()
+        private ISucculentCategory isucculentcategory = DataAccess.CreateSucculentCategory();
+        public List<SucculentCategory> Select()
         {
             return isucculentcategory.Select();
+        }
+        public SucculentCategory SelectByID(int id)
+        {
+            return isucculentcategory.SelectByID(id);
         }
     }
 }

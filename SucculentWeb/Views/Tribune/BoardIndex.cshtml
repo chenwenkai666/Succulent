@@ -1,6 +1,7 @@
 ﻿
 @model SucculentWeb.ViewModels.TribuneVM.TribuneBoardVM
-
+@using BLL;
+@using Model;
 @{
     ViewBag.Title = "BoardIndex";
     Layout = "~/Views/Shared/Tribune/TribuneView.cshtml";
@@ -59,6 +60,12 @@
                     {
                         <div id="A4-PhotoBox">
                             <div id="A4-UserPhoto">
+                                @{ PostsManager PostM = new PostsManager();}
+                                @{ IEnumerable<Users> users = PostM.SelectUserInfo(Session["UserName"].ToString()); }
+                                @foreach (var A in users)
+                                {
+                                    <img src="@A.Photo" width="108" height="108" />
+                                }
                             </div>
                         </div>
                         <div id="A4-NameBox">

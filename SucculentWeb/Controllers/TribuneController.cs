@@ -46,6 +46,7 @@ namespace SucculentWeb.Controllers
             TribuneCreateVM tribuneCreate = new TribuneCreateVM();
             tribuneCreate.Sections03 = PostM.GetSection03();
             tribuneCreate.Sections06 = PostM.GetSection06();
+            tribuneCreate.Sections33 = PostM.GetSection33();
             return View(tribuneCreate);
         }
         [HttpPost]
@@ -63,6 +64,7 @@ namespace SucculentWeb.Controllers
                 posts.SectionID = SectionID;
                 posts.UserID = userid;
                 posts.PublishTime = PubTime;
+                posts.PostFlag = 1;
                 db.Posts.Add(posts);
                 db.Configuration.ValidateOnSaveEnabled = false;
                 db.SaveChanges();
@@ -76,12 +78,14 @@ namespace SucculentWeb.Controllers
                 return Content("<script>alert('输入有误！');window.location.href = document.referrer;</script>");
             }
         }
-        public ActionResult PostsDetails(int PostID)
+        public ActionResult PostsDetails(int PostID, int? page)
         {
+            const int pagesize = 10;
+            int pageNum = (page ?? 1);
             Session["PostID"] = PostID;
             TribunePostVM tribunePost = new TribunePostVM();
             tribunePost.Posts = PostM.GetPostDetails(PostID);
-            tribunePost.PostComment = PostM.GetPostComments(PostID);
+            tribunePost.PostComment = PostM.GetPostComments(PostID).ToPagedList(pageNum, pagesize);
             if (Session["UserName"] != null)
             {
                 string UserName = Session["UserName"].ToString();

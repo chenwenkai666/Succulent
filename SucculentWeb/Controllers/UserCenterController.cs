@@ -5,20 +5,30 @@ using System.Web;
 using System.Web.Mvc;
 using BLL;
 using Model;
+using System.Data.Entity.Validation;
+
 namespace SucculentWeb.Controllers
 {
     public class UserCenterController : Controller
     {
+        UsersManager usermanager = new UsersManager();
+        CollectionManager collectionmanager = new CollectionManager();
         // GET: UserCenter
-        public ActionResult Index(int id = 16)
+        public ActionResult Index(int id = 13)
         {
-            var user = UsersManager.GetUserByID(id);
-
+            var user = usermanager.GetUserByID(id);
             return View(user);
         }
+
+        public ActionResult IndexPartial()
+        {
+            var collection = collectionmanager.SelectByUserID(int.Parse(Session["UserID"].ToString()));
+            return View(collection);
+        }
+
         public ActionResult UserInfo(int id)
         {
-            var user = UsersManager.GetUserByID(id);
+            var user = usermanager.GetUserByID(id);
             List<SelectListItem> items = new List<SelectListItem>();
             items.Add(new SelectListItem { Text = "你的宠物种类", Value = "你的宠物种类" });
             items.Add(new SelectListItem { Text = "你爸爸的名字", Value = "你爸爸的名字", Selected = true });
@@ -26,12 +36,11 @@ namespace SucculentWeb.Controllers
             this.ViewData["list"] = items;         
             return View(user);
         }
+
+
         public ActionResult UpdataPhoto(Users user)
-        {
-            //Model.Users u = null;
-      
-            
-              var u = UsersManager.GetUserByID(user.UserID);
+        {             
+              var u = usermanager.GetUserByID(user.UserID);
                 try
                 {
 
@@ -56,8 +65,7 @@ namespace SucculentWeb.Controllers
                     items.Add(new SelectListItem { Text = "你爸爸的名字", Value = "你爸爸的名字", Selected = true });
                     items.Add(new SelectListItem { Text = "你最喜欢的颜色", Value = "你最喜欢的颜色" });
                     this.ViewData["list"] = items;
-                    //u.SecretQues = user.SecretQues;
-                        UsersManager.UpdateUserInfo(u);
+                    usermanager.UpdateUserInfo(u);
                     }
 
             }
@@ -67,60 +75,59 @@ namespace SucculentWeb.Controllers
                 }
            
             return View("UserInfo", u);
-        }      
-        [HttpPost]
-        public ActionResult UpdateInfo(Users user)
+        }  
+        [HttpGet]    
+        public ActionResult UpdateInfo()
         {
-            var u = UsersManager.GetUserByID(user.UserID);
+            var u = usermanager.GetUserByID(int.Parse(Session["UserID"].ToString()));
             List<SelectListItem> items = new List<SelectListItem>();
             items.Add(new SelectListItem { Text = "你的宠物种类", Value = "你的宠物种类" });
             items.Add(new SelectListItem { Text = "你爸爸的名字", Value = "你爸爸的名字", Selected = true });
             items.Add(new SelectListItem { Text = "你最喜欢的颜色", Value = "你最喜欢的颜色" });
-            this.ViewData["list"] = items;
-            u.Sex = user.Sex;
-            if (user.Birth.ToString() == null)
-            {
-                u.Birth =Convert.ToDateTime("2017/01/01");
-            }
-            else
-            {
-               u.Birth = user.Birth;
-            }          
-            u.Phone = user.Phone;
-            u.Email = user.Email;
-            u.SecretAnws = user.SecretAnws;
-            u.SecretQues = user.SecretQues;
-            UsersManager.UpdateUserInfo(u);
-            return View("UserInfo", u);
+            this.ViewData["list"] = items;         
+            return PartialView("UpdateInfo", u);
         }
-
         [HttpPost]
-        public JsonResult UploadImage(HttpPostedFileBase image)
+        public ActionResult UpdateInfo(Users user)
         {
-            if (image != null)
+            Users u = usermanager.GetUserByID(int.Parse(Session["UserID"].ToString()));
+            try
             {
-                string vPath = TempBasePicUrl + Guid.NewGuid().ToString() + ".png";
-                string tempFilePath = Server.MapPath("~" + vPath);
-                image.SaveAs(tempFilePath);
-                return Json(new { success = true, result = vPath });
-            }
-            else {
-                return Json(new { success = false, msg = "上传头像失败，请重新尝试！" });
-            }
-        }
+                List<SelectListItem> items = new List<SelectListItem>();
+                items.Add(new SelectListItem { Text = "你的宠物种类", Value = "你的宠物种类" });
+                items.Add(new SelectListItem { Text = "你爸爸的名字", Value = "你爸爸的名字", Selected = true });
+                items.Add(new SelectListItem { Text = "你最喜欢的颜色", Value = "你最喜欢的颜色" });
+                this.ViewData["list"] = items;
 
-        private string TempBasePicUrl
-        {
-            get
-            {
-                string temp = "/temp/";
-                string dir = Server.MapPath("~" + temp);
-                if (!System.IO.Directory.Exists(dir))
+                
+                u.Sex = user.Sex;
+                if (user.Birth.ToString() == null)
                 {
-                    System.IO.Directory.CreateDirectory(dir);
+                    u.Birth = Convert.ToDateTime("2017/01/01");
                 }
-                return temp;
+                else
+                {
+                    u.Birth = user.Birth;
+                }
+                u.Phone = user.Phone;
+                u.Email = user.Email;
+                if (Request.Form["list"] != null)
+                {
+                    u.SecretQues = Request.Form["list"];
+                }
+                else
+                {
+                    u.SecretQues =user.SecretQues ;
+                }
+                u.SecretAnws = user.SecretAnws;
+                usermanager.UpdateUserInfo(u);
             }
+            catch (DbEntityValidationException ex)
+            {
+                string error = ex.Message;
+
+            }
+            return PartialView("UpdateInfo", u);
         }
 
     }
