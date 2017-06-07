@@ -51,7 +51,7 @@
                 <div class="title-introduce">
                     <h3 class="agileits_w3layouts_head">多肉 <span>百科</span></h3>
                     <div class="w3_agile_image">
-                        <img src="~/images/1.png" alt="" class="img-responsive" />
+                        <img src="~/images/1.png" alt="" class="img-responsive" height="150" />
                     </div>
                     <p class="agile_para">多肉科属简介</p>
                 </div>
@@ -63,42 +63,11 @@
                     {
                         <li class="mis-slide">
                             <figure>
-                                <a class="succulent-img"><img src="@item.Photo"/></a>
-                                <figcaption>@item.SucculentName</figcaption>
+                                <a class="succulent-img"><img src="@item.Photo" width="250" height="200"/></a>
+                                <figcaption style="font-family:'Microsoft YaHei';font-size:20px;line-height:40px;">@item.SucculentName</figcaption>
                             </figure>
                         </li>
-                    }
-                    
-                    @*<li class="mis-slide">
-                        <figure>
-                            <img src="~/images/24.jpg" alt="" class="img-responsive" />
-                            <figcaption>景天科</figcaption>
-                        </figure>
-                    </li>
-                    <li class="mis-slide">
-                        <figure>
-                            <img src="~/images/25.jpg" alt="" class="img-responsive" />
-                            <figcaption>番杏科</figcaption>
-                        </figure>
-                    </li>
-                    <li class="mis-slide">
-                        <figure>
-                            <img src="~/images/26.jpg" alt="" class="img-responsive" />
-                            <figcaption>龙舌兰科</figcaption>
-                        </figure>
-                    </li>
-                    <li class="mis-slide">
-                        <figure>
-                            <img src="~/images/27.jpg" alt="" class="img-responsive" />
-                            <figcaption>马齿笕科</figcaption>
-                        </figure>
-                    </li>
-                    <li class="mis-slide">
-                        <figure>
-                            <img src="~/images/28.jpg" alt="" class="img-responsive" />
-                            <figcaption>菊科 </figcaption>
-                        </figure>
-                    </li>*@
+                    }                                      
                 </ol>
             </div>
             <div class="More">
@@ -153,33 +122,6 @@
                                     </div>
                                 </div>
                             }
-                            @*<div class="col-md-3 col-sm-3 little" style="height:170px;">
-                                <div class="hovereffect">
-                                    <img src="~/images/5.jpg" alt=" " class="img-thumbnail" />
-                                    <div class="overlay">
-
-                                        <a class="info" href="#">点击购买</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-3 col-sm-3 little" style="height:170px;">
-                                <div class="hovereffect">
-                                    <img src="~/images/6.jpg" alt=" " class="img-thumbnail" />
-                                    <div class="overlay">
-
-                                        <a class="info" href="#">点击购买</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-3 col-sm-3 little" style="height:170px;">
-                                <div class="hovereffect">
-                                    <img src="~/images/7.jpg" class="img-thumbnail" />
-                                    <div class="overlay">
-
-                                        <a class="info" href="#">点击购买</a>
-                                    </div>
-                                </div>
-                            </div>*@
                         </div>
                         <div class="row right-middle-2">
                             <div class="col-md-12" style="height:10px;"></div>
@@ -198,22 +140,7 @@
                                     </div>
 
                                 </div>
-                            }
-                           
-                            @*<div class="col-md-4 col-sm-4 little" style="height:130px;">
-                                <img src="~/images/9.jpg" class="image" />
-                                <div class="know">
-                                    <h5>多肉花瓣</h5>
-                                    <p>用黏土也能捏出萌萌的多肉，给你不一样的视觉观赏。</p>
-                                </div>
-                            </div>
-                            <div class="col-md-4 col-sm-4 little" style="height:130px;">
-                                <img src="~/images/10.jpg" class="image" />
-                                <div class="know">
-                                    <h5>万圣节与多肉的邂逅</h5>
-                                    <p>看似跟万圣节丝毫无关系萌萌的多肉，也强行被歪果仁跟妖魔鬼怪主题的万圣节扯上关系</p>
-                                </div>
-                            </div>*@
+                            }                
                         </div>
                         <div class="row right-middle-4">
                             <div class="col-md-12" style="height:10px;"></div>
@@ -247,7 +174,6 @@
 
 @section Foot{
     <script>
-
        $('.go').click(function () {
            $('.search_form').submit();
        });

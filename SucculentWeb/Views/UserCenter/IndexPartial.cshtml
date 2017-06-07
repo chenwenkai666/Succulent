@@ -1,0 +1,12 @@
+﻿@*@model IEnumerable<Model.Collection>
+<ul>
+    @foreach(var item in Model){
+
+        <li class="col-md-12">
+            <h3 class="col-md-12 change-title">发表了帖子</h3>
+            <a class="col-md-9">@item.</a>
+            <span class="col-md-3">@item.CollectionTime</span>
+        </li>
+
+    }
+</ul>*@

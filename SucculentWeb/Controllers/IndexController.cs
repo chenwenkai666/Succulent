@@ -11,6 +11,7 @@ namespace SucculentWeb.Controllers
 {
     public class IndexController : Controller
     {
+        SucculentManager succulentmanager = new SucculentManager();
         SucculentEntities db = new SucculentEntities();
         // GET: Index
         public ActionResult Index()
@@ -35,9 +36,7 @@ namespace SucculentWeb.Controllers
             SearchResultVM searchresultvm = new SearchResultVM();
             searchresultvm.Activity = ActivityManager.GetActivityByKeywords(keywords);
             searchresultvm.Goods = GoodsManager.SelectAllGoods().Where(g => g.GoodsName.Contains(keywords));
-            searchresultvm.BaiKe = SucculentManager.SelectSucculent().Where(s =>( s.SucculentName.Contains(keywords)) ||(s.Feature.Contains(keywords) || (s.SucculentCategory.SucculentCategoryName.Contains(keywords)) ));
-  
-
+            searchresultvm.BaiKe = succulentmanager.SelectSucculent().Where(s =>( s.SucculentName.Contains(keywords)) ||(s.Feature.Contains(keywords) || (s.SucculentCategory.SucculentCategoryName.Contains(keywords)) )); 
             return View(searchresultvm);
         }
     }

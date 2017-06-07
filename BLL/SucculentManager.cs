@@ -13,39 +13,47 @@ namespace BLL
 {
    public class SucculentManager
     {
-        private static ISucculent isucculent = DataAccess.CreateSucculent();
-        public static List<Succulent> SelectSucculent()
+        private ISucculent isucculent = DataAccess.CreateSucculent();
+        public List<Succulent> SelectSucculent()
         {
             return isucculent.SelectSucculent();
         }
-        public static List<Succulent> SelectSucculentByID(int id)
+        public List<Succulent> SelectSucculentByID(int id)
         {
             return isucculent.SelectSucculentByID(id);
         }
-        public static List<Succulent> SelectSucculentBySucculentid(int id)
+        public List<Succulent> SelectSucculentBySucculentid(int id)
         {
             return isucculent.SelectSucculentBySucculentid(id);
         }
-        public static List<Succulent> SelectSucculentByCatogaryid(int categoryid)
+        public  List<Succulent> SelectSucculentByCatogaryid(int categoryid)
         {
             return isucculent.SelectSucculentByCatogaryid(categoryid);
         }
-        public static List<Succulent> SelectRoomSucculent()
+        public  List<Succulent> SelectRoomSucculent()
         {
             return isucculent.SelectRoomSucculent();
         }
-        public static void Create(Succulent succulent)
+        public void Create(Succulent succulent)
         {
             isucculent.Create(succulent);
         }
-        public static void UpdateAdd(Succulent succulent)
+        public Succulent SelectName(string name)
+        {
+           return isucculent.SelectName(name);
+        }
+        public void UpdateAdd(Succulent succulent)
         {
             isucculent.UpdateAdd(succulent);
         }
-        public static Succulent  SelectByID(int id)
+        public Succulent  SelectByID(int id)
         {
             return isucculent.SelectByID(id);
 
+        }
+        public IEnumerable<Succulent> SelectBySearchName(string SearchName)
+        {
+            return isucculent.SelectBySearchName(SearchName);
         }
     }
 }

@@ -6,14 +6,16 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 @section head{
+    <link href="~/Content/amazeui.min.css" rel="stylesheet" />
     <link href="~/Content/Succulent.css" rel="stylesheet" />
     <link href="~/Content/font-awesome.css" rel="stylesheet" />
     <link href="~/Content/font-awesome.min.css" rel="stylesheet" />
     <script src="~/Scripts/jquery-1.10.2.js"></script>
     <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+  <script src="~/Scripts/amazeui.min.js"></script>
     <style>
         .div-footer {
-            margin-top:50px;
+            margin-top:60px;
             background-color: transparent;
         }
 
@@ -30,29 +32,90 @@
         })
     </script>
 }
-<div class="succulent-wrap">
-    <div class="succulent-wrap-top">
-
-        <div class="succulent-wrap-top-introduce row">
-            <ul>
-    @foreach (var item in Model)
-    {      
-        <li class="col-md-3">
-            <div class="introduce-contain">
-                <div class="introduce-contain-describe">
-                    @Ajax.ActionLink(@item.SucculentCategoryName, "PartialViewDate", new { SucculentCategoryID = item.SucculentCategoryID }, new AjaxOptions { HttpMethod = "Post", UpdateTargetId = "wrap-bottom", InsertionMode = InsertionMode.Replace },new { @class="a-describe"})                  
-                    </div>
-                <img class="img-describe" src="~/images/succulent-img/4.png" width="38" height="38" />
-                </div>
-            </li>
-     }
-    </ul>
+<div class="body-wrap">
+    <mian class="succulent-wrap">
+        <div class="succulent-wrap-top">      
         </div>
+        <div class="wrap-middle row" style="cursor:pointer;">        
+            <header class="am-topbar col-md-12" style="background:#fff;">
+                <h1 class="am-topbar-brand">
+                    <img src="~/images/succulent-img/13.png" width="32" height="32"/> 
+                </h1>
 
-    </div>
-    <div id="wrap-bottom">
-@{
-    Html.RenderAction("PartialViewDate");
-}
-    </div>  
+                <button class="am-topbar-btn am-topbar-toggle am-btn am-btn-sm am-btn-success am-radius am-show-sm-only" data-am-collapse="{target: '#doc-topbar-collapse'}"><span class="am-sr-only">导航切换</span> <span class="am-icon-bars"></span></button>
+
+                <div class="am-collapse am-topbar-collapse" id="doc-topbar-collapse">
+                    <ul class="am-nav am-nav-pills am-topbar-nav">
+                        <li class="am-active" style="cursor:pointer;">@Ajax.ActionLink("收藏数", "PartialViewDate", new { SucculentCategoryID = 0 }, new AjaxOptions { HttpMethod = "Post", UpdateTargetId = "succulent-wrap-bottom-left", InsertionMode = InsertionMode.Replace }, new { @class = "a-describe" })</li>
+                        <li class="am-dropdown" data-am-dropdown>
+                            <a class="am-dropdown-toggle" data-am-dropdown-toggle href="javascript:;">
+                                科属&nbsp;&nbsp;<span class="am-icon-caret-down"></span>
+                            </a>
+                            <ul class="am-dropdown-content">
+                                @foreach (var item in Model)
+                                {
+                                    <li>@Ajax.ActionLink(@item.SucculentCategoryName, "PartialViewDate", new { SucculentCategoryID = item.SucculentCategoryID }, new AjaxOptions { HttpMethod = "Post", UpdateTargetId = "succulent-wrap-bottom-left", InsertionMode = InsertionMode.Replace }, new { @class = "a-describe" })</li>
+                                }
+                            </ul>
+                        </li>
+                    </ul>   
+                    @using (Ajax.BeginForm("PartialViewDate", "SucculentIndex", new AjaxOptions { HttpMethod = "Post", UpdateTargetId = "succulent-wrap-bottom-left", InsertionMode = InsertionMode.Replace },new { @class = "am-topbar-form am-topbar-left am-form-inline" }))
+                    {
+                        <div class="am-form-group">
+                            <input type="text" class="am-form-field am-input-sm" placeholder="搜索" name="SearchSucculent" ><input type="submit" value="搜索" style="border:none;border-radius:5px; width:60px;height:35px; margin-left:15px;" />                        
+                        </div>                   
+                    }
+
+                </div>
+            </header>
+        </div>
+            <div id="succulent-wrap-bottom-left">
+                @{
+                    Html.RenderAction("PartialViewDate");
+                }
+            </div>
+         <div class="succulent-wrap-bottom-right">
+             <div class="succulent-wrap-bottom-right-top">
+               <div class="succulent-wrap-bottom-right-top-title">
+                   <div class="title-h3">
+                       @*<h3>多肉科属</h3>*@
+                       <div class="am-btn-group div-dropdown">
+                           <button class="am-btn am-btn-default am-radius ">多肉科属</button>
+                           <div class="am-dropdown" data-am-dropdown>
+                               <button class="am-btn am-btn-primary am-radius am-dropdown-toggle" data-am-dropdown-toggle> <span class="am-icon-caret-down"></span></button>
+                               <ul class="am-dropdown-content">
+                                   @foreach (var item in Model)
+                                   {
+                                       <li>@Ajax.ActionLink(@item.SucculentCategoryName, "CategoryContent", new { SucculentCategoryID = item.SucculentCategoryID }, new AjaxOptions { HttpMethod = "Post", UpdateTargetId = "succulent-wrap-bottom-right-top-content", InsertionMode = InsertionMode.Replace }, new { @class = "a-describe" })</li>
+                                   }
+                               </ul>
+                           </div>
+                       </div>
+                   </div> 
+             </div>
+                <div id="succulent-wrap-bottom-right-top-content">
+                    @{
+                        Html.RenderAction("CategoryContent");
+                    }
+                </div>
+         </div> 
+             <div class="succulent-wrap-bottom-right-bottom">
+                 <div class="succulent-wrap-bottom-right-bottom-title">
+                     <div class="title-h3"><h3>养殖小贴士</h3></div>
+                 </div>
+                 <div class="succulent-wrap-bottom-right-bottom-content">
+                     <p>
+                         多肉死亡指南：<br />
+                         <span><i class="fa fa-envira" aria-hidden="true"></i> 1. 每天浇水。（它们大多生长在艰苦环境中，不用过度溺爱）</span><br />
+                         <span><i class="fa fa-envira" aria-hidden="true"></i> 2. 日正当中浇水。（水会马上变热然後盆里会像个蒸气室把根闷烂）</span><br />
+                         <span><i class="fa fa-envira" aria-hidden="true"></i> 3. 盆底没有洞。（因为根部需要空气流通，能加快水份流通速度）</span><br />
+                         <span><i class="fa fa-envira" aria-hidden="true"></i> 4. 夏天。（尤其台湾夏天.非常闷热及潮湿，我自己夏天都清出好多空盆）</span><br />
+                         <span><i class="fa fa-envira" aria-hidden="true"></i> 5. 虫害。（最可怕为粉介壳虫，药剂时常无法杀死它，身上粉会将药剂带走，试着用针一只只刺死）</span><br />
+                         <span><i class="fa fa-envira" aria-hidden="true"></i> 6. 病菌。（常发生生病果冻叶掉在表土开始发烂，并开始传染到整株死亡）</span>
+                     </p>
+                 </div>
+               
+            </div>
+        </div>
+    </mian>
 </div>

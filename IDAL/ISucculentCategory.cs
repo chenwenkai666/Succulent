@@ -10,5 +10,6 @@ namespace IDAL
    public interface ISucculentCategory
     {
          List<SucculentCategory> Select();
+        SucculentCategory SelectByID(int id);
     }
 }

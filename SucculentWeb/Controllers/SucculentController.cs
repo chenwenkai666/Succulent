@@ -12,7 +12,9 @@ namespace SucculentWeb.Controllers
 {
     public class SucculentController : Controller
     {
-
+        SucculentManager succulentmanager = new SucculentManager();
+        SucculentCategoryManager succulentcategorymanager = new SucculentCategoryManager();
+        CollectionManager collectionmanager = new CollectionManager();
         public ActionResult Succulent()
         {
             return View();
@@ -20,9 +22,9 @@ namespace SucculentWeb.Controllers
        
         public ActionResult Succulent_Details(int id=18, int categoryid=1)
         {
-            var details = SucculentManager.SelectSucculentBySucculentid(id);
-            var succulent =BLL.SucculentManager.SelectSucculentByCatogaryid(categoryid);
-            var room = BLL.SucculentManager.SelectRoomSucculent();
+            var details = succulentmanager.SelectSucculentBySucculentid(id);
+            var succulent = succulentmanager.SelectSucculentByCatogaryid(categoryid);
+            var room = succulentmanager.SelectRoomSucculent();
             SucculentIndexViewModels si = new ViewModels.SucculentIndexViewModels();
             si.succulent_Details = details;
             si.Like = succulent;
@@ -32,7 +34,7 @@ namespace SucculentWeb.Controllers
         [HttpGet]
         public ActionResult Create()
         {
-            ViewBag.CategoryID = new SelectList(SucculentCategoryManager.Select(), "SucculentCategoryID", "SucculentCategoryName");
+            ViewBag.CategoryID = new SelectList(succulentcategorymanager.Select(), "SucculentCategoryID", "SucculentCategoryName");
             return View();
         }
 
@@ -42,50 +44,47 @@ namespace SucculentWeb.Controllers
         {
             if (ModelState.IsValid)
             {
-                SucculentManager.Create(succulent);
-                return RedirectToAction("Succulent_Details");
+                if (succulentmanager.SelectName(succulent.SucculentName) == null)
+                {
+                    succulentmanager.Create(succulent);
+                    return RedirectToAction("Succulent_Details");
+                }
+                else
+                {
+                    return Content("<script>alert('该多肉已经存在');window.open('" + Url.Content("~/Succulent/Create") + "', '_self')</script>");
+                }
+                
             }
-            ViewBag.CategoryID = new SelectList(SucculentCategoryManager.Select(), "SucculentCategoryID", "SucculentCategoryName", succulent.CategoryID);
+            ViewBag.CategoryID = new SelectList(succulentcategorymanager.Select(), "SucculentCategoryID", "SucculentCategoryName", succulent.CategoryID);
             return View(succulent);
-        }
-        //[HttpPost]
-        //public int UpdateAdd(int id,bool flag)
-        //{
-        //    var succulent =SucculentManager.SelectByID(id);
-        //    if (!flag)
-        //    {
-        //        succulent.CollectedTotal += 1;
-        //        SucculentManager.UpdateAdd(succulent);
-        //    }           
-        //    return int.Parse((succulent.CollectedTotal).ToString());
-        //}
+        }      
         [HttpPost]
         public ActionResult Collection(int id)
         {
             Collection collection=new Collection();
-            var succulent = SucculentManager.SelectByID(id);         
+            var succulent = succulentmanager.SelectByID(id);         
             if (Session["UserID"] == null)
             {
                 return Content("<script>alert('请先登录哦！');window.open('" + Url.Content("~/User/Login") + "', '_self')</script>");
             }
             else {
 
-                Collection c = CollectionManager.SelectbySucculentId(succulent.SucculentID);
+                Collection c = collectionmanager.SelectbySucculentId(succulent.SucculentID);
                 if (c == null)
                 {
                     collection.SucculentID = succulent.SucculentID;
                     collection.UserID = int.Parse(Session["UserID"].ToString());
                     collection.CollectionTime = DateTime.Now;
-                    CollectionManager.Create(collection);
+                    collectionmanager.Create(collection);
                     succulent.CollectedTotal += 1;
-                    SucculentManager.UpdateAdd(succulent);
+                    succulentmanager.UpdateAdd(succulent);
 
                 }
                 else
                 {
                     return Content("<script>alert('你已经收藏过啦！');location=location;</script>");/*window.location.reload();*/
                 }
-                return View(succulent);
+                return View(succulent.CollectedTotal);
             }
            
         }  

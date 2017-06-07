@@ -16,7 +16,7 @@ namespace DAL
         public List<Succulent> SelectSucculent()
         {
             var succulent = (from s in db.Succulent             
-                             select s).ToList();
+                             select s).OrderByDescending(c=>c.CollectedTotal).ToList();
             return succulent;
 
         }
@@ -49,6 +49,12 @@ namespace DAL
             db.Succulent.Add(succulent);
             db.SaveChanges();
         }
+
+        public Succulent SelectName(string name)
+        {
+            var succulent = db.Succulent.Where(c => c.SucculentName == name).FirstOrDefault();
+            return succulent;
+        }
       
         public void UpdateAdd(Succulent succulent)
         {
@@ -56,20 +62,7 @@ namespace DAL
             db.Configuration.ValidateOnSaveEnabled = false;
             db.Entry(succulent).State = EntityState.Modified;
             db.SaveChanges();
-            db.Configuration.ValidateOnSaveEnabled = true;
-            //Succulent su = new Succulent();
-            //su.Application = succulent.Application;
-            //su.BreedMode = succulent.BreedMode;
-            //su.CategoryID = succulent.CategoryID;
-            //su.CollectedTotal = succulent.CollectedTotal;
-            //su.Collection = succulent.Collection;
-            //su.Feature = succulent.Feature;
-            //su.Photo = succulent.Photo;
-            //su.SucculentID = succulent.SucculentID;
-            //su.SucculentImg = succulent.SucculentImg;
-            //su.SucculentName = succulent.SucculentName;
-
-            //db.Succulent.Attach(succulent);
+            db.Configuration.ValidateOnSaveEnabled = true;            
 
         }
         public Succulent SelectByID(int id)
@@ -77,6 +70,12 @@ namespace DAL
             var succulent = db.Succulent.Where(c => c.SucculentID == id).FirstOrDefault();
             return succulent;
 
+        }
+
+        public IEnumerable<Succulent> SelectBySearchName(string SearchName)
+        {
+            var succulent = from s in db.Succulent.Where(o => o.SucculentName.Contains(SearchName)).ToList() select s;
+            return succulent;
         }
     }
 }

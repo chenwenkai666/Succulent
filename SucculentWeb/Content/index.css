@@ -212,16 +212,21 @@ height:auto;
 }
 
 .category .welcome .container{
-    margin-top:50px;
+    margin-top:30px;
 
 }
 .category .welcome .contain-img{
     margin:0 auto;
-    margin-top:-20px;
+    margin-top:-15px;
+}
+.agileits_w3layouts_head{
+ font-size: 20px;
+ font-weight:700;
 }
 .agile_para{
- font-size: 16px;
+ font-size: 14px;
  font-weight: 500;
+ line-height:30px;
  letter-spacing: 2px;
 
 }
