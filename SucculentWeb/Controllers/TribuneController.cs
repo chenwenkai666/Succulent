@@ -63,6 +63,7 @@ namespace SucculentWeb.Controllers
                 posts.SectionID = SectionID;
                 posts.UserID = userid;
                 posts.PublishTime = PubTime;
+                posts.PostFlag = 1;
                 db.Posts.Add(posts);
                 db.Configuration.ValidateOnSaveEnabled = false;
                 db.SaveChanges();
