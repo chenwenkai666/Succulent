@@ -114,5 +114,9 @@ namespace BLL
         {
             return iposts.GetUserPotLev(userid);
         }
+        public int GetUserEx(int userid)   //获取用户经验
+        {
+            return iposts.GetUserEx(userid);
+        }
     }
 }

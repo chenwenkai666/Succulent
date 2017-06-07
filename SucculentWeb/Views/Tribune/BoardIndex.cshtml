@@ -72,17 +72,18 @@
                             @Session["UserName"]
                         </div>
                         <div id="A4-LevelBox">
+                            @{ int EXP = PostM.GetUserEx(Convert.ToInt32(Session["UserID"])); }
                             @{ int Lev = PostM.GetUserPotLev(Convert.ToInt32(Session["UserID"])); }
                             @if (Lev != 0)
                             {
                                 foreach (var A in Model.Boardlevels)
                                 {
-                                    <p>Lv.@A.LevelID&nbsp;@A.LevelName</p>
+                                    <p title="@EXP/@A.LevelToplimit">Lv.@A.LevelID&nbsp;@A.LevelName</p>
                                 }
                             }
                             else
                             {
-                                <p>Lv.0&nbsp;路人</p>
+                                <p title="领取花盆后才能开始累积经验">Lv.0&nbsp;路人</p>
                             }
                         </div>
                                 }
