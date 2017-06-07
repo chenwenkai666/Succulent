@@ -503,7 +503,10 @@
     <Content Include="images\Tribune\web\testlogo.png" />
     <Content Include="images\usercenter-back.jpg" />
     <Content Include="images\一等奖徽章.png" />
+    <Content Include="images\删除.png" />
     <Content Include="images\卡通多肉.png" />
+    <Content Include="images\地址边框.png" />
+    <Content Include="images\地址边框2.png" />
     <Content Include="images\星空.png" />
     <Content Include="images\星空2.png" />
     <Content Include="images\更多活动敬请期待.png" />
@@ -520,6 +523,10 @@
     <Content Include="images\虚拟多肉.png" />
     <Content Include="images\虚拟多肉2.png" />
     <Content Include="images\虚拟多肉3.png" />
+    <Content Include="images\购物车 %281%29.png" />
+    <Content Include="js\Address.js" />
+    <Content Include="js\city2.js" />
+    <Content Include="js\citySelect2.js" />
     <Content Include="js\demo.js" />
     <Content Include="css\GoodsDetail.css" />
     <Content Include="css\imghover.css" />

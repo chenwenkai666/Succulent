@@ -46,7 +46,7 @@
 <section id="bodyer">
     <div id="bodyer">
         @using (Html.BeginForm("CreatePost", "Tribune", FormMethod.Post, new { id = "CreateForm", enctype = "multipart/form-data" }))
-        {
+            {
             <div id="A1">
                 <div id="A1-left">
                     @Html.EditorFor(Model => Model.Posts.PostTitle, new { htmlAttributes = new { @class = "form-control", placeholder = " 帖子标题   不能超过二十四个字" } })
@@ -83,16 +83,16 @@
             <div id="A1Message">
                 @Html.ValidationMessageFor(Model => Model.Posts.PostTitle, "", new { style = "color:red;" })
             </div>
-            <div id="A2" class="text">
-                @Html.TextAreaFor(Model => Model.Posts.PostContent)
-            </div>
-            <div id="A2Message">
-                @Html.ValidationMessageFor(Model => Model.Posts.PostContent, "", new { style = "color:red;" })
-            </div>
-            <div id="A3" class="text">
-                <input type="submit" value=" 发 帖 " class="btn btn-block btn-success" />
-            </div>
-        }
+                <div id="A2" class="text">
+                    @Html.TextAreaFor(Model => Model.Posts.PostContent)
+                </div>
+                <div id="A2Message">
+                    @Html.ValidationMessageFor(Model => Model.Posts.PostContent, "", new { style = "color:red;" })
+                </div>
+                <div id="A3" class="text">
+                    <input type="submit" value=" 发 帖 " class="btn btn-block btn-success" />
+                </div>
+                            }
     </div>
 </section>
 <!-- 主体结束 -->

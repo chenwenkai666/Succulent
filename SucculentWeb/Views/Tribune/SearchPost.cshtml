@@ -50,10 +50,18 @@
                                         <div class="UserBoxInfo">
                                             @{ PostsManager PostM = new PostsManager();}
                                             @{ IEnumerable<Level> lev = PostM.SelectUserLevel(A.UserID); }
+                                            @{ int Lev = PostM.GetUserPotLev(A.UserID); }
                                             <div class="InfoName">
-                                                @foreach (var E in lev)
+                                                @if (Lev != 0)
                                                 {
-                                                    <p>Lv.@E.LevelID&nbsp;<a href="#">@A.UserName</a></p>
+                                                    foreach (var E in lev)
+                                                    {
+                                                        <p>Lv.@E.LevelID&nbsp;<a href="#">@A.UserName</a></p>
+                                                    }
+                                                }
+                                                else
+                                                {
+                                                    <p>Lv.0&nbsp;<a href="#">@A.UserName</a></p>
                                                 }
                                             </div>
                                             <div class="InfoMess">

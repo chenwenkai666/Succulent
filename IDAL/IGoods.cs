@@ -41,5 +41,7 @@ namespace IDAL
         IEnumerable<Goods> GetAllGoods();
         IEnumerable<Goods> GetSearchGoods(string searchstring);
         void CreateGoods(Goods goods);
+        void GoodsZan(int goodid);
+        void updateStockAndSalse(int goodid,int stock,int salse);
     }
 }

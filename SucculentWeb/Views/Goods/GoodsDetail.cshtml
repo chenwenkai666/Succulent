@@ -180,7 +180,15 @@
                 <img src="~/images/分享.png" /><s>分享</s>
             </span>
             <span class="dianzan">
-                <img src="~/images/点赞(点).png" /><s>点赞</s>
+                @if(Session["UserName"]!=null)
+                {
+                    <a  onclick="comment('GoodsDetail')" href="@Url.Action("Dianzan","Goods")" id="DZbtn" ><img src="~/images/点赞(点).png" /></a><s>点赞</s>
+                }
+                else
+                {
+                   <a onclick="confirm('请先登录')?location.href='@Url.Action("Login","User")':''" href="javascript:;"><img src="~/images/点赞(点).png" /></a>  <s>点赞</s>
+                }
+                
             </span>
         </div>
     </div>
@@ -206,3 +214,43 @@
     </div>
 </div>
 <script src="~/js/setup.js"></script>
+
+<script type="text/javascript">
+
+        //设置cookie
+        function setCookie(key, value) {
+                document.cookie = key + "=" + escape(value);
+        }
+        //获取cookie的值
+        function getCookie(key) {
+            if (document.cookie.length) {
+                var cookies = ' ' + document.cookie;
+                var start = cookies.indexOf(' ' + key + '=');
+                if (start == -1) { return null; }
+                var end = cookies.indexOf(";", start);
+                if (end == -1) { end = cookies.length; }
+                end -= start;
+                var cookie = cookies.substr(start,end);
+                return unescape(cookie.substr(cookie.indexOf('=') + 1, cookie.length - cookie.indexOf('=') + 1));
+            }
+            else { return null; }
+        }
+        //根据点击传进来的id
+        function comment(id){
+             if(getCookie(id)==null){
+                   setCookie(id,"GoodsDetail");
+                   // setCookie(id,"http://act.13322.com");   setCookie(id,"http://act.13322.com/euro/index.html");
+               }else{
+                 if (getCookie(id) == "GoodsDetail") {
+                     $("#DZbtn").removeAttr("href");
+                         alert("您已经点评过了");
+                         return false;
+                //if(getCookie(id)=="http://act.13322.com" ||  getCookie(id)=="http://act.13322.com/euro/index.html")
+                       
+                    }
+                }
+         //这里是你自己的逻辑 通过ajax保存到数据库的数值
+        }
+
+        alert(ip)
+</script>  

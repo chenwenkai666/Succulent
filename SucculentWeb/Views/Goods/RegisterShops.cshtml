@@ -130,7 +130,10 @@
              <ul>
                  <li>商店名：</li>
                  @*<li><input type="text" placeholder="限制十二个字" /></li>*@
-                 <li>@Html.EditorFor(model => model.ShopName, new { htmlAttributes = new { @class = "text", placeholder = "不能超过十二个字" } })</li>
+                 <li>
+                     @Html.EditorFor(model => model.ShopName, new { htmlAttributes = new { @class = "text", placeholder = "不能超过十二个字" } })
+                     @Html.ValidationMessageFor(shops => shops.ShopName, "", new { style = "color:#339933" })
+                 </li>
                  <li>商店图标：</li>
                  <li><input type="file" name="ShopPhoto" /></li>
                  <li>顶部横幅：</li>

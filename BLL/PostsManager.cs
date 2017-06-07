@@ -110,5 +110,9 @@ namespace BLL
         {
             return iposts.GetUserFlag(userid);
         }
+        public int GetUserPotLev(int userid)    //获取用户有无花盆
+        {
+            return iposts.GetUserPotLev(userid);
+        }
     }
 }
