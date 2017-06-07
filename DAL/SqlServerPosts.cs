@@ -183,5 +183,20 @@ namespace DAL
                        select p.Experience).FirstOrDefault();
             return exp;
         }
+        public IEnumerable<Posts> SelectIndexPost01()   //首页帖子显示01
+        {
+            var data = (from p in db.Posts select p).ToList().OrderBy(i => Guid.NewGuid()).ToList().Take(7);
+            return data;
+        }
+        public IEnumerable<Posts> SelectIndexPost02()   //首页帖子显示02
+        {
+            var data = (from p in db.Posts select p).OrderByDescending(p => p.PublishTime).Take(7);
+            return data;
+        }
+        public IEnumerable<PostComments> SelectIndexPost03()   //首页帖子显示03
+        {
+            var data = (from p in db.PostComments select p).OrderByDescending(p => p.PostCommentTime).Take(7);
+            return data;
+        }
     }
 }
