@@ -11,13 +11,14 @@ namespace Model
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
     public partial class Address
     {
         public int AddressID { get; set; }
         public int UserID { get; set; }
         public string Province { get; set; }
         public string City { get; set; }
+        //[Required(ErrorMessage = " 地址不能为空")]
         public string AddressDetail { get; set; }
         public int IsDefault { get; set; }
     

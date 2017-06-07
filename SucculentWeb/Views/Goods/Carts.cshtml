@@ -65,7 +65,7 @@
         </div>
          @*@using (Html.BeginForm("JieSuan", "Goods", FormMethod.Post, new { id = "formid" })){*@
             <div class="con-box">
-                <div class="fr closing" ><input  type="submit" id="subbtn" value="结算" class="Count_JieSuan" @*onclick="return confirm('确认结算吗？')"*@ /></div>
+                <div class="fr closing" ><input  type="submit" id="subbtn" value="结算" class="Count_JieSuan" onclick="return confirm('确认结算吗？')" /></div>
                 <input type="hidden" id="cartTotalPrice" />
                 <div class="fr total">合计：￥<span id="priceTotal">0.00</span></div>
                 <div class="fr selected" id="selected">已选商品<span id="selectedTotal">0</span>件<span class="arrow up">︽</span><span class="arrow down">︾</span></div>
@@ -81,6 +81,22 @@
     </div>
     }
 </div>
+@*<script>
+    function checkedTest() {
+        var count = 0;
+        var checkArry = document.getElementsByName("chk");
+        for (var i = 0; i < checkArry.length; i++) {
+            if (checkArry[i].checked == true) {
+                //选中的操作
+                count++;
+            }
+        }
+        if (count == 0) {
+            alert("请选择收货地址！")
+            return false;
+        }
+    }
+</script>*@
 
 
 
