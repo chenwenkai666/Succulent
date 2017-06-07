@@ -19,6 +19,9 @@ namespace SucculentWeb.Controllers
         public ActionResult TribuneIndex()
         {
             TribuneIndexVM indexvm = new TribuneIndexVM();
+            indexvm.SelectIndexPost01 = PostM.SelectIndexPost01();
+            indexvm.SelectIndexPost02 = PostM.SelectIndexPost02();
+            indexvm.SelectIndexPost03 = PostM.SelectIndexPost03();
             indexvm.Sections03 = PostM.GetSection03();
             indexvm.Sections06 = PostM.GetSection06();
             indexvm.GetAllPostNum = PostM.GetAllPostNum();

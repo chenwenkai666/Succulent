@@ -9,6 +9,9 @@ namespace SucculentWeb.ViewModels.TribuneVM
 {
     public class TribuneIndexVM
     {
+        public IEnumerable<Posts> SelectIndexPost01 { get; set; }
+        public IEnumerable<Posts> SelectIndexPost02 { get; set; }
+        public IEnumerable<PostComments> SelectIndexPost03 { get; set; }
         public IEnumerable<Sections> Sections03 { get; set; }
         public IEnumerable<Sections> Sections06 { get; set; }
         public int PostsNumberAll { get; set; }

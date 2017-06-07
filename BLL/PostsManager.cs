@@ -114,5 +114,21 @@ namespace BLL
         {
             return iposts.GetUserPotLev(userid);
         }
+        public int GetUserEx(int userid)   //获取用户经验
+        {
+            return iposts.GetUserEx(userid);
+        }
+        public IEnumerable<Posts> SelectIndexPost01()   //首页帖子显示01
+        {
+            return iposts.SelectIndexPost01();
+        }
+        public IEnumerable<Posts> SelectIndexPost02()   //首页帖子显示02
+        {
+            return iposts.SelectIndexPost02();
+        }
+        public IEnumerable<PostComments> SelectIndexPost03()   //首页帖子显示03
+        {
+            return iposts.SelectIndexPost03();
+        }
     }
 }

@@ -76,38 +76,38 @@
                 <div class="tabox">
                     <div class="hd">
                         <ul>
-                            <li class=" ">热门帖子</li>
+                            <li class=" ">随机推荐</li>
                             <li class=" ">最新帖子</li>
                             <li class="on">最新评论</li>
                         </ul>
                     </div>
                     <div class="bd">
                         <ul class="lh" style="display: none;">
-                            @foreach (var A in Model.Sections06)
+                            @foreach (var A in Model.SelectIndexPost01)
                             {
                                 <li>
                                     <div class="p-name">
-                                        <a href="#">@A.SectionDescribe</a>
+                                        <a href="@Url.Action("PostsDetails", "Tribune",new { PostID = A.PostID })">@A.PostTitle</a>
                                     </div>
                                 </li>
                             }
                         </ul>
                         <ul class="lh" style="display: none;">
-                            @foreach (var A in Model.Sections03)
+                            @foreach (var A in Model.SelectIndexPost02)
                             {
                                 <li>
                                     <div class="p-name">
-                                        <a href="#">@A.SectionDescribe</a>
+                                        <a href="@Url.Action("PostsDetails", "Tribune",new { PostID = A.PostID })">@A.PostTitle</a>
                                     </div>
                                 </li>
                             }
                         </ul>
                         <ul class="lh" style="display: none;">
-                            @foreach (var A in Model.Sections03)
+                            @foreach (var A in Model.SelectIndexPost03)
                             {
                                 <li>
                                     <div class="p-name">
-                                        <a href="#">@A.SectionDescribe</a>
+                                        <a href="#">@A.PostCommentContent</a>
                                     </div>
                                 </li>
                             }
