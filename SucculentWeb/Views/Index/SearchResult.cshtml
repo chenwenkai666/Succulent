@@ -85,26 +85,33 @@
                 <div class="am-panel-bd">
                     @foreach (var item in Model.Posts)
                     {
-                        <div class="Tribune_Item">
-                            <div class="Tribune_Img">
-                                @{
-                                    if (item.Users.Photo == null)
-                                    {
-                                        <img src="~/images/头像.png" />
+                        <a href="@Url.Action("PostsDetails","Tribune", new { PostID=item.PostID })" target="_blank">
+                            <div class="Tribune_Item">
+                                <div class="Tribune_Img">
+                                    @{
+                                        if (item.Users.Photo == null)
+                                        {
+                                            <img src="~/images/头像.png" />
+                                        }
+                                        else
+                                        {
+                                            <img src="@item.Users.Photo" />
+                                        }
                                     }
-                                    else
-                                    {
-                                        <img src="@item.Users.Photo" />
-                                    }
-                                }
-                                
+
+                                </div>
+                                <div class="Tribune_Info">
+                                    <h3>@item.PostTitle</h3>
+                                    <p class="PostTxt"></p>
+                                    <script>
+                                        var content = '@item.PostContent';
+                                        var contenttext = content.replace(/<[^>]*>/g, "");
+                                        $('.PostTxt').text(content);
+                                    </script>
+                                </div>
                             </div>
-                            <div class="Tribune_Info">
-                                <h3>@item.PostTitle</h3>
-                                <p>@item.PostContent</p>
-                            </div>
-                        </div>
-                    }
+                        </a>
+                                        }
                 </div>
             </section>
             <section class="am-panel am-panel-success">
