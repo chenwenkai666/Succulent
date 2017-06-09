@@ -9,6 +9,7 @@
     <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
     <link type="image/x-icon" href="~/images/多肉项目Logo.png" rel="icon" />
     <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    @*<script src="~/js/jquery-3.2.1.min.js"></script>*@
     <link rel="stylesheet" href="~/Content/animate.min.css">
     <link rel="stylesheet" href="~/Content/bootstrap.min.css">
     <link rel="stylesheet" href="~/Content/mislider.css">
@@ -47,9 +48,10 @@
                             <div class="userinfobox">
                                 <div class="index_loginbox" id="index_loginbox">
                                     @{
+                                        UsersManager usermanager = new UsersManager();
                                         if (Session["UserName"] != null)
                                         {
-                                            Users user = UsersManager.GetUserByName(Session["UserName"].ToString());
+                                            Users user = usermanager.GetUserByName(Session["UserName"].ToString());
                                             if (user.Photo != null)
                                             {
                                                 <img src="@user.Photo" />
@@ -88,15 +90,15 @@
 
                                                 }
                                                 <span>我的等级：Lv @level</span><br />
-                                                <a href="#" class="am-btn am-btn-success am-btn-xs am-round" target="_parent">个人中心</a><br />
-                                                <a href="@Url.Action("LoginOut","User")" class="am-btn am-btn-danger am-btn-xs am-round" target="_parent">退出登录</a>
+                                                <a href="@Url.Action("Index","UserCenter")" class="am-btn-success am-btn-xs a-button1" target="_parent" style="font-size:15px;" title="个人中心"><i class="fa fa-user"></i></a><br />
+                                                <a href="@Url.Action("LoginOut","User")" class="am-btn-danger am-btn-xs a-button2" target="_parent" style="font-size:15px;" title="退出登录"><i class="fa fa-power-off"></i></a>
                                             </div>
                                         }
                                         else
                                         {
                                            <div class="login_register">
-                                            <a class="am-btn am-btn-success am-btn-sm am-round am-btn-block" href="@Url.Action("Login","User")" target="_blank">登 录</a>
-                                            <a class="am-btn am-btn-success am-btn-sm am-round am-btn-block" href="@Url.Action("Register","User")" target="_blank">注 册</a>
+                                               <a class="a-link" href="@Url.Action("Login","User")" style="font-size:18px; font-weight:400;border:none;">登 录</a>
+                                               <a class="a-link" href="@Url.Action("Register","User")" style="font-size:18px;font-weight:400;border:none;">注 册</a>
                                            </div>
                                         }
                                     }

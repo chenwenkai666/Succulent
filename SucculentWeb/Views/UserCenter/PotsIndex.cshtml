@@ -1,64 +1,4 @@
 ﻿@model Model.Pots
-@{
-    ViewBag.Title = "Index";
-    Layout = "~/Views/Shared/_Layout.cshtml";
-}
-@section head{
-    <link href="~/Content/amazeui.min.css" rel="stylesheet" />
-    <style>
-                .PotsMain {
-                    width: 100%;
-                    height: auto;
-                    margin: 100px auto;
-                }
-
-                .PotsMain .Pots {
-                    width: 30%;
-                    height: auto;
-                    margin: 20% auto;
-                    text-align: center;
-                }
-
-                .PotsMain .Pots img {
-                    width: 50%;
-                    height: 50%;
-                }
-
-                .PotsMain .Pots .PotsSign {
-                    width: 50%;
-                    height: auto;
-                    margin: 10px auto;
-                }
-                .PotsMain .Pots .PotsSign i{
-                    text-align:left;
-                    margin-left:-65%;
-                }
-                .PotsMain .Pots .PotsSign a{
-                    font-size:12px;
-                    color:#808080;
-                }
-                .PotsMain .Pots .PotsSign a:hover{
-                    color:#4fac2a;
-                }
-                .Pots .SignTip{
-                    float:left;
-                    width:60%;
-                    height:200px;
-                    margin:-75% 20%;
-                    position:relative;
-                    background:url('../../images/签到成功.png') no-repeat;
-                    background-size:120%;
-                    background-position:center;
-                    display:none;
-                }
-                .Pots .SignTip p{
-                    position:absolute;
-                    text-align:center;
-                    top:35%;
-                    left:22%;
-                }
-    </style>
-}
 <div class="PotsMain">
     <div class="Pots">
         <img src="~/images/虚拟多肉.png" />
@@ -66,7 +6,7 @@
             @{
                 if (Model == null)
                 {
-                    using (Html.BeginForm("InsertPots", "Pots", FormMethod.Post))
+                    using (Ajax.BeginForm("InsertPots", "UserCenter", new AjaxOptions { HttpMethod = "POST", UpdateTargetId = "main-contain-bottom-succulent", InsertionMode = InsertionMode.Replace }))
                     {
                         <div class="am-progress">
                             <div class="am-progress-bar" style="width: 0%">0级</div>
@@ -77,26 +17,25 @@
                 else
                 {
                     <div class="am-progress">
-                    @{ 
-                        double progress = (double.Parse((Model.Experience-Model.Level.Levellowerlimit).ToString()) / double.Parse((Model.Level.LevelToplimit - Model.Level.Levellowerlimit).ToString())) * 100;
-                     }
+                        @{
+                            double progress = (double.Parse((Model.Experience - Model.Level.Levellowerlimit).ToString()) / double.Parse((Model.Level.LevelToplimit - Model.Level.Levellowerlimit).ToString())) * 100;
+                        }
                         <div class="am-progress-bar am-progress-bar-danger" style="width:@progress%">@Model.LevelID 级</div>
                     </div>
-                        <p>已连续签到：<b class="dayscount">@{ int days = int.Parse((Model.SignDays == null ? 0 : Model.SignDays).ToString());} @days</b> 天</p>
-                       <button class="am-btn am-btn-success am-btn-block sign-btn">签到</button>
-                       <i class="am-icon-question-circle-o"><a href="@Url.Action("Index","Level")" target="_blank"> 等级规则</a></i>
-                }
-             }
+                    <p>已连续签到：<b class="dayscount">@{ int days = int.Parse((Model.SignDays == null ? 0 : Model.SignDays).ToString());} @days</b> 天</p>
+                        <button class="am-btn am-btn-success am-btn-block sign-btn">签到</button>
+                        <i class="am-icon-question-circle-o"><a href="@Url.Action("Index","Level")" target="_blank"> 等级规则</a></i>
+                        }
+            }
         </div>
         <div class="SignTip">
             <p>@DateTime.Now.ToString("yyyy年MM月dd日")</p>
         </div>
     </div>
 </div>
-@section Foot{
 <script src="~/Scripts/jquery-1.10.2.min.js"></script>
 <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
-    <script>
+<script>
         $(function () {
             @{
                 string oldsign;
@@ -130,7 +69,7 @@
 
             $('.sign-btn').click(function () {
                 $.ajax({
-                    url:'@Url.Action("Sign", "Pots")',
+                    url:'@Url.Action("Sign", "UserCenter")',
                     type: 'POST',
                     date: {},
                     success: function (msg) {
@@ -146,5 +85,5 @@
                 });
             });
         });
-    </script>
-}
+</script>
+

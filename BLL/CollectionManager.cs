@@ -16,13 +16,17 @@ namespace BLL
         {
             icollection.Create(collection);
         }
-        public Collection SelectbySucculentId(int succulentid)
+        public IEnumerable<Collection> SelectbySucculentId(int succulentid)
         {
             return icollection.SelectbySucculentId(succulentid);
         }
         public IEnumerable<Collection> SelectByUserID(int UserID)
         {
             return icollection.SelectByUserID(UserID);
+        }
+        public Collection SelectSucculent(int UserID)
+        {
+            return icollection.SelectSucculent(UserID);
         }
     }
 }

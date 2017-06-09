@@ -17,6 +17,7 @@ namespace SucculentWeb.Controllers
         GoodsManager goodsmanager = new GoodsManager();
         ShopManager shopmanager = new ShopManager();
         ActivityManager activitymanager = new ActivityManager();
+        UsersManager usermanager = new UsersManager();
         // GET: SucculentActivity
         #region 活动首页
         //public ActionResult Index()
@@ -87,7 +88,7 @@ namespace SucculentWeb.Controllers
 
         }
         #endregion
-
+         
         #region 慈善活动详情
         public ActionResult CharitableDetail(int ActID = 5)
         {
@@ -101,7 +102,7 @@ namespace SucculentWeb.Controllers
         {
             try
             {
-                Users user = UsersManager.GetUserByName(Session["UserName"].ToString());
+                Users user = usermanager.GetUserByName(Session["UserName"].ToString());
                 int actid = ActID;
                 int UserID = user.UserID;
                 Donate donate = DonateManager.GetUserDonate(UserID, ActID);
@@ -121,7 +122,7 @@ namespace SucculentWeb.Controllers
         {
             try
             {
-                Users user = UsersManager.GetUserByName(Session["UserName"].ToString());
+                Users user = usermanager.GetUserByName(Session["UserName"].ToString());
                 donate.UserID = user.UserID;
                 donate.DonateTime = DateTime.Now;
                 donate.ActivityID = int.Parse(Request.Form["actid"]);
@@ -164,7 +165,7 @@ namespace SucculentWeb.Controllers
             {
                 if (Session["UserName"].ToString() != "")
                 {
-                    Users user = UsersManager.GetUserByName(Session["UserName"].ToString());
+                    Users user = usermanager.GetUserByName(Session["UserName"].ToString());
                     Activity act = activitymanager.GetActivity(ActID);
                     if (user.UserFlag == 1 && act.UserID == user.UserID)
                     {
@@ -272,7 +273,7 @@ namespace SucculentWeb.Controllers
         public string GetUserName(string UserID)
         {
             int userid = int.Parse(UserID);
-            Users user = UsersManager.GetUserByID(userid);
+            Users user = usermanager.GetUserByID(userid);
             if (user != null)
             {
                 return user.UserName;
@@ -299,8 +300,8 @@ namespace SucculentWeb.Controllers
             {
                 if (Session["UserName"].ToString() != "")
                 {
-                    int level = UsersManager.GetUserLevel(Session["UserName"].ToString());
-                    Users user = UsersManager.GetUserByName(Session["UserName"].ToString());
+                    int level = usermanager.GetUserLevel(Session["UserName"].ToString());
+                    Users user = usermanager.GetUserByName(Session["UserName"].ToString());
                     Activity act = activitymanager.GetActivity(ActivityID);
                     bool UserAttend = AttendanceManager.IsAttendActivity(user.UserID, ActivityID);
                     if (user != null && !UserAttend && level >= act.LevelRequest)
@@ -364,7 +365,7 @@ namespace SucculentWeb.Controllers
         public ActionResult UploadPortfolio(string TextDescription)
         {
             int ActID = int.Parse(Request.Form["actID"].ToString());
-            Users user = UsersManager.GetUserByName(Session["UserName"].ToString());
+            Users user = usermanager.GetUserByName(Session["UserName"].ToString());
             if (!EntriesManager.IsPublishEntry(user.UserID, ActID))
             {
                 try
@@ -419,7 +420,7 @@ namespace SucculentWeb.Controllers
         {
             if (Session["UserName"] != null)
             {
-                Users user = UsersManager.GetUserByName(Session["UserName"].ToString());
+                Users user = usermanager.GetUserByName(Session["UserName"].ToString());
                 int actid = int.Parse(ActID);
                 if (!EntriesManager.IsPublishEntry(user.UserID, actid))
                 {

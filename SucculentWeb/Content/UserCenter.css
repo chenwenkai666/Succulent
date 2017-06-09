@@ -234,9 +234,11 @@
     border-bottom:2px solid rgba(30,144,255,1);
 }
 .main-contain-bottom-details{
+    float:left;
     width:55%;
     height:500px;
     margin-left:10px;
+    overflow:hidden;
     border:1px solid red;
 }
 .main-contain-bottom-details li{
@@ -259,4 +261,13 @@
     font-size:12px;
     font-weight:500;
     color:#333;
+}
+#main-contain-bottom-succulent{
+    float:left;
+    width:40%;
+    height:auto;
+    margin-top:40PX;
+    margin-left:20px;
+    overflow:hidden;
+    border:1px solid red;
 }

@@ -16,13 +16,19 @@ namespace DAL
             db.Collection.Add(collection);
             db.SaveChanges();
         }
-        public Collection SelectbySucculentId(int succulentid)
+        public IEnumerable<Collection> SelectbySucculentId(int succulentid)
         {           
-            Collection collection= (from c in db.Collection
+            var collection= (from c in db.Collection
                            where c.SucculentID == succulentid
-                           select c).FirstOrDefault();
+                           select c).ToList();
             return collection;
         }
+        public Collection SelectSucculent(int UserID)
+        {
+            Collection collection = (from c in db.Collection where c.UserID == UserID select c).FirstOrDefault();
+            return collection;
+        }
+        
         public IEnumerable<Collection> SelectByUserID(int UserID)
         {
             var collection = (from c in db.Collection join s in db.Succulent on c.SucculentID equals s.SucculentID where c.UserID == UserID select c).ToList();

@@ -212,7 +212,6 @@
     <Compile Include="Controllers\IndexController.cs" />
     <Compile Include="Controllers\LevelController.cs" />
     <Compile Include="Controllers\MallSearchController.cs" />
-    <Compile Include="Controllers\PotsController.cs" />
     <Compile Include="Controllers\ShopUsersManagementController.cs" />
     <Compile Include="Controllers\SucculentActivityController.cs" />
     <Compile Include="Controllers\SucculentController.cs" />
@@ -724,6 +723,7 @@
     <Content Include="js\index.js" />
     <Content Include="js\jquery-1.10.2.min.js" />
     <Content Include="js\jquery-2.1.4.min.js" />
+    <Content Include="js\jquery-3.2.1.min.js" />
     <Content Include="js\jquery.animate-colors-min.js" />
     <Content Include="js\jquery.js" />
     <Content Include="js\setup.js" />
@@ -1447,7 +1447,6 @@
     <Content Include="Views\Tribune\SearchPost.cshtml" />
     <Content Include="Views\UserCenter\UserInfo.cshtml" />
     <Content Include="Views\SucculentActivity\PhotoResult.cshtml" />
-    <Content Include="Views\Pots\Index.cshtml" />
     <Content Include="Views\Level\Index.cshtml" />
     <Content Include="Views\AdminManagement\Index.cshtml" />
     <Content Include="Views\AdminManagement\UsersManagement.cshtml" />
@@ -1470,6 +1469,7 @@
     <Content Include="Views\SucculentIndex\CategoryContent.cshtml" />
     <Content Include="Views\UserCenter\UpdateInfo.cshtml" />
     <Content Include="Views\UserCenter\IndexPartial.cshtml" />
+    <Content Include="Views\UserCenter\PotsIndex.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
