@@ -1,0 +1,46 @@
+﻿@model IEnumerable<Model.Level>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutAdminManagement.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.LevelName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LevelToplimit)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Levellowerlimit)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.LevelName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LevelToplimit)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Levellowerlimit)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.LevelID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.LevelID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.LevelID })
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,4 +1,4 @@
-﻿
+﻿@model Model.Users
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_LayoutAdminManagement.cshtml";
@@ -21,6 +21,10 @@
                     </tr>
                 </thead>
                 <tbody>
+                    <tr>
+                        <td>当前登录管理员</td>
+                        <td>@Model.UserName</td>
+                    </tr>
                     <tr>
                         <td>当前SessionID</td>
                         <td>@Session.Contents.SessionID</td>

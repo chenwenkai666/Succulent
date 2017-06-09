@@ -1,0 +1,59 @@
+﻿@model Model.Pots
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_LayoutAdminManagement.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Pots</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Experience)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Experience)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Sign)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Sign)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SignDays)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SignDays)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Level.LevelName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Level.LevelName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Users.UserName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Users.UserName)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.PotID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

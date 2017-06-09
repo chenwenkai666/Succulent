@@ -1,0 +1,52 @@
+﻿@model IEnumerable<Model.GoodsComments>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutAdminManagement.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.GoodsCommentContent)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PublishTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Goods.GoodsName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Users.UserName)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.GoodsCommentContent)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PublishTime)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Goods.GoodsName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Users.UserName)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.GoodsCommentID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.GoodsCommentID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.GoodsCommentID })
+        </td>
+    </tr>
+}
+
+</table>

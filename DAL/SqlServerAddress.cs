@@ -18,7 +18,9 @@ namespace DAL
         public void AddAddress(Address address)
         {
             db.Address.Add(address);
+            db.Configuration.ValidateOnSaveEnabled = false;
             db.SaveChanges();
+            db.Configuration.ValidateOnSaveEnabled = true;
         }
         public Address GetAddress(int addressid)
         {

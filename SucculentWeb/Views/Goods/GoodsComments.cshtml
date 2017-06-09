@@ -1,6 +1,6 @@
 ﻿
 @model IEnumerable<Model.GoodsComments>
-
+@using BLL;
 @{
     Layout = null;
 }
@@ -118,11 +118,13 @@
     float:left;
     border-radius:50%;
 }
-.tabBlock-pane:last-child .out-ul .out-li .user-icon img{
-    width:100%;
-    height:100%;
-    background-size:cover;
-}
+        .tabBlock-pane:last-child .out-ul .out-li .user-icon img {
+            width: 100%;
+            height: 100%;
+            border-radius:50%;
+            background-image: url('../../images/头像.png');
+            background-size: cover;
+        }
 .tabBlock-pane:last-child .out-ul .out-li .PL-content{
     width:600px;
     margin-left:20px;
@@ -196,6 +198,8 @@
 .out-ul  .in-li .huifu-icon img{
     width:100%;
     height:100%;
+    border-radius:50%;
+    background-image: url('../../images/头像.png');
     background-size:cover;
 }
 .out-ul .in-li .HF-content{
@@ -264,8 +268,7 @@
             tempid = "dev" + p.GoodsCommentID;
             <li class="out-li">
                 <div class="user-icon">
-                    @*<img src="@p.Users.Photo" />*@
-                <img src="~/images/头像.png" />
+                        <img src="@p.Users.Photo" />
             </div>
             <input type="hidden" value="@p.GoodsCommentID" name="GoodCommentid" />
             <div class="PL-content">
@@ -307,7 +310,7 @@
            foreach (Model.ReplyGoods B in p.ReplyGoods.Where(c => c.GoodsCommentID == p.GoodsCommentID).ToList().AsReadOnly())
             {
             <li class="in-li">
-                <div class="huifu-icon"><img src="~/images/头像.png" /></div>
+                <div class="huifu-icon"><img src="@B.Users.Photo" /></div>
                 <div class="HF-content">
                     <div class="names"><s>@B.Users.UserName</s>   回复  <s>@B.GoodsComments.Users.UserName</s></div>
                     <div class="HF-comment">@B.ReplyContent</div>

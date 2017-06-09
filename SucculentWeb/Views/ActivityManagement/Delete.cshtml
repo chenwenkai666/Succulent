@@ -1,0 +1,113 @@
+﻿@model Model.Activity
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_LayoutAdminManagement.cshtml";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Activity</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ActivityName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ActivityName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ActivityDescribe)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ActivityDescribe)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ActivityPlace)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ActivityPlace)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.StartTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StartTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EndTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EndTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UpvoteNum)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UpvoteNum)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ActivityCover)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ActivityCover)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AttendConditions)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AttendConditions)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LevelRequest)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LevelRequest)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ActivityCategory.ActivityCategoryName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ActivityCategory.ActivityCategoryName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Users.UserName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Users.UserName)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

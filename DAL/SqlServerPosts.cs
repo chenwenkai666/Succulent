@@ -112,30 +112,30 @@ namespace DAL
         }
         public IEnumerable<Users> SelectInfoUsers(string postinfo)  //搜索帖子
         {
-            var data = from p in db.Users
-                       where p.UserName.Contains(postinfo)
-                       select p;
+            var data = (from p in db.Users
+                        where p.UserName.Contains(postinfo)
+                        select p).ToList().OrderBy(i => Guid.NewGuid()).ToList();
             return data;
         }
         public IEnumerable<Posts> SelectInfoPosts(string postinfo)  //搜索帖子
         {
-            var data = from p in db.Posts
-                       where p.PostTitle.Contains(postinfo)
-                       select p;
+            var data = (from p in db.Posts
+                        where p.PostTitle.Contains(postinfo)
+                        select p).OrderByDescending(p => p.PublishTime);
             return data;
         }
         public IEnumerable<PostComments> SelectInfoPostCom(string postinfo)  //搜索帖子
         {
-            var data = from p in db.PostComments
-                       where p.PostCommentContent.Contains(postinfo)
-                       select p;
+            var data = (from p in db.PostComments
+                        where p.PostCommentContent.Contains(postinfo)
+                        select p).OrderByDescending(p => p.PostCommentTime);
             return data;
         }
         public IEnumerable<ReplyPost> SelectInfoReplyPost(string postinfo)  //搜索帖子
         {
-            var data = from p in db.ReplyPost
-                       where p.ReplyContent.Contains(postinfo)
-                       select p;
+            var data = (from p in db.ReplyPost
+                        where p.ReplyContent.Contains(postinfo)
+                        select p).OrderByDescending(p => p.ReplyPostTime);
             return data;
         }
         public int GetPostComNum(int PostID)  //获取评论数量
@@ -170,6 +170,37 @@ namespace DAL
                           where p.UserID == userid
                           select p).FirstOrDefault();
             return data;
+        }
+        public int GetUserPotLev(int userid)    //获取用户有无花盆
+        {
+            int q = db.Pots.Count(p => p.UserID == userid);
+            return q;
+        }
+        public int GetUserEx(int userid)   //获取用户经验
+        {
+            int exp = (from p in db.Pots
+                       where p.UserID == userid
+                       select p.Experience).FirstOrDefault();
+            return exp;
+        }
+        public IEnumerable<Posts> SelectIndexPost01()   //首页帖子显示01
+        {
+            var data = (from p in db.Posts select p).ToList().OrderBy(i => Guid.NewGuid()).ToList().Take(7);
+            return data;
+        }
+        public IEnumerable<Posts> SelectIndexPost02()   //首页帖子显示02
+        {
+            var data = (from p in db.Posts select p).OrderByDescending(p => p.PublishTime).Take(7);
+            return data;
+        }
+        public IEnumerable<PostComments> SelectIndexPost03()   //首页帖子显示03
+        {
+            var data = (from p in db.PostComments select p).OrderByDescending(p => p.PostCommentTime).Take(7);
+            return data;
+        }
+        public IEnumerable<Posts> SelectAllPostsByUserID(int UserID)//获取用户发表的所有帖子
+        {
+            return db.Posts.Where(p=>p.UserID==UserID).ToList();
         }
     }
 }

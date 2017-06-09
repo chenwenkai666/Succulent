@@ -253,6 +253,7 @@
     <Compile Include="ViewModels\TribuneVM\TribuneIndexVM.cs" />
     <Compile Include="ViewModels\TribuneVM\TribunePostVM.cs" />
     <Compile Include="ViewModels\TribuneVM\TribuneSearchVM.cs" />
+    <Compile Include="ViewModels\UserCenterVM.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="bin\Antlr3.Runtime.dll" />

@@ -90,7 +90,7 @@ area{outline: none}
     overflow:hidden;
 }
 .main .AdpotSucculentBox .AdoptResultList li{
-    background-color:red;
+    /*background-color:red;*/
 }
 .main .AdpotSucculentBox .AdoptResultList a{
     color:red;
@@ -238,7 +238,7 @@ area{outline: none}
     width:80%;
     height:auto;
     margin:20px auto 0;
-    background-color:red;
+    /*background-color:red;*/
 }
 
 #goods .goods-list{

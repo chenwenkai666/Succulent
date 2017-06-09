@@ -36,5 +36,9 @@ namespace DAL
                 return false;
             }
         }
+        public IList<Attendance> SelectAllAttendanceByUserID(int UserID)
+        {
+            return db.Attendance.Where(a=>a.UserID==UserID).ToList();
+        }
     }
 }

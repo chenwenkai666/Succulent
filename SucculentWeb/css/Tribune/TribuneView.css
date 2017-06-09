@@ -37,6 +37,10 @@ body {
     float: right;
 }
 
+ #header-a-right a{
+     color:#fff;
+ }
+
     #header-a-right a:link {
         font-size: 12px;
         color: #FFF;

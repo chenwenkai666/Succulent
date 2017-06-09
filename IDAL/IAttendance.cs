@@ -12,5 +12,6 @@ namespace IDAL
         void InsertAttendance(Attendance attendance);
         Attendance GetAttendanceByUserID(int UserID);
         bool IsAttendActivity(int UserID, int ActID);
+        IList<Attendance> SelectAllAttendanceByUserID(int UserID);
     }
 }

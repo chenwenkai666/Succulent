@@ -1,0 +1,52 @@
+﻿@model IEnumerable<Model.ReplyPost>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutAdminManagement.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ReplyContent)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ReplyPostTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PostComments.PostCommentContent)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Users.UserName)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ReplyContent)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ReplyPostTime)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PostComments.PostCommentContent)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Users.UserName)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ReplyPostID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ReplyPostID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ReplyPostID })
+        </td>
+    </tr>
+}
+
+</table>

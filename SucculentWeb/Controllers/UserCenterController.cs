@@ -6,29 +6,38 @@ using System.Web.Mvc;
 using BLL;
 using Model;
 using System.Data.Entity.Validation;
+using SucculentWeb.ViewModels;
 using SucculentWeb.Attributes;
 
 namespace SucculentWeb.Controllers
 {
-    [IsLogIn(IsCheck = true)]
+    [IsLogIn(IsCheck =true)]
     public class UserCenterController : Controller
     {
         UsersManager usermanager = new UsersManager();
         CollectionManager collectionmanager = new CollectionManager();
+        PostsManager postsmanager = new PostsManager();
+        AttendanceManager attendancemanager = new  AttendanceManager();
+        OrderItemsManager orderitemsmanager = new OrderItemsManager();
         PotsManager potsmanager = new PotsManager();
-
-       
-       
-        public ActionResult Index()
+        // GET: UserCenter
+        public ActionResult Index(int id = 13)
         {
             var user = usermanager.GetUserByID(int.Parse(Session["UserID"].ToString()));
             return View(user);
         }
 
-        public ActionResult IndexPartial()
+        public ActionResult IndexPartial(string Section="帖子")
         {
-            var collection = collectionmanager.SelectByUserID(int.Parse(Session["UserID"].ToString()));
-            return View(collection);
+            
+            ViewBag.Section = Section;
+            int UserID = int.Parse(Session["UserID"].ToString());
+            UserCenterVM usercentervm = new ViewModels.UserCenterVM();
+            usercentervm.attendance = attendancemanager.SelectAllAttendanceByUserID(UserID);
+            usercentervm.collection=collectionmanager.SelectByUserID(UserID);
+            usercentervm.post = postsmanager.SelectAllPostsByUserID(UserID);
+            usercentervm.orderitems = orderitemsmanager.SelectAllOrderItems(UserID);
+            return PartialView(usercentervm);
         }
 
         public ActionResult PotsIndex()
@@ -132,20 +141,20 @@ namespace SucculentWeb.Controllers
 
                     HttpPostedFileBase postImage = Request.Files["Photo"];
                     string img = postImage.FileName.ToString();
-                if (img == "")
-                {
-                    return Content("<script>;alert('请输入图片');history.go(-1)</script>");
+                    if (img == "")
+                    {
+                        return Content("<script>;alert('请输入图片');history.go(-1)</script>");
 
-                }
-                else
-                {
+                    }
+                    else
+                    {
 
-                    string filePath = postImage.FileName;
-                    string filename = filePath.Substring(filePath.LastIndexOf("\\") + 1);
-                    string serverpath = Server.MapPath(@"\images\Photo\") + filename;
-                    string relativepath = @"/images/Photo/" + filename;
-                    postImage.SaveAs(serverpath);
-                    u.Photo = relativepath;
+                        string filePath = postImage.FileName;
+                        string filename = filePath.Substring(filePath.LastIndexOf("\\") + 1);
+                        string serverpath = Server.MapPath(@"\images\Photo\") + filename;
+                        string relativepath = @"/images/Photo/" + filename;
+                        postImage.SaveAs(serverpath);
+                        u.Photo = relativepath;
                     //u.Sex = Request["Sex"];
                     //u.Birth = Convert.ToDateTime(Request["Birth"]);
                     //u.Phone = Request["Phone"];
@@ -157,8 +166,8 @@ namespace SucculentWeb.Controllers
                     //    items.Add(new SelectListItem { Text = "你爸爸的名字", Value = "你爸爸的名字", Selected = true });
                     //    items.Add(new SelectListItem { Text = "你最喜欢的颜色", Value = "你最喜欢的颜色" });
                     //    this.ViewData["list"] = items;
-                        usermanager.UpdateUserInfo(u);
-              }
+                    usermanager.UpdateUserInfo(u);
+                    }
 
             }
             catch (System.Data.Entity.Validation.DbEntityValidationException dbEx)
@@ -167,7 +176,7 @@ namespace SucculentWeb.Controllers
                 }
            
             return View("UserInfo", u);
-        }   
+        }  
         public ActionResult GetUpdateInfo()
         {
             var u = usermanager.GetUserByID(int.Parse(Session["UserID"].ToString()));
@@ -199,7 +208,7 @@ namespace SucculentWeb.Controllers
                 items.Add(new SelectListItem { Text = "你的宠物种类", Value = "你的宠物种类" });
                 items.Add(new SelectListItem { Text = "你爸爸的名字", Value = "你爸爸的名字" });
                 items.Add(new SelectListItem { Text = "你最喜欢的颜色", Value = "你最喜欢的颜色" });
-               
+                
                 u.Sex = user.Sex;
                 if (user.Birth.ToString() == null)
                 {

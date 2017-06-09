@@ -1,0 +1,75 @@
+﻿@model Model.Donate
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_LayoutAdminManagement.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Donate</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.DonateTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DonateTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DonoteTotal)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DonoteTotal)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DonateContent)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DonateContent)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ExoressNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ExoressNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DonateState)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DonateState)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Users.UserName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Users.UserName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Activity.ActivityName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Activity.ActivityName)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.DonateID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

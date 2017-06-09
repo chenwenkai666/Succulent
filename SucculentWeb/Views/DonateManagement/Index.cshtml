@@ -1,0 +1,70 @@
+﻿@model IEnumerable<Model.Donate>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutAdminManagement.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.DonateTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DonoteTotal)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DonateContent)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ExoressNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DonateState)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Users.UserName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Activity.ActivityName)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.DonateTime)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DonoteTotal)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DonateContent)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ExoressNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DonateState)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Users.UserName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Activity.ActivityName)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.DonateID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.DonateID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.DonateID })
+        </td>
+    </tr>
+}
+
+</table>

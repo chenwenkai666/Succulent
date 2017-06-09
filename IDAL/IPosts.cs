@@ -33,5 +33,11 @@ namespace IDAL
         IEnumerable<Level> SelectUserLevel(int userid);  //搜索用户等级
         IEnumerable<Posts> SelectAllPosts();//获取全部帖子
         Users GetUserFlag(int userid);   //获取用户权限ID
+        int GetUserPotLev(int userid);    //获取用户有无花盆
+        int GetUserEx(int userid);    //获取用户经验
+        IEnumerable<Posts> SelectIndexPost01();   //首页帖子显示01
+        IEnumerable<Posts> SelectIndexPost02();   //首页帖子显示02
+        IEnumerable<PostComments> SelectIndexPost03();   //首页帖子显示03
+        IEnumerable<Posts> SelectAllPostsByUserID(int UserID);//获取用户发表的所有帖子
     }
 }

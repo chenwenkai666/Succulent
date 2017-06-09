@@ -1,0 +1,43 @@
+﻿@model Model.Level
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_LayoutAdminManagement.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Level</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.LevelName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LevelName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LevelToplimit)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LevelToplimit)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Levellowerlimit)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Levellowerlimit)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.LevelID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

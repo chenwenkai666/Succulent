@@ -1,0 +1,51 @@
+﻿@model Model.PostComments
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_LayoutAdminManagement.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>PostComments</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.PostCommentContent)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PostCommentContent)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PostCommentTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PostCommentTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Posts.PostTitle)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Posts.PostTitle)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Users.UserName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Users.UserName)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.PostCommentID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

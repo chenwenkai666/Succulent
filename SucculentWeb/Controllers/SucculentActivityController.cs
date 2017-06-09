@@ -18,6 +18,10 @@ namespace SucculentWeb.Controllers
         ShopManager shopmanager = new ShopManager();
         ActivityManager activitymanager = new ActivityManager();
         UsersManager usermanager = new UsersManager();
+        DonateManager donatemanager = new DonateManager();
+        AdoptManager adoptmanager = new AdoptManager();
+        EntriesManager entriesmanager = new EntriesManager();
+        AttendanceManager attendancemanager = new AttendanceManager();
         // GET: SucculentActivity
         #region 活动首页
         //public ActionResult Index()
@@ -88,7 +92,7 @@ namespace SucculentWeb.Controllers
 
         }
         #endregion
-         
+
         #region 慈善活动详情
         public ActionResult CharitableDetail(int ActID = 5)
         {
@@ -105,7 +109,7 @@ namespace SucculentWeb.Controllers
                 Users user = usermanager.GetUserByName(Session["UserName"].ToString());
                 int actid = ActID;
                 int UserID = user.UserID;
-                Donate donate = DonateManager.GetUserDonate(UserID, ActID);
+                Donate donate = donatemanager.GetUserDonate(UserID, ActID);
                 return View(donate);
             }
             catch (Exception ex)
@@ -127,7 +131,7 @@ namespace SucculentWeb.Controllers
                 donate.DonateTime = DateTime.Now;
                 donate.ActivityID = int.Parse(Request.Form["actid"]);
                 donate.DonateState = "待收货";
-                if (DonateManager.InsertDonate(donate))
+                if (donatemanager.InsertDonate(donate))
                 {
                     return "1";
                 }
@@ -151,7 +155,7 @@ namespace SucculentWeb.Controllers
         {
             AdoptSucculentVM AdoptVM = new AdoptSucculentVM();
             AdoptVM.Activity = activitymanager.GetActivity(id);
-            AdoptVM.AdoptList = AdoptManager.GetAdoptListByActID(id);
+            AdoptVM.AdoptList = adoptmanager.GetAdoptListByActID(id);
             AdoptVM.AdoptResult = adoptresultmanager.GetAdoptResultByActID(id);
 
             return View(AdoptVM);
@@ -207,7 +211,7 @@ namespace SucculentWeb.Controllers
                 adopt.ActivityID = int.Parse(actid[i]);
                 adopt.GoodsID = int.Parse(goodsid[i]);
                 adopt.Total = int.Parse(total[i]);
-                if (AdoptManager.InsertAdopt(adopt))
+                if (adoptmanager.InsertAdopt(adopt))
                 {
 
                 }
@@ -303,14 +307,14 @@ namespace SucculentWeb.Controllers
                     int level = usermanager.GetUserLevel(Session["UserName"].ToString());
                     Users user = usermanager.GetUserByName(Session["UserName"].ToString());
                     Activity act = activitymanager.GetActivity(ActivityID);
-                    bool UserAttend = AttendanceManager.IsAttendActivity(user.UserID, ActivityID);
+                    bool UserAttend = attendancemanager.IsAttendActivity(user.UserID, ActivityID);
                     if (user != null && !UserAttend && level >= act.LevelRequest)
                     {
                         Attendance attendance = new Attendance();
                         attendance.ActivityID = ActivityID;
                         attendance.UserID = user.UserID;
                         attendance.AttendanceTime = DateTime.Now;
-                        AttendanceManager.InsertAttendance(attendance);
+                        attendancemanager.InsertAttendance(attendance);
                         return "报名成功";
                     }
                     else if (UserAttend)
@@ -337,7 +341,7 @@ namespace SucculentWeb.Controllers
         #region 参与活动页面
         public ActionResult AttendPhotoActivity(int actID)
         {
-            var entries = EntriesManager.GetAllEntriesByActID(actID);
+            var entries = entriesmanager.GetAllEntriesByActID(actID);
             return View(entries);
         }
         #endregion
@@ -362,55 +366,62 @@ namespace SucculentWeb.Controllers
 
         #region 图片作品发表
         [HttpPost]
-        public ActionResult UploadPortfolio(string TextDescription)
+        public ActionResult UploadPortfolio()/*string TextDescription*/
         {
             int ActID = int.Parse(Request.Form["actID"].ToString());
             Users user = usermanager.GetUserByName(Session["UserName"].ToString());
-            if (!EntriesManager.IsPublishEntry(user.UserID, ActID))
-            {
-                try
+            bool IsAttendance = attendancemanager.IsAttendActivity(user.UserID,ActID);
+            //if (IsAttendance)
+            //{
+                if (!entriesmanager.IsPublishEntry(user.UserID, ActID))
                 {
-
-                    Activity act = activitymanager.GetActivity(ActID);
-
-                    HttpPostedFileBase file = Request.Files["filePortfolio"];//判断是否已经选择上传文件
-                    string filePath = file.FileName;
-                    string filename = filePath.Substring(filePath.LastIndexOf("\\") + 1);
-                    string path = Server.MapPath(@"\images\Activity\Portfolio\" + act.ActivityID + "\\");
-                    if (!Directory.Exists(path))//判断路径是否存在，若不存在则创建
+                    try
                     {
-                        Directory.CreateDirectory(path);
-                    }
-                    string serverpath = path + filename;
-                    string relativepath = @"/images/Activity/Portfolio/" + act.ActivityID + "/" + filename;
-                    file.SaveAs(serverpath);//上传路径
 
-                    Entries entries = new Entries();
-                    entries.ActivityID = ActID;
-                    entries.Image = relativepath;
-                    entries.TextDescription = Request.Form["TextDescription"];
-                    entries.JoinTime = DateTime.Now;
-                    entries.UserID = user.UserID;
-                    entries.UpvoteNum = 0;
-                    if (EntriesManager.InsertEntries(entries))
-                    {
-                        return Content("<script>alert('发布成功！');window.open('" + Url.Action("AttendPhotoActivity", "SucculentActivity", new { actID = ActID }) + "', '_self')</script>");
-                    }
-                    else
-                    {
-                        return Content("<script>alert('对不起，发布失败！');window.open('" + Url.Action("AttendPhotoActivity", "SucculentActivity", new { actID = ActID }) + "', '_self')')</script>");
-                    }
+                        Activity act = activitymanager.GetActivity(ActID);
+                        HttpPostedFileBase file = Request.Files["filePortfolio"];//判断是否已经选择上传文件
+                        string filePath = file.FileName;
+                        string filename = filePath.Substring(filePath.LastIndexOf("\\") + 1);
+                        string path = Server.MapPath(@"\images\Activity\Portfolio\" + act.ActivityID + "\\");
+                        if (!Directory.Exists(path))//判断路径是否存在，若不存在则创建
+                        {
+                            Directory.CreateDirectory(path);
+                        }
+                        string serverpath = path + filename;
+                        string relativepath = @"/images/Activity/Portfolio/" + act.ActivityID + "/" + filename;
+                        file.SaveAs(serverpath);//上传路径
 
+                        Entries entries = new Entries();
+                        entries.ActivityID = ActID;
+                        entries.Image = relativepath;
+                        entries.TextDescription = Request.Form["TextDescription"];
+                        entries.JoinTime = DateTime.Now;
+                        entries.UserID = user.UserID;
+                        entries.UpvoteNum = 0;
+                        if (entriesmanager.InsertEntries(entries))
+                        {
+                            return Content("<script>alert('发布成功！');window.open('" + Url.Action("AttendPhotoActivity", "SucculentActivity", new { actID = ActID }) + "', '_self')</script>");
+                        }
+                        else
+                        {
+                            return Content("<script>alert('对不起，发布失败！');window.open('" + Url.Action("AttendPhotoActivity", "SucculentActivity", new { actID = ActID }) + "', '_self')')</script>");
+                        }
+
+                    }
+                    catch (Exception ex)
+                    {
+                        return Content("<script>alert('系统出错，发布失败！原因如下：" + ex.Message + "');;window.open('" + Url.Action("AttendPhotoActivity", "SucculentActivity", new { actID = ActID }) + "', '_self')')</script>");
+                    }
                 }
-                catch (Exception ex)
+                else
                 {
-                    return Content("<script>alert('系统出错，发布失败！原因如下：" + ex.Message + "');;window.open('" + Url.Action("AttendPhotoActivity", "SucculentActivity", new { actID = ActID }) + "', '_self')')</script>");
+                    return Content("<script>alert('您已经发表过作品了，欣赏下他人作品吧~');window.open('" + Url.Action("AttendPhotoActivity", "SucculentActivity", new { actID = ActID }) + "', '_self')')</script>");
                 }
-            }
-            else
-            {
-                return Content("<script>alert('您已经发表过作品了，欣赏下他人作品吧~');window.open('" + Url.Action("AttendPhotoActivity", "SucculentActivity", new { actID = ActID }) + "', '_self')')</script>");
-            }
+            //}
+            //else
+            //{
+            //    return Content("<script>alert('您没有报名本活动哦~快去报名参加或去看看大家的作品吧~');window.open('" + Url.Action("AttendPhotoActivity", "SucculentActivity", new { actID = ActID }) + "', '_self')')</script>");
+            //}
         }
         #endregion
 
@@ -422,7 +433,7 @@ namespace SucculentWeb.Controllers
             {
                 Users user = usermanager.GetUserByName(Session["UserName"].ToString());
                 int actid = int.Parse(ActID);
-                if (!EntriesManager.IsPublishEntry(user.UserID, actid))
+                if (!entriesmanager.IsPublishEntry(user.UserID, actid))
                 {
                     return "0";
                 }
@@ -445,7 +456,7 @@ namespace SucculentWeb.Controllers
         {
             if (Session["UserName"] != null)
             {
-                if (EntriesManager.AddUpvoteNum(UserID, ActID))
+                if (entriesmanager.AddUpvoteNum(UserID, ActID))
                 {
                     return "1";
                 }
@@ -464,7 +475,7 @@ namespace SucculentWeb.Controllers
         #region 摄影、DIY大赛评选结果作品展示
         public ActionResult PhotoResult()
         {
-            var entry = EntriesManager.GetAllEntriesByActID(1).OrderByDescending(e => e.UpvoteNum);
+            var entry = entriesmanager.GetAllEntriesByActID(1).OrderByDescending(e => e.UpvoteNum);
             return View(entry);
         }
         #endregion

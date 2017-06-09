@@ -121,22 +121,20 @@
 
     .tabox .lh {
         min-height: 208px;
-        padding: 10px 0;
+        padding: 5px 0;
         overflow: hidden;
-        /*border:1px solid #C7CEB2;*/
     }
 
         .tabox .lh li {
             width: 477px;
             margin: 1px;
             padding: 1px 25px;
-            /*border:1px solid #C7CEB2;*/
+            background-color:#F5F5DC;
         }
 
             .tabox .lh li .p-name {
                 height: 25px;
                 padding-top: 3px;
-                /*border:1px solid #C7CEB2;*/
             }
 /*选项卡结束*/
 

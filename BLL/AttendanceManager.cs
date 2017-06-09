@@ -11,19 +11,23 @@ namespace BLL
 {
     public class AttendanceManager
     {
-        private static IAttendance iattendance = DataAccess.CreateAttendance();
+        public IAttendance iattendance = DataAccess.CreateAttendance();
 
-        public static void InsertAttendance(Attendance attendance)
+        public void InsertAttendance(Attendance attendance)
         {
             iattendance.InsertAttendance(attendance);
         }
-        public static Attendance GetAttendanceByUserID(int UserID)
+        public Attendance GetAttendanceByUserID(int UserID)
         {
             return iattendance.GetAttendanceByUserID(UserID);
         }
-        public static bool IsAttendActivity(int UserID, int ActID)
+        public bool IsAttendActivity(int UserID, int ActID)
         {
             return iattendance.IsAttendActivity(UserID,ActID);
+        }
+        public IList<Attendance> SelectAllAttendanceByUserID(int UserID)
+        {
+            return iattendance.SelectAllAttendanceByUserID(UserID);
         }
     }
 }

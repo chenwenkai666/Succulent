@@ -40,13 +40,14 @@
                         <div class="left-content-down">
                             @{ 
                                 GoodsManager goodsmanager = new GoodsManager();
+                                ShopManager shopmanager = new ShopManager();
                                 var Salse = goodsmanager.SelectShopTime(p.ShopID).ToList();
                                 int Total = 0;
                                 for (int i = 0; i < Salse.Count(); i++)
                                 {
                                     Total = Total + Salse[i].Sales;
                                 }
-                                int count= ShopManager.SelectShopGoodsCount(p.ShopID);
+                                int count= shopmanager.SelectShopGoodsCount(p.ShopID);
                                 }
                             <p class="xiaoliang">销量<b>@Total</b></p>
                             <p class="shuliang">共<b>@count </b>件宝贝</p>

@@ -1,0 +1,51 @@
+﻿@model Model.GoodsComments
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_LayoutAdminManagement.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>GoodsComments</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.GoodsCommentContent)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GoodsCommentContent)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PublishTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PublishTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Goods.GoodsName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Goods.GoodsName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Users.UserName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Users.UserName)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.GoodsCommentID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,0 +1,51 @@
+﻿@model Model.ReplyGoods
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_LayoutAdminManagement.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>ReplyGoods</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ReplyContent)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ReplyContent)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ReplyTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ReplyTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.GoodsComments.GoodsCommentContent)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GoodsComments.GoodsCommentContent)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Users.UserName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Users.UserName)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ReplyGoodsID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

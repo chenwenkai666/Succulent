@@ -1,0 +1,51 @@
+﻿@model Model.ReplyPost
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_LayoutAdminManagement.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>ReplyPost</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ReplyContent)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ReplyContent)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ReplyPostTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ReplyPostTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PostComments.PostCommentContent)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PostComments.PostCommentContent)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Users.UserName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Users.UserName)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ReplyPostID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

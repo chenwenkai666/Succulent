@@ -19,6 +19,10 @@ namespace DAL
         {
             return db.AdoptResult.Where(ar => ar.ActivityID == ActID).ToList();
         }
-
+        public int getAdoptUser(int userid)
+        {
+            var result = (from p in db.AdoptResult where p.UserID == userid select p).Count();
+            return result;
+        }
     }
 }

@@ -1,0 +1,88 @@
+﻿@model IEnumerable<Model.Goods>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutAdminManagement.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.GoodsName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Price)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.GoodsPhoto)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.GoodsDescribe)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LikeIt)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Flag)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Time)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Stock)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Sales)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Shops.ShopName)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.GoodsName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Price)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.GoodsPhoto)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.GoodsDescribe)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LikeIt)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Flag)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Time)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Stock)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Sales)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Shops.ShopName)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.GoodsID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.GoodsID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.GoodsID })
+        </td>
+    </tr>
+}
+
+</table>
