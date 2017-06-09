@@ -274,9 +274,9 @@ div.index_loginbox:hover{
     cursor:pointer;
 }
 div.index_loginbox img{
-
     width:100%;
     height:100%;
+    border-radius: 50%
 }
 
 .login_registerbox{

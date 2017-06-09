@@ -102,12 +102,12 @@
                                 </div>
                                 <div class="Tribune_Info">
                                     <h3>@item.PostTitle</h3>
-                                    <p class="PostTxt"></p>
-                                    <script>
-                                        var content = '@item.PostContent';
+                                    <p class="PostTxt">@item.PostContent</p>
+                                    @*<script>
+                                        var content = '';
                                         var contenttext = content.replace(/<[^>]*>/g, "");
                                         $('.PostTxt').text(content);
-                                    </script>
+                                    </script>*@
                                 </div>
                             </div>
                         </a>
