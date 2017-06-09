@@ -11,7 +11,7 @@ namespace SucculentWeb.ViewModels.TribuneVM
 {
     public class TribunePostVM
     {
-        public IEnumerable<Posts> Posts { get; set; }
+        public Posts Posts { get; set; }
         public IPagedList<PostComments> PostComment { get; set; }
         public IEnumerable<Users> UserInfo { get; set; }
     }

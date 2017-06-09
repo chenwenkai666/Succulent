@@ -51,7 +51,6 @@
                                         UsersManager usermanager = new UsersManager();
                                         if (Session["UserName"] != null)
                                         {
-                                            UsersManager usermanager = new UsersManager();
                                             Users user = usermanager.GetUserByName(Session["UserName"].ToString());
                                             if (user.Photo != null)
                                             {

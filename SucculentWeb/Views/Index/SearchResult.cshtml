@@ -1,4 +1,5 @@
 ﻿@model SucculentWeb.ViewModels.SearchResultVM
+@using BLL;
 @{
     ViewBag.Title = "SearchResult";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -85,7 +86,7 @@
                 <div class="am-panel-bd">
                     @foreach (var item in Model.Posts)
                     {
-                        <a href="@Url.Action("PostsDetails","Tribune", new { PostID=item.PostID })" target="_blank">
+                        <a href="@Url.Action("PostsDetails", "Tribune", new { PostID = item.PostID })" target="_blank">
                             <div class="Tribune_Item">
                                 <div class="Tribune_Img">
                                     @{
@@ -104,14 +105,14 @@
                                     <h3>@item.PostTitle</h3>
                                     <p class="PostTxt">@item.PostContent</p>
                                     @*<script>
-                                        var content = '';
-                                        var contenttext = content.replace(/<[^>]*>/g, "");
-                                        $('.PostTxt').text(content);
+                                        @{ string contxt = NoHTML.noHTML(item.PostContent); }
+                                        $('.PostTxt').html(@contxt);
+                                        alert('1');
                                     </script>*@
                                 </div>
                             </div>
                         </a>
-                                        }
+                      }
                 </div>
             </section>
             <section class="am-panel am-panel-success">

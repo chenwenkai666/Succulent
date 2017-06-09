@@ -21,7 +21,7 @@
         autoHeightEnabled: true,
         maximumWords: 1000,
         initialFrameHeight: 150,
-        toolbars: [['source', 'undo', 'redo', 'bold', 'italic', 'underline', 'strikethrough', 'superscript', 'subscript', 'date', 'time', 'link', 'unlink', 'fontfamily', 'fontsize', 'forecolor', 'simpleupload', 'emotion', 'scrawl', 'insertvideo', 'music', 'attachment', 'map', 'inserttable', 'help', 'justifyleft', 'justifyright', 'justifycenter', 'justifyjustify', ]]
+        toolbars: [['source', 'undo', 'redo', 'bold', 'italic', 'underline', 'strikethrough', 'superscript', 'subscript', 'date', 'time', 'link', 'unlink', 'fontfamily', 'fontsize', 'forecolor', 'simpleupload', 'emotion', 'scrawl', 'insertvideo', 'music', 'attachment', 'map', 'inserttable', 'help', 'justifyleft', 'justifyright', 'justifycenter', 'justifyjustify']]
     };
     var editor = new baidu.editor.ui.Editor(editorOption);
     editor.render('PostCommentContent');
@@ -32,10 +32,7 @@
     <div id="bodyer">
         <div id="PostTitle">
             <div id="titleLeft">
-                @foreach (var A in Model.Posts)
-                {
-                    <p>@A.PostTitle</p>
-                }
+               <p>@Model.Posts.PostTitle</p>
             </div>
             <div id="titleRight">
                 @*<button class="btn btn-sm btn-default">只看楼主</button>*@

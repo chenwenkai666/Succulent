@@ -34,7 +34,7 @@ namespace BLL
         {
             return iposts.GetSectionPost(boardID);
         }
-        public IEnumerable<Posts> GetPostDetails(int PostID)  //获取帖子详情
+        public Posts GetPostDetails(int PostID)  //获取帖子详情
         {
             return iposts.GetPostDetails(PostID);
         }

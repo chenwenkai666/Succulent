@@ -14,7 +14,7 @@ namespace IDAL
         IEnumerable<Sections> GetSection33(); //获取第三个板块
         IEnumerable<Sections> GetSectionName(int boardID);  //获取板块名称
         IEnumerable<Posts> GetSectionPost(int boardID);  //获取板块帖子
-        IEnumerable<Posts> GetPostDetails(int PostID);  //获取帖子详情
+        Posts GetPostDetails(int PostID);  //获取帖子详情
         IEnumerable<PostComments> GetPostComments(int PostID);  //获取帖子评论
         int GetReplyComNum(int PostCommentID);   //获取回复数量
         int GetPostNumberAll(int boardID);  //获取板块总帖数

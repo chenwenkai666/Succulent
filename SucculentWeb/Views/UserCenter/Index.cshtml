@@ -150,19 +150,15 @@
         <div class="main-contain-bottom-dao row">
             <ul>
                 <li class="col-md-2">
-                    @*<a class="tie">发帖</a>*@
                     @Ajax.ActionLink("发帖", "IndexPartial",new { Section="帖子" },new AjaxOptions { HttpMethod="POST", InsertionMode=InsertionMode.Replace,UpdateTargetId= "sectiontxt" },new {@class= "tie" })
                 </li>
                 <li class="col-md-2">
-                    @*<a class="activity">活动</a>*@
                     @Ajax.ActionLink("活动", "IndexPartial", new { Section = "活动" }, new AjaxOptions { HttpMethod = "POST", InsertionMode = InsertionMode.Replace, UpdateTargetId = "sectiontxt" }, new { @class = "activity" })
                 </li>
                 <li class="col-md-2">
-                    @*<a class="collection">收藏</a>*@
                     @Ajax.ActionLink("收藏", "IndexPartial", new { Section = "收藏" }, new AjaxOptions { HttpMethod = "POST", InsertionMode = InsertionMode.Replace, UpdateTargetId = "sectiontxt" }, new { @class = "collection" })
                 </li>
                 <li class="col-md-2">
-                    @*<a class="comment">订单</a>*@
                     @Ajax.ActionLink("订单", "IndexPartial", new { Section = "订单" }, new AjaxOptions { HttpMethod = "POST", InsertionMode = InsertionMode.Replace, UpdateTargetId = "sectiontxt" }, new { @class = "collection" })
                 </li>
                 <li class="col-md-2">
@@ -174,13 +170,6 @@
             </ul>
         </div>
         <div class="main-contain-bottom-details row" id="main-contain-bottom-details">
-            @*<ul>
-                <li class="col-md-12">
-                    <h3 class="col-md-12 change-title">发表了帖子</h3>
-                    <a class="col-md-9">最美的多肉头饰</a>
-                    <span class="col-md-3">2017.05.03</span>
-                </li>
-            </ul>*@
             @{ 
                 Html.RenderAction("IndexPartial","UserCenter");
             }
