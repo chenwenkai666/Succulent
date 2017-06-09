@@ -12,5 +12,6 @@ namespace SucculentWeb.ViewModels
         public IEnumerable<Attendance> attendance { get; set; }
         public IEnumerable<Collection> collection { get; set; }
         public IEnumerable<PostComments> postcomments { get; set; }
+        public IEnumerable<OrderItems> orderitems { get; set; }
     }
 }

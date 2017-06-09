@@ -19,7 +19,7 @@
                 background: #f7f8fa;
             }
     </style>
-    <script>
+    @*<script>
         $(function () {
             $(".tie").click(function () {
                 $(".change-title").text("我发表了帖子");
@@ -37,7 +37,7 @@
                 $(".change-title").text("我的回复");
             })
         })
-    </script>
+    </script>*@
 }
 <main class="main-contain">
     <div class="main-contain-top">
@@ -89,7 +89,8 @@
                     @Ajax.ActionLink("收藏", "IndexPartial", new { Section = "收藏" }, new AjaxOptions { HttpMethod = "POST", InsertionMode = InsertionMode.Replace, UpdateTargetId = "sectiontxt" }, new { @class = "collection" })
                 </li>
                 <li class="col-md-2">
-                    <a class="comment">评论</a>
+                    @*<a class="comment">订单</a>*@
+                    @Ajax.ActionLink("订单", "IndexPartial", new { Section = "订单" }, new AjaxOptions { HttpMethod = "POST", InsertionMode = InsertionMode.Replace, UpdateTargetId = "sectiontxt" }, new { @class = "collection" })
                 </li>
                 <li class="col-md-2">
                     <a class="huifu">回复</a>

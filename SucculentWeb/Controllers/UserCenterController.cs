@@ -7,15 +7,18 @@ using BLL;
 using Model;
 using System.Data.Entity.Validation;
 using SucculentWeb.ViewModels;
+using SucculentWeb.Attributes;
 
 namespace SucculentWeb.Controllers
 {
+    [IsLogIn(IsCheck =true)]
     public class UserCenterController : Controller
     {
         UsersManager usermanager = new UsersManager();
         CollectionManager collectionmanager = new CollectionManager();
         PostsManager postsmanager = new PostsManager();
         AttendanceManager attendancemanager = new  AttendanceManager();
+        OrderItemsManager orderitemsmanager = new OrderItemsManager();
         // GET: UserCenter
         public ActionResult Index(int id = 13)
         {
@@ -32,6 +35,7 @@ namespace SucculentWeb.Controllers
             usercentervm.attendance = attendancemanager.SelectAllAttendanceByUserID(UserID);
             usercentervm.collection=collectionmanager.SelectByUserID(UserID);
             usercentervm.post = postsmanager.SelectAllPostsByUserID(UserID);
+            usercentervm.orderitems = orderitemsmanager.SelectAllOrderItems(UserID);
             return PartialView(usercentervm);
         }
 
