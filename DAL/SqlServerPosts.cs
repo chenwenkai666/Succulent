@@ -198,5 +198,9 @@ namespace DAL
             var data = (from p in db.PostComments select p).OrderByDescending(p => p.PostCommentTime).Take(7);
             return data;
         }
+        public IEnumerable<Posts> SelectAllPostsByUserID(int UserID)//获取用户发表的所有帖子
+        {
+            return db.Posts.Where(p=>p.UserID==UserID).ToList();
+        }
     }
 }

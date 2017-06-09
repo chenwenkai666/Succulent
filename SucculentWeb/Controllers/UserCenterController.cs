@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using BLL;
 using Model;
 using System.Data.Entity.Validation;
+using SucculentWeb.ViewModels;
 
 namespace SucculentWeb.Controllers
 {
@@ -13,6 +14,8 @@ namespace SucculentWeb.Controllers
     {
         UsersManager usermanager = new UsersManager();
         CollectionManager collectionmanager = new CollectionManager();
+        PostsManager postsmanager = new PostsManager();
+        AttendanceManager attendancemanager = new  AttendanceManager();
         // GET: UserCenter
         public ActionResult Index(int id = 13)
         {
@@ -20,10 +23,16 @@ namespace SucculentWeb.Controllers
             return View(user);
         }
 
-        public ActionResult IndexPartial()
+        public ActionResult IndexPartial(string Section="帖子")
         {
-            var collection = collectionmanager.SelectByUserID(int.Parse(Session["UserID"].ToString()));
-            return View(collection);
+            
+            ViewBag.Section = Section;
+            int UserID = int.Parse(Session["UserID"].ToString());
+            UserCenterVM usercentervm = new ViewModels.UserCenterVM();
+            usercentervm.attendance = attendancemanager.SelectAllAttendanceByUserID(UserID);
+            usercentervm.collection=collectionmanager.SelectByUserID(UserID);
+            usercentervm.post = postsmanager.SelectAllPostsByUserID(UserID);
+            return PartialView(usercentervm);
         }
 
         public ActionResult UserInfo(int id)

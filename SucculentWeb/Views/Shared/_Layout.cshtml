@@ -53,11 +53,11 @@
                                             Users user = usermanager.GetUserByName(Session["UserName"].ToString());
                                             if (user.Photo != null)
                                             {
-                                                <img src="@user.Photo" />
+                                                <a href="@Url.Action("Index","UserCenter")" target="_blank"><img src="@user.Photo" /></a>
                                             }
                                             else
                                             {
-                                                <img src="~/images/头像.png" />
+                                                <a href="@Url.Action("Index","UserCenter")" target="_blank"><img src="~/images/头像.png" /></a>
                                             }
 
                                         }

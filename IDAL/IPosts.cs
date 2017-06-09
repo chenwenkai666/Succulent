@@ -38,5 +38,6 @@ namespace IDAL
         IEnumerable<Posts> SelectIndexPost01();   //首页帖子显示01
         IEnumerable<Posts> SelectIndexPost02();   //首页帖子显示02
         IEnumerable<PostComments> SelectIndexPost03();   //首页帖子显示03
+        IEnumerable<Posts> SelectAllPostsByUserID(int UserID);//获取用户发表的所有帖子
     }
 }

@@ -25,5 +25,9 @@ namespace BLL
         {
             return iattendance.IsAttendActivity(UserID,ActID);
         }
+        public IList<Attendance> SelectAllAttendanceByUserID(int UserID)
+        {
+            return iattendance.SelectAllAttendanceByUserID(UserID);
+        }
     }
 }

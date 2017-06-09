@@ -1,12 +1,57 @@
-﻿@*@model IEnumerable<Model.Collection>
-<ul>
-    @foreach(var item in Model){
-
-        <li class="col-md-12">
-            <h3 class="col-md-12 change-title">发表了帖子</h3>
-            <a class="col-md-9">@item.</a>
-            <span class="col-md-3">@item.CollectionTime</span>
-        </li>
-
+﻿@model SucculentWeb.ViewModels.UserCenterVM
+<div id="sectiontxt">
+@{
+    if (ViewBag.Section == "帖子")
+    {
+        <ul>
+            @foreach (var item in Model.post)
+            {
+                <li class="col-md-12">
+                    <h3 class="col-md-12 change-title"></h3>
+                    <a class="col-md-9">@item.PostTitle</a>
+                    <span class="col-md-3">@item.PublishTime.ToString("yyyy年MM月dd日")</span>
+                </li>
+            }
+        </ul>
     }
-</ul>*@
+    else if (ViewBag.Section == "活动")
+    {
+        <ul>
+            @if (Model.attendance.Count() >0)
+            {
+                foreach (var item in Model.attendance)
+                {
+                    @:<li class="col-md-12">
+                    @:    <h3 class="col-md-12 change-title"></h3>
+                    @:   <a class="col-md-9">@item.Activity.ActivityName</a>
+                    @:    <span class="col-md-3">@item.AttendanceTime.ToString("yyyy年MM月dd日")</span>
+                    @:</li>
+                }
+            }
+            else
+            {
+                @:<li class="col-md-12">
+   @: <p style="color:red;text-align:center;">没有找到相关数据</p>
+    @:</li>
+            }
+</ul>
+    }
+    else if (ViewBag.Section == "收藏")
+    {
+        <ul>
+            @foreach (var item in Model.collection)
+            {
+                <li class="col-md-12">
+                    <h3 class="col-md-12 change-title"></h3>
+                    <a class="col-md-9">@item.Succulent.SucculentName</a>
+                    <span class="col-md-3">@item.CollectionTime.ToString("yyyy年MM月dd日")</span>
+                </li>
+            }
+        </ul>
+    }
+    else
+    {
+        <p style="color:red;text-align:center;">没有找到相关数据</p>
+    }
+}
+    </div>
