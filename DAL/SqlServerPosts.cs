@@ -44,12 +44,12 @@ namespace DAL
                         select p).OrderByDescending(p => p.PublishTime);
             return data;
         }
-        public IEnumerable<Posts> GetPostDetails(int PostID)  //获取帖子详情
+        public Posts GetPostDetails(int PostID)  //获取帖子详情
         {
-            var data = from p in db.Posts
-                       join user in db.Users on p.UserID equals user.UserID
-                       where p.PostID == PostID
-                       select p;
+            var data = (from p in db.Posts
+                        join user in db.Users on p.UserID equals user.UserID
+                        where p.PostID == PostID
+                        select p).FirstOrDefault();
             return data;
         }
         public IEnumerable<PostComments> GetPostComments(int PostID)  //获取帖子评论
