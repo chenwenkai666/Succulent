@@ -53,6 +53,8 @@ namespace Model
         public string PasswordAgain { get; set; }
         public string Photo { get; set; }
         public string Sex { get; set; }
+        
+        [Required(ErrorMessage ="请输入您的出生年月日期")]
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> Birth { get; set; }

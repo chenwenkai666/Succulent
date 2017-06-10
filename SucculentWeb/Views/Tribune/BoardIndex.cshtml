@@ -56,7 +56,7 @@
                     </span>
                 </div>
                 <div id="RB-04">
-                    @if (Session["UserID"] != null)
+                    @if (Session["UserID"] != null && Session["UserName"]!=null)
                     {
                         <div id="A4-PhotoBox">
                             <div id="A4-UserPhoto">
@@ -83,7 +83,7 @@
                             }
                             else
                             {
-                                <p title="领取花盆后才能开始累积经验">Lv.0&nbsp;路人</p>
+                                <p title="领取盆栽后才能开始累积经验">Lv.0&nbsp;路人</p>
                             }
                         </div>
                                 }

@@ -11,6 +11,7 @@ namespace Model
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
     
     public partial class Posts
     {
@@ -23,7 +24,11 @@ namespace Model
         public int PostID { get; set; }
         public int UserID { get; set; }
         public int SectionID { get; set; }
+
+        [Required(ErrorMessage ="请输入帖子标题")]
         public string PostTitle { get; set; }
+
+        [Required(ErrorMessage = "请输入帖子内容")]
         public string PostContent { get; set; }
         public System.DateTime PublishTime { get; set; }
         public int PostFlag { get; set; }

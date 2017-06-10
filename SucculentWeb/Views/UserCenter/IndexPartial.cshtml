@@ -4,95 +4,100 @@
         if (ViewBag.Section == "帖子")
         {
             <ul>
-                @if (Model.attendance.Count() > 0)
-                {
-                    foreach (var item in Model.post)
+                <li class="col-md-12">
+                    <h3 class="col-md-12 change-title">我发表的帖子</h3>
+                    @if (Model.attendance.Count() > 0)
                     {
-                        <li class="col-md-12">
-                            <h3 class="col-md-12 change-title">我发表的帖子</h3>
+
+                        foreach (var item in Model.post)
+                        {
                             <a class="col-md-9" href="@Url.Action("PostsDetails", "Tribune", new { PostID = item.PostID })" target="_blank">@item.PostTitle</a>
                             <span class="col-md-3">@item.PublishTime.ToString("yyyy年MM月dd日")</span>
-                        </li>
+                        }
+
                     }
-                }
-                else
-                {
-                    @:<li class="col-md-12">
-                    @:  <p style="color:red;text-align:center;">没有找到相关数据</p>
-                    @: </li>
-}
+                    else
+                    {
+                        @:  <p style="color:red;text-align:center;">什么都没有留下哦~</p>
+                     }
+                </li>
             </ul>
         }
         else if (ViewBag.Section == "活动")
         {
             <ul>
+              <li class="col-md-12">
+              <h3 class="col-md-12 change-title">我参加的活动</h3>
                 @if (Model.attendance.Count() > 0)
                 {
-                    foreach (var item in Model.attendance)
+                        
+                   foreach (var item in Model.attendance)
                     {
-                        @:<li class="col-md-12">
-                        @:    <h3 class="col-md-12 change-title">我参加的活动</h3>
-                        @:   <a class="col-md-9" href="@Url.Action("Details","SucculentActivity", new { id=item.ActivityID })" target="_blank">@item.Activity.ActivityName</a>
-                        @:    <span class="col-md-3">@item.AttendanceTime.ToString("yyyy年MM月dd日")</span>
-                        @:</li>
+                        
+                        @: <a class="col-md-9" href="@Url.Action("Details","SucculentActivity", new { id=item.ActivityID })" target="_blank">@item.Activity.ActivityName</a>
+                        @: <span class="col-md-3">@item.AttendanceTime.ToString("yyyy年MM月dd日")</span>
+                       
                 }
+                     
                 }
                 else
                 {
-                    @:<li class="col-md-12">
-                    @:  <p style="color:red;text-align:center;">没有找到相关数据</p>
-                    @:</li>
+                    @:  <p style="color:red;text-align:center;">什么都没有留下哦~</p>
             }
+              </li>
             </ul>
         }
         else if (ViewBag.Section == "收藏")
         {
             <ul>
+              <li class="col-md-12">
+                <h3 class="col-md-12 change-title">我收藏的多肉</h3>
                 @if (Model.collection.Count() > 0)
                 {
+                  
                     foreach (var item in Model.collection)
                     {
-                        <li class="col-md-12">
-                            <h3 class="col-md-12 change-title">我收藏的多肉</h3>
+                        
                             <a class="col-md-9" href="@Url.Action("Succulent_Details", "Succulent", new { id = item.SucculentID })" target="_blank">@item.Succulent.SucculentName</a>
                             <span class="col-md-3">@item.CollectionTime.ToString("yyyy年MM月dd日")</span>
-                        </li>
+                        
                     }
+                  
                 }
                 else
                 {
-                    @:<li class="col-md-12">
-                    @:  <p style="color:red;text-align:center;">没有找到相关数据</p>
-                    @:</li>
+                    @:  <p style="color:red;text-align:center;">什么都没有留下哦~</p>
                 }
+                </li>
             </ul>
         }
         else if (ViewBag.Section == "订单")
         {
             <ul>
-                @if (Model.orderitems.Count() > 0)
-                {
-
-                    foreach (var item in Model.orderitems)
+                <li class="col-md-12">
+                    <h3 class="col-md-12 change-title">我的商城订单</h3>
+                    @if (Model.orderitems.Count() > 0)
                     {
-                        <li class="col-md-12">
-                            <h3 class="col-md-12 change-title">我的商城订单</h3>
+
+                        foreach (var item in Model.orderitems)
+                        {
+
                             <a class="col-md-9" href="@Url.Action("OrderItem","Goods")" target="_blank">@item.Goods.GoodsName</a>
                             <span class="col-md-3">@item.Orders.OrderTime.ToString("yyyy年MM月dd日")</span>
-                        </li>
+
+                        }
+
                     }
+                    else
+                    {
+                        @:  <p style="color:red;text-align:center;">什么都没有留下哦~</p>
                 }
-                else
-                {
-                    @: <li class="col-md-12">
-                    @:  <p style="color:red;text-align:center;">没有找到相关数据</p>
-                    @:</li>
-                }
+                </li>
             </ul>
         }
         else
         {
-            <p style="color:red;text-align:center;">没有找到相关数据</p>
+            <p style="color:red;text-align:center;">什么都没有留下哦~</p>
         }
     }
 </div>

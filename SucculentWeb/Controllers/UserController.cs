@@ -66,21 +66,24 @@ namespace SucculentWeb.Controllers
                     if (code == Session["CheckCode"].ToString())
                     {
                         usermanager.InsertUser(user);
-                        return Content("<script>alert('注册成功！');window.open('" + Url.Content("~/User/Login") + "','_self');</script>");
+                        Session["UserName"] = user.UserName;
+                        Users users = usermanager.GetUserByName(user.UserName);
+                        Session["UserID"] = users.UserID.ToString();
+                        return Content("<script>alert('注册成功！');window.open('" + Url.Action("Index","Index") + "','_self');</script>");
                     }
                     else
                     {
-                        return Content("<script>alert('验证码错误！');window.open('" + Url.Content("~/User/Registerdex") + "','_self');</script>");
+                        return Content("<script>alert('验证码错误！');window.open('" + Url.Action("Registerdex","User") + "','_self');</script>");
                     }
                 }
                 else
                 {
-                    return Content("<script>alert('验证信息出错，注册失败！');window.open('" + Url.Content("~/User/Register") + "','_self');</script>");
+                    return Content("<script>alert('验证信息出错，注册失败！');window.open('" + Url.Action("Register","User") + "','_self');</script>");
                 }
             }
             catch (Exception ex)
             {
-                return Content("<script>alert('系统出现错误，注册失败！');window.open('" + Url.Content("~/User/Register") + "', '_self')</script>");
+                return Content("<script>alert('系统出现错误，注册失败！');window.open('" + Url.Action("Register", "User") + "', '_self')</script>");
             }
         }
         #endregion

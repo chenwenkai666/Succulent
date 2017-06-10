@@ -95,7 +95,7 @@
    
 }
 .user-info-section-photo {
-    width:165px;
+    width:140px;
     height:165px;
     display: inline-block;
     overflow: hidden;
@@ -235,7 +235,7 @@
 }
 .main-contain-bottom-details{
     float:left;
-    width:55%;
+    width:60%;
     height:500px;
     margin-left:10px;
     overflow:hidden;
@@ -263,11 +263,12 @@
     color:#333;
 }
 #main-contain-bottom-succulent{
-    float:left;
-    width:40%;
+    float:right;
+    width:35%;
     height:auto;
-    margin-top:40PX;
+    margin-top:40px;
     margin-left:20px;
     overflow:hidden;
     /*border:1px solid red;*/
+    border-left:1px solid rgba(0,0,0,0.2);
 }

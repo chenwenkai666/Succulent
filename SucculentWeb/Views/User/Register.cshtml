@@ -67,7 +67,7 @@
     <!--顶部开始-->
     <div class="header">
         <div class="Logo">
-            <a href="#" title="多肉网">
+            <a href="@Url.Action("Index","Index")" title="多肉网">
                 <img src="../images/Logo带下文字.png" width="70" height="90" title="多肉网" />
             </a>
             <span>欢迎注册</span>
@@ -128,6 +128,19 @@
                             <div class="small-9 columns input_div">
                                 @Html.TextBoxFor(user => user.Phone, new { placeholder = "请输入正确的大陆手机号码" })
                                 @Html.ValidationMessageFor(user => user.Phone, "", new { style = "color:#1E90FF;" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="large-12 columns">
+                        <div class="row collapse">
+                            <div class="small-3 columns">
+                                <span class="prefix">出生年月</span>
+                            </div>
+                            <div class="small-9 columns input_div">
+                                @Html.EditorFor(user => user.Birth, new { placeholder = "请输入您的出生年月日期" })
+                                @Html.ValidationMessageFor(user => user.Birth, "", new { style = "color:#1E90FF;" })
                             </div>
                         </div>
                     </div>
