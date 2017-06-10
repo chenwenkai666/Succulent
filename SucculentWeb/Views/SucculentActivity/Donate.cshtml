@@ -7,6 +7,9 @@
 <link href="~/Content/zeroModal.css" rel="stylesheet" />
 <link href="~/Content/amazeui.min.css" rel="stylesheet" />
 <link href="~/Content/Donate.css" rel="stylesheet" />
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
 }
 <div class="donate_main">
     <div class="donate_box">
@@ -69,19 +72,22 @@
                                 <div class="am-form-group am-form-group-lg am-form-group-success">
                                     <label for="doc-ipt-ExoressNumber-1">单号</label>
                                     @Html.TextBoxFor(d => d.ExoressNumber, new { @class = "am-form-field am-input-lg", id = "doc-ipt-ExoressNumber-1", placeholder = "输入快递单号" })
+                                    @Html.ValidationMessageFor(d=>d.ExoressNumber,"", new { style= "color:red;" })
                                 </div>
                             </div>
                             <div class=" am-u-lg-4">
                                 <div class="am-form-group am-form-group-lg am-form-group-success">
                                     <label for="doc-ipt-ExoressNumber-1">数量</label>
                                     @Html.EditorFor(d => d.DonoteTotal, new { @class = "am-form-field", placeholder = "输入您捐赠的总数" })
-                                </div>
+                                    @Html.ValidationMessageFor(d => d.DonoteTotal, "", new { style = "color:red;" })
+                                 </div>
                             </div>
                         </div>
                         <div class="am-form-group am-form-group-lg am-form-group-success">
                             <label for="doc-ta-1">捐赠详细内容</label>
-                            @Html.TextAreaFor(d => d.DonateContent, new { rows = "5", id = "doc-ta-1", placeholder = "请输入捐赠的详细内容 如：寒之朝多肉 *1 ..." })
-                        </div>
+                            @Html.TextAreaFor(d => d.DonateContent, new { rows = "5", id = "doc-ta-1", placeholder = "请输入捐赠的详细内容 如：霜之朝多肉 *1 ..." })
+                            @Html.ValidationMessageFor(d => d.DonateContent, "", new { style = "color:red;" })
+                         </div>
                         <div class="am-g">
                             <div class="am-u-lg-6">
                                 <i>请保管好快递单哦，以备后续查询</i>

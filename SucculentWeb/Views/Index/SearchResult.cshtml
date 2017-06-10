@@ -103,12 +103,7 @@
                                 </div>
                                 <div class="Tribune_Info">
                                     <h3>@item.PostTitle</h3>
-                                    <p class="PostTxt">@item.PostContent</p>
-                                    @*<script>
-                                        @{ string contxt = NoHTML.noHTML(item.PostContent); }
-                                        $('.PostTxt').html(@contxt);
-                                        alert('1');
-                                    </script>*@
+                                    <p class="PostTxt">@{ string contenttxt=NoHTML.noHTML(item.PostContent);}@contenttxt</p>
                                 </div>
                             </div>
                         </a>
@@ -146,21 +141,18 @@
             <p>精品推荐</p>
             <div class="RecommandList">
                 <ul class="am-list am-list-border">
-                    <li>
-                        <a href="#" class="am-text-truncate">
-                            每个人都有一个死角， 自己走不出来，别人也闯不进去。
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" class="am-text-truncate">
-                            我把最深沉的秘密放在那里。
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" class="am-text-truncate">
-                            你不懂我，我不怪你。
-                        </a>
-                    </li>
+                    @{ 
+                        PostsManager postsmanager = new PostsManager();
+                        var suggests = postsmanager.SelectAllPosts().Where(p=>p.SectionID==4).OrderByDescending(p=>p.PostComments.Count()).Take(6);
+                    }
+                    @foreach (var item in suggests)
+                    {
+                        <li>
+                            <a href="@Url.Action("PostsDetails", "Tribune", new { PostID = item.PostID })" target="_blank" class="am-text-truncate">
+                               @item.PostTitle
+                            </a>
+                        </li>
+                    }
                 </ul>
             </div>
         </div>
