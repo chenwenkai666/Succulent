@@ -374,7 +374,20 @@ div.index_loginbox img{
       margin-top:-15%;
      margin-left:80%;
 }
-
+.zhuxiao{
+    width:50px;
+    height:50px;
+    /*background-color:red;*/
+    line-height:55px;
+    color:rgba(51,153,51,1);
+}
+.zhuxiao i{
+    color:rgba(0,0,0,0.6);
+    font-size:20px;
+}
+.zhuxiao:hover i{
+   color:rgba(51,153,51,1);
+}
 /*新底部样式开始*/
 
 /*.div-footer a{
@@ -446,7 +459,7 @@ div.index_loginbox img{
     margin-left:3%;
     /*border-top:1px solid rgba(51,153,51,0.2);*/
 /*}*/
-/*.div-footer .div_right .about_us,.contact_us{
+.div-footer .div_right .about_us,.contact_us{
     float:left;
     width:40%;
     height:90%;
@@ -477,5 +490,5 @@ div.index_loginbox img{
     margin-top:38%;
     margin-left:-68%;
     display:none;
-}*/
+}
 /*新版底部样式结束*/
