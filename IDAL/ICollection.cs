@@ -10,7 +10,8 @@ namespace IDAL
    public interface ICollection
     {
         void Create(Collection collection);
-        Collection SelectbySucculentId(int succulentid);
+        IEnumerable<Collection> SelectbySucculentId(int succulentid);
         IEnumerable<Collection> SelectByUserID(int UserID);
+        Collection SelectSucculent(int UserID);
     }
 }

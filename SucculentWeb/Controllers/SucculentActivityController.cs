@@ -8,6 +8,7 @@ using BLL;
 using System.IO;
 using SucculentWeb.ViewModels;
 using PagedList;
+using SucculentWeb.Attributes;
 
 namespace SucculentWeb.Controllers
 {
@@ -366,13 +367,14 @@ namespace SucculentWeb.Controllers
 
         #region 图片作品发表
         [HttpPost]
+        [IsLogIn(IsCheck =true)]
         public ActionResult UploadPortfolio()/*string TextDescription*/
         {
             int ActID = int.Parse(Request.Form["actID"].ToString());
             Users user = usermanager.GetUserByName(Session["UserName"].ToString());
-            bool IsAttendance = attendancemanager.IsAttendActivity(user.UserID,ActID);
-            //if (IsAttendance)
-            //{
+            bool IsAttendance = attendancemanager.IsAttendActivity(user.UserID, ActID);
+            if (IsAttendance)
+            {
                 if (!entriesmanager.IsPublishEntry(user.UserID, ActID))
                 {
                     try
@@ -417,11 +419,11 @@ namespace SucculentWeb.Controllers
                 {
                     return Content("<script>alert('您已经发表过作品了，欣赏下他人作品吧~');window.open('" + Url.Action("AttendPhotoActivity", "SucculentActivity", new { actID = ActID }) + "', '_self')')</script>");
                 }
-            //}
-            //else
-            //{
-            //    return Content("<script>alert('您没有报名本活动哦~快去报名参加或去看看大家的作品吧~');window.open('" + Url.Action("AttendPhotoActivity", "SucculentActivity", new { actID = ActID }) + "', '_self')')</script>");
-            //}
+            }
+            else
+            {
+                return Content("<script>alert('您没有报名本活动哦~快去报名参加或去看看大家的作品吧');window.open('" + Url.Action("AttendPhotoActivity", "SucculentActivity", new { actID = ActID }) + "', '_self')')</script>");
+            }
         }
         #endregion
 
@@ -433,15 +435,23 @@ namespace SucculentWeb.Controllers
             {
                 Users user = usermanager.GetUserByName(Session["UserName"].ToString());
                 int actid = int.Parse(ActID);
-                if (!entriesmanager.IsPublishEntry(user.UserID, actid))
+                bool IsAttendance = attendancemanager.IsAttendActivity(user.UserID, actid);
+                if (IsAttendance)
                 {
-                    return "0";
+
+                    if (!entriesmanager.IsPublishEntry(user.UserID, actid))
+                    {
+                        return "0";
+                    }
+                    else
+                    {
+                        return "1";
+                    }
                 }
                 else
                 {
-                    return "1";
+                    return "您没有报名本活动哦~快去报名参加或去看看大家的作品吧";
                 }
-
             }
             else
             {

@@ -279,8 +279,11 @@
                 else if(msg=='2'){
                     overlayLogin();
                 }
-                else{
+                else if(msg=='1'){
                     _error('您已经发表过作品了，去欣赏下他人的作品吧~');
+                }
+                else{
+                    _error(msg);
                 }
             }
         });

@@ -7,6 +7,7 @@ using BLL;
 using SucculentWeb.ViewModels.TribuneVM;
 using Model;
 using PagedList;
+using SucculentWeb.Attributes;
 
 namespace SucculentWeb.Controllers
 {
@@ -44,6 +45,8 @@ namespace SucculentWeb.Controllers
             }
             return View(tribuneBoard);
         }
+
+        [IsLogIn(IsCheck =true)]
         public ActionResult CreatePost()
         {
             TribuneCreateVM tribuneCreate = new TribuneCreateVM();

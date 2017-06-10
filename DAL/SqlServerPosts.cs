@@ -46,10 +46,7 @@ namespace DAL
         }
         public Posts GetPostDetails(int PostID)  //获取帖子详情
         {
-            var data = (from p in db.Posts
-                        join user in db.Users on p.UserID equals user.UserID
-                        where p.PostID == PostID
-                        select p).FirstOrDefault();
+            var data =db.Posts.Where(p=>p.PostID==PostID).FirstOrDefault();
             return data;
         }
         public IEnumerable<PostComments> GetPostComments(int PostID)  //获取帖子评论

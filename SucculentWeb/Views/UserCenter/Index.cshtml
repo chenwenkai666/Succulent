@@ -1,4 +1,6 @@
 ﻿@model Model.Users
+@using BLL;
+@using Model;
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -8,7 +10,68 @@
     <link href="~/Content/font-awesome.css" rel="stylesheet" />
     <link href="~/Content/font-awesome.min.css" rel="stylesheet" />
     <script src="~/Scripts/jquery-1.10.2.min.js"></script>
-    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+   <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+<link href="~/Content/amazeui.min.css" rel="stylesheet" />
+    <style>
+    .PotsMain {
+        width: 100%;
+        height: auto;
+        margin: 0px auto;
+    }
+
+        .PotsMain .Pots {
+            width: 80%;
+            height: auto;
+            margin: 0% auto;
+            text-align: center;
+            margin-left:15%;
+        }
+
+            .PotsMain .Pots img {
+                width: 50%;
+                height: 50%;
+            }
+
+            .PotsMain .Pots .PotsSign {
+                width: 50%;
+                height: auto;
+                margin: 10px auto;
+            }
+
+                .PotsMain .Pots .PotsSign i {
+                    text-align: left;
+                    margin-left: -65%;
+                }
+
+                .PotsMain .Pots .PotsSign a {
+                    font-size: 12px;
+                    color: #808080;
+                }
+
+                    .PotsMain .Pots .PotsSign a:hover {
+                        color: #4fac2a;
+                    }
+
+    .Pots .SignTip {
+        float: left;
+        width: 60%;
+        height: 200px;
+        margin: -100% 20%;
+        position: relative;
+        background: url('../../images/签到成功.png') no-repeat;
+        background-size: 120%;
+        background-position: center;
+        display: none;
+    }
+
+        .Pots .SignTip p {
+            position: absolute;
+            text-align: center;
+            top: 35%;
+            left: 22%;
+        }
+</style>
+
     <style>
         .div-footer {
             margin-top: -50px;
@@ -19,7 +82,7 @@
                 background: #f7f8fa;
             }
     </style>
-    <script>
+    @*<script>
         $(function () {
             $(".tie").click(function () {
                 $(".change-title").text("我发表了帖子");
@@ -37,17 +100,12 @@
                 $(".change-title").text("我的回复");
             })
         })
-    </script>
+    </script>*@
 }
 <main class="main-contain">
     <div class="main-contain-top">
         <div class="user-back">
             <img @*src="~/images/usercenter-back.jpg"*@ class="back-img" width="800" height="150" /> 
-            @*<div class="user-back-inner">
-                <button class="user-back-inner-button">
-                    <i class="fa fa-camera-retro"></i><span>上传封面照片</span>
-                </button>
-            </div>*@
         </div>
         <div class="user-info">
             <div class="user-info-section">
@@ -57,18 +115,34 @@
             </div>
             <div class="user-info-details">
                 <main class="user-info-details-main row">
-                    <h1 class="col-md-12">@Model.UserName</h1>
+                    <h1 class="col-md-12" style="color:#DD514C;">@Model.UserName</h1>
                     <span class="col-md-12"><i class="fa fa-user-o"></i>&nbsp;&nbsp;&nbsp;@Model.Sex</span>
-                    <span class="col-md-12"><i class="fa fa-birthday-cake"></i>&nbsp;&nbsp;&nbsp;@Model.Birth.ToString().Substring(0, 9)</span>
+                    @{ 
+                        DateTime birth;
+                        UsersManager usermanager = new UsersManager();
+                        Users user = usermanager.GetUserByName(Session["UserName"].ToString());
+                        if (user.Birth == null)
+                        {
+                            birth= Convert.ToDateTime("2017/01/01");
+                            <span class="col-md-12"><i class="fa fa-birthday-cake"></i>&nbsp;&nbsp;&nbsp;@birth.ToString().Substring(0, 9)</span>
+                        }
+                        else
+                        {
+                            birth =DateTime.Parse(user.Birth.ToString());
+                            <span class="col-md-12"><i class="fa fa-birthday-cake"></i>&nbsp;&nbsp;&nbsp;@birth.ToString().Substring(0, 9)</span>
+                        }
+                     }
+                    
                     <p>
-                        <span class="col-md-12">多肉宣言</span>
-                        <span class="col-md-12">种下幸福，走向成功，明天会更好，加油啊，啦啦啦啦啦啦</span>
+                        <span class="col-md-12" style="color:#4fac2a;font-size:20px;"><i class="fa fa-envira"  style="color:#4fac2a;"></i> 多肉宣言：</span>
+                        <span class="col-md-12" style="font-size:14px;">种下幸福，走向成功，明天会更好，加油啊，啦啦啦啦啦啦</span>
                     </p>
                 </main>
             </div>
             <div class="user-info-go">
                 <div class="user-info-go-bottom row">
-                    @Ajax.ActionLink("编辑个人资料", "UserInfo", new { id = @Model.UserID }, new AjaxOptions { HttpMethod = "get" }, new { @class = "col-md-12" })
+                    @*@Ajax.ActionLink("编辑个人资料", "UserInfo", new { id = @Model.UserID }, new AjaxOptions { HttpMethod = "get" }, new { @class = "col-md-12" })*@
+                     @Html.ActionLink("编辑个人资料", "UserInfo","UserCenter", new { id = @Model.UserID }, new { @class = "col-md-12" })
                 </div>
             </div>
         </div>
@@ -77,19 +151,16 @@
         <div class="main-contain-bottom-dao row">
             <ul>
                 <li class="col-md-2">
-                    @*<a class="tie">发帖</a>*@
                     @Ajax.ActionLink("发帖", "IndexPartial",new { Section="帖子" },new AjaxOptions { HttpMethod="POST", InsertionMode=InsertionMode.Replace,UpdateTargetId= "sectiontxt" },new {@class= "tie" })
                 </li>
                 <li class="col-md-2">
-                    @*<a class="activity">活动</a>*@
                     @Ajax.ActionLink("活动", "IndexPartial", new { Section = "活动" }, new AjaxOptions { HttpMethod = "POST", InsertionMode = InsertionMode.Replace, UpdateTargetId = "sectiontxt" }, new { @class = "activity" })
                 </li>
                 <li class="col-md-2">
-                    @*<a class="collection">收藏</a>*@
                     @Ajax.ActionLink("收藏", "IndexPartial", new { Section = "收藏" }, new AjaxOptions { HttpMethod = "POST", InsertionMode = InsertionMode.Replace, UpdateTargetId = "sectiontxt" }, new { @class = "collection" })
                 </li>
                 <li class="col-md-2">
-                    <a class="comment">评论</a>
+                    @Ajax.ActionLink("订单", "IndexPartial", new { Section = "订单" }, new AjaxOptions { HttpMethod = "POST", InsertionMode = InsertionMode.Replace, UpdateTargetId = "sectiontxt" }, new { @class = "collection" })
                 </li>
                 <li class="col-md-2">
                     <a class="huifu">回复</a>
@@ -100,16 +171,16 @@
             </ul>
         </div>
         <div class="main-contain-bottom-details row" id="main-contain-bottom-details">
-            @*<ul>
-                <li class="col-md-12">
-                    <h3 class="col-md-12 change-title">发表了帖子</h3>
-                    <a class="col-md-9">最美的多肉头饰</a>
-                    <span class="col-md-3">2017.05.03</span>
-                </li>
-            </ul>*@
             @{ 
                 Html.RenderAction("IndexPartial","UserCenter");
             }
         </div>
+       <div id="main-contain-bottom-succulent">
+           @{
+               Html.RenderAction("PotsIndex");
+           }
+       </div>
     </div>
 </main>
+
+

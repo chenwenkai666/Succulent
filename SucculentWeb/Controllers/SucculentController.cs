@@ -59,32 +59,36 @@ namespace SucculentWeb.Controllers
             return View(succulent);
         }      
         [HttpPost]
-        public ActionResult Collection(int id)
+        public string Collection(int id)
         {
             Collection collection=new Collection();
             var succulent = succulentmanager.SelectByID(id);         
             if (Session["UserID"] == null)
             {
-                return Content("<script>alert('请先登录哦！');window.open('" + Url.Content("~/User/Login") + "', '_self')</script>");
+                //return Content("<script>alert('请先登录哦！');window.open('" + Url.Content("~/User/Login") + "', '_self')</script>");
+                return "请先登录哦！";
             }
             else {
-
-                Collection c = collectionmanager.SelectbySucculentId(succulent.SucculentID);
-                if (c == null)
-                {
+                var c=collectionmanager.SelectbySucculentId(id);
+                Collection usercollection = c.Where(a => a.UserID == int.Parse(Session["UserID"].ToString())).FirstOrDefault();
+                if (usercollection==null )
+                { 
                     collection.SucculentID = succulent.SucculentID;
                     collection.UserID = int.Parse(Session["UserID"].ToString());
                     collection.CollectionTime = DateTime.Now;
                     collectionmanager.Create(collection);
                     succulent.CollectedTotal += 1;
                     succulentmanager.UpdateAdd(succulent);
-
+                    return succulent.CollectedTotal.ToString();
                 }
+               
                 else
                 {
-                    return Content("<script>alert('你已经收藏过啦！');location=location;</script>");/*window.location.reload();*/
+                    //return Content("<script>alert('你已经收藏过啦！');location=location;</script>");/*window.location.reload();*/
+                    return "你已经收藏过啦！";
                 }
-                return View(succulent.CollectedTotal);
+                //return View(succulent);
+                
             }
            
         }  

@@ -1,151 +1,7 @@
 ﻿@model  Model.Users
-@using (Ajax.BeginForm("UpdateInfo", "UserCenter", new AjaxOptions { HttpMethod = "POST", UpdateTargetId = "UpdataInfo", InsertionMode = InsertionMode.Replace }))
-{
-    @*<input type="hidden" name="UserID" value="@Model.UserID" />*@
-                            <div class="filed-1 filed row">
-                                <h3 class="col-md-3">性别</h3>
-                                <div class="div-span col-md-8">
-                                    <div>
-                                        <span>@Model.Sex</span>
-                                        <a class="div-change-button sex-button"><i class="fa fa-pencil"></i>&nbsp;修改</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="filed-2 filed row">
-                                <h3 class="col-md-12">性别</h3>
-                                <div class="SelectSex div-save col-md-12">
-                                    <div>
-                                        <span>男 @Html.RadioButtonFor(u => u.Sex, "男")</span>
-                                        <span>女 @Html.RadioButtonFor(u => u.Sex, "女")</span>
-                                        <div class="div-button">
-                                            <input type="submit" value="保存" class="SelectSex-button1 btn save-button" />
-                                            <a class="SelectSex-button2 btn cancel-button">取消</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="filed-3 filed row">
-                                <h3 class="col-md-3">生日</h3>
-                                <div class="div-span col-md-8">
-                                    <div>
-                                        <span>@Model.Birth.ToString().Substring(0, 9)</span>
-                                        <a class="div-change-button age-button"><i class="fa fa-pencil"></i>&nbsp;修改</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="filed-4 filed row">
-                                <h3 class="col-md-12">生日</h3>
-                                <div class="Birth div-save col-md-12">
-                                    <div>
-                                        <span>
-                                            @Html.EditorFor(user => user.Birth, new { placeholder = "请填入出生时间", @class = "Birth-input span-input" })
-                                            @Html.ValidationMessageFor(user => user.Birth, "", new { style = "color:#1E90FF;" })
-                                        </span>
-                                        <div class="div-button">
-                                            <input type="submit" value="保存" class="Birth-button1 btn save-button" />
-                                            <a class="Birth-button2 btn cancel-button">取消</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="filed-6 filed row">
-                                <h3 class="col-md-3">邮箱</h3>
-                                <div class="div-span col-md-8">
-                                    <div>
-                                        <span>@Model.Email</span>
-                                        <a class="div-change-button Email-button"><i class="fa fa-pencil"></i>&nbsp;修改</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="filed-7 filed row">
-                                <h3 class="col-md-12">邮箱</h3>
-                                <div class="Email div-save col-md-12">
-                                    <div>
-                                        <span>
-                                            @Html.TextBoxFor(user => user.Email, new { placeholder = "请输入正确的电子邮箱，格式如xxx@xx.com", @class = "Email-input span-input" })
-                                            @Html.ValidationMessageFor(user => user.Email, "", new { style = "color:#1E90FF;" })
-                                        </span>
-                                        <div class="div-button">
-                                            <input type="submit" value="保存" class="Email-button1 btn save-button">
-                                            <a class="Email-button2 btn cancel-button">取消</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="filed-8 filed row">
-                                <h3 class="col-md-3">手机</h3>
-                                <div class="div-span col-md-8">
-                                    <div>
-                                        <span>@Model.Phone</span>
-                                        <a class="div-change-button Phone-button"><i class="fa fa-pencil"></i>&nbsp;修改</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="filed-9 filed row">
-                                <h3 class="col-md-12">手机</h3>
-                                <div class="Phone div-save col-md-12">
-                                    <div>
-                                        <span>
-                                            @Html.TextBoxFor(user => user.Phone, new { placeholder = "请输入正确的大陆手机号码", @class = "Phone-input span-input" })
-                                            @Html.ValidationMessageFor(user => user.Phone, "", new { style = "color:#1E90FF;" })
-                                        </span>
-                                        <div class="div-button">
-                                            <input type="submit" value="保存" class="Phone-button1 btn save-button">
-                                            <a class="Phone-button2 btn cancel-button">取消</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="filed-10 filed row">
-                                <h3 class="col-md-3">安全问题</h3>
-                                <div class="div-span col-md-8">
-                                    <div>
-                                        <span>@Model.SecretQues</span>
-                                        <a class="div-change-button question-button"><i class="fa fa-pencil"></i>&nbsp;修改</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="filed-11 filed row">
-                                <h3 class="col-md-12">安全问题</h3>
-                                <div class="question div-save col-md-12">
-                                    <div>
-                                        @Html.DropDownList("list", ViewData["list"] as IEnumerable<SelectListItem>)
-                                        <div class="div-button">
-                                            <input type="submit" value="保存" class="question-button1 btn save-button">
-                                            <a class="question-button2 btn cancel-button">取消</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="filed-12 filed row">
-                                <h3 class="col-md-3">安全答案</h3>
-                                <div class="div-span col-md-8">
-                                    <div>
-                                        <span>@Model.SecretAnws</span>
-                                        <a class="div-change-button Phone-button"><i class="fa fa-pencil"></i>&nbsp;修改</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="filed-13 filed row">
-                                <h3 class="col-md-12">安全答案</h3>
-                                <div class="answer div-save col-md-12">
-                                    <div>
-                                        <span>@Html.TextBoxFor(user => user.SecretAnws, new { placeholder = "请输入问题答案", @class = "answer-input span-input" })</span>
-                                        <div class="div-button">
-                                            <input type="submit" value="保存" class="answer-button1 btn save-button">
-                                            <a class="answer-button2 btn cancel-button">取消</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-}
-
-<script>
+@using BLL;
+@using Model;
+    <script>
         $(function () {
             $(".div-change-button").click(function () {
                 $(this).parents(".filed").css("opacity", "0");
@@ -159,5 +15,222 @@
                 $(this).parents(".filed").css({ "opacity": "0", "z-index": "1" });
                 $(this).parents(".filed").prev().css({ "opacity": "1", "z-index": "2" });
             })
+            $("input[value='保存']").click(function (e) {
+                e.preventDefault();
+                var t = this;
+                //var formData = new FormData(document.getElementById("userInfoForm"));
+                $.ajax({
+                    type: 'post',
+                    data: $("#userInfoForm").serialize(),
+                    url: "/UserCenter/UpdateInfo",
+                    //processData: false,
+                    async:true,
+                    success: function (data) {
+                        //var name = $(t).parent().prev().find('input').attr('name');
+                        //$(t).parents(".filed").prev().find("span").html(data[name]);
+                        $("#UpdataInfo").html(data);
+                    }
+                })
+            })
         })
-</script>
+    </script>
+    @*<html>
+<head>
+    
+    
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>*@
+@*
+
+    
+@*</head>*@
+@*<body>*@
+@*<script src="~/Scripts/jquery-1.10.2.min.js"></script>*@
+<script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+@*<script >
+    $(function ()
+    {
+        $("input[value='保存']").click(function (e)
+        {
+            e.preventDefault();
+            var t = this;
+            var formData = new FormData(document.getElementById("userInfoForm"));
+            $.post("/UserCenter/UpdateInfo", fromData, function (data)
+            {
+                var name = $(t).parent().prev().find('input').attr('name');
+                $(t).parents(".filed").prev().find("span").html(data[name]);
+            })
+
+        })
+
+    })
+
+</script>*@
+
+    @*@using (Ajax.BeginForm("UpdateInfo", "UserCenter", new AjaxOptions { HttpMethod = "POST", UpdateTargetId = "UpdataInfo", InsertionMode = InsertionMode.Replace }))
+    {*@
+        @*<input type="hidden" name="UserID" value="@Model.UserID" />*@
+        <form action="/UserCenter/UpdateInfo" id="userInfoForm">
+            <div class="filed-1 filed row">
+                <h3 class="col-md-3">性别</h3>
+                <div class="div-span col-md-8">
+                    <div>
+                        <span>@Model.Sex</span>
+                        <a class="div-change-button sex-button"><i class="fa fa-pencil"></i>&nbsp;修改</a>
+                    </div>
+                </div>
+            </div>
+            <div class="filed-2 filed row">
+                <h3 class="col-md-12">性别</h3>
+                <div class="SelectSex div-save col-md-12">
+                    <div>
+                        <span>男 @Html.RadioButtonFor(user => user.Sex, "男")</span>
+                        <span>女 @Html.RadioButtonFor(user => user.Sex, "女")</span>
+                        <div class="div-button">
+                            <input type="submit" value="保存" class="SelectSex-button1 btn save-button" />
+                            @*<a href="javascript:void(0);" onclick="document.getElementById('form0').submit();" class="SelectSex-button1 btn save-button">保存</a>*@
+                            <a class="SelectSex-button2 btn cancel-button">取消</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="filed-3 filed row">
+                <h3 class="col-md-3">生日</h3>
+                <div class="div-span col-md-8">
+                    <div>
+                        @{
+                            DateTime birth;
+                            UsersManager usermanager = new UsersManager();
+                            Users u = usermanager.GetUserByName(Session["UserName"].ToString());
+                            if (u.Birth == null)
+                            {
+                                birth = Convert.ToDateTime("2017/01/01");
+                                <span class="col-md-12">@birth.ToString().Substring(0, 9)</span>
+                            }
+                            else
+                            {
+                                birth = DateTime.Parse(u.Birth.ToString());
+                                <span class="col-md-12">@birth.ToString("yyyy-MM-dd")</span>
+                            }
+                        }
+                        <a class="div-change-button age-button"><i class="fa fa-pencil"></i>&nbsp;修改</a>
+                    </div>
+                </div>
+            </div>
+            <div class="filed-4 filed row">
+                <h3 class="col-md-12">生日</h3>
+                <div class="Birth div-save col-md-12">
+                    <div>
+                        <span>
+                            @Html.EditorFor(user => user.Birth, new { placeholder = "请填入出生时间", @class = "Birth-input span-input" })
+                            @Html.ValidationMessageFor(user => user.Birth, "", new { style = "color:#1E90FF;" })
+                        </span>
+                        <div class="div-button">
+                            <input type="submit" value="保存" class="Birth-button1 btn save-button" />
+                            <a class="Birth-button2 btn cancel-button">取消</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="filed-6 filed row">
+                <h3 class="col-md-3">邮箱</h3>
+                <div class="div-span col-md-8">
+                    <div>
+                        <span>@Model.Email</span>
+                        <a class="div-change-button Email-button"><i class="fa fa-pencil"></i>&nbsp;修改</a>
+                    </div>
+                </div>
+            </div>
+            <div class="filed-7 filed row">
+                <h3 class="col-md-12">邮箱</h3>
+                <div class="Email div-save col-md-12">
+                    <div>
+                        <span>
+                            @Html.TextBoxFor(user => user.Email, new { placeholder = "请输入正确的电子邮箱，格式如xxx@xx.com", @class = "Email-input span-input" })
+                            @Html.ValidationMessageFor(user => user.Email, "", new { style = "color:#1E90FF;" })
+                        </span>
+                        <div class="div-button">
+                            <input type="submit" value="保存" class="Email-button1 btn save-button">
+                            <a class="Email-button2 btn cancel-button">取消</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="filed-8 filed row">
+                <h3 class="col-md-3">手机</h3>
+                <div class="div-span col-md-8">
+                    <div>
+                        <span>@Model.Phone</span>
+                        <a class="div-change-button Phone-button"><i class="fa fa-pencil"></i>&nbsp;修改</a>
+                    </div>
+                </div>
+            </div>
+            <div class="filed-9 filed row">
+                <h3 class="col-md-12">手机</h3>
+                <div class="Phone div-save col-md-12">
+                    <div>
+                        <span>
+                            @Html.TextBoxFor(user => user.Phone, new { placeholder = "请输入正确的大陆手机号码", @class = "Phone-input span-input" })
+                            @Html.ValidationMessageFor(user => user.Phone, "", new { style = "color:#1E90FF;" })
+                        </span>
+                        <div class="div-button">
+                            <input type="submit" value="保存" class="Phone-button1 btn save-button">
+                            <a class="Phone-button2 btn cancel-button">取消</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="filed-10 filed row">
+                <h3 class="col-md-3">安全问题</h3>
+                <div class="div-span col-md-8">
+                    <div>
+                        <span>@Model.SecretQues</span>
+                        <a class="div-change-button question-button"><i class="fa fa-pencil"></i>&nbsp;修改</a>
+                    </div>
+                </div>
+            </div>
+            <div class="filed-11 filed row">
+                <h3 class="col-md-12">安全问题</h3>
+                <div class="question div-save col-md-12">
+                    <div>
+                        @Html.DropDownList("list", ViewData["list"] as IEnumerable<SelectListItem>)
+                        <div class="div-button">
+                            <input type="submit" value="保存" class="question-button1 btn save-button">
+                            <a class="question-button2 btn cancel-button">取消</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="filed-12 filed row">
+                <h3 class="col-md-3">安全答案</h3>
+                <div class="div-span col-md-8">
+                    <div>
+                        <span>@Model.SecretAnws</span>
+                        <a class="div-change-button Phone-button"><i class="fa fa-pencil"></i>&nbsp;修改</a>
+                    </div>
+                </div>
+            </div>
+            <div class="filed-13 filed row">
+                <h3 class="col-md-12">安全答案</h3>
+                <div class="answer div-save col-md-12">
+                    <div>
+                        <span>@Html.TextBoxFor(user => user.SecretAnws, new { placeholder = "请输入问题答案", @class = "answer-input span-input" })</span>
+                        <div class="div-button">
+                            <input type="submit" value="保存" class="answer-button1 btn save-button">
+                            <a class="answer-button2 btn cancel-button">取消</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </form>
+@*}*@
+                           
+@*</body>
+   </html>*@
+
+
