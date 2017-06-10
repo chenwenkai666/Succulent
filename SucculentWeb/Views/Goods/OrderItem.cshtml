@@ -24,12 +24,12 @@
     <div class="content">
             <ul class="first-tr">
                 <li class="time">@p.Orders.OrderTime</li>
-                <li class="shopname">@p.Goods.Shops.ShopName</li>
+                <li class="shopname"><a href="@Url.Action("Shops","Goods",new { ShopID=p.Goods.ShopID})">@p.Goods.Shops.ShopName</a></li>
             </ul>
             <ul class="second-tr">
                 <li class="img-name">
                     <div class="image"><img src="@p.Goods.GoodsPhoto" /></div> 
-                    <div class="goodname"><a>@p.Goods.GoodsName</a></div>
+                    <div class="goodname"><a href="@Url.Action("GoodsDetail","Goods",new { goodid=p.GoodsID})">@p.Goods.GoodsName</a></div>
                 </li>
                 <li class="price">￥@p.UnitPrice</li>
                 <li class="amount">@p.Number 件 </li>

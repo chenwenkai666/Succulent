@@ -280,6 +280,7 @@ namespace SucculentWeb.Controllers
                        GoodsComments.PublishTime = System.DateTime.Now;
                        GoodsComments.GoodsCommentContent = textarea;
                         goodscommentsmanager.InsertGoodsComment(GoodsComments);
+                        return Content("<script>alert('评论成功');window.open('" + Url.Action("GoodsDetail", "Goods", new { goodid=goodid }) + "', '_self')</script>");
                     }
                     else
                     {
@@ -306,14 +307,16 @@ namespace SucculentWeb.Controllers
                 return Content("<script>;alert('回复不能为空');history.go(-1)</script>");
             }
             else
-            { 
-            int userid= Convert.ToInt32(Session["UserID"]);
+            {
+                int goodid = Convert.ToInt32(Session["goodid"]);
+                int userid= Convert.ToInt32(Session["UserID"]);
             replyGoods.GoodsCommentID = GoodsCommentid;
             replyGoods.UserID = userid;
             replyGoods.ReplyContent = replytext;
             replyGoods.ReplyTime = DateTime.Now;
             replygoodmanager.InsertReplyGoods(replyGoods);
-            return Content("<script>alert('回复成功！');history.go(-1)</script>");
+                //return Content("<script>alert('回复成功！');history.go(-1)</script>");
+                return Content("<script>alert('回复成功');window.open('" + Url.Action("GoodsDetail", "Goods", new { goodid = goodid }) + "', '_self')</script>");
             }
         }
         public ActionResult RegisterShops()
@@ -513,9 +516,15 @@ namespace SucculentWeb.Controllers
                             orderitemsmanager.AddOrderItems(orderitems);
                             goodsmanager.UpdateStockAndSalse(GoodID, orderitems.Number, orderitems.Number);
 
-                        }
+                            var removegood = shoppingcarsmanager.SelectOneShopCart(GoodID);
+                            if (removegood != null)
+                           {
+                               shoppingcarsmanager.RemoveShopCarts(removegood);
+                            }
+
                     }
-                    return Content("<script>alert('结算成功');history.go(-1)</script>");
+                    }
+                    return Content("<script>alert('结算成功');window.open('" + Url.Action("Carts", "Goods", new { UserID = Convert.ToInt32(Session["UserID"]) }) + "', '_self')</script>");
               
                 //else
                 //{

@@ -124,6 +124,7 @@
 }
 .Main .content .second-tr .img-name .goodname a{
     cursor:pointer;
+    color:black;
 }
 .Main .content .second-tr .img-name .goodname a:hover{
     color:#339933;
