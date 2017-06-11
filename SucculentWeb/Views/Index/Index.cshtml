@@ -101,13 +101,13 @@
                         </div>
                         <div class="row left-down" style="height:350px;">
                             <div class="left-content">
-                                <img src="@ViewBag.photo" />
+                              <a  href="@Url.Action("Shops","Goods",new {ShopID= @ViewBag.ShopID })"> <img src="@ViewBag.photo" /></a>  
                             </div>
                         </div>
                     </div>
                     <div class="col-md-8 right" style="height:380px;">
                         <div class="row right-up">
-                            <div class="col-md-12" style="height:30px;"><a class="little-title">热销单品 >></a></div>
+                            <div class="col-md-12" style="height:30px;"><a class="little-title" href="@Url.Action("ShopMallIndex","ShopMall")">热销单品 >></a></div>
                         </div>
                         <div class="row right-middle">
                             @foreach (var item in Model.goods)
@@ -117,7 +117,7 @@
                                     <div class="hovereffect">
                                         <img src="@item.GoodsPhoto" alt="" class="img-thumbnail" />
                                         <div class="overlay">
-                                            <a class="info" href="#">点击购买</a>
+                                            <a class="info" href="@Url.Action("GoodsDetail","Goods",new { goodid=item.GoodsID})">点击购买</a>
                                         </div>
                                     </div>
                                 </div>
@@ -127,13 +127,13 @@
                             <div class="col-md-12" style="height:10px;"></div>
                         </div>
                         <div class="row right-middle-3">
-                            <div class="col-md-12" style="height:30px;"><a class="little-title">私人定制 >></a></div>
+                            <div class="col-md-12" style="height:30px;"><a class="little-title" href="@Url.Action("ShopMallShops","ShopMall")">热搜商店 >></a></div>
                         </div>
                         <div class="row right-down">
                             @foreach (var item in Model.shops)
                             {
                                 <div class="col-md-4 col-sm-4 little" style="height:130px;">
-                                    <img src="~/images/8.jpg" class="image" />
+                                  <a href="@Url.Action("Shops","Goods",new { ShopID=item.ShopID})"><img src="@item.ShopPhoto" class="image" /></a> 
                                     <div class="know">
                                         <h5>@item.ShopName</h5>
                                         <p>@item.ShopDescription</p>
