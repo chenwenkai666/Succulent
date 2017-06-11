@@ -48,7 +48,9 @@
                                 @{ IEnumerable<Users> users = PostM.SelectUserInfo(Session["UserName"].ToString()); }
                                 @foreach (var A in users)
                                 {
-                                    <img src="@A.Photo" width="28" height="28" />
+                                    <a href="@Url.Action("Index", "UserCenter")">
+                                        <img src="@A.Photo" width="28" height="28" />
+                                    </a>
                                 }
                             </div>
                             <div id="boxname">
@@ -58,16 +60,16 @@
                         <div id="homebox04">
                             <a href="@Url.Action("UserQuit", "Tribune")">退出</a>
                         </div>
-                    }
-                    else
-                    {
-                        <div id="homebox03">
-                            <a href="@Url.Action("Login", "User")">登录</a>
-                        </div>
-                        <div id="homebox04">
-                            <a href="@Url.Action("Register", "User")">注册</a>
-                        </div>
-                    }
+                                    }
+                                    else
+                                    {
+                                        <div id="homebox03">
+                                            <a href="@Url.Action("Login", "User")">登录</a>
+                                        </div>
+                                        <div id="homebox04">
+                                            <a href="@Url.Action("Register", "User")">注册</a>
+                                        </div>
+                                    }
                 </div>
                 <!-- 顶部链接结束 -->
             </div>
