@@ -56,9 +56,9 @@ namespace SucculentWeb.Controllers
                 pots.UserID = userid;
                 pots.LevelID = 1;
                 pots.Experience = 1;
-                Pots userpots = potsmanager.GetPotsByUserID(userid);
-                if (userpots == null)
-                {
+                //Pots userpots = potsmanager.GetPotsByUserID(userid);
+                //if (userpots == null)
+                //{
                     if (potsmanager.InsertPots(pots))
                     {
                         return Content("<script>alert('开通成功！');window.open('" + Url.Content("~/UserCenter/Index") + "', '_self')</script>");
@@ -67,11 +67,11 @@ namespace SucculentWeb.Controllers
                     {
                         return Content("<script>alert('开通失败！');window.open('" + Url.Content("~/UserCenter/Index") + "', '_self')</script>");
                     }
-                }
-                else
-                {
-                    return Content("<script>alert('您已经开通过啦，不能重复开通哦！');window.open('" + Url.Content("~/UserCenter/Index") + "', '_self')</script>");
-                }
+                //}
+                //else
+                //{
+                //    return Content("<script>alert('您已经开通过啦，不能重复开通哦！');window.open('" + Url.Content("~/UserCenter/Index") + "', '_self')</script>");
+                //}
             }
             else
             {
