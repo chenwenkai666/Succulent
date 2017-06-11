@@ -338,7 +338,7 @@
     font-size:15px;
     transition:all 0.5s;
 }
-.succulent-wrap-bottom-right-bottom-content p i:hover{
+.succulent-wrap-bottom-right-bottom-content p span:hover i{
     transform:scale(1.2,1.2);
 }
 

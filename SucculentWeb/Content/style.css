@@ -395,18 +395,16 @@ div.index_loginbox img{
     line-height:55px;
     margin-top:-20%;
     margin-left:84%;
-    /*color:rgba(51,153,51,1);*/
-    color:rgba(221,81,76,0.8);
+    color:rgba(51,153,51,1);
+    /*color:rgba(221,81,76,0.8);*/
 }
 .zhuxiao i{
-    color:rgba(221,81,76,0.6);
-    /*color:rgba(0,0,0,0.6);*/
+    color:rgba(0,0,0,0.6);
     font-size:20px;
     transition:all ease-out 0.2s;
 }
 .zhuxiao:hover i{
-   /*color:rgba(51,153,51,1);*/
-   color:rgba(221,81,76,1);
+   color:rgba(51,153,51,1);
    transition:all ease-in 0.2s;
 }
 /*新底部样式开始*/

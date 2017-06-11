@@ -56,7 +56,7 @@
         float: left;
         width: 60%;
         height: 200px;
-        margin: -120% 20%;
+        margin: -100% 20%;
         position: relative;
         background: url('../../images/签到成功.png') no-repeat;
         background-size: 120%;
@@ -105,7 +105,7 @@
 <main class="main-contain">
     <div class="main-contain-top">
         <div class="user-back">
-            <img @*src="~/images/usercenter-back.jpg"*@ class="back-img" width="800" height="150" /> 
+            @*<img src="~/images/UserCenterBack1.png" class="back-img" width="800" height="150" />*@ 
         </div>
         <div class="user-info">
             <div class="user-info-section">
@@ -136,7 +136,7 @@
             </div>
             <div class="user-info-details">
                 <main class="user-info-details-main row">
-                    <h1 class="col-md-12" style="color:#DD514C;">@Model.UserName</h1>
+                    <span class="span-title col-md-12">@Model.UserName</span>
                     <span class="col-md-12"><i class="fa fa-user-o"></i>&nbsp;&nbsp;&nbsp;@Model.Sex</span>
                     @{ 
                         DateTime birth;
@@ -155,7 +155,7 @@
                      }
                     
                     <p>
-                        <span class="col-md-12" style="color:#4fac2a;font-size:20px;"><i class="fa fa-envira"  style="color:#4fac2a;"></i> 多肉宣言：</span>
+                        <span class="col-md-12" style="color:#4fac2a;font-size:15px;"><i class="fa fa-envira"  style="color:#4fac2a; font-size:15px;"></i>&nbsp;&nbsp;多肉宣言：</span>
                         <span class="col-md-12" style="font-size:14px;">种下幸福，走向成功，明天会更好，加油啊，啦啦啦啦啦啦</span>
                     </p>
                 </main>

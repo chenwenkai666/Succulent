@@ -20,12 +20,15 @@
     position: absolute;
     z-index: 2;
     width: 100%;
-    height:150px;
-    background:linear-gradient(to bottom,rgba(131,139,131,0.6),rgba(131,139,131,0.2));
+    height: 150px;
+    /*background:linear-gradient(to bottom,rgba(131,139,131,0.6),rgba(131,139,131,0.2));*/
     overflow: hidden;
     border-top-right-radius: 1px;
     border-top-left-radius: 1px;
-    overflow:hidden;
+    overflow: hidden;
+    background: url('../images/UserCenterBack1.png') no-repeat;
+    background-position:center;
+    background-size:30% 260%;
 }
 .user-back .back-img{
     display:block;
@@ -162,11 +165,32 @@
     /*border:1px solid red;*/
     overflow:hidden;
 }
+.user-info-details .span-title{
+    font-family:'Microsoft YaHei';
+    font-size:25px;
+    font-weight:500;
+    text-shadow:1px 1px 1px rgba(0,0,0,0.3);
+    line-height:50px;
+    letter-spacing:2px;
+    color:rgba(0,0,0,0.8);
+    /*border:1px solid red;*/
+}
+
 .user-info-details span{
     display:block;
+    cursor:pointer;
 }
 .user-info-details span i{
     color:burlywood;
+    transition:all 0.35s;
+}
+.user-info-details span:hover i{
+    transform:scale(1.2,1.2);
+}
+.user-info-details p{
+    cursor:pointer;
+    margin-top:5px;
+    /*border:1px solid red;*/
 }
 .user-info-go{
     display:inline-block;
@@ -235,7 +259,7 @@
 }
 .main-contain-bottom-details{
     float:left;
-    width:60%;
+    width:55%;
     height:500px;
     margin-left:10px;
     overflow:hidden;
@@ -264,24 +288,26 @@
 }
 .mengsucculent{
     float:left;
-    width:35%;
+    width:40%;
     height:auto;
-    margin-top:0px;
+    margin-top:-50px;
     margin-left:20px;
     /*border:1px solid blue;*/
 }
 .xiaomeng{
     width:100%;
-    height:50px;
+    height:50px; 
+    margin-left:20px;
+    /*border:1px solid blue;*/
 }
 .xiaomeng h2{
+    text-align:center;
     line-height:50px;
 }
 #main-contain-bottom-succulent{
     width:100%;
     height:auto;
+    margin-top:80px;
     overflow:hidden;
-    margin-left:20px;
     /*border:1px solid red;*/
-    border-left:1px solid rgba(0,0,0,0.2);
 }

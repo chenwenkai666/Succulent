@@ -51,11 +51,13 @@
     padding-top:0;
 }
 .wrap-contain .main-contain .wrap-introduce .wrap-introduce-title h1 .small-add .a-add{
-    display:inline-block;
-    width:80px;
+     display:block;
+    float:left;
+    width:20px;
     height:30px;
+    margin-left:10px;
     line-height:30px;  
-    color:dodgerblue;
+    color:rgba(0,0,0,0.7);
     font-family:'Microsoft YaHei';
     letter-spacing:2px;
     font-size:20px; 
@@ -70,15 +72,17 @@
 }
 .wrap-contain .main-contain .wrap-introduce .wrap-introduce-title h1 .small-add #collect-num{
     display:block;
+     float:left;
+    width:50px;
     height:30px;
-    margin-left:70px;
-    margin-top:-34px;
-    line-height:40px;  
+    margin-left:10px;
+    line-height:30px;  
     /*border:1px solid red;*/
     font-family: arial,tahoma,'Microsoft Yahei','\5b8b\4f53',sans-serif;
     font-weight:500;
     font-size:15px;
     color:#000000;
+    overflow:hidden;
 }
 .wrap-contain .main-contain .wrap-introduce .wrap-introduce-para{
 font-size: 15px;
@@ -168,6 +172,7 @@ color: #000;
 position:absolute;
 top:5px;
 left:50px;
+line-height:60px;
 }
 .wrap-contain .main-contain .wrap-yangzhi .wrap-yangzhi-title div,
 .wrap-contain .main-contain .wrap-yuanlin .wrap-yuanlin-title div{
@@ -188,7 +193,7 @@ left:50px;
 }
 .wrap-contain .main-contain .wrap-tuce .wrap-tuce-title h2{
    top:0px;
-   line-height:10px;
+   line-height:50px;
 }
 .wrap-contain .main-contain .wrap-yangzhi .wrap-yangzhi-content,
 .wrap-contain .main-contain .wrap-yuanlin .wrap-yuanlin-content,
@@ -253,14 +258,19 @@ left:50px;
       overflow:hidden;
   }
     .wrap-body .wrap-contain .side-contain .side-contain-img .img-photo{
-
-     
-      
-
+      width:83.5%;
+      height:240px;  
+      margin:0 auto;
+      border:5px solid #ececec;
+      overflow:hidden;
   }
     .wrap-body .wrap-contain .side-contain .side-contain-img .img-photo img{
-         margin-left:25px;
-        border:5px solid #ececec;
+        margin:0 auto;
+        margin-left:-5%;      
+        transition:all 0.5s;
+    }
+     .wrap-body .wrap-contain .side-contain .side-contain-img .img-photo:hover img{
+        transform:scale(1.05,1.05);
     }
    .wrap-body .wrap-contain .side-contain .side-contain-main{
       width:100%;

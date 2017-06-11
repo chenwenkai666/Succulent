@@ -78,8 +78,7 @@
                             <h1 class="col-md-8">
                                 <input type="hidden" id="SucculentID" name="SucculentID" value="@item.SucculentID" />
                                 @Html.DisplayFor(modelItem => item.SucculentName)<small class="small-add">
-                                @*@Ajax.ActionLink("赞一个", "Collection", "Succulent", new { id = item.SucculentID}, new AjaxOptions { HttpMethod = "Post", UpdateTargetId = "collect-num", InsertionMode = InsertionMode.Replace }, new { @class = "a-add" })*@
-                                 <a class = "a-add"><i class="fa fa-plus-square" id="Collecte"></i> </a><span id="collect-num">@Html.DisplayFor(modelItem => item.CollectedTotal)</span>
+                                <a class="a-add"><i class="fa fa-plus-square" id="Collecte"></i> </a><span id="collect-num">@Html.DisplayFor(modelItem => item.CollectedTotal)</span>
                             </small>
                         </h1>
                     </dd>
@@ -144,7 +143,7 @@
         <div class="side-contain">
             <div class="side-contain-img row">
                 <p class="col-md-12 img-photo">
-                    <img src="@item.Photo" width="350" height="230" />
+                    <img src="@item.Photo" width="350" height="230" title="@item.SucculentName" />
                 </p>
             </div>
             <div class="side-contain-main">
