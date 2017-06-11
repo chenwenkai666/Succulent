@@ -764,6 +764,7 @@
     <Content Include="obj\Debug\SucculentWeb.pdb" />
     <Content Include="Scripts\AdminManagement\jquery-accordion-menu.js" />
     <Content Include="Scripts\amazeui.min.js" />
+    <Content Include="Scripts\AngularJS\angular.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
