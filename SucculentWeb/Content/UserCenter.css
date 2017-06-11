@@ -95,7 +95,7 @@
    
 }
 .user-info-section-photo {
-    width:140px;
+    width:165px;
     height:165px;
     display: inline-block;
     overflow: hidden;
@@ -262,13 +262,26 @@
     font-weight:500;
     color:#333;
 }
-#main-contain-bottom-succulent{
-    float:right;
+.mengsucculent{
+    float:left;
     width:35%;
     height:auto;
-    margin-top:40px;
+    margin-top:0px;
     margin-left:20px;
+    /*border:1px solid blue;*/
+}
+.xiaomeng{
+    width:100%;
+    height:50px;
+}
+.xiaomeng h2{
+    line-height:50px;
+}
+#main-contain-bottom-succulent{
+    width:100%;
+    height:auto;
     overflow:hidden;
+    margin-left:20px;
     /*border:1px solid red;*/
     border-left:1px solid rgba(0,0,0,0.2);
 }

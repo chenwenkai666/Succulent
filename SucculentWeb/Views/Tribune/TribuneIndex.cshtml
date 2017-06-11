@@ -17,10 +17,10 @@
     <div id="topA">
         <div id="topA-logo"><img src="~/images/Tribune/web/testlogo.png" /></div>
         <div id="topA-right">
-            <div class="topA-box">百科</div>
-            <div class="topA-box">活动</div>
-            <div class="topA-box">商城</div>
-            <div class="topA-box">论坛</div>
+            <div class="topA-box"><a href="@Url.Action("Succulent", "SucculentIndex")">百科</a></div>
+            <div class="topA-box"><a href="@Url.Action("Index", "SucculentActivity")">活动</a></div>
+            <div class="topA-box"><a href="@Url.Action("ShopMallIndex", "ShopMall")">商城</a></div>
+            <div class="topA-box"><a href="@Url.Action("TribuneIndex", "Tribune")">论坛</a></div>
         </div>
     </div>
 </section>
@@ -43,19 +43,16 @@
                         <div class="item active">
                             <img src="~/images/Tribune/timg.jpg" alt="..." />
                             <div class="carousel-caption">
-                                123
                             </div>
                         </div>
                         <div class="item">
                             <img src="~/images/Tribune/timg1.jpg" alt="..." />
                             <div class="carousel-caption">
-                                456
                             </div>
                         </div>
                         <div class="item">
                             <img src="~/images/Tribune/timg2.jpg" alt="..." />
                             <div class="carousel-caption">
-                                789
                             </div>
                         </div>
                     </div>
@@ -87,7 +84,7 @@
                             {
                                 <li>
                                     <div class="p-name">
-                                        <a href="@Url.Action("PostsDetails", "Tribune",new { PostID = A.PostID })">@A.PostTitle</a>
+                                        <a href="@Url.Action("PostsDetails", "Tribune",new { PostID = A.PostID })"><span>@A.PostTitle</span></a>
                                     </div>
                                 </li>
                             }
@@ -97,7 +94,7 @@
                             {
                                 <li>
                                     <div class="p-name">
-                                        <a href="@Url.Action("PostsDetails", "Tribune",new { PostID = A.PostID })">@A.PostTitle</a>
+                                        <a href="@Url.Action("PostsDetails", "Tribune",new { PostID = A.PostID })"><span>@A.PostTitle</span></a>
                                     </div>
                                 </li>
                             }
@@ -107,10 +104,11 @@
                             {
                                 <li>
                                     <div class="p-name">
-                                        <a href="#">@A.PostCommentContent</a>
+                                        @{ string context = NoHTML.noHTML(A.PostCommentContent);}
+                                        <a href="@Url.Action("PostsDetails", "Tribune",new { PostID = A.PostID })"><span>@context</span></a>
                                     </div>
                                 </li>
-                            }
+                                            }
                         </ul>
                     </div>
                 </div>

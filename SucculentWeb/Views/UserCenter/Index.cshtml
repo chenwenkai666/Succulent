@@ -56,7 +56,7 @@
         float: left;
         width: 60%;
         height: 200px;
-        margin: -100% 20%;
+        margin: -120% 20%;
         position: relative;
         background: url('../../images/签到成功.png') no-repeat;
         background-size: 120%;
@@ -119,11 +119,11 @@
                         {
                             if (Model.Sex == "女")
                             {
-                               <img src="~/images/女性默认头像.png" width="130" height="130" />
+                               <img src="~/images/WomanDefaultPhoto.png" width="130" height="130" />
                             }
                             else if (Model.Sex == "男")
                             {
-                                <img src="~/images/男性默认头像.png" width="130" height="130" />
+                                <img src="~/images/ManDefaultPhoto.png" width="130" height="130" />
                             }
                             else
                             {
@@ -196,11 +196,18 @@
                 Html.RenderAction("IndexPartial","UserCenter");
             }
         </div>
-       <div id="main-contain-bottom-succulent">
-           @{
-               Html.RenderAction("PotsIndex");
-           }
-       </div>
+        <div class="mengsucculent">
+            <div class="xiaomeng">
+                <h2>
+                    小萌物，大世界
+                </h2>
+            </div>
+            <div id="main-contain-bottom-succulent">
+                @{
+                    Html.RenderAction("PotsIndex");
+                }
+            </div>
+        </div>
     </div>
 </main>
 

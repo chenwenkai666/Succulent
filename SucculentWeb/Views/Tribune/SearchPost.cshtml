@@ -126,7 +126,7 @@
                                             <p><a href="@Url.Action("PostsDetails", "Tribune",new { PostID = A.Posts.PostID })">@A.Posts.PostTitle</a></p>
                                         </div>
                                         <div class="CommInfo">
-                                            <p>@Html.Raw(A.PostCommentContent)</p>
+                                            <p>@{ string context = NoHTML.noHTML(A.PostCommentContent);} @context</p>
                                         </div>
                                         <div class="CommBoxInfo">
                                             <div class="Infousercom">

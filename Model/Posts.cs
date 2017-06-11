@@ -12,7 +12,7 @@ namespace Model
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
-    
+
     public partial class Posts
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -20,19 +20,20 @@ namespace Model
         {
             this.PostComments = new HashSet<PostComments>();
         }
-    
+
         public int PostID { get; set; }
         public int UserID { get; set; }
         public int SectionID { get; set; }
 
-        [Required(ErrorMessage ="请输入帖子标题")]
+        [Required(ErrorMessage = "请输入帖子标题")]
+        [StringLength(24, ErrorMessage = "标题长度不符合要求")]
         public string PostTitle { get; set; }
 
         [Required(ErrorMessage = "请输入帖子内容")]
         public string PostContent { get; set; }
         public System.DateTime PublishTime { get; set; }
         public int PostFlag { get; set; }
-    
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PostComments> PostComments { get; set; }
         public virtual Sections Sections { get; set; }

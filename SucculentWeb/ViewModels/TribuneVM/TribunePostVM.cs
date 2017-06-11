@@ -14,5 +14,6 @@ namespace SucculentWeb.ViewModels.TribuneVM
         public Posts Posts { get; set; }
         public IPagedList<PostComments> PostComment { get; set; }
         public IEnumerable<Users> UserInfo { get; set; }
+        public ReplyPost RlyPosts { get; set; }
     }
 }

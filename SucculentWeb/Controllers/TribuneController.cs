@@ -46,7 +46,7 @@ namespace SucculentWeb.Controllers
             return View(tribuneBoard);
         }
 
-        [IsLogIn(IsCheck =true)]
+        [IsLogIn(IsCheck = true)]
         public ActionResult CreatePost()
         {
             TribuneCreateVM tribuneCreate = new TribuneCreateVM();
@@ -60,12 +60,18 @@ namespace SucculentWeb.Controllers
         public ActionResult CreatePost(Posts posts, PostComments postscom)
         {
             int BoardID = Convert.ToInt32(Session["BoardID"]);
-            try
+            int userid = Convert.ToInt32(Session["UserID"]);
+            string timer = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+            DateTime PubTime = DateTime.Parse(timer);
+            string SectionName = Request.Form["selectdetailtype"];
+
+
+            if (posts.PostContent == null)
             {
-                int userid = Convert.ToInt32(Session["UserID"]);
-                string timer = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
-                DateTime PubTime = DateTime.Parse(timer);
-                string SectionName = Request.Form["selectdetailtype"];
+                return Content("<script>alert('帖子内容不能为空');window.open('" + Url.Action("CreatePost", "Tribune") + "', '_self'</script>");
+            }
+            else
+            {
                 int SectionID = PostM.SelectSectionID(SectionName);
                 posts.SectionID = SectionID;
                 posts.UserID = userid;
@@ -81,12 +87,8 @@ namespace SucculentWeb.Controllers
                     potsmanager.UpdateExperience(userid, 5);
                 }
                 return RedirectToAction("BoardIndex", "Tribune", new { BoardID = BoardID });
-
             }
-            catch (System.Data.Entity.Validation.DbEntityValidationException dbEx)
-            {
-                return Content("<script>alert('输入有误！');window.location.href = document.referrer;</script>");
-            }
+            
         }
         public ActionResult PostsDetails(int PostID, int? page)
         {
@@ -109,20 +111,30 @@ namespace SucculentWeb.Controllers
         {
             int userid = Convert.ToInt32(Session["UserID"]);
             int PostID = int.Parse(Session["PostID"].ToString());
-            postcom.UserID = Convert.ToInt32(Session["UserID"]);
-            postcom.PostID = PostID;
-            postcom.PostCommentTime = DateTime.Now;
+           
             postcom.PostCommentContent = Request.Form["PostCommentContent"];
-            db.PostComments.Add(postcom);
-            db.Configuration.ValidateOnSaveEnabled = false;
-            db.SaveChanges();
-            db.Configuration.ValidateOnSaveEnabled = true;
-            int Lev = PostM.GetUserPotLev(Convert.ToInt32(Session["UserID"]));
-            if (Lev != 0)
+            if (postcom.PostCommentContent == "")
             {
-                potsmanager.UpdateExperience(userid, 2);
+                return Content("<script>alert('评论内容不能为空');window.open('" + Url.Action("PostsDetails", "Tribune", new { PostID = PostID }) + "', '_self'</script>");
             }
-            return RedirectToAction("PostsDetails", "Tribune", new { PostID = PostID });
+            else
+            {
+                postcom.UserID = Convert.ToInt32(Session["UserID"]);
+                postcom.PostID = PostID;
+                postcom.PostCommentTime = DateTime.Now;
+                db.PostComments.Add(postcom);
+                db.Configuration.ValidateOnSaveEnabled = false;
+                db.SaveChanges();
+                db.Configuration.ValidateOnSaveEnabled = true;
+                int Lev = PostM.GetUserPotLev(Convert.ToInt32(Session["UserID"]));
+                if (Lev != 0)
+                {
+                    potsmanager.UpdateExperience(userid, 2);
+                }
+                return RedirectToAction("PostsDetails", "Tribune", new { PostID = PostID });
+            }
+            
+            
         }
         [HttpPost]
         [ValidateInput(false)]
@@ -133,7 +145,7 @@ namespace SucculentWeb.Controllers
             rlypost.UserID = Convert.ToInt32(Session["UserID"]);
             rlypost.PostCommentID = PostCommentID;
             rlypost.ReplyPostTime = DateTime.Now;
-            rlypost.ReplyContent = Request.Form["textarea1"];
+            rlypost.ReplyContent = Request.Form["RlyPosts.ReplyContent"];
             db.ReplyPost.Add(rlypost);
             db.Configuration.ValidateOnSaveEnabled = false;
             db.SaveChanges();
