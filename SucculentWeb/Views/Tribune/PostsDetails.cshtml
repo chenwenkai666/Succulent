@@ -147,7 +147,7 @@
                     <div id="Com02-B">
                         @if (Session["UserID"] != null)
                         {
-                            <input type="button" value="发 表 评 论" class="btn btn-success" onclick="sub()" />
+                            <input type="submit" value="发 表 评 论" class="btn btn-success" />
                         }
                         else
                         {
@@ -160,28 +160,6 @@
     </div>
 </section>
 <!-- 主体结束 -->
-<script type="text/javascript">
-    function sub() {
-        //var data = document.getElementById("PostCommentContent").innerHTML;
-        var data = $('#PostCommentContent').val();
-        //innerHtml貌似也行，至于要不要带（）我忘了
-        //str = trim(data);//去除空格的
-        //if (str.length == 0) {
-        //    
-        //}
-        alert(data);
-    }
-    function trim(str){       
-        str = str.replace(/^(\s|\u00A0)+/,'');      
-        for(var i=str.length-1; i>=0; i--){           
-            if(/\S/.test(str.charAt(i))){              
-                str = str.substring(0, i+1);              
-                break;           
-            }      
-        }      
-        return str;  
-    }
-</script>
 <script type="text/javascript">
     jQuery(document).ready(function ($) {
         $('#PLbtn').click(function () { $('html,body').animate({ scrollTop: $('#PostComment').offset().top }, 800); });
