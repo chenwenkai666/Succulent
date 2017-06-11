@@ -502,6 +502,10 @@
     <Content Include="images\Photo\missakephoto.jpg" />
     <Content Include="images\Photo\mouseOut.jpg" />
     <Content Include="images\Photo\mouseOver.jpg" />
+    <Content Include="images\Shops\猫爷家.jpg" />
+    <Content Include="images\Shops\猫爷家2.jpg" />
+    <Content Include="images\Shops\肉萌萌.jpg" />
+    <Content Include="images\Shops\肉萌萌顶部图片.png" />
     <Content Include="images\Sprites\tag.png" />
     <Content Include="images\Sprites\tag2.png" />
     <Content Include="images\Sprites\vote.png" />
@@ -537,6 +541,7 @@
     <Content Include="images\签到成功.png" />
     <Content Include="images\绿色的布纹理.jpg" />
     <Content Include="images\绿草背景.png" />
+    <Content Include="images\肉萌萌.jpg" />
     <Content Include="images\舞台灯光.png" />
     <Content Include="images\荷塘.png" />
     <Content Include="images\获奖.png" />
@@ -766,6 +771,7 @@
     <Content Include="obj\Debug\SucculentWeb.pdb" />
     <Content Include="Scripts\AdminManagement\jquery-accordion-menu.js" />
     <Content Include="Scripts\amazeui.min.js" />
+    <Content Include="Scripts\AngularJS\angular.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">

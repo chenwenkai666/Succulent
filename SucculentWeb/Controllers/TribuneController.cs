@@ -65,17 +65,18 @@ namespace SucculentWeb.Controllers
             DateTime PubTime = DateTime.Parse(timer);
             string SectionName = Request.Form["selectdetailtype"];
 
-            int SectionID = PostM.SelectSectionID(SectionName);
-            posts.SectionID = SectionID;
-            posts.UserID = userid;
-            posts.PublishTime = PubTime;
-            posts.PostFlag = 1;
+
             if (posts.PostContent == null)
             {
-                return Content("<script>alert();</script>");
+                return Content("<script>alert('帖子内容不能为空');window.open('" + Url.Action("CreatePost", "Tribune") + "', '_self'</script>");
             }
             else
             {
+                int SectionID = PostM.SelectSectionID(SectionName);
+                posts.SectionID = SectionID;
+                posts.UserID = userid;
+                posts.PublishTime = PubTime;
+                posts.PostFlag = 1;
                 db.Posts.Add(posts);
                 db.Configuration.ValidateOnSaveEnabled = false;
                 db.SaveChanges();
@@ -110,20 +111,30 @@ namespace SucculentWeb.Controllers
         {
             int userid = Convert.ToInt32(Session["UserID"]);
             int PostID = int.Parse(Session["PostID"].ToString());
-            postcom.UserID = Convert.ToInt32(Session["UserID"]);
-            postcom.PostID = PostID;
-            postcom.PostCommentTime = DateTime.Now;
+           
             postcom.PostCommentContent = Request.Form["PostCommentContent"];
-            db.PostComments.Add(postcom);
-            db.Configuration.ValidateOnSaveEnabled = false;
-            db.SaveChanges();
-            db.Configuration.ValidateOnSaveEnabled = true;
-            int Lev = PostM.GetUserPotLev(Convert.ToInt32(Session["UserID"]));
-            if (Lev != 0)
+            if (postcom.PostCommentContent == "")
             {
-                potsmanager.UpdateExperience(userid, 2);
+                return Content("<script>alert('评论内容不能为空');window.open('" + Url.Action("PostsDetails", "Tribune", new { PostID = PostID }) + "', '_self'</script>");
             }
-            return RedirectToAction("PostsDetails", "Tribune", new { PostID = PostID });
+            else
+            {
+                postcom.UserID = Convert.ToInt32(Session["UserID"]);
+                postcom.PostID = PostID;
+                postcom.PostCommentTime = DateTime.Now;
+                db.PostComments.Add(postcom);
+                db.Configuration.ValidateOnSaveEnabled = false;
+                db.SaveChanges();
+                db.Configuration.ValidateOnSaveEnabled = true;
+                int Lev = PostM.GetUserPotLev(Convert.ToInt32(Session["UserID"]));
+                if (Lev != 0)
+                {
+                    potsmanager.UpdateExperience(userid, 2);
+                }
+                return RedirectToAction("PostsDetails", "Tribune", new { PostID = PostID });
+            }
+            
+            
         }
         [HttpPost]
         [ValidateInput(false)]

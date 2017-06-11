@@ -34,7 +34,7 @@
                                 <p class="shop-name"><a href="@Url.Action("Shops", "Goods", new { ShopID = p.ShopID })">@p.ShopName</a></p>
                                 
                                 <p class="maijia">卖家：<a href="@Url.Action("Shops", "Goods", new { ShopID = p.ShopID })">@p.Users.UserName</a></p>
-                                <p class="zhuying">主营：<a>多肉植物、盆栽、工具、花盆、定制礼包...</a></p>
+                                <p class="zhuying">主营：<a>@p.ShopDescription</a></p>
                             </div>
                         </div>
                         <div class="left-content-down">

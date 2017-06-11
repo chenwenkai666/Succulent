@@ -29,6 +29,7 @@ namespace SucculentWeb.Controllers
    
             var shop = db.Shops.OrderByDescending(p => p.SalesTotal).FirstOrDefault();
             ViewBag.photo = shop.ShopPhoto;
+            ViewBag.ShopID = shop.ShopID;
             return View(indexvm);
         }
 
