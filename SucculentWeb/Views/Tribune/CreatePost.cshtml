@@ -68,13 +68,13 @@
                         }
                         else
                         {
-                            foreach (var A in Model.Sections03)
-                            {
-                                <option>@A.SectionName</option>
-                            }
                             foreach (var B in Model.Sections06)
                             {
                                 <option>@B.SectionName</option>
+                            }
+                            foreach (var A in Model.Sections03)
+                            {
+                                <option>@A.SectionName</option>
                             }
                         }
                     </select>
