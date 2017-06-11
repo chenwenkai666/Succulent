@@ -63,7 +63,7 @@
                     {
                         <li class="mis-slide">
                             <figure>
-                                <a class="succulent-img"><img src="@item.Photo" width="250" height="200"/></a>
+                                <a class="succulent-img" href="@Url.Action("Succulent_Details","Succulent",new { id=item.SucculentID })" target="_blank"><img src="@item.Photo" width="250" height="200"/></a>
                                 <figcaption style="font-family:'Microsoft YaHei';font-size:20px;line-height:40px;">@item.SucculentName</figcaption>
                             </figure>
                         </li>
@@ -86,7 +86,7 @@
                 <div class="w3_agile_image">
                     <img src="~/images/1.png" alt="" class="img-responsive" />
                 </div>
-                <p class="agile_para">多肉商品展示</p>
+                <p class="agile_para">多肉热销商品</p>
             </div>
         </div>
         <div class="category-content">

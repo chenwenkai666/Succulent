@@ -36,6 +36,7 @@
 
 
 .wrap-contain .main-contain .wrap-introduce .wrap-introduce-title h1{
+    margin-top:3%;
    margin-left:20px;
   display: inline;
   font-size: 34px;
@@ -138,6 +139,7 @@ background-color: #fff;
     font-weight:500;
 }
 .wrap-contain .main-contain .wrap-mulu .wrap-mulu-right li{
+    width:103%;
     cursor:pointer;
 }
 .wrap-contain .main-contain .wrap-yangzhi,
@@ -200,7 +202,7 @@ line-height:60px;
 .wrap-contain .main-contain .wrap-tuce .wrap-tuce-content{
     width:100%;
     margin-top:58px;
-    height:300px;
+    height:auto;
     /*border:1px solid blue;*/
 }
 
