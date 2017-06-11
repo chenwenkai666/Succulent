@@ -70,16 +70,24 @@ namespace SucculentWeb.Controllers
             posts.UserID = userid;
             posts.PublishTime = PubTime;
             posts.PostFlag = 1;
-            db.Posts.Add(posts);
-            db.Configuration.ValidateOnSaveEnabled = false;
-            db.SaveChanges();
-            db.Configuration.ValidateOnSaveEnabled = true;
-            int Lev = PostM.GetUserPotLev(Convert.ToInt32(Session["UserID"]));
-            if (Lev != 0)
+            if (posts.PostContent == null)
             {
-                potsmanager.UpdateExperience(userid, 5);
+                return Content("<script>alert();</script>");
             }
-            return RedirectToAction("BoardIndex", "Tribune", new { BoardID = BoardID });
+            else
+            {
+                db.Posts.Add(posts);
+                db.Configuration.ValidateOnSaveEnabled = false;
+                db.SaveChanges();
+                db.Configuration.ValidateOnSaveEnabled = true;
+                int Lev = PostM.GetUserPotLev(Convert.ToInt32(Session["UserID"]));
+                if (Lev != 0)
+                {
+                    potsmanager.UpdateExperience(userid, 5);
+                }
+                return RedirectToAction("BoardIndex", "Tribune", new { BoardID = BoardID });
+            }
+            
         }
         public ActionResult PostsDetails(int PostID, int? page)
         {
