@@ -17,18 +17,26 @@
     width: 500px;
     height: 100px;
     float: right;
-    /*background-color:red;*/
 }
 
 .topA-box {
     width: 125px;
     height: 100px;
     float: left;
-    /*border:1px solid #199475;*/
     line-height: 95px;
     text-align: center;
     font-size: 17px;
 }
+
+    .topA-box a:link {
+        color: #000000;
+        text-decoration: none;
+    }
+
+    .topA-box a:hover {
+        color: #5BC0DE;
+        text-decoration: none;
+    }
 /*顶部结束*/
 
 /*主体*/
