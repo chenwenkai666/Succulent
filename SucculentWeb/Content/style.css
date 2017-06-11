@@ -295,14 +295,17 @@ div.index_loginbox img{
     width:200px;
     height:100px;
     /*background-color:red;*/
-    margin-top:-5%;
-    margin-left:70px;
+    margin-top:-6%;
+    margin-left:50px;
     text-align:center;
     z-index:2;
 }
+.login_registerbox .login_register a{
+    color:#000;
+}
 .login_registerbox .login_register .a-link{  
      display:inline-block;
-     margin-left:15px;
+     margin-left:10px;
      margin-top:-10px;
      /*background-color:red;*/
      width:50px;
@@ -314,6 +317,9 @@ div.index_loginbox img{
      z-index:3;
 }
    
+.login_registerbox .login_register .a-link:hover{
+     color:rgba(51,153,51,1);
+ } 
 
 .login_registerbox .login_register:active .a-link{
      border:none; 
@@ -322,10 +328,10 @@ div.index_loginbox img{
 }
 
 /*用户信息框*/
-.userinfobox .userinfo{
+.login_registerbox .userinfo{
     width:220px;
     height:60px;
-    margin-top:-5%;
+    margin-top:-10%;
     margin-left:85px;
     /*background-color:red;*/
     overflow:hidden;
@@ -333,29 +339,36 @@ div.index_loginbox img{
      text-align:left;
 }
 /*用户名*/
-.userinfobox .userinfo p{
+.login_registerbox .userinfo p{
     display:block;
-    width:50px;
-    height:20px;
-    margin-left:10px;
+    width:100%;
+    height:40px;
+    margin-left:10%;
     /*background:#000;*/
     font-size:18px;
     font-weight:500;
-    letter-spacing:4px;
-   font-family:'Microsoft YaHei';
+    letter-spacing:2px;
+    font-family:'隶书';
 }
-.userinfobox .userinfo span{
-        width:auto;
+.login_registerbox .userinfo p a{
+    color:rgba(51,153,51,0.9);
+    font-family:'隶书';
+}
+.login_registerbox .userinfo p a:hover{
+    color:rgba(51,153,51,1);
+}
+.login_registerbox .userinfo span{
+        width:40%;
         height:30px;
         display:block;
         /*background:#000;*/
         font-size: 14px;
-        font-family:'Microsoft YaHei';
-        margin-top:-7%;
-         margin-left:10px;
+        font-family:'隶书';
+        margin-top:-18%;
+         margin-left:10%;
     }
-.userinfobox .userinfo a{ 
-      width:30px;
+.login_registerbox .userinfo a{ 
+      width:100%;
       height:30px; 
       display:block;
      font-family:'Microsoft YaHei';
@@ -363,18 +376,39 @@ div.index_loginbox img{
       /*background:#000;*/
       border:none; 
 }
-.userinfobox .userinfo a i{
+.login_registerbox .userinfo a i{
     cursor:pointer;
 }
-.userinfobox .userinfo .a-button1{
+.login_registerbox .userinfo .a-button1{
      margin-top:-35%;
      margin-left:80%;
 }
-.userinfobox .userinfo .a-button2{
+.login_registerbox .userinfo .a-button2{
       margin-top:-15%;
      margin-left:80%;
 }
-
+.zhuxiao{
+    display:block;
+    width:50px;
+    height:50px;
+    /*background-color:red;*/
+    line-height:55px;
+    margin-top:-20%;
+    margin-left:84%;
+    /*color:rgba(51,153,51,1);*/
+    color:rgba(221,81,76,0.8);
+}
+.zhuxiao i{
+    color:rgba(221,81,76,0.6);
+    /*color:rgba(0,0,0,0.6);*/
+    font-size:20px;
+    transition:all ease-out 0.2s;
+}
+.zhuxiao:hover i{
+   /*color:rgba(51,153,51,1);*/
+   color:rgba(221,81,76,1);
+   transition:all ease-in 0.2s;
+}
 /*新底部样式开始*/
 
 /*.div-footer a{
@@ -445,7 +479,7 @@ div.index_loginbox img{
     height:300px;
     margin-left:3%;
     /*border-top:1px solid rgba(51,153,51,0.2);*/
-}
+/*}*/
 .div-footer .div_right .about_us,.contact_us{
     float:left;
     width:40%;
@@ -477,5 +511,5 @@ div.index_loginbox img{
     margin-top:38%;
     margin-left:-68%;
     display:none;
-}*/
+}
 /*新版底部样式结束*/

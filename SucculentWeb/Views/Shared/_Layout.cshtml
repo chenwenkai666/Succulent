@@ -26,15 +26,15 @@
             <div class="sk-spinner sk-spinner-rotating-plane"></div>
         </div>
         <!--导航栏-->
-        <nav class="navbar navbar-fixed-top custom-navbar" role="navigation">
-            <div class="container">
+        <nav class="navbar navbar-fixed-top custom-navbar row" role="navigation">
+            <div class="container col-md-9">
                 <div class="navbar-header">
                     <button class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                         <span class="icon icon-bar"></span>
                         <span class="icon icon-bar"></span>
                         <span class="icon icon-bar"></span>
                     </button>
-                    <a href="@Url.Action("Index","Index")" class="navbar-brand">多肉网</a>
+                    <a href="@Url.Action("Index","Index")" class="navbar-brand" style="margin-left:100px;">多肉网</a>
                 </div>
                 <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav navbar-right">
@@ -43,72 +43,74 @@
                         <li><a href="@Url.Action("TribuneIndex", "Tribune")" class="smoothScroll" target="_blank">论坛</a></li>
                         <li><a href="@Url.Action("Index","SucculentActivity")" class="smoothScroll" target="_blank">活动</a></li>
                         <li><a href="@Url.Action("ShopMallIndex","ShopMall")" class="smoothScroll" target="_blank">商城</a></li>
-                        <li>
-                            @*<a href="@Url.Action("Login","User")" class="smoothScroll">登录</a>*@
-                            <div class="userinfobox">
-                                <div class="index_loginbox" id="index_loginbox">
-                                    @{
-                                        UsersManager usermanager = new UsersManager();
-                                        if (Session["UserName"] != null)
-                                        {
-                                            Users user = usermanager.GetUserByName(Session["UserName"].ToString());
-                                            if (user.Photo != null)
-                                            {
-                                                <a href="@Url.Action("Index","UserCenter")" target="_blank"><img src="@user.Photo" /></a>
-                                            }
-                                            else
-                                            {
-                                                <a href="@Url.Action("Index","UserCenter")" target="_blank"><img src="~/images/头像.png" /></a>
-                                            }
+                    </ul>
+                </div>
+                </div>
+                @*<a href="@Url.Action("Login","User")" class="smoothScroll">登录</a>*@
+                <div class="userinfobox col-md-2">
+                    <div class="index_loginbox" id="index_loginbox">
+                        @{
+                            UsersManager usermanager = new UsersManager();
+                            if (Session["UserName"] != null)
+                            {
+                                Users user = usermanager.GetUserByName(Session["UserName"].ToString());
+                                if (user.Photo != null)
+                                {
+                                    <a href="@Url.Action("Index","UserCenter")" target="_blank"><img src="@user.Photo" /></a>
+                                }
+                                else
+                                {
+                                    <a href="@Url.Action("Index","UserCenter")" target="_blank"><img src="~/images/头像.png" /></a>
+                                }
 
+                            }
+                            else
+                            {
+                                <img src="~/images/灰色头像.png" />
+                            }
+                        }
+
+                    </div>
+                    <div class="login_registerbox" id="login_registerbox_id">
+                        @{
+                            if (Session["UserName"] != null)
+                            {
+                                <div class="userinfo">
+                                    <p><a href="@Url.Action("Index","UserCenter")" target="_blank">@Session["UserName"]</a></p>
+                                    @{
+                                        PotsManager potmanager = new PotsManager();
+                                        int level;
+                                        Pots pot = potmanager.GetPotsByUserID(int.Parse(Session["UserID"].ToString()));
+                                        if (pot == null)
+                                        {
+                                            level = 0;
                                         }
                                         else
                                         {
-                                            <img src="~/images/灰色头像.png" />
+                                            level = pot.LevelID;
                                         }
+
                                     }
-
+                                    <span><i class="fa fa-vimeo" style="color:red;"></i>&nbsp;&nbsp;Lv @level</span>
+                                    <div class="zhuxiao col-md-1">
+                                        <a href="@Url.Action("LoginOut","User")" target="_parent" style="font-size:15px;" title="退出登录"><i class="fa fa-power-off"></i></a>
+                                    </div>
+                                    @*<span>我的等级：Lv @level</span><br />
+                                <a href="@Url.Action("Index","UserCenter")" class="am-btn-success am-btn-xs a-button1" target="_parent" style="font-size:15px;" title="个人中心"><i class="fa fa-user"></i></a><br />
+                                <a href="@Url.Action("LoginOut","User")" class="am-btn-danger am-btn-xs a-button2" target="_parent" style="font-size:15px;" title="退出登录"><i class="fa fa-power-off"></i></a>*@
                                 </div>
-                                <div class="login_registerbox" id="login_registerbox_id">
-                                    @{
-                                        if (Session["UserName"] != null)
+                                        }
+                                        else
                                         {
-                                            <div class="userinfo">
-                                                <p>@Session["UserName"]</p>
-                                                @{
-                                                    PotsManager potmanager = new PotsManager();
-                                                    int level;
-                                                    Pots pot = potmanager.GetPotsByUserID(int.Parse(Session["UserID"].ToString()));
-                                                    if (pot == null)
-                                                    {
-                                                        level = 0;
-                                                    }
-                                                    else
-                                                    {
-                                                        level = pot.LevelID;
-                                                    }
-
-                                                }
-                                                <span>我的等级：Lv @level</span><br />
-                                                <a href="@Url.Action("Index","UserCenter")" class="am-btn-success am-btn-xs a-button1" target="_parent" style="font-size:15px;" title="个人中心"><i class="fa fa-user"></i></a><br />
-                                                <a href="@Url.Action("LoginOut","User")" class="am-btn-danger am-btn-xs a-button2" target="_parent" style="font-size:15px;" title="退出登录"><i class="fa fa-power-off"></i></a>
+                                            <div class="login_register">
+                                                <a class="a-link" href="@Url.Action("Login","User")" style="font-size:18px; font-weight:400;border:none;">登 录</a>
+                                                <a class="a-link" href="@Url.Action("Register","User")" style="font-size:18px;font-weight:400;border:none;">注 册</a>
                                             </div>
                                         }
-                                        else
-                                        {
-                                           <div class="login_register">
-                                               <a class="a-link" href="@Url.Action("Login","User")" style="font-size:18px; font-weight:400;border:none;">登 录</a>
-                                               <a class="a-link" href="@Url.Action("Register","User")" style="font-size:18px;font-weight:400;border:none;">注 册</a>
-                                           </div>
-                                        }
-                                    }
-                                </div>
-                            </div>
-                        </li>
-                    </ul>
-
+                        }
+                    </div>
                 </div>
-            </div>
+           
         </nav>
         <div class="contain-all">
             @RenderBody()

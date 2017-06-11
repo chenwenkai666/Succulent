@@ -155,6 +155,7 @@ namespace SucculentWeb.Controllers
         public ActionResult ZhuXiao()
         {
             Session["UserName"] = null;
+            Session["UserID"] = null;
             return RedirectToAction("ShopMallIndex","ShopMall");
         }
     }
