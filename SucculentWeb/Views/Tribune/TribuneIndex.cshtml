@@ -87,7 +87,7 @@
                             {
                                 <li>
                                     <div class="p-name">
-                                        <a href="@Url.Action("PostsDetails", "Tribune",new { PostID = A.PostID })">@A.PostTitle</a>
+                                        <a href="@Url.Action("PostsDetails", "Tribune",new { PostID = A.PostID })"><span>@A.PostTitle</span></a>
                                     </div>
                                 </li>
                             }
@@ -97,7 +97,7 @@
                             {
                                 <li>
                                     <div class="p-name">
-                                        <a href="@Url.Action("PostsDetails", "Tribune",new { PostID = A.PostID })">@A.PostTitle</a>
+                                        <a href="@Url.Action("PostsDetails", "Tribune",new { PostID = A.PostID })"><span>@A.PostTitle</span></a>
                                     </div>
                                 </li>
                             }
@@ -107,10 +107,11 @@
                             {
                                 <li>
                                     <div class="p-name">
-                                        <a href="#">@A.PostCommentContent</a>
+                                        @{ string context = NoHTML.noHTML(A.PostCommentContent);}
+                                        <a href="@Url.Action("PostsDetails", "Tribune",new { PostID = A.PostID })"><span>@context</span></a>
                                     </div>
                                 </li>
-                            }
+                                            }
                         </ul>
                     </div>
                 </div>

@@ -11,7 +11,8 @@ namespace Model
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class PostComments
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -23,6 +24,7 @@ namespace Model
         public int PostCommentID { get; set; }
         public int UserID { get; set; }
         public int PostID { get; set; }
+        [Required(ErrorMessage = "内容不能为空")]
         public string PostCommentContent { get; set; }
         public System.DateTime PostCommentTime { get; set; }
     

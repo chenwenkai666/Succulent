@@ -46,7 +46,7 @@ namespace SucculentWeb.Controllers
             return View(tribuneBoard);
         }
 
-        [IsLogIn(IsCheck =true)]
+        [IsLogIn(IsCheck = true)]
         public ActionResult CreatePost()
         {
             TribuneCreateVM tribuneCreate = new TribuneCreateVM();
@@ -60,33 +60,26 @@ namespace SucculentWeb.Controllers
         public ActionResult CreatePost(Posts posts, PostComments postscom)
         {
             int BoardID = Convert.ToInt32(Session["BoardID"]);
-            try
-            {
-                int userid = Convert.ToInt32(Session["UserID"]);
-                string timer = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
-                DateTime PubTime = DateTime.Parse(timer);
-                string SectionName = Request.Form["selectdetailtype"];
-                int SectionID = PostM.SelectSectionID(SectionName);
-                posts.SectionID = SectionID;
-                posts.UserID = userid;
-                posts.PublishTime = PubTime;
-                posts.PostFlag = 1;
-                db.Posts.Add(posts);
-                db.Configuration.ValidateOnSaveEnabled = false;
-                db.SaveChanges();
-                db.Configuration.ValidateOnSaveEnabled = true;
-                int Lev = PostM.GetUserPotLev(Convert.ToInt32(Session["UserID"]));
-                if (Lev != 0)
-                {
-                    potsmanager.UpdateExperience(userid, 5);
-                }
-                return RedirectToAction("BoardIndex", "Tribune", new { BoardID = BoardID });
+            int userid = Convert.ToInt32(Session["UserID"]);
+            string timer = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+            DateTime PubTime = DateTime.Parse(timer);
+            string SectionName = Request.Form["selectdetailtype"];
 
-            }
-            catch (System.Data.Entity.Validation.DbEntityValidationException dbEx)
+            int SectionID = PostM.SelectSectionID(SectionName);
+            posts.SectionID = SectionID;
+            posts.UserID = userid;
+            posts.PublishTime = PubTime;
+            posts.PostFlag = 1;
+            db.Posts.Add(posts);
+            db.Configuration.ValidateOnSaveEnabled = false;
+            db.SaveChanges();
+            db.Configuration.ValidateOnSaveEnabled = true;
+            int Lev = PostM.GetUserPotLev(Convert.ToInt32(Session["UserID"]));
+            if (Lev != 0)
             {
-                return Content("<script>alert('输入有误！');window.location.href = document.referrer;</script>");
+                potsmanager.UpdateExperience(userid, 5);
             }
+            return RedirectToAction("BoardIndex", "Tribune", new { BoardID = BoardID });
         }
         public ActionResult PostsDetails(int PostID, int? page)
         {
@@ -133,7 +126,7 @@ namespace SucculentWeb.Controllers
             rlypost.UserID = Convert.ToInt32(Session["UserID"]);
             rlypost.PostCommentID = PostCommentID;
             rlypost.ReplyPostTime = DateTime.Now;
-            rlypost.ReplyContent = Request.Form["textarea1"];
+            rlypost.ReplyContent = Request.Form["RlyPosts.ReplyContent"];
             db.ReplyPost.Add(rlypost);
             db.Configuration.ValidateOnSaveEnabled = false;
             db.SaveChanges();

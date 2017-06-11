@@ -11,6 +11,8 @@
 }
 
 <script src="~/js/jquery-2.1.4.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
 <link href="~/css/Tribune/TribunePosts.css" rel="stylesheet" />
 <script src="~/ueditor/ueditor.config.js"></script>
 <script src="~/ueditor/ueditor.all.js"></script>
@@ -32,7 +34,7 @@
     <div id="bodyer">
         <div id="PostTitle">
             <div id="titleLeft">
-               <p>@Model.Posts.PostTitle</p>
+                <p>@Model.Posts.PostTitle</p>
             </div>
             <div id="titleRight">
                 @*<button class="btn btn-sm btn-default">只看楼主</button>*@
@@ -41,9 +43,13 @@
             </div>
         </div>
         @{ string tempid; }
+        @{ string areaid; }
+        @{ string inptid; }
         @foreach (var A in Model.PostComment)
         {
             tempid = "dev" + A.PostCommentID;
+            areaid = "arv" + A.PostCommentID;
+            inptid = "inp" + A.PostCommentID;
             <div class="PostFloor">
                 <div class="PostIMG">
                     <div class="IMG01">
@@ -89,7 +95,7 @@
                                     </div>
                                 </div>
                                 <div class="ReplyText">
-                                    <div class="ReText01">@B.Users.UserName : @Html.Raw(@B.ReplyContent)</div>
+                                    <div class="ReText01"><p>@B.Users.UserName : @Html.Raw(B.ReplyContent)</p></div>
                                     <div class="ReText02">@B.ReplyPostTime</div>
                                 </div>
                             </div>
@@ -98,16 +104,16 @@
                             @using (Html.BeginForm("RlyPosts", "Tribune", new { PostCommentID = A.PostCommentID }, FormMethod.Post, new { id = "CreateForm", enctype = "multipart/form-data" }))
                             {
                                 <div class="PostRly01">
-                                    <textarea style="resize:none;" class="form-control" rows="3" name="textarea1" placeholder="我也要简单说两句"></textarea>
+                                    @Html.TextAreaFor(Model => Model.RlyPosts.ReplyContent, new { @class = "form-control", style = "resize:none;", rows = "3", placeholder = "我也要简单说两句" } )
                                 </div>
                                 <div class="PostRly02">
                                     <div class="Rly02-A">
-                                        @*<p>此处放错误信息</p>*@
+                                        @Html.ValidationMessageFor(Model => Model.RlyPosts.ReplyContent, "", new { style = "color:red;" })
                                     </div>
                                     <div class="Rly02-B">
                                         @if (Session["UserID"] != null)
                                         {
-                                            <input type="submit" value="&nbsp;发表回复&nbsp;" class="btn btn-xs btn-default" />
+                                            <input id="@inptid" type="submit" value="&nbsp;发表回复&nbsp;" class="btn btn-xs btn-default" />
                                         }
                                         else
                                         {
@@ -141,7 +147,7 @@
                     <div id="Com02-B">
                         @if (Session["UserID"] != null)
                         {
-                            <input type="submit" value="发 表 评 论" class="btn btn-success" />
+                            <input type="button" value="发 表 评 论" class="btn btn-success" onclick="sub()" />
                         }
                         else
                         {
@@ -154,6 +160,28 @@
     </div>
 </section>
 <!-- 主体结束 -->
+<script type="text/javascript">
+    function sub() {
+        //var data = document.getElementById("PostCommentContent").innerHTML;
+        var data = $('#PostCommentContent').val();
+        //innerHtml貌似也行，至于要不要带（）我忘了
+        //str = trim(data);//去除空格的
+        //if (str.length == 0) {
+        //    
+        //}
+        alert(data);
+    }
+    function trim(str){       
+        str = str.replace(/^(\s|\u00A0)+/,'');      
+        for(var i=str.length-1; i>=0; i--){           
+            if(/\S/.test(str.charAt(i))){              
+                str = str.substring(0, i+1);              
+                break;           
+            }      
+        }      
+        return str;  
+    }
+</script>
 <script type="text/javascript">
     jQuery(document).ready(function ($) {
         $('#PLbtn').click(function () { $('html,body').animate({ scrollTop: $('#PostComment').offset().top }, 800); });

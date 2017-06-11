@@ -186,10 +186,13 @@
     width: 750px;
     min-height: 55px;
     padding: 7px;
+    word-wrap: break-word;
 }
 
-    .ReText01 > p {
-    }
+    /*.ReText01 >p {
+        display: block;
+        width: 750px;
+    }*/
 
 .ReText02 {
     width: 750px;

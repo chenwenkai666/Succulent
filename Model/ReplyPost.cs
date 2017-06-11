@@ -11,15 +11,17 @@ namespace Model
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class ReplyPost
     {
         public int ReplyPostID { get; set; }
         public int UserID { get; set; }
         public int PostCommentID { get; set; }
+        [Required(ErrorMessage = "内容不能为空")]
+        [StringLength(140, ErrorMessage = "最多输入140个字")]
         public string ReplyContent { get; set; }
         public System.DateTime ReplyPostTime { get; set; }
-    
         public virtual PostComments PostComments { get; set; }
         public virtual Users Users { get; set; }
     }
