@@ -65,6 +65,7 @@ namespace SucculentWeb.Controllers
                     string code = user.CheckCode;
                     if (code == Session["CheckCode"].ToString())
                     {
+                        user.UserFlag = 2;
                         usermanager.InsertUser(user);
                         Session["UserName"] = user.UserName;
                         Users users = usermanager.GetUserByName(user.UserName);

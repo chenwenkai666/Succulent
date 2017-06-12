@@ -6,7 +6,7 @@
             @{
                 if (Model == null)
                 {
-                    using (Ajax.BeginForm("InsertPots", "UserCenter", new AjaxOptions { HttpMethod = "POST", UpdateTargetId = "main-contain-bottom-succulent", InsertionMode = InsertionMode.Replace }))
+                    using (Html.BeginForm("InsertPots", "UserCenter"))
                     {
                         <div class="am-progress">
                             <div class="am-progress-bar" style="width: 0%">0级</div>

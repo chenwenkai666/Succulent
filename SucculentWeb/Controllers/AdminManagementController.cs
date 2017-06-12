@@ -21,7 +21,7 @@ namespace SucculentWeb.Controllers
             Users admin = usersmanager.GetUserByName(Session["UserName"].ToString());
             if (admin.UserFlag != 0)
             {
-                return Content("<script>alert('对不起，您无权登录该页面！');window.open('" + Url.Action("Index","Index") + "', '_self')</script>");
+                return Content("<script>alert('对不起，您无权访问该页面！');window.open('" + Url.Action("Index","Index") + "', '_self')</script>");
             }
             else
             {
