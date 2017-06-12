@@ -1501,7 +1501,6 @@
     <Content Include="Views\UsersManagement\Index.cshtml" />
     <Content Include="Views\Shared\_LayoutAdminManagement.cshtml" />
     <Content Include="Views\SucculentIndex\CategoryContent.cshtml" />
-    <Content Include="Views\UserCenter\UpdateInfo.cshtml" />
     <Content Include="Views\UserCenter\IndexPartial.cshtml" />
     <Content Include="Views\UserCenter\PotsIndex.cshtml" />
     <Content Include="Views\ActivityManagement\Create.cshtml" />

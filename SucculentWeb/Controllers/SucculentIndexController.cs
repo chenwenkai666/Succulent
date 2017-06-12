@@ -30,19 +30,19 @@ namespace SucculentWeb.Controllers
                 if (SucculentCategoryID == 0&&SearchSucculent== null)
                {
                 
-                return PartialView("PartialViewDate", succulent.OrderBy(s =>s.CollectedTotal).ToPagedList(pageNum, pageSize));
+                return PartialView("PartialViewDate", succulent.OrderByDescending(s =>s.CollectedTotal).ToPagedList(pageNum, pageSize));
                }
                 else
                 {
                     if(SearchSucculent == null)
                     {
                     var Csucculent= succulentmanager.SelectSucculentByCatogaryid(SucculentCategoryID);                  
-                    return PartialView("PartialViewDate", Csucculent.OrderBy(s => s.CollectedTotal).ToPagedList(pageNum, pageSize));
+                    return PartialView("PartialViewDate", Csucculent.OrderByDescending(s => s.CollectedTotal).ToPagedList(pageNum, pageSize));
                     }
                     else
                     {
                         var SchSucculent = succulentmanager.SelectBySearchName(SearchSucculent);
-                        return PartialView("PartialViewDate", SchSucculent.OrderBy(s => s.CollectedTotal).ToPagedList(pageNum, pageSize));
+                        return PartialView("PartialViewDate", SchSucculent.OrderByDescending(s => s.CollectedTotal).ToPagedList(pageNum, pageSize));
                     }
                    
                 }
@@ -50,7 +50,7 @@ namespace SucculentWeb.Controllers
             }
             else
             {
-                return View("PartialViewDate", succulent.OrderBy(s => s.CollectedTotal).ToPagedList(pageNum, pageSize));
+                return View("PartialViewDate", succulent.OrderByDescending(s => s.CollectedTotal).ToPagedList(pageNum, pageSize));
             }
         }
 
