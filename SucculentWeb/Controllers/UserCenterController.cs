@@ -125,16 +125,7 @@ namespace SucculentWeb.Controllers
             List<SelectListItem> items = new List<SelectListItem>();
             items.Add(new SelectListItem { Text = "你的宠物种类", Value = "你的宠物种类" });
             items.Add(new SelectListItem { Text = "你爸爸的名字", Value = "你爸爸的名字"});
-            items.Add(new SelectListItem { Text = "你最喜欢的颜色", Value = "你最喜欢的颜色" });
-            //var result = items.Where(x => x.Text == user.SecretQues).FirstOrDefault();
-            //if (result != null)
-            //{
-            //    items.Remove(result);
-            //    var temp = items;
-            //    items = new List<SelectListItem>();
-            //    items.Add(result);
-            //    items.AddRange(temp);
-            //}
+            items.Add(new SelectListItem { Text = "你最喜欢的颜色", Value = "你最喜欢的颜色" });           
             this.ViewData["list"] = items;         
             return View(user);
         }
@@ -162,17 +153,11 @@ namespace SucculentWeb.Controllers
                         string relativepath = @"/images/Photo/" + filename;
                         postImage.SaveAs(serverpath);
                         u.Photo = relativepath;
-                    //u.Sex = Request["Sex"];
-                    //u.Birth = Convert.ToDateTime(Request["Birth"]);
-                    //u.Phone = Request["Phone"];
-                    //u.Email = Request["Email"];                  
-                    //u.SecretQues = Request.Form["list"];                                       
-                    //u.SecretAnws = Request["SecretAnws"];
-                    //List <SelectListItem> items = new List<SelectListItem>();
-                    //    items.Add(new SelectListItem { Text = "你的宠物种类", Value = "你的宠物种类" });
-                    //    items.Add(new SelectListItem { Text = "你爸爸的名字", Value = "你爸爸的名字", Selected = true });
-                    //    items.Add(new SelectListItem { Text = "你最喜欢的颜色", Value = "你最喜欢的颜色" });
-                    //    this.ViewData["list"] = items;
+                    List<SelectListItem> items = new List<SelectListItem>();
+                    items.Add(new SelectListItem { Text = "你的宠物种类", Value = "你的宠物种类" });
+                    items.Add(new SelectListItem { Text = "你爸爸的名字", Value = "你爸爸的名字", Selected = true });
+                    items.Add(new SelectListItem { Text = "你最喜欢的颜色", Value = "你最喜欢的颜色" });
+                    this.ViewData["list"] = items;
                     usermanager.UpdateUserInfo(u);
                     }
 
@@ -183,28 +168,7 @@ namespace SucculentWeb.Controllers
                 }
            
             return View("UserInfo", u);
-        }  
-        public ActionResult GetUpdateInfo()
-        {
-            var u = usermanager.GetUserByID(int.Parse(Session["UserID"].ToString()));
-            List<SelectListItem> items = new List<SelectListItem>();
-            items.Add(new SelectListItem { Text = "你的宠物种类", Value = "你的宠物种类" });
-            items.Add(new SelectListItem { Text = "你爸爸的名字", Value = "你爸爸的名字"});
-            items.Add(new SelectListItem { Text = "你最喜欢的颜色", Value = "你最喜欢的颜色" });
-            //var result = items.Where(x => x.Text == u.SecretQues).FirstOrDefault();
-            //if (result != null)
-            //{
-            //    items.Remove(result);
-            //    var temp = items;
-            //    items = new List<SelectListItem>();
-            //    items.Add(result);
-            //    items.AddRange(temp);
-            //}
-
-
-            this.ViewData["list"] = items;         
-            return PartialView("UpdateInfo", u);
-        }
+        }         
         [HttpPost]
         public ActionResult UpdateInfo(Users user)
         {
@@ -213,9 +177,9 @@ namespace SucculentWeb.Controllers
             {
                 List<SelectListItem> items = new List<SelectListItem>();
                 items.Add(new SelectListItem { Text = "你的宠物种类", Value = "你的宠物种类" });
-                items.Add(new SelectListItem { Text = "你爸爸的名字", Value = "你爸爸的名字" });
+                items.Add(new SelectListItem { Text = "你爸爸的名字", Value = "你爸爸的名字", Selected = true });
                 items.Add(new SelectListItem { Text = "你最喜欢的颜色", Value = "你最喜欢的颜色" });
-                
+                this.ViewData["list"] = items;
                 u.Sex = user.Sex;
                 if (user.Birth.ToString() == null)
                 {
@@ -227,31 +191,8 @@ namespace SucculentWeb.Controllers
                 }
                 u.Phone = user.Phone;
                 u.Email = user.Email;
-                if (Request.Form["list"] != null)
-                {
-                    u.SecretQues = Request.Form["list"];
-                }
-                else
-                {
-                    u.SecretQues = user.SecretQues;
-                }
-
-                u.SecretAnws = user.SecretAnws;
-                
-                var result = items.Where(x => x.Text == u.SecretQues).FirstOrDefault();
-                if (result != null)
-                {
-                    items.Remove(result);
-                    var temp = items;
-                    items = new List<SelectListItem>();
-                    items.Add(result);
-                    items.AddRange(temp);
-                }
-                else
-                {
-                    u.SecretQues = user.SecretQues;
-                }
-                this.ViewData["list"] = items;
+                u.SecretQues = user.SecretQues;
+                u.SecretAnws = user.SecretAnws;             
                 usermanager.UpdateUserInfo(u);
             }
             catch (DbEntityValidationException ex)
@@ -259,7 +200,7 @@ namespace SucculentWeb.Controllers
                 string error = ex.Message;
 
             }
-           return  PartialView("UpdateInfo", u);
+           return  View("UserInfo", u);
         }
 
     }

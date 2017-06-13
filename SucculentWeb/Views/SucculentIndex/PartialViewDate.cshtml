@@ -30,8 +30,8 @@
       </div>
         <div class="row div-page">
             <div class="col-md-12 span-page">
-                @Html.PagedListPager(Model, page => Url.Action("PartialViewDate", "SucculentIndex", new { page, SucculentCategoryID = ViewBag.id }),
-    PagedListRenderOptions.EnableUnobtrusiveAjaxReplacing(
+             @Html.PagedListPager(Model, page => Url.Action("PartialViewDate", "SucculentIndex", new { page, SucculentCategoryID = ViewBag.id }),
+             PagedListRenderOptions.EnableUnobtrusiveAjaxReplacing(
              new AjaxOptions
              {
                  HttpMethod = "GET",

@@ -23,7 +23,7 @@ namespace SucculentWeb.Controllers
         public ActionResult Succulent_Details(int id=18, int categoryid=1)
         {
             var details = succulentmanager.SelectSucculentBySucculentid(id);
-            var succulent = succulentmanager.SelectSucculentByCatogaryid(categoryid);
+            var succulent = succulentmanager.SelectXinagsiSucculent(categoryid,id);
             var room = succulentmanager.SelectRoomSucculent();
             SucculentIndexViewModels si = new ViewModels.SucculentIndexViewModels();
             si.succulent_Details = details;

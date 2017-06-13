@@ -30,6 +30,10 @@ namespace BLL
         {
             return isucculent.SelectSucculentByCatogaryid(categoryid);
         }
+        public List<Succulent> SelectXinagsiSucculent(int categoryid, int id)
+        {
+            return isucculent.SelectXinagsiSucculent(categoryid, id);
+        }
         public  List<Succulent> SelectRoomSucculent()
         {
             return isucculent.SelectRoomSucculent();

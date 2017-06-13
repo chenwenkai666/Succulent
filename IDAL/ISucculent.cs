@@ -13,6 +13,7 @@ namespace IDAL
         List<Succulent> SelectSucculentByID(int id);
         List<Succulent> SelectSucculentBySucculentid(int id);
         List<Succulent> SelectSucculentByCatogaryid(int categoryid);
+        List<Succulent> SelectXinagsiSucculent(int categoryid, int id);
         List<Succulent> SelectRoomSucculent();
         void Create(Succulent succulent);
         void UpdateAdd(Succulent succulent);

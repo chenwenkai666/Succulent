@@ -42,15 +42,12 @@
             $("#Collecte").click(function (e) {
                 e.preventDefault();
                 var t = this;
-                //var formData = new FormData(document.getElementById("userInfoForm"));
                 $.ajax({
                     type: 'post',
                     data: {id:$("#SucculentID").val()},
                     url: "/Succulent/Collection",
                     async: true,
-                    success: function (msg) {
-                        //var name = $(t).parent().prev().find('input').attr('name');
-                        //$(t).parents(".filed").prev().find("span").html(data[name]);
+                    success: function (msg) {                      
                         if (msg == "请先登录哦！" || msg == "你已经收藏过啦！") {
                             alert(msg);
                         }
@@ -78,7 +75,8 @@
                             <h1 class="col-md-8">
                                 <input type="hidden" id="SucculentID" name="SucculentID" value="@item.SucculentID" />
                                 @Html.DisplayFor(modelItem => item.SucculentName)<small class="small-add">
-                                <a class="a-add"><i class="fa fa-plus-square" id="Collecte"></i> </a><span id="collect-num">@Html.DisplayFor(modelItem => item.CollectedTotal)</span>
+                                <a class="a-add"><i class="fa fa-plus-square" id="Collecte"></i></a>
+                                <span id="collect-num">@Html.DisplayFor(modelItem => item.CollectedTotal)</span>
                             </small>
                         </h1>
                     </dd>
@@ -162,7 +160,7 @@
                     </div>
                 </div>
                 <div class="side-contain-main-well">
-                    <div class="side-contain-main-well-title row"><h1 class="col-md-12">适合办公室的多肉</h1></div>
+                    <div class="side-contain-main-well-title row"><h1 class="col-md-12">最受欢迎的多肉</h1></div>
                     <div class="side-contain-main-well-contain row">
                         @foreach (var item2 in Model.Room)
                         {

@@ -39,6 +39,11 @@ namespace DAL
             var succulent = db.Succulent.AsNoTracking().Where(c => c.CategoryID == categoryid).Take(9).ToList();
             return succulent;
         }
+        public List<Succulent> SelectXinagsiSucculent(int categoryid,int id)
+        {
+            var succulent = db.Succulent.Where(c => c.CategoryID == categoryid&&c.SucculentID!= id).OrderByDescending(r => r.CollectedTotal).Take(9).ToList();
+            return succulent;
+        }
         public List<Succulent> SelectRoomSucculent()
         {
             var room = db.Succulent.OrderByDescending(r => r.CollectedTotal).Take(9).ToList();

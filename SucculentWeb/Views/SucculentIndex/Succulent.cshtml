@@ -54,7 +54,11 @@
                             <ul class="am-dropdown-content">
                                 @foreach (var item in Model)
                                 {
-                                    <li>@Ajax.ActionLink(@item.SucculentCategoryName, "PartialViewDate", new { SucculentCategoryID = item.SucculentCategoryID }, new AjaxOptions { HttpMethod = "Post", UpdateTargetId = "succulent-wrap-bottom-left", InsertionMode = InsertionMode.Replace }, new { @class = "a-describe" })</li>
+                                    <li>
+                                    @Ajax.ActionLink(@item.SucculentCategoryName, "PartialViewDate", new { SucculentCategoryID = item.SucculentCategoryID },
+                                    new AjaxOptions { HttpMethod = "Post", UpdateTargetId = "succulent-wrap-bottom-left", InsertionMode = InsertionMode.Replace },
+                                    new { @class = "a-describe" })
+                                    </li>
                                 }
                             </ul>
                         </li>
