@@ -431,6 +431,7 @@
     <Content Include="images\182.jpg" />
     <Content Include="images\277.jpg" />
     <Content Include="images\5824.jpg" />
+    <Content Include="images\ellipsis_bg.png" />
     <Content Include="images\UserCenterBack1.png" />
     <Content Include="images\UserCenterBack.png" />
     <Content Include="images\786.jpg" />
@@ -1578,6 +1579,7 @@
     <Content Include="Views\Goods\JieSuan.cshtml" />
     <Content Include="Views\Goods\Address.cshtml" />
     <Content Include="Views\Goods\AdoptDetail.cshtml" />
+    <Content Include="Views\MallSearch\MallSearchContent.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

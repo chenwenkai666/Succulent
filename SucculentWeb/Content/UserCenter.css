@@ -26,9 +26,9 @@
     border-top-right-radius: 1px;
     border-top-left-radius: 1px;
     overflow: hidden;
-    background: url('../images/UserCenterBack1.png') no-repeat;
+    background: url('../images/UserCenterBack2.png') no-repeat;
     background-position:center;
-    background-size:30% 260%;
+    background-size:100% 100%;
 }
 .user-back .back-img{
     display:block;

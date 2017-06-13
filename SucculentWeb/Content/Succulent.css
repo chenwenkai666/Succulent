@@ -180,7 +180,7 @@
 }
 .succulent-describe{
     float:left;
-    width:68%;
+    width:65%;
     height:220px;
     margin-top:5px;
     /*border:1px solid black;*/
@@ -214,7 +214,7 @@
     bottom:0;
     right:0;
     padding:0 20px 1px 45px;
-    background:url(http://css88.b0.upaiyun.com/css88/2014/09/ellipsis_bg.png) repeat-y;
+    background:url('../images/ellipsis_bg.png') repeat-y;
 }
 .succulent-span{
     display:block;
