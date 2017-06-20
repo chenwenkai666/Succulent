@@ -99,7 +99,7 @@ namespace SucculentWeb.Controllers
                 System.Random a = new Random(System.DateTime.Now.Millisecond);
                 int CheckCode = a.Next(100000, 999999);
                 Session["CheckCode"] = CheckCode.ToString();
-                MailHelper.SendEmail(email, "+社团会员注册验证", "您本次注册的验证码为：" + Session["CheckCode"] + ",20分钟内有效。请不要告诉他人哦~");
+                MailHelper.SendEmail(email, "多肉网会员注册验证", "您本次注册的验证码为：" + Session["CheckCode"] + ",20分钟内有效。请不要告诉他人哦~");
                 return "验证码已发送至邮箱";
             }
             else
