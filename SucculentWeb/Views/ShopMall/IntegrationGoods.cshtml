@@ -1,0 +1,24 @@
+﻿@model PagedList.IPagedList <Model.Goods>
+@using PagedList
+@using PagedList.Mvc
+@{ 
+    Layout = null;
+}
+@foreach (var item in Model)
+{
+    <div class="col-md-3 special-products-grid text-center">
+        <a class="brand-name" href="@Url.Action("IntegrationDetails","Goods",new { goodid=item.GoodsID })" target="_blank"></a>
+        <a class="product-here" href="@Url.Action("IntegrationDetails","Goods",new { goodid=item.GoodsID })" target="_blank"><img src="@item.GoodsPhoto" title="product-name" /></a>
+        <h4><a href="@Url.Action("IntegrationDetails","Goods",new { goodid=item.GoodsID })" target="_blank">@item.GoodsName</a></h4>
+        <a class="product-btn" href="@Url.Action("IntegrationDetails","Goods",new { goodid=item.GoodsID })" target="_blank"><span>@{decimal Uprice = item.Price * 100;}@Uprice</span><small>立即兑换</small><label> </label></a>
+    </div>
+}
+<div class="Pager">
+    @Html.PagedListPager(Model, page => Url.Action("IntegrationGoods", "ShopMall", new { page }),
+    PagedListRenderOptions.EnableUnobtrusiveAjaxReplacing(new AjaxOptions
+    {
+        HttpMethod = "GET",
+        UpdateTargetId = "integrationgoods",
+        InsertionMode = InsertionMode.Replace
+    }))
+</div>

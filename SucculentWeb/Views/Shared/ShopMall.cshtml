@@ -9,7 +9,9 @@
     <script src="/js/jquery.animate-colors-min.js"></script>
     @*<link href="~/Content/bootstrap.css" rel="stylesheet" />
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" />*@
+    <link href="~/Content/amazeui.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="/css/ShopMallTopAndFoot.css" />
+    @RenderSection("head", false)
 </head>
 <body>
     <!--顶部导航栏开始-->
@@ -27,7 +29,9 @@
                 <a class="head_nav_a" href="@Url.Action("TribuneIndex","Tribune")">论坛</a>
             </div>
             <div id="head_right">
+                <a href="@Url.Action("Login","User")" class="integration am-btn am-btn-danger">积分系统</a>
                 <div id="head_landing">
+                    
                     @if(Session["UserName"]==null)
                     { 
                     <a href="@Url.Action("Login","User")" class="head_nav_a">登陆</a>
@@ -65,6 +69,7 @@
                     {
                         <a onclick="confirm('请先登录')?location.href='@Url.Action("Login","User")':''" href="javascript:;"><s class="gouwuche">购物车</s><img  src="~/images/购物车 (1).png"/></a>
                     }
+                   
                     <div id="car_content" style="height: 0px;width:0px ;background-color: #edffc6;z-index: 999">
                         <a class="car_text"></a>
                     </div>
@@ -91,7 +96,6 @@
                     <li class="menu_li" control="tv"><a href="@Url.Action("ShopMallClass","ShopMall",new { good="4"})">工具摆件</a></li>
                     <li class="menu_li" control="luyou"><a href="@Url.Action("ShopMallClass","ShopMall",new { good="5"})">绿植盆栽</a></li>
                     <li class="menu_li" control="yingjian"><a href="@Url.Action("ShopMallShops","ShopMall")">商家店铺</a></li>
-
                 </ul>
             </div>
             <div id="find_wrap">

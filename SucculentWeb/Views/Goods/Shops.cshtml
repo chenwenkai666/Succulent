@@ -164,40 +164,7 @@ $(function(){
     <div id="shopcontent">
         @{ Html.RenderAction("ShopsContent","Goods");}
     </div>
-    @*<div class="main">
-        <hr style="width:100%;color:#f3f2f2;" />
-        <ul> 
-            @foreach(var p in Model)
-            { 
-            <li>
-                <div class="image">
 
-                    <div class="hovereffect">
-
-                        <img src="@p.GoodsPhoto" />
-                        <div class="overlay">
-
-                            <a href="@Url.Action("GoodsDetail","Goods",new { goodid=@p.GoodsID})" class="info" >点击购买</a>
-                        </div>
-                    </div>                    
-                </div>
-                <a><i style="font-size:16px;color:black;">￥@p.Price</i><span class="glyphicon glyphicon-thumbs-up">&nbsp;@p.LikeIt</span></a>
-                <a href="@Url.Action("GoodsDetail","Goods",new {goodid=@p.GoodsID})">@p.GoodsName</a>
-            </li>
-            }
-        </ul>
-    </div>
-    <div class="fenye">
-        <nav aria-label="Page navigation" style="margin-top:0px;" class="container">
-            <ul class="pagination ">
-               <li>
-                   @Html.PagedListPager(Model, page => Url.Action("Shops", "Goods", new { page,ShopID=Session["shopid"] }))  
-
-                </li>
-            </ul>
-        </nav>
-    </div>
-</div>*@
 <div class="over"> 
     <div class="fenlei">
         <ul>
@@ -228,10 +195,6 @@ $(function(){
 <div class="go-top dn" id="go-top">
     <a href="javascript:;" class="uc-2vm"></a>
     <div class="uc-2vm-pop dn">
-        @*<h2 class="title-2wm">用微信扫一扫</h2>
-        <div class="logo-2wm-box">
-            <img src="~/images/Shops/weixin.jpg" alt="站长素材" width="240" height="240">
-        </div>*@
     </div>
     <a href="javascript:;"class="feedback"></a>
     <a href="javascript:;" class="go"></a>

@@ -46,6 +46,7 @@
     <Compile Include="AdoptManager.cs" />
     <Compile Include="AdoptResultManager.cs" />
     <Compile Include="AttendanceManager.cs" />
+    <Compile Include="CharitableResultManager.cs" />
     <Compile Include="CollectionManager.cs" />
     <Compile Include="DonateManager.cs" />
     <Compile Include="EntriesManager.cs" />

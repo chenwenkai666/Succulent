@@ -124,9 +124,9 @@ namespace SucculentWeb.Controllers
             {
                 case "1":
                     var good = goodsmanager.SelectShopLike(ShopID);
-                    if(Request.IsAjaxRequest())
+                    if (Request.IsAjaxRequest())
                     {
-                        return PartialView("ShopsContent",good.ToPagedList(pageNumber, pageSize));
+                        return PartialView("ShopsContent", good.ToPagedList(pageNumber, pageSize));
                     }
                     else
                     {
@@ -254,12 +254,12 @@ namespace SucculentWeb.Controllers
             ViewBag.topimage = topimage.TopImage;
             return View();
         }
-        public ActionResult GoodsComments(int ? page,int goodid)
+        public ActionResult GoodsComments(int? page, int goodid)
         {
             goodid = Convert.ToInt32(Session["goodid"]);
             var comment = goodscommentsmanager.SelectGoodsComment(goodid);
             return View(comment);
-          
+
         }
         [HttpPost]
         [ValidateInput(false)]
@@ -268,19 +268,19 @@ namespace SucculentWeb.Controllers
             int goodid = Convert.ToInt32(Session["goodid"]);
             int userid = Convert.ToInt32(Session["UserID"]);
             string textarea = Request["pingluntextarea"];
-            var result = orderitemsmanager.GoodCommentOrder(userid,goodid);
+            var result = orderitemsmanager.GoodCommentOrder(userid, goodid);
             if (ModelState.IsValid)
             {
-                if(result>0)
+                if (result > 0)
                 {
-                    if(textarea!="")
+                    if (textarea != "")
                     {
-                       GoodsComments.UserID = Convert.ToInt32(Session["UserID"]);
-                       GoodsComments.GoodsID = goodid;
-                       GoodsComments.PublishTime = System.DateTime.Now;
-                       GoodsComments.GoodsCommentContent = textarea;
+                        GoodsComments.UserID = Convert.ToInt32(Session["UserID"]);
+                        GoodsComments.GoodsID = goodid;
+                        GoodsComments.PublishTime = System.DateTime.Now;
+                        GoodsComments.GoodsCommentContent = textarea;
                         goodscommentsmanager.InsertGoodsComment(GoodsComments);
-                        return Content("<script>alert('评论成功');window.open('" + Url.Action("GoodsDetail", "Goods", new { goodid=goodid }) + "', '_self')</script>");
+                        return Content("<script>alert('评论成功');window.open('" + Url.Action("GoodsDetail", "Goods", new { goodid = goodid }) + "', '_self')</script>");
                     }
                     else
                     {
@@ -302,19 +302,19 @@ namespace SucculentWeb.Controllers
         public ActionResult ReplyGoodComments(int GoodsCommentid, ReplyGoods replyGoods)
         {
             string replytext = Request.Form["textarea1"];
-            if (replytext =="")
+            if (replytext == "")
             {
                 return Content("<script>;alert('回复不能为空');history.go(-1)</script>");
             }
             else
             {
                 int goodid = Convert.ToInt32(Session["goodid"]);
-                int userid= Convert.ToInt32(Session["UserID"]);
-            replyGoods.GoodsCommentID = GoodsCommentid;
-            replyGoods.UserID = userid;
-            replyGoods.ReplyContent = replytext;
-            replyGoods.ReplyTime = DateTime.Now;
-            replygoodmanager.InsertReplyGoods(replyGoods);
+                int userid = Convert.ToInt32(Session["UserID"]);
+                replyGoods.GoodsCommentID = GoodsCommentid;
+                replyGoods.UserID = userid;
+                replyGoods.ReplyContent = replytext;
+                replyGoods.ReplyTime = DateTime.Now;
+                replygoodmanager.InsertReplyGoods(replyGoods);
                 //return Content("<script>alert('回复成功！');history.go(-1)</script>");
                 return Content("<script>alert('回复成功');window.open('" + Url.Action("GoodsDetail", "Goods", new { goodid = goodid }) + "', '_self')</script>");
             }
@@ -364,17 +364,17 @@ namespace SucculentWeb.Controllers
                 }
                 if (ModelState.IsValid)
                 {
-                    int userid= Convert.ToInt32(Session["UserID"]);
+                    int userid = Convert.ToInt32(Session["UserID"]);
                     shops.UserID = Convert.ToInt32(Session["UserID"]);
                     var result = (from p in db.Shops where p.UserID == userid select p).Count();
-                    if(result>0)
+                    if (result > 0)
                     {
                         return Content("<script>alert('您已注册商店，请不要重复注册！');history.go(-1)</script>");
                     }
                     else
                     {
                         shopmanager.CreateNewShops(shops);
-                    return Content("<script>;alert('注册成功');history.go(-1)</script>");
+                        return Content("<script>;alert('注册成功');history.go(-1)</script>");
                     }
                 }
                 else
@@ -400,21 +400,21 @@ namespace SucculentWeb.Controllers
         {
             int goodid = Convert.ToInt32(Session["goodid"]);
             int userid = Convert.ToInt32(Session["UserID"]);
-            int result = shoppingcarsmanager.ShopCartsCount(userid,goodid);
-            if(result>0)
+            int result = shoppingcarsmanager.ShopCartsCount(userid, goodid);
+            if (result > 0)
             {
                 return Content("<script>alert('该商品已存在购物车');history.go(-1)</script>");
             }
             else
-            { 
-            carts.UserID = userid;
-            carts.GoodsID = goodid;
-            carts.UnitPrice =Convert.ToDecimal(Request.Form["price"]);
-            carts.Number = Convert.ToInt32(Request.Form["Jm_Amount"]);
-            carts.TotalAmount = carts.Number * carts.UnitPrice;
+            {
+                carts.UserID = userid;
+                carts.GoodsID = goodid;
+                carts.UnitPrice = Convert.ToDecimal(Request.Form["price"]);
+                carts.Number = Convert.ToInt32(Request.Form["Jm_Amount"]);
+                carts.TotalAmount = carts.Number * carts.UnitPrice;
                 shoppingcarsmanager.AddShopCarts(carts);
-            //return RedirectToAction("Carts", "Goods", new { UserID=1});
-            return Content("<script>alert('添加成功');history.go(-1)</script>");
+                //return RedirectToAction("Carts", "Goods", new { UserID=1});
+                return Content("<script>alert('添加成功');history.go(-1)</script>");
             }
         }
         public ActionResult Remove(int goodid)
@@ -447,96 +447,96 @@ namespace SucculentWeb.Controllers
         {
             try
             {
-                if(ModelState.IsValid)
-                { 
-                     int userid = Convert.ToInt32(Session["UserID"]);
-                     address.UserID = userid;
-                     string Province = Request.Form["prov"];
-                     string City = Request.Form["city"];
-                     string DetailAddr = Request.Form["detailAddr"];
-                     address.Province = Province;
-                     address.City = City;
-                     address.AddressDetail = DetailAddr;
-                     address.IsDefault = Convert.ToInt32(Request.Form["xuanze"]);
+                if (ModelState.IsValid)
+                {
+                    int userid = Convert.ToInt32(Session["UserID"]);
+                    address.UserID = userid;
+                    string Province = Request.Form["prov"];
+                    string City = Request.Form["city"];
+                    string DetailAddr = Request.Form["detailAddr"];
+                    address.Province = Province;
+                    address.City = City;
+                    address.AddressDetail = DetailAddr;
+                    address.IsDefault = Convert.ToInt32(Request.Form["xuanze"]);
                     addressmanager.AddAddress(address);
-                     return Content("<script>alert('添加成功');history.go(-1)</script>");
-            }
+                    return Content("<script>alert('添加成功');history.go(-1)</script>");
+                }
                 else
                 {
                     return Content("<script>alert('添加失败');history.go(-1)</script>");
                 }
 
             }
-            catch(System.Data.Entity.Validation.DbEntityValidationException dbEx)
+            catch (System.Data.Entity.Validation.DbEntityValidationException dbEx)
             {
                 throw dbEx;
             }
-            
-        }     
+
+        }
         public ActionResult RemoveAddress(int AddressID)
         {
             try {
-            
-                    int addressid = AddressID;
-                    var address = addressmanager.SelectAddress(addressid);
+
+                int addressid = AddressID;
+                var address = addressmanager.SelectAddress(addressid);
                 addressmanager.RemoveAddress(address);
-                  return RedirectToAction("Carts", "Goods", new { UserID = Convert.ToInt32(Session["UserID"]) });
+                return RedirectToAction("Carts", "Goods", new { UserID = Convert.ToInt32(Session["UserID"]) });
             }
             catch (System.Data.Entity.Validation.DbEntityValidationException dbEx)
             {
-                   throw dbEx;
+                throw dbEx;
             }
         }
 
         [HttpPost]
-        public ActionResult JieSuan(Orders orders,OrderItems orderitems,Goods Goods)
+        public ActionResult JieSuan(Orders orders, OrderItems orderitems, Goods Goods)
         {
             try
             {
 
-                    string[] goodid = Request.Params.GetValues("goodsid");
-                    string[] unitprice = Request.Params.GetValues("danjia");
-                    string[] amount = Request.Params.GetValues("geshu");
-                    string[] CheckBOx = Request.Params.GetValues("chekbox2"); 
-                    orders.Amount = Convert.ToInt32( Request.Form["selectTotal"]);
-                    orders.OrderTime = DateTime.Now;
-                    orders.UserID = Convert.ToInt32(Session["UserID"]);
-                    ordersmanager.AddOrders(orders);
-                    for (int i = 0; i < goodid.Length; i++)
+                string[] goodid = Request.Params.GetValues("goodsid");
+                string[] unitprice = Request.Params.GetValues("danjia");
+                string[] amount = Request.Params.GetValues("geshu");
+                string[] CheckBOx = Request.Params.GetValues("chekbox2");
+                orders.Amount = Convert.ToInt32(Request.Form["selectTotal"]);
+                orders.OrderTime = DateTime.Now;
+                orders.UserID = Convert.ToInt32(Session["UserID"]);
+                ordersmanager.AddOrders(orders);
+                for (int i = 0; i < goodid.Length; i++)
+                {
+                    if (CheckBOx[i] == "1")
                     {
-                        if (CheckBOx[i]=="1")
+                        int orderid = ordersmanager.SelectLastOrderid();
+                        int GoodID = Convert.ToInt32(goodid[i]);
+                        orderitems.OrderID = orderid;
+                        orderitems.GoodsID = GoodID;
+                        orderitems.UnitPrice = Convert.ToDecimal(unitprice[i]);
+                        orderitems.Number = Convert.ToInt32(amount[i]);
+                        orderitems.TotalAmount = orderitems.UnitPrice * orderitems.Number;
+                        orderitemsmanager.AddOrderItems(orderitems);
+                        goodsmanager.UpdateStockAndSalse(GoodID, orderitems.Number, orderitems.Number);
+
+                        var removegood = shoppingcarsmanager.SelectOneShopCart(GoodID);
+                        if (removegood != null)
                         {
-                            int orderid = ordersmanager.SelectLastOrderid();
-                            int GoodID= Convert.ToInt32(goodid[i]);
-                            orderitems.OrderID = orderid;
-                            orderitems.GoodsID = GoodID;
-                            orderitems.UnitPrice = Convert.ToDecimal(unitprice[i]);
-                            orderitems.Number = Convert.ToInt32(amount[i]);
-                            orderitems.TotalAmount = orderitems.UnitPrice*orderitems.Number;
-                            orderitemsmanager.AddOrderItems(orderitems);
-                            goodsmanager.UpdateStockAndSalse(GoodID, orderitems.Number, orderitems.Number);
-
-                            var removegood = shoppingcarsmanager.SelectOneShopCart(GoodID);
-                            if (removegood != null)
-                           {
-                               shoppingcarsmanager.RemoveShopCarts(removegood);
-                            }
+                            shoppingcarsmanager.RemoveShopCarts(removegood);
+                        }
 
                     }
-                    }
-                    return Content("<script>alert('结算成功');window.open('" + Url.Action("Carts", "Goods", new { UserID = Convert.ToInt32(Session["UserID"]) }) + "', '_self')</script>");
-              
+                }
+                return Content("<script>alert('结算成功');window.open('" + Url.Action("Carts", "Goods", new { UserID = Convert.ToInt32(Session["UserID"]) }) + "', '_self')</script>");
+
                 //else
                 //{
                 //    return Content("<script>alert('结算失败');history.go(-1)</script>");
                 //}
             }
-            catch(System.Data.Entity.Validation.DbEntityValidationException dbEx)
+            catch (System.Data.Entity.Validation.DbEntityValidationException dbEx)
             {
                 string error = dbEx.Message;
                 throw dbEx;
             }
-       }
+        }
         //public ActionResult EditAddress(int? addressid)
         //{
         //    //Address address = db.Address.Find(addressid);
@@ -560,7 +560,7 @@ namespace SucculentWeb.Controllers
         //    }
         //    return View(address);
         //}
-        public ActionResult edit(int  addressid)
+        public ActionResult edit(int addressid)
         {
             this.TempData["addressID"] = addressid;
             Address address = db.Address.Find(addressid);
@@ -569,22 +569,22 @@ namespace SucculentWeb.Controllers
         [HttpPost]
         public ActionResult edit(Address address)
         {
-                address.AddressID = Convert.ToInt32(this.TempData["addressID"]);
-                address.UserID = Convert.ToInt32(Session["UserID"]);
-                address.Province = Request.Form["province4"];
-                address.City = Request.Form["city4"];
-                //address.AddressDetail = Request.Form["DetailAdd"];
-                address.IsDefault = int.Parse(Request.Form["xuanze"]);
-                db.Entry(address).State = System.Data.Entity.EntityState.Modified;
-                db.SaveChanges();
-                return Content("<script>alert('修改成功');history.go(-1)</script>");
-                //return RedirectToAction("Carts", "Goods", new { UserID = Convert.ToInt32(Session["UserID"]) });   
-          
-                 //return View(address);
+            address.AddressID = Convert.ToInt32(this.TempData["addressID"]);
+            address.UserID = Convert.ToInt32(Session["UserID"]);
+            address.Province = Request.Form["province4"];
+            address.City = Request.Form["city4"];
+            //address.AddressDetail = Request.Form["DetailAdd"];
+            address.IsDefault = int.Parse(Request.Form["xuanze"]);
+            db.Entry(address).State = System.Data.Entity.EntityState.Modified;
+            db.SaveChanges();
+            return Content("<script>alert('修改成功');history.go(-1)</script>");
+            //return RedirectToAction("Carts", "Goods", new { UserID = Convert.ToInt32(Session["UserID"]) });   
+
+            //return View(address);
         }
         public ActionResult OrderItem()
         {
-            int userid= Convert.ToInt32(Session["UserID"]);
+            int userid = Convert.ToInt32(Session["UserID"]);
             var data = orderitemsmanager.SelectAllOrderItems(userid);
             return View(data);
         }
@@ -604,51 +604,51 @@ namespace SucculentWeb.Controllers
             return Content("<script>alert('删除成功');window.open('" + Url.Action("OrderItem", "Goods", new { UserID = Convert.ToInt32(Session["UserID"]) }) + "', '_self')</script>");
             //return RedirectToAction("RemoveOrderItem", "Goods", new { UserID = Convert.ToInt32(Session["UserID"]) });
         }
-        public ActionResult AdoptDetail(int goodid ,int activityid)
+        public ActionResult AdoptDetail(int goodid, int activityid)
         {
             SucculentWeb.ViewModels.AdoptDetailViewModel AdoptDetail = new AdoptDetailViewModel();
             Session["AdoptGoodid"] = goodid;
             this.TempData["ActivityID"] = activityid;
-            AdoptDetail.Gooddetail= goodsmanager.SelectGoodDetail(goodid);
-            AdoptDetail.Shopdetail= shopmanager.SelectShopDetail(goodid);
+            AdoptDetail.Gooddetail = goodsmanager.SelectGoodDetail(goodid);
+            AdoptDetail.Shopdetail = shopmanager.SelectShopDetail(goodid);
             var AdoptDetailTuijian = goodsmanager.SelectDetailTuijianGoodid(goodid);
             Session["Detailshopid"] = AdoptDetailTuijian.ShopID;
             AdoptDetail.AdoptDetailTuijian = goodsmanager.SelectDetailTuijian8Goods(AdoptDetailTuijian.ShopID);
-            ViewBag.CommentCount= goodscommentsmanager.GoodsCommentsCounts(goodid);
-            ViewBag.total = (from p in db.Adopt where p.GoodsID == goodid select p.Total).FirstOrDefault();         
+            ViewBag.CommentCount = goodscommentsmanager.GoodsCommentsCounts(goodid);
+            ViewBag.total = (from p in db.Adopt where p.GoodsID == goodid select p.Total).FirstOrDefault();
             return View(AdoptDetail);
         }
         [HttpPost]
         public ActionResult AdoptDetail(AdoptResult adoptresult)
         {
-            if(ModelState.IsValid)
+            if (ModelState.IsValid)
             {
-                int userid= Convert.ToInt32(Session["UserID"]);
+                int userid = Convert.ToInt32(Session["UserID"]);
                 int result = adoptresultmanager.getAdoptUser(userid);
-                if(result>0)
+                if (result > 0)
                 {
                     return Content("<script>alert('您已经领养，不能多次领养');history.go(-1)</script>");
                 }
                 else
                 {
-                 int activityid = Convert.ToInt32(this.TempData["ActivityID"]);
-                 int adoptgoodid = Convert.ToInt32(Session["AdoptGoodid"]);
-                 adoptresult.UserID = Convert.ToInt32(Session["UserID"]);
-                 adoptresult.GoodsID = adoptgoodid;
-                 adoptresult.ActivityID =  activityid;
-                  adoptresult.AdoptTime = DateTime.Now;
-                  adoptresult.Address = Request.Form["sheng"]+Request.Form["shi"] + Request.Form["xian"] + Request.Form["xiangxi"];
-                  adoptresultmanager.AddAdoptResult(adoptresult);
+                    int activityid = Convert.ToInt32(this.TempData["ActivityID"]);
+                    int adoptgoodid = Convert.ToInt32(Session["AdoptGoodid"]);
+                    adoptresult.UserID = Convert.ToInt32(Session["UserID"]);
+                    adoptresult.GoodsID = adoptgoodid;
+                    adoptresult.ActivityID = activityid;
+                    adoptresult.AdoptTime = DateTime.Now;
+                    adoptresult.Address = Request.Form["sheng"] + Request.Form["shi"] + Request.Form["xian"] + Request.Form["xiangxi"];
+                    adoptresultmanager.AddAdoptResult(adoptresult);
                     adoptmanager.updateAdoptTotal(activityid);
-                 return Content("<script>alert('领养成功');history.go(-1)</script>");
-               }
+                    return Content("<script>alert('领养成功');history.go(-1)</script>");
+                }
             }
-           
+
             else
             {
                 return Content("<script>alert('领养失败');history.go(-1)</script>");
             }
-            
+
         }
         public ActionResult Dianzan()
         {
@@ -656,5 +656,25 @@ namespace SucculentWeb.Controllers
             goodsmanager.GoodsZan(goodid);
             return Content("<script>alert('点赞成功');window.open('" + Url.Action("GoodsDetail", "Goods", new { goodid = Convert.ToInt32(Session["goodid"]) }) + "', '_self')</script>");
         }
-    } 
+
+        public ActionResult IntegrationDetails(int goodid)
+        {
+            SucculentWeb.ViewModels.IntegrationDetailVM IntegrationDetail = new ViewModels.IntegrationDetailVM();
+            Session["AdoptGoodid"] = goodid;
+            IntegrationDetail.Gooddetail = goodsmanager.SelectGoodDetail(goodid);
+            IntegrationDetail.Shopdetail = shopmanager.SelectShopDetail(goodid);
+            var IntegrationDetailTuijian = goodsmanager.SelectDetailTuijianGoodid(goodid);
+            Session["Detailshopid"] = IntegrationDetailTuijian.ShopID;
+            IntegrationDetail.IntegrationDetailTuijian = goodsmanager.SelectDetailTuijian8Goods(IntegrationDetailTuijian.ShopID);
+            ViewBag.CommentCount = goodscommentsmanager.GoodsCommentsCounts(goodid);
+            ViewBag.total = (from p in db.Goods where p.GoodsID == goodid select p.Stock).FirstOrDefault();
+            return View(IntegrationDetail);
+        }
+
+        [HttpPost]
+        public ActionResult IntegrationHand()
+        {
+            return Content("");
+        }
+    }
 }

@@ -158,5 +158,18 @@ namespace SucculentWeb.Controllers
             Session["UserID"] = null;
             return RedirectToAction("ShopMallIndex","ShopMall");
         }
+
+        public ActionResult Integration()
+        {
+            return View();
+        }
+
+        public ActionResult IntegrationGoods(int? page)
+        {
+            int pageSize = 16;
+            int pageNumber = (page ?? 1);
+            var goods = goodsmanager.SelectShopLike(1);
+            return PartialView(goods.ToPagedList(pageNumber, pageSize));
+        }
     }
 }

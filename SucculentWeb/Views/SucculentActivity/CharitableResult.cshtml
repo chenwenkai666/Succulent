@@ -1,0 +1,49 @@
+﻿@model SucculentWeb.ViewModels.CharitableResultVM
+@{
+    ViewBag.Title = "CharitableResult";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section head{
+<link href="~/Content/amazeui.min.css" rel="stylesheet" />
+<link href="~/Content/CharitableResult.css" rel="stylesheet" />
+}
+<div class="CharitableMain">
+    <div class="CharitableHead">
+        <h1>@Model.charitableresult.CharitableName ——慈善活动结果</h1>
+    </div>
+    <div class="CharitableBody">
+        <div class="WhereGo">
+            <h2>慈善去向&nbsp;&nbsp;&nbsp;<i class="am-icon-map-marker"></i>&nbsp;&nbsp;&nbsp;&nbsp;<a href="#">@Model.charitableresult.CWhereabouts</a></h2>
+        </div>
+        <div class="DonateDetails">
+            <h3>爱心详单</h3>
+            <table class="am-table am-table-striped am-table-hover">
+               <thead>
+                <tr>
+                    <th>捐赠者</th>
+                    <th>捐赠内容</th>
+                    <th>捐赠数量</th>
+                    <th>捐赠时间</th>
+                </tr>
+               </thead>
+                <tbody>
+                    @foreach (var item in Model.donate)
+                    {
+                        <tr>
+                            <td>@item.Users.UserName</td>
+                            <td>@item.DonateContent</td>
+                            <td>@item.DonoteTotal</td>
+                            <td>@item.DonateTime.ToString("yyyy年MM月dd日 HH:mm:ss")</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+            <div class="Explain">
+                <p>注：</p>
+                <p>多肉网郑重承诺：以上数据真实有效。欢迎广大用户监督！如有疑问，请联系<a href="mailto:763225207@qq.com">763225207@qq.com</a></p>
+            </div>
+        </div>
+    </div>
+    
+</div>
+<div class="CharitableFoot"></div>

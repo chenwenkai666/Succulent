@@ -121,5 +121,10 @@ namespace DALFactory
             string className = assemblyName + "." + db + "ReplyGoods";
             return (IReplyGoods)Assembly.Load(assemblyName).CreateInstance(className);
         }
+        public static ICharitableResult CreateCharitableResult()
+        {
+            string className = assemblyName + "." + db + "CharitableResult";
+            return (ICharitableResult)Assembly.Load(assemblyName).CreateInstance(className);
+        }
     }
 }

@@ -246,6 +246,7 @@
     <Compile Include="ViewModels\AdoptDetailViewModel.cs" />
     <Compile Include="ViewModels\AdoptListAddVM.cs" />
     <Compile Include="ViewModels\AdoptSucculentVM.cs" />
+    <Compile Include="ViewModels\CharitableResultVM.cs" />
     <Compile Include="ViewModels\GoodDetailViewModel.cs" />
     <Compile Include="ViewModels\GoodsCommentsViewModel.cs" />
     <Compile Include="ViewModels\indexVM.cs" />
@@ -259,6 +260,7 @@
     <Compile Include="ueditor\net\App_Code\NotSupportedHandler.cs" />
     <Compile Include="ueditor\net\App_Code\PathFormater.cs" />
     <Compile Include="ueditor\net\App_Code\UploadHandler.cs" />
+    <Compile Include="ViewModels\IntegrationDetailVM.cs" />
     <Compile Include="ViewModels\SearchResultVM.cs" />
     <Compile Include="ViewModels\ShopMallIndexViewModels.cs" />
     <Compile Include="ViewModels\SucculentIndexViewModels.cs" />
@@ -384,6 +386,7 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\CADetail.css" />
+    <Content Include="Content\CharitableResult.css" />
     <Content Include="Content\Donate.css" />
     <Content Include="Content\dropify.min.css" />
     <Content Include="Content\easy-responsive-tabs.css" />
@@ -395,6 +398,7 @@
     <Content Include="Content\foundation\normalize.css" />
     <Content Include="Content\icomoon.css" />
     <Content Include="Content\index.css" />
+    <Content Include="Content\Integration.css" />
     <Content Include="Content\liMarquee.css" />
     <Content Include="Content\Login.css" />
     <Content Include="Content\magnific-popup.css" />
@@ -431,6 +435,10 @@
     <Content Include="images\182.jpg" />
     <Content Include="images\277.jpg" />
     <Content Include="images\5824.jpg" />
+    <Content Include="images\Activity\全民慈善让爱传递.png" />
+    <Content Include="images\Activity\全民慈善让爱传递2.png" />
+    <Content Include="images\Activity\手绘慈善背景.png" />
+    <Content Include="images\Activity\手绘慈善背景2.png" />
     <Content Include="images\ellipsis_bg.png" />
     <Content Include="images\UserCenterBack1.png" />
     <Content Include="images\UserCenterBack.png" />
@@ -1580,6 +1588,10 @@
     <Content Include="Views\Goods\Address.cshtml" />
     <Content Include="Views\Goods\AdoptDetail.cshtml" />
     <Content Include="Views\MallSearch\MallSearchContent.cshtml" />
+    <Content Include="Views\SucculentActivity\CharitableResult.cshtml" />
+    <Content Include="Views\ShopMall\Integration.cshtml" />
+    <Content Include="Views\ShopMall\IntegrationGoods.cshtml" />
+    <Content Include="Views\Goods\IntegrationDetails.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

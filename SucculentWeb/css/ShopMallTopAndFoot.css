@@ -117,6 +117,9 @@ html table {
          .head_box #head_wrap #head_right .dingdan:hover{
              color:#FFF;
          }
+         .head_box #head_wrap #head_right .integration{
+             margin-left :-260%;
+         }
 #main_head_box {
   width: 100%;
   position: relative;

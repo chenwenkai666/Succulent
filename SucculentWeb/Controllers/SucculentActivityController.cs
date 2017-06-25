@@ -23,6 +23,7 @@ namespace SucculentWeb.Controllers
         AdoptManager adoptmanager = new AdoptManager();
         EntriesManager entriesmanager = new EntriesManager();
         AttendanceManager attendancemanager = new AttendanceManager();
+        CharitableResultManager charitableresultmanager = new CharitableResultManager();
         // GET: SucculentActivity
         #region 活动首页
         //public ActionResult Index()
@@ -483,10 +484,20 @@ namespace SucculentWeb.Controllers
         #endregion 
 
         #region 摄影、DIY大赛评选结果作品展示
-        public ActionResult PhotoResult()
+        public ActionResult PhotoResult(int id=7)
         {
-            var entry = entriesmanager.GetAllEntriesByActID(1).OrderByDescending(e => e.UpvoteNum);
+            var entry = entriesmanager.GetAllEntriesByActID(id).OrderByDescending(e => e.UpvoteNum).Take(100);
             return View(entry);
+        }
+        #endregion
+
+        #region 慈善活动结果
+        public ActionResult CharitableResult(int id)
+        {
+            CharitableResultVM charitableresultvm = new ViewModels.CharitableResultVM();
+            charitableresultvm.charitableresult = charitableresultmanager.GetCharitableResultByActID(id);
+            charitableresultvm.donate = donatemanager.GetDonateByActivityID(id);
+            return View(charitableresultvm);
         }
         #endregion
     }

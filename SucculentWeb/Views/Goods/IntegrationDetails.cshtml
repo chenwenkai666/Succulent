@@ -1,0 +1,330 @@
+﻿@model SucculentWeb.ViewModels.IntegrationDetailVM
+@{
+    ViewBag.Title = "IntegrationDetails";
+    Layout = "~/Views/Shared/ShopMall.cshtml";
+}
+
+<script src="~/js/index.js"></script>
+<script src="~/js/jquery.js"></script>
+<link href="~/css/AdoptDetail.css" rel="stylesheet" />
+<script src="~/js/xzoom.min.js"></script>
+<link href="~/css/loginDialog.css" rel="stylesheet" />
+<script src="~/js/jquery-1.8.3.min.js"></script>
+<script src="~/js/city2.js"></script>
+<script src="~/js/citySelect2.js"></script>
+
+<script>
+    jQuery.extend( {
+    min : 1,
+    reg : function(x) {
+        jQuery('#J_Tip').html("");
+        jQuery('#J_Tip').hide();
+        return new RegExp("^[1-9]\\d*$").test(x);
+    },
+    amount : function(obj, mode) {
+        var x = jQuery(obj).val();
+        if (this.reg(parseInt(x))) {
+            if (mode) {
+                x++;
+            } else {
+                x--;
+            }
+        } else {
+            jQuery('#J_Tip').html("<i class=\"ico\"></i>请输入正确的数量！");
+            jQuery('#J_Tip').show();
+            jQuery(obj).val(1);
+            jQuery(obj).focus();
+        }
+        return x;
+    },
+    reduce : function(obj) {
+        var x = this.amount(obj, false);
+        if (parseInt(x) >= this.min) {
+            jQuery(obj).val(x);
+        } else {
+            jQuery('#J_Tip').show();
+            jQuery(obj).val(1);
+            jQuery(obj).focus();
+        }
+    },
+    add : function(obj) {
+        var x = this.amount(obj, true);
+        var max = jQuery('#nAmount').val();
+        if (parseInt(x) <= parseInt(max)) {
+            jQuery(obj).val(x);
+        } else {
+            jQuery('#J_Tip').html("<i class=\"ico\"></i>只能兑换一次！");
+            jQuery('#J_Tip').show();
+            jQuery(obj).val(max == 0 ? 1 : max);
+            jQuery(obj).focus();
+        }
+    },
+    modify : function(obj) {
+        var x = jQuery(obj).val();
+        var max = jQuery('#nAmount').val();
+        if (!this.reg(parseInt(x))) {
+            jQuery(obj).val(1);
+            jQuery(obj).focus();
+            jQuery('#J_Tip').html("<i class=\"ico\"></i>请输入正确的数量！");
+            jQuery('#J_Tip').show();
+            return;
+        }
+        var intx = parseInt(x);
+        var intmax = parseInt(max);
+        if (intx < this.min) {
+            jQuery('#J_Tip').html("<i class=\"ico\"></i>商品数量最少为" + this.min
+                    + "！");
+            jQuery('#J_Tip').show();
+            jQuery(obj).val(this.min);
+            jQuery(obj).focus();
+        } else if (intx > intmax) {
+            jQuery('#J_Tip').html("<i class=\"ico\"></i>只能兑换一次！");
+            jQuery('#J_Tip').show();
+            jQuery(obj).val(max == 0 ? 1 : max);
+            jQuery(obj).focus();
+        }
+    }
+    });
+</script>
+
+<div class="Top-img">
+    <a href="@Url.Action("Shops","Goods",new { shopid= Session["Detailshopid"] })">
+        <img src="@Model.Shopdetail.TopImage" />
+    </a>
+</div>
+<hr style="width:90%;color:aqua;margin-left:5%;" />
+<div class="main">
+    <div class="left-content">
+        <div class="xzoom-container">
+            <img class="xzoom" id="xzoom-default" src="@Model.Gooddetail.GoodsPhoto" xoriginal="@Model.Gooddetail.GoodsPhoto" />
+        </div>
+
+    </div>
+    <div class="middle-content">
+        <div class="good-title">
+            <p class="title">@Model.Gooddetail.GoodsName</p>
+        </div>
+        <div class="price">
+            <div class="yuanjia"><s>商城价：</s><em>￥</em><span>@Model.Gooddetail.Price</span></div>
+            <div class="zhehoujia"><s>积分价：</s><em></em><span>@{decimal  UPrice =Model.Gooddetail.Price * 100; }@UPrice</span></div>
+            @*<input type="hidden" name="price" value="@ViewBag.goodprice" />*@
+        </div>
+        <div class="yunfei">
+            <s>运费&nbsp;&nbsp;&nbsp;&nbsp;包邮：0.00</s>
+        </div>
+        <div class="time">
+            <span>上架时间：</span>
+            <p>@Model.Gooddetail.Time</p>
+        </div>
+        <div class="xiaoliang">
+            <ul>
+                <li>销量<s>@Model.Gooddetail.Sales</s></li>
+                <li>累计评价<s>@ViewBag.CommentCount</s></li>
+                <li>点赞数<s>@Model.Gooddetail.LikeIt</s></li>
+            </ul>
+        </div>
+        <div class="Edit">
+            <s>数量</s>
+            <div class="button">
+                <a class="num_oper num_min" href="javascript:jQuery.reduce('#J_Amount');">-</a>
+
+                <input name="Jm_Amount" id="J_Amount" class="input_txt" type="text" maxlength="6" value="1" onkeyup="jQuery.modify('#J_Amount');" style="width:40px;" />
+
+                <a class="num_oper num_plus" href="javascript:jQuery.add('#J_Amount')">+</a>
+                <p class="caution_tips" id="J_Tip" style="display:none;"></p>
+                <input id="nAmount" type="hidden" value='1' />
+            </div>
+            <div class="kucun">库存 @ViewBag.total  件</div>
+        </div>
+        <div class="goumai">
+            <span class="car">
+                @if (Session["UserName"] != null)
+                {
+                    <input type="submit" id="example" value="立即兑换" @*formtarget="_blank"*@ />
+                }
+                else
+                {
+                    <a onclick="confirm('请先登录')?location.href='@Url.Action("Login","User")':''" href="javascript:;">立即兑换</a>
+                }
+            </span>
+        </div>
+        <div class="baozheng">
+            <ul>
+                <li>服务承诺</li>
+                <li>正品保证</li>
+                <li>极速退款</li>
+            </ul>
+            <span class="fenxiang">
+
+                <img src="~/images/分享.png" /><s>分享</s>
+            </span>
+            <span class="dianzan">
+                <img src="~/images/点赞(点).png" /><s>点赞</s>
+            </span>
+        </div>
+    </div>
+    <div class="right-content">
+        <div class="image"><img src="~/images/商家图标.png" /></div>
+        <div class="biaoti">
+            <div class="img">
+                <img src="~/images/店.png" />
+            </div>
+            <div class="shijian">7年老店</div>
+        </div>
+        <div class="shop-name" style="font-size:16px;">@Model.Shopdetail.ShopName</div>
+        <div class="xinyu">
+            <a>信誉：</a>
+            <ul>
+                <li>
+                    <img src="~/images/信誉.png" />
+                </li>
+                <li>
+                    <img src="~/images/信誉.png" />
+                </li>
+                <li>
+                    <img src="~/images/信誉.png" />
+                </li>
+                <li>
+                    <img src="~/images/信誉.png" />
+                </li>
+            </ul>
+        </div>
+        <div class="zhanggui">
+            <a>掌柜：<s>@Model.Shopdetail.Users.UserName</s></a>
+        </div>
+        <div class="lianxi">
+            <a>联系：</a>
+            <img src="~/images/联系.png" />
+            <s>和我联系</s>
+        </div>
+        <div class="xinxi">
+            <ul>
+                <li><div class="wenzi"><a>描述</a></div><div class="pingfen"><a>4.7</a></div></li>
+                <li><div class="wenzi"><a>服务</a></div><div class="pingfen"><a>4.7</a></div></li>
+                <li><div class="wenzi"><a>物流</a></div><div class="pingfen"><a>4.7</a></div></li>
+            </ul>
+        </div>
+        <div class="two-btn">
+            <div class="jinru"><a href="@Url.Action("Shops","Goods",new {ShopID=Session["Detailshopid"]})">进入店铺</a></div>
+            <div class="shoucang"><a>收藏店铺</a></div>
+        </div>
+    </div>
+</div>
+<div class="second-main">
+    <div class="left-main">
+        <div class="tuijian">
+            <div class="TJ-icon1"> <img src="~/images/精品推荐（反色）.png" /></div>
+            <a>精品推荐</a>
+            <div class="TJ-icon2">
+                <img src="~/images/推荐 .png" />
+            </div>
+        </div>
+        <div class="left-neirong">
+            <ul>
+                @foreach (var p in Model.IntegrationDetailTuijian)
+                {
+                    <li>
+                        <img src="@p.GoodsPhoto" />
+                        <p>￥@p.Price</p>
+                        <a>@p.GoodsName</a>
+                    </li>
+                }
+            </ul>
+        </div>
+    </div>
+    <div class="right-main">
+        <figure class="tabBlock">
+            <ul class="tabBlock-tabs">
+                <li class="tabBlock-tab is-active">宝贝详情</li>
+            </ul>
+            <div class="tabBlock-content">
+                <div class="tabBlock-pane">
+                    <p style="margin-left:0px;">@Html.Raw(@Model.Gooddetail.GoodsDescribe)</p>
+                </div>
+                <div class="tabBlock-pane">
+                </div>
+            </div>
+        </figure>
+    </div>
+</div>
+@using (Html.BeginForm("IntegrationHand", "Goods", FormMethod.Post))
+{
+    <div id="LoginBox">
+        <div class="title">
+            <div class="xiugai">收货地址</div> <a href="javascript:void(0)" title="关闭窗口" class="close_btn" id="closeBtn">×</a>
+        </div>
+        <div id="city_4" class="xuanze">
+            <select class="prov" id="prov4" data-code="220000" name="sheng"></select>
+            <select class="city" id="city4" data-code="220100" name="shi"></select>
+            <select class="dist" id="area4" data-code="220104" name="xian"></select>
+        </div>
+        <div class="Detail">
+            <div class="xiangxi">详细地址</div>
+            <div class="box">
+                <textarea cols="40" rows="2" name="xiangxi"></textarea>
+            </div>
+        </div>
+        <div class="row" style="margin-top:60px;">
+            <input type="submit" id="loginbtn" value="确认" />
+        </div>
+    </div>
+}
+
+<script>
+
+			var selectVal = new CitySelect({
+				data   : data,
+				provId : "#prov4",
+				cityId : '#city4',
+				areaId : '#area4'
+			});
+			var selectVa2 = new CitySelect({
+			    data: data,
+			    provId: "#prov5",
+			    cityId: '#city5',
+			    areaId: '#area5',
+			    isSelect: false
+			});
+
+
+</script>
+<script type="text/javascript">
+    $(function ($) {
+        // 弹出修改框
+        $("#example").hover(function () {
+            $(this).stop().animate({
+                opacity: '1'
+            }, 600);
+        }, function () {
+            $(this).stop().animate({
+                opacity: '0.6'
+            }, 1000);
+        }).on('click', function () {
+            $("body").append("<div id='mask'></div>");
+            $("#mask").addClass("mask").fadeIn("slow");
+            $("#LoginBox").fadeIn("slow");
+        });
+
+        //
+        //按钮的透明度
+        $("#loginbtn").hover(function () {
+            $(this).stop().animate({
+                opacity: '1'
+            }, 600);
+        }, function () {
+            $(this).stop().animate({
+                opacity: '0.8'
+            }, 1000);
+        });
+        //关闭
+        $(".close_btn").hover(function () { $(this).css({ color: 'black' }) }, function () { $(this).css({ color: '#999' }) }).on('click', function () {
+            $("#LoginBox").fadeOut("fast");
+            $("#mask").css({ display: 'none' });
+        });
+    });
+
+</script>
+<script src="~/js/setup.js"></script>
+
+
+
