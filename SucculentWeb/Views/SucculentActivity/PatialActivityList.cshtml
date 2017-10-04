@@ -26,7 +26,14 @@
         }></span>
         <a @{ 
         if (DateTime.Now>item.EndTime){
-            @:href="javascript:void(0)"
+                if (item.ActivityCategoryID == 1)
+                    {
+                        @:href="@Url.Action("PhotoResult", "SucculentActivity", new { id = item.ActivityID })"
+                    }
+                    else
+                    {
+                        @:href="javascript:void(0)" 
+                    }
         } else{
             @:href="@Url.Action("Details", "SucculentActivity", new { id = item.ActivityID })"
         } 
@@ -37,8 +44,15 @@
         </a>
         <div class="act_title">
             <a @{ 
-        if (DateTime.Now>item.EndTime){
-            @:href="javascript:void(0)"
+                if (DateTime.Now>item.EndTime){
+                    if (item.ActivityCategoryID == 1)
+                    {
+                        @:href="@Url.Action("PhotoResult", "SucculentActivity", new { id = item.ActivityID })"
+                    }
+                    else
+                    {
+                        @:href="javascript:void(0)"
+                    }
         } else{
             @:href="@Url.Action("Details", "SucculentActivity", new { id = item.ActivityID })"
         } 

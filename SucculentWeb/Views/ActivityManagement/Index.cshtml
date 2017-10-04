@@ -5,13 +5,29 @@
     Layout = "~/Views/Shared/_LayoutAdminManagement.cshtml";
 }
 
+@section head{
+  <style>
+      .t{
+           width:50px;
+           height:10px;
+           white-space:nowrap;
+           overflow:hidden;
+           text-overflow:ellipsis;
+         }
+  </style>    
+
+}
+
+@section foot{
+}
+
 <h2>Index</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
 <table class="table">
-    <tr>
+    <tr class="tt">
         <th>
             @Html.DisplayNameFor(model => model.ActivityName)
         </th>
@@ -50,40 +66,40 @@
 
 @foreach (var item in Model) {
     <tr>
-        <td>
+        <td class="t">
             @Html.DisplayFor(modelItem => item.ActivityName)
         </td>
-        <td>
+        <td class="t">
             @Html.DisplayFor(modelItem => item.ActivityDescribe)
         </td>
-        <td>
+        <td class="t">
             @Html.DisplayFor(modelItem => item.ActivityPlace)
         </td>
-        <td>
+        <td class="t">
             @Html.DisplayFor(modelItem => item.StartTime)
         </td>
-        <td>
+        <td class="t">
             @Html.DisplayFor(modelItem => item.EndTime)
         </td>
-        <td>
+        <td class="t">
             @Html.DisplayFor(modelItem => item.UpvoteNum)
         </td>
-        <td>
+        <td class="t">
             @Html.DisplayFor(modelItem => item.ActivityCover)
         </td>
-        <td>
+        <td class="t">
             @Html.DisplayFor(modelItem => item.AttendConditions)
         </td>
-        <td>
+        <td class="t">
             @Html.DisplayFor(modelItem => item.LevelRequest)
         </td>
-        <td>
+        <td class="t">
             @Html.DisplayFor(modelItem => item.ActivityCategory.ActivityCategoryName)
         </td>
-        <td>
+        <td class="t">
             @Html.DisplayFor(modelItem => item.Users.UserName)
         </td>
-        <td>
+        <td class="t">
             @Html.ActionLink("Edit", "Edit", new { id=item.ActivityID }) |
             @Html.ActionLink("Details", "Details", new { id=item.ActivityID }) |
             @Html.ActionLink("Delete", "Delete", new { id=item.ActivityID })
