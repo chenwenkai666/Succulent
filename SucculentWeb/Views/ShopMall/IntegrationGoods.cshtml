@@ -10,7 +10,7 @@
         <a class="brand-name" href="@Url.Action("IntegrationDetails","Goods",new { goodid=item.GoodsID })" target="_blank"></a>
         <a class="product-here" href="@Url.Action("IntegrationDetails","Goods",new { goodid=item.GoodsID })" target="_blank"><img src="@item.GoodsPhoto" title="product-name" /></a>
         <h4><a href="@Url.Action("IntegrationDetails","Goods",new { goodid=item.GoodsID })" target="_blank">@item.GoodsName</a></h4>
-        <a class="product-btn" href="@Url.Action("IntegrationDetails","Goods",new { goodid=item.GoodsID })" target="_blank"><span>@{decimal Uprice = item.Price * 100;}@Uprice</span><small>立即兑换</small><label> </label></a>
+        <a class="product-btn" href="@Url.Action("IntegrationDetails","Goods",new { goodid=item.GoodsID })" target="_blank"><span>@{decimal Uprice = item.Price * 100;}@Uprice 积分</span><small>立即兑换</small><label> </label></a>
     </div>
 }
 <div class="Pager">

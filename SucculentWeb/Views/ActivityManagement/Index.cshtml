@@ -24,7 +24,7 @@
 <h2>Index</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    <a href="@Url.Action("Publish","SucculentActivity")">发布新活动</a>
 </p>
 <table class="table">
     <tr class="tt">
@@ -100,9 +100,13 @@
             @Html.DisplayFor(modelItem => item.Users.UserName)
         </td>
         <td class="t">
-            @Html.ActionLink("Edit", "Edit", new { id=item.ActivityID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ActivityID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ActivityID })
+            @Html.ActionLink("编辑", "Edit", new { id=item.ActivityID }) |
+            @Html.ActionLink("详情", "Details", new { id=item.ActivityID }) |
+            @Html.ActionLink("删除", "Delete", new { id = item.ActivityID }) |
+            @if ((item.ActivityCategoryID == 1 || item.ActivityCategoryID==2)&& item.EndTime<DateTime.Now)
+            {
+               <a href="@Url.Action("CheckOut","ActivityManagement", new { id=item.ActivityID })">结算</a>
+            }
         </td>
     </tr>
 }

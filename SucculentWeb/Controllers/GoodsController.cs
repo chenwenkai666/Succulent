@@ -25,6 +25,7 @@ namespace SucculentWeb.Controllers
         ShopManager shopmanager = new ShopManager();
         ShoppingCartsManager shoppingcarsmanager = new ShoppingCartsManager();
         AdoptManager adoptmanager = new AdoptManager();
+        PotsManager potsmanager = new PotsManager();
         // GET: Goods
         public ActionResult CreatGoods()
         {
@@ -657,6 +658,8 @@ namespace SucculentWeb.Controllers
             return Content("<script>alert('点赞成功');window.open('" + Url.Action("GoodsDetail", "Goods", new { goodid = Convert.ToInt32(Session["goodid"]) }) + "', '_self')</script>");
         }
 
+
+        #region 积分商城详情
         public ActionResult IntegrationDetails(int goodid)
         {
             SucculentWeb.ViewModels.IntegrationDetailVM IntegrationDetail = new ViewModels.IntegrationDetailVM();
@@ -670,11 +673,35 @@ namespace SucculentWeb.Controllers
             ViewBag.total = (from p in db.Goods where p.GoodsID == goodid select p.Stock).FirstOrDefault();
             return View(IntegrationDetail);
         }
+        #endregion
 
+        #region 兑换处理
         [HttpPost]
         public ActionResult IntegrationHand()
         {
             return Content("");
         }
+        #endregion
+
+        public string CheckExperience(int Uprice,int UserID)
+        {
+            Pots pot = potsmanager.GetPotsByUserID(UserID);
+            if (pot != null)
+            {
+                if (pot.Experience >= Uprice)
+                {
+                    return "ok";
+                }
+                else
+                {
+                    return "您的积分不足，未能兑换该商品";
+                }
+            }
+            else
+            {
+                return "请先开通多肉盆栽后再进行兑换";
+            }
+        }
+
     }
 }

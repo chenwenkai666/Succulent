@@ -60,7 +60,7 @@ namespace SucculentWeb.Controllers
             try
             {
                 var username = usermanager.SelectUser(user.UserName);
-                if (ModelState.IsValid && username != null)
+                if (ModelState.IsValid && username.Count() == 0)
                 {
                     string code = user.CheckCode;
                     if (code == Session["CheckCode"].ToString())

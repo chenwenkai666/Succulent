@@ -300,9 +300,23 @@
                 opacity: '0.6'
             }, 1000);
         }).on('click', function () {
-            $("body").append("<div id='mask'></div>");
-            $("#mask").addClass("mask").fadeIn("slow");
-            $("#LoginBox").fadeIn("slow");
+            $.ajax({
+                type:'post',
+                url:'@Url.Action("CheckExperience","Goods")',
+                data: { Uprice:@UPrice,UserID:@Session["UserID"]},
+                success:function(msg){
+                    if(msg=='ok'){
+                        $("body").append("<div id='mask'></div>");
+                        $("#mask").addClass("mask").fadeIn("slow");
+                        $("#LoginBox").fadeIn("slow");
+                    }
+                    else{
+                        alert(msg);
+                        return;
+                    }
+                }
+            });     
+            
         });
 
         //

@@ -159,6 +159,7 @@ namespace SucculentWeb.Controllers
             return RedirectToAction("ShopMallIndex","ShopMall");
         }
 
+        #region 积分商城
         public ActionResult Integration()
         {
             return View();
@@ -171,5 +172,6 @@ namespace SucculentWeb.Controllers
             var goods = goodsmanager.SelectShopLike(1);
             return PartialView(goods.ToPagedList(pageNumber, pageSize));
         }
+        #endregion
     }
 }

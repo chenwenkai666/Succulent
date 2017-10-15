@@ -25,9 +25,13 @@ namespace DAL
         public bool UpdateExperience(int UserID,int Exp)
         {
             Pots pot = GetPotsByUserID(UserID);
-            pot.Experience += Exp;
-            db.Entry(pot).State = EntityState.Modified;
-            return db.SaveChanges() > 0;
+            if (pot != null)
+            {
+                pot.Experience += Exp;
+                db.Entry(pot).State = EntityState.Modified;
+                return db.SaveChanges() > 0;
+            }
+            return false;
         }
         public bool PotsSign(int UserID)
         {

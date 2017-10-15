@@ -7,12 +7,14 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Model;
+using BLL;
 
 namespace SucculentWeb.Controllers
 {
     public class ActivityManagementController : Controller
     {
         private SucculentEntities db = new SucculentEntities();
+        PotsManager potmanager = new PotsManager();
 
         // GET: ActivityManagement
         public ActionResult Index()
@@ -132,5 +134,29 @@ namespace SucculentWeb.Controllers
             }
             base.Dispose(disposing);
         }
+
+        public ActionResult CheckOut(int id)
+        {
+            var UserList = db.Entries.Where(e => e.ActivityID == id).ToList();
+            if(UserList!=null && UserList.Count > 0)
+            {
+                try
+                {
+                    for (int i = 0; i < UserList.Count; i++)
+                    {
+                        potmanager.UpdateExperience(UserList[i].UserID, int.Parse(UserList[i].UpvoteNum.ToString()));
+                    }
+                    return Content("<script>alert('结算成功，积分已发放至用户账号！');window.location='" + Url.Action("Index", "ActivityManagement") + "'</script>");
+                }
+                catch (Exception ex)
+                {
+                    return Content("<script>alert('结算出错，错误原因：'"+ex+");window.location='" + Url.Action("Index", "ActivityManagement") + "'</script>");
+                    throw;
+                }
+                
+            }
+            return Content("<script>alert('该活动无人参与，无法对其进行结算！');window.location='" + Url.Action("Index", "ActivityManagement") + "'</script>");
+        }
+
     }
 }
