@@ -13,5 +13,6 @@ namespace IDAL
         Pots GetPotsByUserID(int UserID);
         bool UpdateExperience(int UserID, int Exp);
         bool PotsSign(int UserID);
+        bool ReducExperience(int UserID, int Exp);
     }
 }

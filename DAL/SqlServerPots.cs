@@ -66,5 +66,23 @@ namespace DAL
             db.Entry(pot).State = EntityState.Modified;
             return db.SaveChanges() > 0;
         }
+
+        /// <summary>
+        /// 消除相应积分
+        /// </summary>
+        /// <param name="UserID">用户ID</param>
+        /// <param name="Exp">需要减去的积分值</param>
+        /// <returns></returns>
+        public bool ReducExperience(int UserID, int Exp)
+        {
+            Pots pot = GetPotsByUserID(UserID);
+            if (pot != null)
+            {
+                pot.Experience -= Exp;
+                db.Entry(pot).State = EntityState.Modified;
+                return db.SaveChanges() > 0;
+            }
+            return false;
+        }
     }
 }

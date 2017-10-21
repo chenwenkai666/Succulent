@@ -29,5 +29,9 @@ namespace BLL
         {
             return ipots.PotsSign(UserID);
         }
+        public bool ReducExperience(int UserID, int Exp)
+        {
+            return ipots.ReducExperience(UserID,Exp);
+        }
     }
 }

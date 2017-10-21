@@ -11,8 +11,8 @@
 
                         foreach (var item in Model.post)
                         {
-                            <a class="col-md-9" href="@Url.Action("PostsDetails", "Tribune", new { PostID = item.PostID })" target="_blank">@item.PostTitle</a>
-                            <span class="col-md-3">@item.PublishTime.ToString("yyyy年MM月dd日")</span>
+                            <a class="col-md-8" href="@Url.Action("PostsDetails", "Tribune", new { PostID = item.PostID })" target="_blank">@item.PostTitle</a>
+                            <span class="col-md-4">@item.PublishTime.ToString("yyyy年MM月dd日")</span>
                         }
 
                     }
@@ -34,8 +34,8 @@
                    foreach (var item in Model.attendance)
                     {
                         
-                        @: <a class="col-md-9" href="@Url.Action("Details","SucculentActivity", new { id=item.ActivityID })" target="_blank">@item.Activity.ActivityName</a>
-                        @: <span class="col-md-3">@item.AttendanceTime.ToString("yyyy年MM月dd日")</span>
+                        @: <a class="col-md-8" href="@Url.Action("Details","SucculentActivity", new { id=item.ActivityID })" target="_blank">@item.Activity.ActivityName</a>
+                        @: <span class="col-md-4">@item.AttendanceTime.ToString("yyyy年MM月dd日")</span>
                        
                 }
                      
@@ -58,8 +58,8 @@
                     foreach (var item in Model.collection)
                     {
                         
-                            <a class="col-md-9" href="@Url.Action("Succulent_Details", "Succulent", new { id = item.SucculentID })" target="_blank">@item.Succulent.SucculentName</a>
-                            <span class="col-md-3">@item.CollectionTime.ToString("yyyy年MM月dd日")</span>
+                            <a class="col-md-8" href="@Url.Action("Succulent_Details", "Succulent", new { id = item.SucculentID })" target="_blank">@item.Succulent.SucculentName</a>
+                            <span class="col-md-4">@item.CollectionTime.ToString("yyyy年MM月dd日")</span>
                         
                     }
                   
@@ -82,8 +82,8 @@
                         foreach (var item in Model.orderitems)
                         {
 
-                            <a class="col-md-9" href="@Url.Action("OrderItem","Goods")" target="_blank">@item.Goods.GoodsName</a>
-                            <span class="col-md-3">@item.Orders.OrderTime.ToString("yyyy年MM月dd日")</span>
+                            <a class="col-md-8" href="@Url.Action("OrderItem","Goods")" target="_blank">@item.Goods.GoodsName</a>
+                            <span class="col-md-4">@item.Orders.OrderTime.ToString("yyyy年MM月dd日")</span>
 
                         }
 

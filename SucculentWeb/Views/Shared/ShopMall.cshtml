@@ -40,8 +40,8 @@
                     }
                     else
                     {
-                        
-                        <a>@Session["UserName"]</a>
+
+                        <a href="@Url.Action("Index","UserCenter")" target="_blank">@Session["UserName"]</a>
                         <span>|</span>
                         <a href="@Url.Action("ZhuXiao","ShopMall")">注销</a>
                         

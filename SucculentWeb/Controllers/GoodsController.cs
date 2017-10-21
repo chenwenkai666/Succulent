@@ -679,7 +679,51 @@ namespace SucculentWeb.Controllers
         [HttpPost]
         public ActionResult IntegrationHand()
         {
-            return Content("");
+            try
+            {
+                Orders orders = new Orders();
+                OrderItems orderitems = new OrderItems();
+                Goods Goods = new Goods();
+                
+                int GoodID = Convert.ToInt32(Session["AdoptGoodid"]);
+                Goods= goodsmanager.SelectGoodDetail(GoodID);
+
+                int exp=Convert.ToInt32(Goods.Price* 100);
+
+                if(!potsmanager.ReducExperience(Convert.ToInt32(Session["UserID"]),exp))
+                {
+                    return Content("<script>alert('系统出错');window.open('" + Url.Action("Integration", "ShopMall") + "', '_self')</script>");
+                }
+                orders.Amount = 1;
+                orders.OrderTime = DateTime.Now;
+                orders.UserID = Convert.ToInt32(Session["UserID"]);
+
+                ordersmanager.AddOrders(orders);
+
+                int orderid = ordersmanager.SelectLastOrderid();
+                //int GoodID = Convert.ToInt32(goodid[i]);
+                orderitems.OrderID = orderid;
+                orderitems.GoodsID = GoodID;
+                orderitems.UnitPrice = Convert.ToDecimal(Goods.Price*100);
+                orderitems.Number = 1;
+                orderitems.TotalAmount = orderitems.UnitPrice * orderitems.Number;
+                orderitemsmanager.AddOrderItems(orderitems);
+                goodsmanager.UpdateStockAndSalse(GoodID, orderitems.Number, orderitems.Number);
+
+                var removegood = shoppingcarsmanager.SelectOneShopCart(GoodID);
+                if (removegood != null)
+                {
+                    shoppingcarsmanager.RemoveShopCarts(removegood);
+                }
+                
+                return Content("<script>alert('兑换成功');window.open('" + Url.Action("OrderItem", "Goods") + "', '_self')</script>");
+
+            }
+            catch (System.Data.Entity.Validation.DbEntityValidationException dbEx)
+            {
+                string error = dbEx.Message;
+                throw dbEx;
+            }
         }
         #endregion
 
