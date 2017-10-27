@@ -440,6 +440,9 @@
     <Content Include="images\Activity\手绘慈善背景.png" />
     <Content Include="images\Activity\手绘慈善背景2.png" />
     <Content Include="images\ellipsis_bg.png" />
+    <Content Include="images\succulent-img\k1.jpg" />
+    <Content Include="images\succulent-img\k2.jpg" />
+    <Content Include="images\succulent-img\tooltip1.png" />
     <Content Include="images\UserCenterBack1.png" />
     <Content Include="images\UserCenterBack.png" />
     <Content Include="images\786.jpg" />
@@ -1592,6 +1595,7 @@
     <Content Include="Views\ShopMall\Integration.cshtml" />
     <Content Include="Views\ShopMall\IntegrationGoods.cshtml" />
     <Content Include="Views\Goods\IntegrationDetails.cshtml" />
+    <Content Include="Views\SucculentIndex\vote_page.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

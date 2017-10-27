@@ -59,6 +59,26 @@ namespace SucculentWeb.Controllers
             var category= succulentcategorymanager.SelectByID(SucculentCategoryID);
             return PartialView("CategoryContent",category);
         }
+        public ActionResult vote_page()
+        {
+            var succulent = succulentmanager.SelectSuiji();
+            return PartialView("vote_page", succulent);
+        }
+        public ActionResult AddEdit(int id)
+        {
+            var succulent = succulentmanager.SelectByID(id);
+            succulent.CollectedTotal += 1;
+            succulentmanager.UpdateAdd(succulent);
+            return RedirectToAction("Succulent");
+        }
+        public ActionResult ReduceEdit(int id)
+        {
+            var succulent = succulentmanager.SelectByID(id);
+            succulent.CollectedTotal -= 1;
+            succulentmanager.UpdateAdd(succulent);
+            return RedirectToAction("Succulent");
+        }
+
 
     }
 }

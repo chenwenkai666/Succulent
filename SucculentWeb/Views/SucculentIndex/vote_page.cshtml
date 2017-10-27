@@ -1,0 +1,17 @@
+﻿@model IEnumerable<Model.Succulent>
+@using Model
+
+
+<ul>
+    @foreach (Succulent item in Model)
+    {
+        <li>
+            <img src="@item.Photo" width="40" height="40" /> <span>@item.SucculentName</span> <div class="div-width"></div> <span class="piaoshu">@item.CollectedTotal</span>
+            @Ajax.ActionLink("投票", "AddEdit", new { id = item.SucculentID }, new AjaxOptions { HttpMethod = "Post" }, new { @class = "btn1" })
+            @Ajax.ActionLink("取消", "ReduceEdit", new { id = item.SucculentID }, new AjaxOptions { HttpMethod = "Post" }, new { @class = "btn2" })
+        </li>
+    }
+
+</ul>
+
+

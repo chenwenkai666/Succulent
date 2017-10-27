@@ -59,5 +59,9 @@ namespace BLL
         {
             return isucculent.SelectBySearchName(SearchName);
         }
+        public IEnumerable<Succulent> SelectSuiji()
+        {
+            return isucculent.SelectSuiji();
+        }
     }
 }

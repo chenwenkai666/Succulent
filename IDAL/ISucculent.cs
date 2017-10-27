@@ -20,5 +20,6 @@ namespace IDAL
         Succulent SelectByID(int id);
         Succulent SelectName(string name);
         IEnumerable<Succulent> SelectBySearchName(string SearchName);
+        IEnumerable<Succulent> SelectSuiji();
     }
 }

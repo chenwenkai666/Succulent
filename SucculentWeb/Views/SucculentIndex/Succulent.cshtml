@@ -12,34 +12,138 @@
     <link href="~/Content/font-awesome.min.css" rel="stylesheet" />
     <script src="~/Scripts/jquery-1.10.2.js"></script>
     <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
-  <script src="~/Scripts/amazeui.min.js"></script>
+    <script src="~/Scripts/amazeui.min.js"></script>
     <style>
         .div-footer {
-            margin-top:60px;
+            margin-top: 60px;
             background-color: transparent;
         }
 
-         .div-footer .div-middle {
+            .div-footer .div-middle {
                 background-color: transparent;
             }
     </style>
     <script type="text/javascript">
         $(function () {
-            $(".a-describe").click(function () {         
+            $(".a-describe").click(function () {
                 $(".introduce-contain").removeClass("myClass");
-                $(this).parents(".introduce-contain").addClass("myClass");                               
-            })          
+                $(this).parents(".introduce-contain").addClass("myClass");
+            })
         })
+    </script>
+    <script>
+        $(function () {
+            $('#duorou').click(function () {
+                $('html,body').animate({
+                    scrollTop: $('.wrap-middle').offset().top - 70
+                }, 1000)
+            })
+            $('#keshu').click(function () {
+                $('html,body').animate({
+                    scrollTop: $('.succulent-wrap-bottom-right-top').offset().top - 70
+                }, 1000)
+            })
+            $('#toupiao').click(function () {
+                $('html,body').animate({
+                    scrollTop: $('.succulent-wrap-bottom-right-middle').offset().top - 70
+                }, 1000)
+            })
+            $('#xiaotieshi').click(function () {
+                $('html,body').animate({
+                    scrollTop: $('.succulent-wrap-bottom-right-bottom').offset().top - 70
+                }, 1000)
+            })
+        })
+    </script>
+    <script>
+        $(function () {
+            sum();
+            btn1();
+        })
+
+        function btn1() {
+            $('.btn1').click(function () {
+                var s = $(this).prev();
+                s.text(parseInt(s.text()) + 1) ;
+                $('.btn1').unbind();
+                alert("投票成功，谢谢你的参与！");
+                btn2($(this).next());
+                sum();
+            })
+        }
+
+        function btn2(object) {
+            $(object).click(function () {
+                var w = $(this).prevAll('span').filter('.piaoshu');
+                w.text(parseInt(w.text()) - 1);
+                sum();
+                $('.btn2').unbind();
+                alert("你已取消投票！");
+                btn1();
+            })
+        }
+
+        function sum() {
+            var d = $('.piaoshu');
+            var dw = $(".div-width");
+            var sum = 0;
+            for (var i = 0; i < d.length; i++) {
+                sum += parseInt(d.eq(i).text());
+            }
+            for (var i = 0; i < d.length; i++) {
+                $(".div-width").eq(i).animate({
+                    width: (parseInt(d.eq(i).text()) / sum) * 50
+                    //width:200
+                })
+            }
+        }
     </script>
 }
 <div class="body-wrap">
     <mian class="succulent-wrap">
-        <div class="succulent-wrap-top">      
+        <div class="succulent-wrap-top">
+            <div class="top-left">
+
+            </div>
+            <div class="top-middle">
+                <div class="succulent_nav">
+                    <ul>
+                        <li>
+                            <a href="#" class="tip tip-effect-1" id="duorou">
+                                多肉
+                                <span class="tip-content"><i class="fa fa-asterisk fa-fw"></i></span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="tip tip-effect-2" id="keshu">
+                                科属
+                                <span class="tip-content"><i class="fa fa-list-ul fa-fw"></i></span>
+                            </a>
+                        </li>
+                        <li class="users">
+                            <a href="#" class="tip tip-effect-3" id="toupiao">
+                                投票
+                                <span class="tip-content"><i class="fa fa-hand-paper-o fa-fw"></i></span>
+                            </a>
+                        </li>
+                        <li class="activity">
+                            <a href="#" class="tip tip-effect-4" id="xiaotieshi">
+                                小贴士
+                                <span class="tip-content"><i class="fa fa-file-text-o fa-fw"></i></span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="top-right">
+
+            </div>
         </div>
-        <div class="wrap-middle row" style="cursor:pointer;">        
+        <div class="wrap-middle row" style="cursor:pointer;">
             <header class="am-topbar col-md-12" style="background:#fff;">
                 <h1 class="am-topbar-brand">
-                    <img src="~/images/succulent-img/13.png" width="32" height="32"/> 
+                    <img src="~/images/succulent-img/13.png" width="32" height="32" />
                 </h1>
 
                 <button class="am-topbar-btn am-topbar-toggle am-btn am-btn-sm am-btn-success am-radius am-show-sm-only" data-am-collapse="{target: '#doc-topbar-collapse'}"><span class="am-sr-only">导航切换</span> <span class="am-icon-bars"></span></button>
@@ -55,70 +159,80 @@
                                 @foreach (var item in Model)
                                 {
                                     <li>
-                                    @Ajax.ActionLink(@item.SucculentCategoryName, "PartialViewDate", new { SucculentCategoryID = item.SucculentCategoryID },
+                                        @Ajax.ActionLink(@item.SucculentCategoryName, "PartialViewDate", new { SucculentCategoryID = item.SucculentCategoryID },
                                     new AjaxOptions { HttpMethod = "Post", UpdateTargetId = "succulent-wrap-bottom-left", InsertionMode = InsertionMode.Replace },
                                     new { @class = "a-describe" })
                                     </li>
                                 }
                             </ul>
                         </li>
-                    </ul>   
-                    @using (Ajax.BeginForm("PartialViewDate", "SucculentIndex", new AjaxOptions { HttpMethod = "Post", UpdateTargetId = "succulent-wrap-bottom-left", InsertionMode = InsertionMode.Replace },new { @class = "am-topbar-form am-topbar-left am-form-inline" }))
+                    </ul>
+                    @using (Ajax.BeginForm("PartialViewDate", "SucculentIndex", new AjaxOptions { HttpMethod = "Post", UpdateTargetId = "succulent-wrap-bottom-left", InsertionMode = InsertionMode.Replace }, new { @class = "am-topbar-form am-topbar-left am-form-inline" }))
                     {
                         <div class="am-form-group">
-                            <input type="text" class="am-form-field am-input-sm" placeholder="搜索" name="SearchSucculent" ><input type="submit" value="搜索" style="border:none;border-radius:5px; width:60px;height:35px; margin-left:15px;" />                        
-                        </div>                   
+                            <input type="text" class="am-form-field am-input-sm" placeholder="搜索" name="SearchSucculent"><input type="submit" value="搜索" style="border:none;border-radius:5px; width:60px;height:35px; margin-left:15px;" />
+                        </div>
                     }
 
                 </div>
             </header>
         </div>
-            <div id="succulent-wrap-bottom-left">
-                @{
-                    Html.RenderAction("PartialViewDate");
-                }
-            </div>
-         <div class="succulent-wrap-bottom-right">
-             <div class="succulent-wrap-bottom-right-top">
-               <div class="succulent-wrap-bottom-right-top-title">
-                   <div class="title-h3">
-                       @*<h3>多肉科属</h3>*@
-                       <div class="am-btn-group div-dropdown">
-                           <button class="am-btn am-btn-default am-radius ">多肉科属</button>
-                           <div class="am-dropdown" data-am-dropdown>
-                               <button class="am-btn am-btn-primary am-radius am-dropdown-toggle" data-am-dropdown-toggle> <span class="am-icon-caret-down"></span></button>
-                               <ul class="am-dropdown-content">
-                                   @foreach (var item in Model)
-                                   {
-                                       <li>@Ajax.ActionLink(@item.SucculentCategoryName, "CategoryContent", new { SucculentCategoryID = item.SucculentCategoryID }, new AjaxOptions { HttpMethod = "Post", UpdateTargetId = "succulent-wrap-bottom-right-top-content", InsertionMode = InsertionMode.Replace }, new { @class = "a-describe" })</li>
-                                   }
-                               </ul>
-                           </div>
-                       </div>
-                   </div> 
-             </div>
+        <div id="succulent-wrap-bottom-left">
+            @{
+                Html.RenderAction("PartialViewDate");
+            }
+        </div>
+        <div class="succulent-wrap-bottom-right">
+            <div class="succulent-wrap-bottom-right-top">
+                <div class="succulent-wrap-bottom-right-top-title">
+                    <div class="title-h3">
+                        @*<h3>多肉科属</h3>*@
+                        <div class="am-btn-group div-dropdown">
+                            <button class="am-btn am-btn-default am-radius ">多肉科属</button>
+                            <div class="am-dropdown" data-am-dropdown>
+                                <button class="am-btn am-btn-primary am-radius am-dropdown-toggle" data-am-dropdown-toggle> <span class="am-icon-caret-down"></span></button>
+                                <ul class="am-dropdown-content">
+                                    @foreach (var item in Model)
+                                    {
+                                        <li>@Ajax.ActionLink(@item.SucculentCategoryName, "CategoryContent", new { SucculentCategoryID = item.SucculentCategoryID }, new AjaxOptions { HttpMethod = "Post", UpdateTargetId = "succulent-wrap-bottom-right-top-content", InsertionMode = InsertionMode.Replace }, new { @class = "a-describe" })</li>
+                                    }
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <div id="succulent-wrap-bottom-right-top-content">
                     @{
                         Html.RenderAction("CategoryContent");
                     }
                 </div>
-         </div> 
-             <div class="succulent-wrap-bottom-right-bottom">
-                 <div class="succulent-wrap-bottom-right-bottom-title">
-                     <div class="title-h3"><h3>养殖小贴士</h3></div>
-                 </div>
-                 <div class="succulent-wrap-bottom-right-bottom-content">
-                     <p>
-                         多肉死亡指南：<br />
-                         <span><i class="fa fa-envira" aria-hidden="true"></i> 1. 每天浇水。（它们大多生长在艰苦环境中，不用过度溺爱）</span><br />
-                         <span><i class="fa fa-envira" aria-hidden="true"></i> 2. 日正当中浇水。（水会马上变热然後盆里会像个蒸气室把根闷烂）</span><br />
-                         <span><i class="fa fa-envira" aria-hidden="true"></i> 3. 盆底没有洞。（因为根部需要空气流通，能加快水份流通速度）</span><br />
-                         <span><i class="fa fa-envira" aria-hidden="true"></i> 4. 夏天。（尤其台湾夏天.非常闷热及潮湿，我自己夏天都清出好多空盆）</span><br />
-                         <span><i class="fa fa-envira" aria-hidden="true"></i> 5. 虫害。（最可怕为粉介壳虫，药剂时常无法杀死它，身上粉会将药剂带走，试着用针一只只刺死）</span><br />
-                         <span><i class="fa fa-envira" aria-hidden="true"></i> 6. 病菌。（常发生生病果冻叶掉在表土开始发烂，并开始传染到整株死亡）</span>
-                     </p>
-                 </div>
-               
+            </div>
+            <div class="succulent-wrap-bottom-right-middle">
+                <div class="question">
+                    <h4>选出你最喜欢的多肉<br /><small>只能投一票哦！</small></h4>
+                </div>
+                <div id="duorou">
+                    @{
+                        Html.RenderAction("vote_page");
+                    }
+                </div>
+            </div>
+            <div class="succulent-wrap-bottom-right-bottom">
+                <div class="succulent-wrap-bottom-right-bottom-title">
+                    <div class="title-h3"><h3>养殖小贴士</h3></div>
+                </div>
+                <div class="succulent-wrap-bottom-right-bottom-content">
+                    <p style="overflow:scroll;height:200px;">
+                        多肉死亡指南：<br />
+                        <span><i class="fa fa-envira" aria-hidden="true"></i> 1. 每天浇水。（它们大多生长在艰苦环境中，不用过度溺爱）</span><br />
+                        <span><i class="fa fa-envira" aria-hidden="true"></i> 2. 日正当中浇水。（水会马上变热然後盆里会像个蒸气室把根闷烂）</span><br />
+                        <span><i class="fa fa-envira" aria-hidden="true"></i> 3. 盆底没有洞。（因为根部需要空气流通，能加快水份流通速度）</span><br />
+                        <span><i class="fa fa-envira" aria-hidden="true"></i> 4. 夏天。（尤其台湾夏天.非常闷热及潮湿，我自己夏天都清出好多空盆）</span><br />
+                        <span><i class="fa fa-envira" aria-hidden="true"></i> 5. 虫害。（最可怕为粉介壳虫，药剂时常无法杀死它，身上粉会将药剂带走，试着用针一只只刺死）</span><br />
+                        <span><i class="fa fa-envira" aria-hidden="true"></i> 6. 病菌。（常发生生病果冻叶掉在表土开始发烂，并开始传染到整株死亡）</span>
+                    </p>
+                </div>
+
             </div>
         </div>
     </mian>

@@ -82,5 +82,10 @@ namespace DAL
             var succulent = from s in db.Succulent.Where(o => o.SucculentName.Contains(SearchName)).ToList() select s;
             return succulent;
         }
+        public IEnumerable<Succulent> SelectSuiji()
+        {
+            var succulent = db.Succulent.OrderBy(r => Guid.NewGuid()).Take(5).ToList();
+            return succulent;
+        }
     }
 }

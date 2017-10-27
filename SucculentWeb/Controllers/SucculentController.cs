@@ -29,15 +29,16 @@ namespace SucculentWeb.Controllers
             SucculentIndexViewModels si = new ViewModels.SucculentIndexViewModels();
             si.succulent_Details = details;
             si.Room = room;
+            //用于给用户不存在的情况提供数据
             var lookc = lookmanager.NewSelectByCategoryID(categoryid);
             if (Session["UserID"] != null)
             {
-                Look look = new Look();
+                //用于给用户存在的情况提供数据
                 var succulentlook = lookmanager.NewSelectByUserID(int.Parse(Session["UserID"].ToString())).ToList();
+                Look look = new Look();              
                 var succulent1 = succulentmanager.SelectByID(id);
                 var l = lookmanager.NewSelectbySucculentId(id);
-                Look userlook = l.Where(a => a.UserID == int.Parse(Session["UserID"].ToString())).FirstOrDefault();
-               
+                Look userlook = l.Where(a => a.UserID == int.Parse(Session["UserID"].ToString())).FirstOrDefault();              
                 if (userlook == null)
                 {
                     //不存在则插入新的记录look
