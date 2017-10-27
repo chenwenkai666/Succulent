@@ -52,5 +52,6 @@ namespace Model
         public virtual DbSet<Succulent> Succulent { get; set; }
         public virtual DbSet<SucculentCategory> SucculentCategory { get; set; }
         public virtual DbSet<Users> Users { get; set; }
+        public virtual DbSet<Look> Look { get; set; }
     }
 }

@@ -151,9 +151,9 @@
                         @foreach (var item1 in Model.Like)
                         {
                             <div class="col-md-4 side-contain-main-similate-contain-img">
-                                <a href="@Url.Action("Succulent_Details", "Succulent", new { id = item1.SucculentID, categoryid = item1.CategoryID})">
-                                    <img src="@item1.Photo" width="110" height="100" />
-                                    <span class="img-span">@item1.SucculentName</span>
+                                <a href="@Url.Action("Succulent_Details", "Succulent", new { id = item1.SucculentID, categoryid = item1.SucculentCategoryID})">
+                                    <img src="@item1.Succulent.Photo" width="110" height="100" />
+                                    <span class="img-span">@item1.Succulent.SucculentName</span>
                                 </a>
                             </div>
                         }

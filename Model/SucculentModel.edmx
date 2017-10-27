@@ -155,6 +155,16 @@
           <Property Name="Levellowerlimit" Type="int" Nullable="false" />
           <Property Name="LevelToplimit" Type="int" Nullable="false" />
         </EntityType>
+        <EntityType Name="Look">
+          <Key>
+            <PropertyRef Name="lookID" />
+          </Key>
+          <Property Name="lookID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserID" Type="int" />
+          <Property Name="SucculentID" Type="int" />
+          <Property Name="SucculentCategoryID" Type="int" />
+          <Property Name="LookNum" Type="int" />
+        </EntityType>
         <EntityType Name="OrderItems">
           <Key>
             <PropertyRef Name="OrderItemsID" />
@@ -174,8 +184,8 @@
           <Property Name="UserID" Type="int" Nullable="false" />
           <Property Name="OrderTime" Type="datetime" Nullable="false" />
           <Property Name="Amount" Type="int" Nullable="false" />
-          <Property Name="ExpressNumber" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="OrderState" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="ExpressNumber" Type="nvarchar" MaxLength="50" />
+          <Property Name="OrderState" Type="nchar" MaxLength="10" />
         </EntityType>
         <EntityType Name="PostComments">
           <Key>
@@ -197,7 +207,7 @@
           <Property Name="PostTitle" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="PostContent" Type="nvarchar(max)" Nullable="false" />
           <Property Name="PublishTime" Type="datetime" Nullable="false" />
-          <Property Name="PostFlag" Type="int" Nullable="false" />
+          <Property Name="PostFlag" Type="int" />
         </EntityType>
         <EntityType Name="Pots">
           <Key>
@@ -554,6 +564,42 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Look_Succulent">
+          <End Role="Succulent" Type="Self.Succulent" Multiplicity="0..1" />
+          <End Role="Look" Type="Self.Look" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Succulent">
+              <PropertyRef Name="SucculentID" />
+            </Principal>
+            <Dependent Role="Look">
+              <PropertyRef Name="SucculentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Look_SucculentCategory">
+          <End Role="SucculentCategory" Type="Self.SucculentCategory" Multiplicity="0..1" />
+          <End Role="Look" Type="Self.Look" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SucculentCategory">
+              <PropertyRef Name="SucculentCategoryID" />
+            </Principal>
+            <Dependent Role="Look">
+              <PropertyRef Name="SucculentCategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Look_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="Look" Type="Self.Look" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Look">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_OrderItems_Goods">
           <End Role="Goods" Type="Self.Goods" Multiplicity="1" />
           <End Role="OrderItems" Type="Self.OrderItems" Multiplicity="*" />
@@ -773,6 +819,7 @@
           <EntitySet Name="Goods" EntityType="Self.Goods" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="GoodsComments" EntityType="Self.GoodsComments" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Level" EntityType="Self.Level" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Look" EntityType="Self.Look" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="OrderItems" EntityType="Self.OrderItems" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Orders" EntityType="Self.Orders" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PostComments" EntityType="Self.PostComments" Schema="dbo" store:Type="Tables" />
@@ -869,6 +916,18 @@
           <AssociationSet Name="FK_GoodsComments_Users" Association="Self.FK_GoodsComments_Users">
             <End Role="Users" EntitySet="Users" />
             <End Role="GoodsComments" EntitySet="GoodsComments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Look_Succulent" Association="Self.FK_Look_Succulent">
+            <End Role="Succulent" EntitySet="Succulent" />
+            <End Role="Look" EntitySet="Look" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Look_SucculentCategory" Association="Self.FK_Look_SucculentCategory">
+            <End Role="SucculentCategory" EntitySet="SucculentCategory" />
+            <End Role="Look" EntitySet="Look" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Look_Users" Association="Self.FK_Look_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Look" EntitySet="Look" />
           </AssociationSet>
           <AssociationSet Name="FK_OrderItems_Goods" Association="Self.FK_OrderItems_Goods">
             <End Role="Goods" EntitySet="Goods" />
@@ -1149,8 +1208,8 @@
           <Property Name="UserID" Type="Int32" Nullable="false" />
           <Property Name="OrderTime" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="Amount" Type="Int32" Nullable="false" />
-          <Property Name="ExpressNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="OrderState" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="ExpressNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="OrderState" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
           <NavigationProperty Name="OrderItems" Relationship="Self.FK_OrderItems_Orders" FromRole="Orders" ToRole="OrderItems" />
           <NavigationProperty Name="Users" Relationship="Self.FK_Orders_Users" FromRole="Orders" ToRole="Users" />
         </EntityType>
@@ -1177,7 +1236,7 @@
           <Property Name="PostTitle" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="PostContent" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="PublishTime" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="PostFlag" Type="Int32" Nullable="false" />
+          <Property Name="PostFlag" Type="Int32" />
           <NavigationProperty Name="PostComments" Relationship="Self.FK_PostComments_Posts" FromRole="Posts" ToRole="PostComments" />
           <NavigationProperty Name="Sections" Relationship="Self.FK_Posts_Sections" FromRole="Posts" ToRole="Sections" />
           <NavigationProperty Name="Users" Relationship="Self.FK_Posts_Users" FromRole="Posts" ToRole="Users" />
@@ -1271,6 +1330,7 @@
           <NavigationProperty Name="Collection" Relationship="Self.FK_Collection_Succulent" FromRole="Succulent" ToRole="Collection" />
           <NavigationProperty Name="SucculentCategory" Relationship="Self.FK_Succulent_SucculentCategory" FromRole="Succulent" ToRole="SucculentCategory" />
           <Property Name="SucculentImg" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Look" Relationship="SucculentModel.FK_Look_Succulent" FromRole="Succulent" ToRole="Look" />
         </EntityType>
         <EntityType Name="SucculentCategory">
           <Key>
@@ -1280,6 +1340,7 @@
           <Property Name="SucculentCategoryName" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Succulent" Relationship="Self.FK_Succulent_SucculentCategory" FromRole="SucculentCategory" ToRole="Succulent" />
           <Property Name="SucculentCategoryDescribe" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Look" Relationship="SucculentModel.FK_Look_SucculentCategory" FromRole="SucculentCategory" ToRole="Look" />
         </EntityType>
         <EntityType Name="Users">
           <Key>
@@ -1315,6 +1376,7 @@
           <NavigationProperty Name="ReplyPost" Relationship="Self.FK_ReplyPost_Users" FromRole="Users" ToRole="ReplyPost" />
           <NavigationProperty Name="ShoppingCarts" Relationship="Self.FK_ShoppingCarts_Users" FromRole="Users" ToRole="ShoppingCarts" />
           <NavigationProperty Name="Shops" Relationship="Self.FK_Shops_Users" FromRole="Users" ToRole="Shops" />
+          <NavigationProperty Name="Look" Relationship="SucculentModel.FK_Look_Users" FromRole="Users" ToRole="Look" />
         </EntityType>
         <Association Name="FK_Activity_ActivityCategory">
           <End Role="ActivityCategory" Type="Self.ActivityCategory" Multiplicity="1" />
@@ -1928,6 +1990,19 @@
             <End Role="Activity" EntitySet="Activity" />
             <End Role="Donate" EntitySet="Donate" />
           </AssociationSet>
+          <EntitySet Name="Look" EntityType="SucculentModel.Look" />
+          <AssociationSet Name="FK_Look_Succulent" Association="SucculentModel.FK_Look_Succulent">
+            <End Role="Succulent" EntitySet="Succulent" />
+            <End Role="Look" EntitySet="Look" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Look_SucculentCategory" Association="SucculentModel.FK_Look_SucculentCategory">
+            <End Role="SucculentCategory" EntitySet="SucculentCategory" />
+            <End Role="Look" EntitySet="Look" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Look_Users" Association="SucculentModel.FK_Look_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Look" EntitySet="Look" />
+          </AssociationSet>
         </EntityContainer>
         <Association Name="FK_Adopt_Activity">
           <End Type="SucculentModel.Activity" Role="Activity" Multiplicity="1" />
@@ -1950,6 +2025,55 @@
             </Principal>
             <Dependent Role="Donate">
               <PropertyRef Name="ActivityID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Look">
+          <Key>
+            <PropertyRef Name="lookID" />
+          </Key>
+          <Property Name="lookID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserID" Type="Int32" />
+          <Property Name="SucculentID" Type="Int32" />
+          <Property Name="SucculentCategoryID" Type="Int32" />
+          <Property Name="LookNum" Type="Int32" />
+          <NavigationProperty Name="Succulent" Relationship="SucculentModel.FK_Look_Succulent" FromRole="Look" ToRole="Succulent" />
+          <NavigationProperty Name="SucculentCategory" Relationship="SucculentModel.FK_Look_SucculentCategory" FromRole="Look" ToRole="SucculentCategory" />
+          <NavigationProperty Name="Users" Relationship="SucculentModel.FK_Look_Users" FromRole="Look" ToRole="Users" />
+        </EntityType>
+        <Association Name="FK_Look_Succulent">
+          <End Type="SucculentModel.Succulent" Role="Succulent" Multiplicity="0..1" />
+          <End Type="SucculentModel.Look" Role="Look" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Succulent">
+              <PropertyRef Name="SucculentID" />
+            </Principal>
+            <Dependent Role="Look">
+              <PropertyRef Name="SucculentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Look_SucculentCategory">
+          <End Type="SucculentModel.SucculentCategory" Role="SucculentCategory" Multiplicity="0..1" />
+          <End Type="SucculentModel.Look" Role="Look" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SucculentCategory">
+              <PropertyRef Name="SucculentCategoryID" />
+            </Principal>
+            <Dependent Role="Look">
+              <PropertyRef Name="SucculentCategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Look_Users">
+          <End Type="SucculentModel.Users" Role="Users" Multiplicity="0..1" />
+          <End Type="SucculentModel.Look" Role="Look" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Look">
+              <PropertyRef Name="UserID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -2280,6 +2404,17 @@
                 <ScalarProperty Name="UserFlag" ColumnName="UserFlag" />
                 <ScalarProperty Name="Lock" ColumnName="Lock" />
                 <ScalarProperty Name="CollectionTotal" ColumnName="CollectionTotal" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Look">
+            <EntityTypeMapping TypeName="SucculentModel.Look">
+              <MappingFragment StoreEntitySet="Look">
+                <ScalarProperty Name="LookNum" ColumnName="LookNum" />
+                <ScalarProperty Name="SucculentCategoryID" ColumnName="SucculentCategoryID" />
+                <ScalarProperty Name="SucculentID" ColumnName="SucculentID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="lookID" ColumnName="lookID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

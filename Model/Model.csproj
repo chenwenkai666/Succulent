@@ -93,6 +93,9 @@
     <Compile Include="Level.cs">
       <DependentUpon>SucculentModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Look.cs">
+      <DependentUpon>SucculentModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="OrderItems.cs">
       <DependentUpon>SucculentModel.tt</DependentUpon>
     </Compile>

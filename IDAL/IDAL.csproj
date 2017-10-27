@@ -52,6 +52,7 @@
     <Compile Include="IGoods.cs" />
     <Compile Include="IGoodsComments.cs" />
     <Compile Include="ILevel.cs" />
+    <Compile Include="ILook.cs" />
     <Compile Include="IOrderItems.cs" />
     <Compile Include="IOrders.cs" />
     <Compile Include="IPosts.cs" />

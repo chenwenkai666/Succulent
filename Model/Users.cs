@@ -12,7 +12,6 @@ namespace Model
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
-
     public partial class Users
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -35,6 +34,7 @@ namespace Model
             this.ReplyPost = new HashSet<ReplyPost>();
             this.ShoppingCarts = new HashSet<ShoppingCarts>();
             this.Shops = new HashSet<Shops>();
+            this.Look = new HashSet<Look>();
         }
 
         public int UserID { get; set; }
@@ -53,8 +53,8 @@ namespace Model
         public string PasswordAgain { get; set; }
         public string Photo { get; set; }
         public string Sex { get; set; }
-        
-        [Required(ErrorMessage ="请输入您的出生年月日期")]
+
+        [Required(ErrorMessage = "请输入您的出生年月日期")]
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> Birth { get; set; }
@@ -74,7 +74,7 @@ namespace Model
         public int UserFlag { get; set; }
         public Nullable<bool> Lock { get; set; }
         public Nullable<int> CollectionTotal { get; set; }
-
+    
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Activity> Activity { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
@@ -109,5 +109,7 @@ namespace Model
         public virtual ICollection<ShoppingCarts> ShoppingCarts { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Shops> Shops { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Look> Look { get; set; }
     }
 }

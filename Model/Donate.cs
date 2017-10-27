@@ -12,14 +12,13 @@ namespace Model
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
-    
     public partial class Donate
     {
         public int DonateID { get; set; }
         public int UserID { get; set; }
         public System.DateTime DonateTime { get; set; }
 
-        [Required(ErrorMessage ="请输入捐赠数量")]
+        [Required(ErrorMessage = "请输入捐赠数量")]
         public int DonoteTotal { get; set; }
 
         [Required(ErrorMessage = "请输入捐赠内容")]
@@ -29,7 +28,8 @@ namespace Model
         public string ExoressNumber { get; set; }
         public string DonateState { get; set; }
         public int ActivityID { get; set; }
-    
+
+
         public virtual Users Users { get; set; }
         public virtual Activity Activity { get; set; }
     }

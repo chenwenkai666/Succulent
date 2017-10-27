@@ -126,5 +126,10 @@ namespace DALFactory
             string className = assemblyName + "." + db + "CharitableResult";
             return (ICharitableResult)Assembly.Load(assemblyName).CreateInstance(className);
         }
+        public static ILook CreateLook()
+        {
+            string className = assemblyName + "." + db + "Look";
+            return (ILook)Assembly.Load(assemblyName).CreateInstance(className);
+        }
     }
 }

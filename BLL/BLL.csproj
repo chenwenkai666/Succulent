@@ -53,6 +53,7 @@
     <Compile Include="GoodsCommentsManager.cs" />
     <Compile Include="GoodsManager.cs" />
     <Compile Include="LevelManager.cs" />
+    <Compile Include="LookManager.cs" />
     <Compile Include="NoHTML.cs" />
     <Compile Include="OrderItemsManager.cs" />
     <Compile Include="OrdersManager.cs" />

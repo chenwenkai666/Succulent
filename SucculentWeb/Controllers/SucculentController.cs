@@ -15,6 +15,7 @@ namespace SucculentWeb.Controllers
         SucculentManager succulentmanager = new SucculentManager();
         SucculentCategoryManager succulentcategorymanager = new SucculentCategoryManager();
         CollectionManager collectionmanager = new CollectionManager();
+        LookManager lookmanager = new LookManager();
         public ActionResult Succulent()
         {
             return View();
@@ -22,13 +23,52 @@ namespace SucculentWeb.Controllers
        
         public ActionResult Succulent_Details(int id=18, int categoryid=1)
         {
+
             var details = succulentmanager.SelectSucculentBySucculentid(id);
-            var succulent = succulentmanager.SelectXinagsiSucculent(categoryid,id);
             var room = succulentmanager.SelectRoomSucculent();
             SucculentIndexViewModels si = new ViewModels.SucculentIndexViewModels();
             si.succulent_Details = details;
-            si.Like = succulent;
             si.Room = room;
+            var lookc = lookmanager.NewSelectByCategoryID(categoryid);
+            if (Session["UserID"] != null)
+            {
+                Look look = new Look();
+                var succulentlook = lookmanager.NewSelectByUserID(int.Parse(Session["UserID"].ToString())).ToList();
+                var succulent1 = succulentmanager.SelectByID(id);
+                var l = lookmanager.NewSelectbySucculentId(id);
+                Look userlook = l.Where(a => a.UserID == int.Parse(Session["UserID"].ToString())).FirstOrDefault();
+               
+                if (userlook == null)
+                {
+                    //不存在则插入新的记录look
+                    look.SucculentID = succulent1.SucculentID;
+                    look.UserID = int.Parse(Session["UserID"].ToString());
+                    look.SucculentCategoryID = succulent1.CategoryID;
+                    if (look.LookNum == null)
+                    {
+                        look.LookNum = 0;
+                    }
+                   look.LookNum += 1;        
+                    lookmanager.NewCreate(look);
+                }
+                else
+                {
+                    //存在记录，则直接修改userlook的LookNum字段
+                    if (userlook.LookNum == null)
+                    {
+                        userlook.LookNum = 0;
+                    }
+                        userlook.LookNum += 1;
+                        lookmanager.NewUpdateAdd(userlook);
+                }
+                si.Like = succulentlook;
+            }
+
+            else
+            {
+                si.Like = lookc;
+
+            }
             return View("Succulent_Details", si);
         }
         [HttpGet]

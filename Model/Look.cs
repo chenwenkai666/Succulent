@@ -12,15 +12,16 @@ namespace Model
     using System;
     using System.Collections.Generic;
     
-    public partial class Address
+    public partial class Look
     {
-        public int AddressID { get; set; }
-        public int UserID { get; set; }
-        public string Province { get; set; }
-        public string City { get; set; }
-        public string AddressDetail { get; set; }
-        public int IsDefault { get; set; }
+        public int lookID { get; set; }
+        public Nullable<int> UserID { get; set; }
+        public Nullable<int> SucculentID { get; set; }
+        public Nullable<int> SucculentCategoryID { get; set; }
+        public Nullable<int> LookNum { get; set; }
     
+        public virtual Succulent Succulent { get; set; }
+        public virtual SucculentCategory SucculentCategory { get; set; }
         public virtual Users Users { get; set; }
     }
 }

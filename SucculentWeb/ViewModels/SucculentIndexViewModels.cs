@@ -20,7 +20,7 @@ namespace SucculentWeb.ViewModels
         {
             get; set;
         }
-        public IEnumerable<Succulent> Like
+        public IEnumerable<Look> Like
         {
             get; set;
         }

@@ -70,6 +70,10 @@
         <AssociationConnector Association="SucculentModel.FK_Succulent_SucculentCategory" ManuallyRouted="false" />
         <AssociationConnector Association="SucculentModel.FK_Adopt_Activity" />
         <AssociationConnector Association="SucculentModel.FK_Donate_Activity" />
+        <EntityTypeShape EntityType="SucculentModel.Look" Width="1.5" PointX="9" PointY="17.5" />
+        <AssociationConnector Association="SucculentModel.FK_Look_Succulent" />
+        <AssociationConnector Association="SucculentModel.FK_Look_SucculentCategory" />
+        <AssociationConnector Association="SucculentModel.FK_Look_Users" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

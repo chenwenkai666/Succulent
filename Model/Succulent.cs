@@ -18,6 +18,7 @@ namespace Model
         public Succulent()
         {
             this.Collection = new HashSet<Collection>();
+            this.Look = new HashSet<Look>();
         }
     
         public int SucculentID { get; set; }
@@ -33,5 +34,7 @@ namespace Model
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Collection> Collection { get; set; }
         public virtual SucculentCategory SucculentCategory { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Look> Look { get; set; }
     }
 }
