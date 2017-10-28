@@ -85,6 +85,7 @@ namespace SucculentWeb.Controllers
         // 详细信息，请参阅 http://go.microsoft.com/fwlink/?LinkId=317598。
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [ValidateInput(false)]
         public ActionResult Edit([Bind(Include = "PotID,UserID,LevelID,Experience,Sign,SignDays")] Pots pots)
         {
             if (ModelState.IsValid)

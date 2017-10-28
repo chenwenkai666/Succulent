@@ -82,6 +82,7 @@ namespace SucculentWeb.Controllers
         // 详细信息，请参阅 http://go.microsoft.com/fwlink/?LinkId=317598。
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [ValidateInput(false)]
         public ActionResult Edit([Bind(Include = "ShopID,UserID,ShopName,ShopDescription,SalesTotal,ShopPhoto,TopImage")] Shops shops)
         {
             if (ModelState.IsValid)

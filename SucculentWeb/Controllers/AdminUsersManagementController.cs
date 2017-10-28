@@ -79,6 +79,7 @@ namespace SucculentWeb.Controllers
         // 详细信息，请参阅 http://go.microsoft.com/fwlink/?LinkId=317598。
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [ValidateInput(false)]
         public async Task<ActionResult> Edit([Bind(Include = "UserID,UserName,Password,Photo,Sex,Birth,Email,Phone,SecretQues,SecretAnws,UserFlag,Lock,CollectionTotal")] Users users)
         {
             if (ModelState.IsValid)
