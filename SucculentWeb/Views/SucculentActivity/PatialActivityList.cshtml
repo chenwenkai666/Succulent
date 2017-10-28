@@ -4,82 +4,78 @@
 
 @{
     Layout = null;
- }
+}
 
-@{ 
-    if (Model.Count() != 0) {
+@{
+    if (Model.Count() != 0)
+    {
         foreach (var item in Model)
         {
-    <div @{ 
-        if (DateTime.Now>item.EndTime){
-            @:class="acivitites over_act" 
-        } else{
-            @:class="acivitites"
-        } 
-        }>
-        <span @{ 
-        if (DateTime.Now>item.EndTime){
-            @:class="act_ed" 
-        } else{
-            @:class="act_ing"
-        } 
-        }></span>
-        <a @{ 
-        if (DateTime.Now>item.EndTime){
-                if (item.ActivityCategoryID == 1)
-                    {
-                        @:href="@Url.Action("PhotoResult", "SucculentActivity", new { id = item.ActivityID })"
-                    }
-                    else
-                    {
-                        @:href="javascript:void(0)" 
-                    }
-        } else{
-            @:href="@Url.Action("Details", "SucculentActivity", new { id = item.ActivityID })"
-        } 
-        } target="_blank">
-            <div class="act_img">
-                <img src="@item.ActivityCover" alt="@item.ActivityName" width="100%" height="100%" />
-            </div>
-        </a>
-        <div class="act_title">
-            <a @{ 
-                if (DateTime.Now>item.EndTime){
-                    if (item.ActivityCategoryID == 1)
-                    {
-                        @:href="@Url.Action("PhotoResult", "SucculentActivity", new { id = item.ActivityID })"
-                    }
-                    else
-                    {
-                        @:href="javascript:void(0)"
-                    }
-        } else{
-            @:href="@Url.Action("Details", "SucculentActivity", new { id = item.ActivityID })"
-        } 
-        } class="act_link"><p>@item.ActivityName</p></a>
-        </div>
-        <hr />
-        <div class="act_time">
-            <p>时间：@item.StartTime.ToString("yyyy年MM月dd日") - @item.EndTime.ToString("MM月dd日")</p>
-        </div>
-    </div>
-        }
-    }
-    else
-    {
-        @: <div style="width:100%;margin-left:25%;">
-        @:<img src="/images/更多活动敬请期待.png" width="50%" height="50%" style="text-align:center;" />
-        @:</div>
-    }
+            <div 
+                 @{ if (DateTime.Now > item.EndTime) {
+                          @: class="acivitites over_act"
+                 } else { 
+                         @: class="acivitites"
+                  }
+              }>
+                <span @{ if (DateTime.Now > item.EndTime) {
+                         @: class="act_ed"
+                         } else {
+                         @: class="act_ing"
+                        }
+                }></span>
+                <a @{ if (DateTime.Now > item.EndTime) { if (item.ActivityCategoryID == 1) { @: href="@Url.Action("PhotoResult", "SucculentActivity", new { id = item.ActivityID })"
+                                                          } else { @: href="javascript:void(0)"
+                                                          } } else { @: href="@Url.Action("Details", "SucculentActivity", new { id = item.ActivityID })"
+                                              } } target="_blank">
+                    <div class="act_img">
+                        <img src="@item.ActivityCover" alt="@item.ActivityName" width="100%" height="100%" />
+                    </div>
+                </a>
+                <div class="act_title">
+                    <a @{ if (DateTime.Now > item.EndTime) { if (item.ActivityCategoryID == 1 || item.ActivityCategoryID == 2) { @: href="@Url.Action("PhotoResult", "SucculentActivity", new { id = item.ActivityID })"
+                                                                  } else { @: href="javascript:void(0)"
+                                                                  } } else { @: href="@Url.Action("Details", "SucculentActivity", new { id = item.ActivityID })"
+                                                      } } class="act_link"><p>@item.ActivityName</p></a>
+                                                </div>
+                                                <hr />
+                                                <div class="act_time">
+                                                    @{if (DateTime.Now > item.EndTime)
+                                                        {
+                                                            if (item.ActivityCategoryID == 1 || item.ActivityCategoryID == 2)
+                                                            {
+                                                                <a href="@Url.Action("PhotoResult", "SucculentActivity", new { id = item.ActivityID })" class="btn-success btn-sm" style="margin-left:33%;margin-top:20px;">查看结果</a>
+                                                            }
+                                                            else
+                                                            {
+                                                                <p>时间：@item.StartTime.ToString("yyyy年MM月dd日") - @item.EndTime.ToString("MM月dd日")</p>
+                                                            }
+                                                        }
+                                                        else
+                                                        {
+                                                            <p>时间：@item.StartTime.ToString("yyyy年MM月dd日") - @item.EndTime.ToString("MM月dd日")</p>
+                                                        }
+                                                    }
 
-<div class="Pager">
-    @Html.PagedListPager(Model, page => Url.Action("Index", "SucculentActivity", new { page, ACid =1}),
+                                                </div>
+                                            </div>
+                                                            }
+                                                        }
+                                                        else
+                                                        {
+                                                            @: <div style="width:100%;margin-left:25%;">
+                                                                @:<img src="/images/更多活动敬请期待.png" width="50%" height="50%" style="text-align:center;" />
+                                                             @: </div>
+                                                        }
+
+                                                        <div class="Pager">
+                                                            @Html.PagedListPager(Model, page => Url.Action("Index", "SucculentActivity", new { page, ACid = 1 }),
     PagedListRenderOptions.EnableUnobtrusiveAjaxReplacing(new AjaxOptions
     {
         HttpMethod = "GET",
-        UpdateTargetId= "1",
-        InsertionMode=InsertionMode.Replace
+        UpdateTargetId = "1",
+        InsertionMode = InsertionMode.Replace
     }))
-</div>
+                                                        </div>
 }
 
