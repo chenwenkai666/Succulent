@@ -19,6 +19,45 @@
 }
 
 @section foot{
+<script type="text/javascript">
+   
+        //设置cookie
+        function setCookie(key, value) {
+                document.cookie = key + "=" + escape(value);
+        }
+        //获取cookie的值
+        function getCookie(key) {
+            if (document.cookie.length) {
+                var cookies = ' ' + document.cookie;
+                var start = cookies.indexOf(' ' + key + '=');
+                if (start == -1) { return null; }
+                var end = cookies.indexOf(";", start);
+                if (end == -1) { end = cookies.length; }
+                end -= start;
+                var cookie = cookies.substr(start,end);
+                return unescape(cookie.substr(cookie.indexOf('=') + 1, cookie.length - cookie.indexOf('=') + 1));
+            }
+            else { return null; }
+        }
+        //根据点击传进来的id
+        function comment(id){
+             if(getCookie(id)==null){
+                 setCookie(id, "CheckOut");
+               }else{
+                 if (getCookie(id) == "CheckOut") {
+                    
+                     //$("#DZbtn").removeAttr("href");
+                     alert("您已经结算过了");
+                     $('#checkout_' + id).attr("href", "javascript:void(0)");
+                         return false;
+
+                    }
+                }
+         //这里是你自己的逻辑 通过ajax保存到数据库的数值
+        }
+
+        //alert(ip);
+</script>  
 }
 
 <h2>Index</h2>
@@ -105,7 +144,7 @@
             @Html.ActionLink("删除", "Delete", new { id = item.ActivityID }) |
             @if ((item.ActivityCategoryID == 1 || item.ActivityCategoryID==2)&& item.EndTime<DateTime.Now)
             {
-               <a href="@Url.Action("CheckOut","ActivityManagement", new { id=item.ActivityID })">结算</a>
+               <a onclick="comment('@item.ActivityID')" id="checkout_@item.ActivityID" href="@Url.Action("CheckOut","ActivityManagement", new { id=item.ActivityID })">结算</a>
             }
         </td>
     </tr>

@@ -385,15 +385,25 @@ namespace SucculentWeb.Controllers
                         HttpPostedFileBase file = Request.Files["filePortfolio"];//判断是否已经选择上传文件
                         string filePath = file.FileName;
                         string filename = filePath.Substring(filePath.LastIndexOf("\\") + 1);
-                        string path = Server.MapPath(@"\images\Activity\Portfolio\" + act.ActivityID + "\\");
-                        if (!Directory.Exists(path))//判断路径是否存在，若不存在则创建
-                        {
-                            Directory.CreateDirectory(path);
-                        }
-                        string serverpath = path + filename;
-                        string relativepath = @"/images/Activity/Portfolio/" + act.ActivityID + "/" + filename;
-                        file.SaveAs(serverpath);//上传路径
+                        string relativepath = "";
+                        var extension = Path.GetExtension(filePath);
+                        var allowExtentions = new string[] { ".jpg", ".png", ".gif" };
 
+                        if (allowExtentions.Contains(extension))
+                        {
+                            string path = Server.MapPath(@"\images\Activity\Portfolio\" + act.ActivityID + "\\");
+                            if (!Directory.Exists(path))//判断路径是否存在，若不存在则创建
+                            {
+                                Directory.CreateDirectory(path);
+                            }
+                            string serverpath = path + filename;
+                            relativepath = @"/images/Activity/Portfolio/" + act.ActivityID + "/" + filename;
+                            file.SaveAs(serverpath);//上传路径
+                        }
+                        else
+                        {
+                            return Content("<script>alert('对不起，文件格式只能是.jpg,.png,.gif');window.open('" + Url.Action("AttendPhotoActivity", "SucculentActivity", new { actID = ActID }) + "', '_self')')</script>");
+                        }
                         Entries entries = new Entries();
                         entries.ActivityID = ActID;
                         entries.Image = relativepath;
