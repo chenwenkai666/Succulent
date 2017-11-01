@@ -114,6 +114,11 @@
         $(document).ready(function () {
             $('#DonateSubmitBtn').click(function () {
                 setTimeout(function () {
+                    var num = $('#DonoteTotal').val();
+                    if (num <= 0) {
+                        alert('请填写正确的数量');
+                        return false;
+                    }
                     var result = $('#DonateResult').text();
                     if(result=="1"){
                         _success('捐赠成功，您小小的一份爱能让世界更美好❤');
@@ -152,5 +157,6 @@
                 $('#DonateSubmitBtn').attr('disabled', false);
             }
         });
+
     </script>
 }
