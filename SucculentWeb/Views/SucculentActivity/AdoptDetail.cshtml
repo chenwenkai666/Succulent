@@ -50,7 +50,7 @@
                 @foreach (var item in Model.AdoptResult)
                 {
                   <li>
-                      恭喜用户：<a href="#">@item.Users.UserName</a>获得 <span><a href='@Url.Action("GoodsDetail","Goods",new { goodsid=item.GoodsID })' target="_blank">@item.Goods.GoodsName</a></span>
+                      恭喜用户：<a href="#">@item.Users.UserName</a>获得 <span><a href='@Url.Action("GoodsDetail","Goods",new { goodid=item.GoodsID })' target="_blank">@item.Goods.GoodsName</a></span>
                   </li>
                 }
                 @*<li>
