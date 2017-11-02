@@ -27,6 +27,21 @@
                 }
             });
         });
+
+        $("#form1").submit(function (e) {
+            var starttime = $('#StartTime').val();
+            var endtime = $('#EndTime').val();
+
+            var start = new Date(starttime);
+            var end = new Date(endtime);
+            if (end < start) {
+                alert('结束时间不能早于开始时间');
+                $('#EndTime').focus();
+                return false;
+            }
+        });
+
+
     });
 
     var editorOption = {
@@ -42,12 +57,14 @@
     };
     var editorConditions = new baidu.editor.ui.Editor(editorConditions);
     editorConditions.render('AttendConditions');
+
+    
 </script>
 <div class="publish_wrap">
-    @using (Html.BeginForm("Publish", "SucculentActivity", FormMethod.Post,new { enctype = "multipart/form-data" }))
+    @using (Html.BeginForm("Publish", "SucculentActivity", FormMethod.Post,new { enctype = "multipart/form-data",id = "form1" }))
     {
         @Html.AntiForgeryToken()
-        
+
         <div class="publish_txt">
             <div class="row">
                 <div class="col-lg-12">
